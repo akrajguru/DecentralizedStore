@@ -1,0 +1,221 @@
+syntax = "proto3";
+
+package chord;
+
+//service Client {
+//
+//  rpc insertKey(InsertKeyRequest) returns (InsertKeyReply) {}
+//  rpc getFingerTable(FingerTableListRequest) returns (FingerTableListReply) {}
+//  rpc addServer(AddServerRequest) returns (AddServerResponse) {}
+//
+//}
+
+service Node {
+  rpc forwardKey(ForwardKeyRequest) returns (ForwardKeyReply) {}
+  rpc getNodeData(NodeInfoRequest) returns (NodeInfoResponse) {}
+  rpc heartBeat(HeartBeatToPredecessorRequest) returns (HeartBeatReplyFromSuccessor) {}
+  rpc closestPrecedFinger(ClosestPFRequest) returns (ClosestPFReply) {}
+  rpc updateSuccessorPredecessor(UpdateSPRequest) returns (UpdateSPResponse) {}
+  rpc updateFingerTable(FingerTableUpdateRequest) returns (FingerTableUpdateResponse) {}
+  rpc successorCall(SuccessorCallRequest) returns (SuccessorCallReply) {}
+  rpc getPredecessorOfNode(PredecessorOfNodeRequest) returns (PredecessorOfNodeReqponse) {}
+  rpc getSuccessorOfNode(SuccessorOfNodeRequest) returns (SuccessorOfNodeResponse) {}
+}
+
+service SendReceive {
+  rpc SendBytes (BytesRequest) returns (BytesResponse) {}
+  rpc SendFD (FDRequest) returns (FDResponse) {}
+  rpc retrieveFileRequest (RetRequest) returns (RetResponse) {}
+  rpc sendData(sendDataToOwner) returns (acknowledgement){}
+}
+
+message sendDataToOwner{
+  string rootHash=1;
+  string contentHash=2;
+  string fileName=3;
+  int64 endOfBlock=4;
+  bytes data=5;
+
+}
+
+message acknowledgement{
+
+}
+
+message  RetRequest{
+  string fileName=1;
+  string hash=2;
+  string clientIP=3;
+  bool isContent=4;
+}
+
+message RetResponse{
+
+}
+
+message BytesRequest {
+  string blockHash=1;
+  string fileName =2;
+  int64 endOfBlock=3;
+  string rootHash=4;
+  bytes data = 5;
+}
+
+message BytesResponse {
+
+  int32 resp = 1; //1 stored successfully, 0 some error
+  // define your response message here
+}
+
+message FDRequest {
+  string fileName=1;
+  string fileRootHash=2;
+  repeated string data = 4;
+  int64 fileSiz=5;
+}
+
+message FDResponse {
+
+  int32 resp = 1; //1 stored successfully, 0 some error
+  // define your response message here
+}
+
+message SuccessorOfNodeRequest{
+
+}
+
+message SuccessorOfNodeResponse{
+  string successor=1;
+}
+
+message  PredecessorOfNodeRequest{
+
+}
+
+message PredecessorOfNodeReqponse{
+
+  string predecessor=1;
+}
+
+message SuccessorCallRequest{
+  // id is a hash id . convert it into bigInt if req
+  string id=1;
+  string start=2;
+}
+
+message SuccessorCallReply{
+  NodeFull successor=1;
+}
+
+message  FingerTableUpdateRequest{
+
+  int32 iteration=2;
+  int32 startNode=3;
+
+}
+
+message FingerTableUpdateResponse{
+  int32 success=1;
+}
+
+message  UpdateSPRequest{
+  string successor=1;
+  string predecessor =2;
+}
+
+message UpdateSPResponse{
+  int32 response =1; /* 0=success, 1= failure*/
+}
+
+message AddServerRequest{
+
+  string port=1;
+  string headNode=2;
+
+}
+
+message AddServerResponse{
+  int32 reply =1; /* success if 1, failure if 0, node already exists the 2*/
+}
+
+message NodeInfoRequest{
+
+}
+
+message NodeInfoResponse{
+
+  string predecessor=1;
+  string successor =2;
+  repeated FingerTable fTable =3;
+  string myPort=4;
+
+}
+
+message ClosestPFRequest{
+  string id=1;
+
+}
+
+message FingerTable{
+  int32 nodeId=1;
+  double start=2;
+  double end=3;
+  string nodePort=4;
+}
+
+message ClosestPFReply{
+
+  NodeFull closestPrecedingFinger=1;
+
+}
+
+message NodeFull{
+
+  string ipAddress=1;
+  string hash=2;
+
+}
+
+
+
+message FingerTableListRequest {
+}
+
+message FingerTableListReply {
+  repeated FingerEntry entries = 1;
+  string successor=2;
+  string predecessor=3;
+}
+message InsertKeyRequest{
+  string key = 1;
+}
+
+message InsertKeyReply{
+  int32 stored=2; /* 0 success, 1 unsuccessful*/
+  string node = 1;
+
+}
+
+message ForwardKeyRequest{
+  string key=1;
+}
+message ForwardKeyReply{
+  int32 reply =1; /* 1 if success 0 if error */
+}
+
+message  FingerEntry{
+  string nodePort=1;
+  int32 nodeId=2;
+  double start=3;
+  double end=4;
+  int32 iteration=5;
+
+}
+message HeartBeatToPredecessorRequest {
+  string hostPort = 3; /* the hostPort of the FileStore service */
+}
+
+message HeartBeatReplyFromSuccessor {
+  int32 rc = 1;
+  /* 0 success still the successor, 1 not a successor needs stabilizing, error - node absent, predecessor needs to take care of successor nodes */
+}

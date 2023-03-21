@@ -1,0 +1,81 @@
+package store.helper;
+
+import store.pojo.Chunk;
+import store.pojo.Content;
+import store.pojo.FileDetails;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+
+public class TreeStructure {
+
+    public static List<Content> createNodeList(List<Chunk> chunksForTree,StringBuilder rootHash) throws NoSuchAlgorithmException {
+        Collections.sort(chunksForTree, (c1, c2)-> (int) (c1.getEndOfBlock()- c2.getEndOfBlock()));
+        List<Content> list = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        for(Chunk chunk: chunksForTree){
+            Content content = new Content(chunk.getHash(), chunk.getEndOfBlock(),true,chunk.getContent());
+            sb.append(chunk.getHash());
+            list.add(content);
+        }
+        rootHash.append(HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8)));
+        return list;
+    }
+
+    public static Map<String,String> createMetadata(List<Content> contents) throws IOException {
+        Map<String,String> map = new HashMap<>();
+        StringBuilder sb = new StringBuilder();
+
+        // BufferedWriter writer1 = new BufferedWriter(new FileWriter("/Users/ajinkyarajguru/Documents/CS297/Deliverable3/DecentralizedFileSystem/src/main/resources/MyFiles"+"metadata"));
+        //writer1.append("filename:abc\n");
+        for(Content content : contents){
+            //writer1.append(node.getHash()+", ");
+            sb.append(content.getHash()+", ");
+        }
+        //writer1.close();
+
+        map.put("filename","file1");
+        map.put("chunks", sb.toString());
+        return map;
+    }
+
+    public static List<Chunk> getFileChunks(byte[] mainFile) throws NoSuchAlgorithmException {
+        int kb = 64 * 1024;
+        int endOfChunk=0;
+        List<Chunk> chunks = new ArrayList<>();
+        for (int i = 0; i < mainFile.length; ) {
+            Chunk chunk = new Chunk();
+            int min = Math.min(kb, mainFile.length - i);
+            byte[] chunkContent = new byte[min];
+            endOfChunk+= min;
+            for (int j = 0; j < chunkContent.length; j++, i++) {
+                chunkContent[j] = mainFile[i];
+            }
+            chunk.setContent(chunkContent);
+            chunk.setHash(HashSHA256StoreHelper.createHashFromFileContent(chunkContent));
+            chunk.setEndOfBlock(endOfChunk);
+            chunks.add(chunk);
+        }
+        return chunks;
+    }
+
+    public static FileDetails getFileDetails(String filePath) throws IOException, NoSuchAlgorithmException {
+        File file = new File(filePath);
+        double start = System.currentTimeMillis();
+        byte[] byteArray;
+        FileInputStream inputStream = new FileInputStream(file);
+        byteArray = inputStream.readAllBytes();
+        List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
+        StringBuilder sb= new StringBuilder();
+        List<Content> contentList= TreeStructure.createNodeList(chunks,sb);
+        String[] arr = filePath.split("/");
+        String fileName = arr[arr.length-1];
+        FileDetails fD = new FileDetails(fileName,byteArray.length, sb.toString(),  contentList);
+        return fD;
+    }
+}
