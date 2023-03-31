@@ -17,6 +17,7 @@ import store.pojo.FileDetails;
 import store.pojo.Node;
 import store.pojo.Storage;
 
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +25,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
@@ -84,7 +86,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         String  clientIP= request.getClientIP();
         Storage store=null;
         Chord.RetResponse.Builder resp = Chord.RetResponse.newBuilder();
-        Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), request.getHash());
+        Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), request.getHash(),null);
         if(!node1.getIpAddress().equals(node.getIpAddress())) {
             retrieveRequest(store.getRootHash(), store.getFileName(), node1.getIpAddress());
         }else {
@@ -176,7 +178,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
     }
 
     private void retrieveRequest(String contentId, String fileName,String addressOfArbNode) {
-        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId);
+        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,null);
         ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()
                 .build();
@@ -214,6 +216,8 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
             } finally {
                 fos.close();
             }
+            System.out.println("File can be found at: " +node.getAppPath()+"/resources/"+gilename);
+            tryToOpenTheFile(node.getAppPath()+"/resources/"+gilename);
             cL=new ArrayList<>();
             fileDetailList.put(rootHash, new FileDetails(gilename,0,rootHash,newList));
         }
@@ -223,4 +227,21 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
 //        }
     }
 
+    private void tryToOpenTheFile(String filePath) {
+        {
+            try {
+                File file_open = new File(filePath);
+                if (!Desktop.isDesktopSupported()) {
+                    System.out.println("Desktop Support Not Present in the system.");
+                    return;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if (file_open.exists())
+                    desktop.open(file_open);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }

@@ -18,6 +18,7 @@ public class DisplayFingerTable extends Thread {
 
             Thread.sleep(10000);
             node.getFingertableMap().entrySet().stream().forEach(x -> System.out.println(x.getValue().toString()));
+            System.out.println("-----------------------------------------------------X------------------------------------------------");
         }
         } catch (InterruptedException e) {
                 throw new RuntimeException(e);

@@ -58,7 +58,7 @@ public class StoreClientTester {
     }
 
     private static void retrieveRequest(String contentId, String fileName,String addressOfArbNode) {
-        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId);
+        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,null);
         ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()
                 .build();
@@ -87,7 +87,7 @@ public class StoreClientTester {
     private static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD) {
 
 
-        Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile());
+        Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile(),null);
         ManagedChannel channel1 = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()
                 .build();
@@ -110,7 +110,7 @@ public class StoreClientTester {
     }
 
     private static Chord.BytesResponse sendContentAndGetBytesResponse(FileDetails fD, Node node, Content content,String nodeAddr) {
-        Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash());
+        Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),null);
         ManagedChannel chnl = ManagedChannelBuilder.forTarget(nodeSucc.getIpAddress())
                 .usePlaintext()
                 .build();

@@ -4,24 +4,24 @@ package store.pojo;
 import store.helper.CalcHelper;
 import store.helper.RPCFunctions;
 import store.helper.NodeHelper;
-import store.start.DisplayFingerTable;
-import store.start.FixFingers;
-import store.start.Stabilize;
-import store.start.StabilizeFileStore;
+import store.start.*;
 
 import java.io.File;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Node {
     private String ipAddress;
     private String hashId;
     private Map<String, FingerTable> fingertableMap;
     private Node successor;
+    Stabilize stabilize;
     private Node predecessor;
     private Map<String,Storage> fileMap;
     private Map<String, Storage> contentMap;
     private String appPath;
+    private Map<String,String> successorMap;
 
     public String getAppPath() {
         return appPath;
@@ -77,6 +77,15 @@ public class Node {
 
     }
 
+    public Node(String ipAddress, LinkedHashMap map){
+        this.ipAddress = ipAddress;
+        this.fingertableMap = map;
+        for (int i = 1; i <= 256; i++) {
+            String start = NodeHelper.getFingerStart(i,ipAddress);
+            fingertableMap.put(start, new FingerTable(start,new Node(ipAddress)));
+        }
+    }
+
     public Node(String ipAddress, boolean fingerTable) {
         this.ipAddress = ipAddress;
         this.hashId = NodeHelper.getNodeHashId(ipAddress);
@@ -87,7 +96,7 @@ public class Node {
             fingertableMap.put(start, new FingerTable(start,new Node(ipAddress)));
         }
         this.appPath = System.getProperty("user.dir")+"/"+"StorageMetadata-"+hashId;
-
+        this.successorMap = new LinkedHashMap<>();
         File file = new File(this.appPath);
         if(!file.exists()){
             file.mkdir();
@@ -97,14 +106,16 @@ public class Node {
             file2.mkdir();
         }
         // if want to stop as required - add one more argument boolean where you can set the while loop as false in stabilize
-        Stabilize stabilize = new Stabilize(this);
+        this.stabilize = new Stabilize(this);
         FixFingers fix_fingers = new FixFingers(this);
         DisplayFingerTable dFT = new DisplayFingerTable(this);
         StabilizeFileStore stabilizeFileStore = new StabilizeFileStore(this);
+        PopulateSuccessorList populateSuccessorList = new PopulateSuccessorList(this);
         stabilize.start();
         fix_fingers.start();
-        //dFT.start();
+        dFT.start();
         stabilizeFileStore.start();
+        populateSuccessorList.start();
     }
 
     public void join(Node arbNode){
@@ -112,9 +123,11 @@ public class Node {
             if(getIpAddress().equals(arbNode.getIpAddress())){
                 setPredecessor(this);
                 setSuccessor(this);
+                addEntryToSuccessorMap(getIpAddress(),getIpAddress());
             }else {
                 setPredecessor(null);
-                setSuccessor(RPCFunctions.findSuccessorCall(arbNode.getIpAddress(), getHashId()));
+                setSuccessor(RPCFunctions.findSuccessorCall(arbNode.getIpAddress(), getHashId(),this));
+                addEntryToSuccessorMap(getIpAddress(), getSuccessor().getIpAddress());
                 //System.out.println("successor:" + getSuccessor().getIpAddress());
             }
         }
@@ -127,7 +140,7 @@ public class Node {
         if(nD.getIpAddress().equals(getIpAddress())){
             return getSuccessor().getIpAddress();
         }
-        return RPCFunctions.getSuccessorOfNode(nD.getIpAddress());
+        return RPCFunctions.getSuccessorOfNode(nD.getIpAddress(),this);
     }
 
     public  Node findPredecessor(BigInteger id,Node myNode) {
@@ -163,7 +176,7 @@ public class Node {
             if(myNode.getIpAddress().equals(newNode.getIpAddress())){
                 nDSuccessor = myNode.getSuccessor().getIpAddress();
             }else {
-                nDSuccessor = RPCFunctions.getSuccessorOfNode(newNode.getIpAddress());
+                nDSuccessor = RPCFunctions.getSuccessorOfNode(newNode.getIpAddress(),this);
             }
             mySuccessorHex = NodeHelper.getNodeHashId(nDSuccessor);
             //  System.out.println("successor of"+ newNd+" is "+ nDSuccessor+"while finding id: "+ id);
@@ -191,8 +204,40 @@ public class Node {
         return myNode;
     }
 
-    public static void notifyCall(String nD, String successor){
-        RPCFunctions.updateSuccessor(nD,successor);
+    public  void notifyCall(String nD, String successor){
+        RPCFunctions.updateSuccessor(nD,successor,this);
+    }
+
+    public void deleteUnavailableNodeInfo(String ipAddr) {
+        //stabilize.wait();
+        List<Map.Entry<String, String>> list = getSuccessorMap().entrySet().stream().filter(x -> x.getValue().equals(ipAddr)).collect(Collectors.toList());
+        for(Map.Entry<String, String> m:list){
+            getSuccessorMap().remove(m.getKey());
+        }
+        List<String> alKeys = new ArrayList<>(fingertableMap.keySet());
+        Collections.reverse(alKeys);
+        String succIP = fingertableMap.get(alKeys.get(0)).getNode().getIpAddress();
+        for(String key: alKeys){
+            if(fingertableMap.get(key).getNode().getIpAddress().equals(ipAddr)){
+                if(getSuccessorMap().containsKey(ipAddr)){
+                    fingertableMap.get(key).setNode(new Node(getSuccessorMap().get(ipAddr)));
+                }else if(!succIP.equals(ipAddr)){
+                    fingertableMap.get(key).setNode(new Node(succIP));
+                }else{
+                    fingertableMap.get(key).setNode(this);
+                }
+            }else{
+                succIP=fingertableMap.get(key).getNode().getIpAddress();
+            }
+        }
+        if(succIP==null) succIP=getIpAddress();
+        if(getSuccessor().getIpAddress().equals(ipAddr)){
+            setSuccessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
+        }
+        if(getPredecessor().getIpAddress().equals(ipAddr)){
+            setPredecessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
+        }
+        //stabilize.notify();
     }
 
     @Override
@@ -201,5 +246,17 @@ public class Node {
                 "ipAddress='" + ipAddress + '\'' +
                 ", hashId='" + hashId + '\'' +
                 '}';
+    }
+
+    public Map<String, String> getSuccessorMap() {
+        return successorMap;
+    }
+
+    public void setSuccessorMap(Map<String, String> successorMap) {
+        this.successorMap = successorMap;
+    }
+
+    public void addEntryToSuccessorMap(String key, String value) {
+        this.successorMap.put(key,value);
     }
 }

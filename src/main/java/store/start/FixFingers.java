@@ -1,6 +1,7 @@
 package store.start;
 
 import store.helper.CalcHelper;
+import store.helper.RPCFunctions;
 import store.pojo.Node;
 
 import java.util.ArrayList;
@@ -21,17 +22,25 @@ public class FixFingers extends Thread{
     @Override
     public void run() {
         try {
-        Thread.sleep(1000);
+        Thread.sleep(5000);
         while(true){
-            Thread.sleep(100);
-            int i =   rand.nextInt(256);
-            List keyList =  new ArrayList(node.getFingertableMap().keySet());
-            Object key=keyList.get(i);
-            String start = node.getFingertableMap().get(key).getStart();
-            String node1 = node.findSuccessor(CalcHelper.getBigInt(start),node);
-            node.getFingertableMap().get(key).setNode(new Node(node1));
-            //System.out.println("finger fixed:"+ i+" node: "+ node1);
-
+            //System.out.println("in fingerfixer");
+            try {
+                Thread.sleep(100);
+                int i = rand.nextInt(256);
+                List keyList = new ArrayList(node.getFingertableMap().keySet());
+                Object key = keyList.get(i);
+                String start = node.getFingertableMap().get(key).getStart();
+                String node1 = node.findSuccessor(CalcHelper.getBigInt(start), node);
+                node.getFingertableMap().get(key).setNode(new Node(node1));
+                String successor = RPCFunctions.getSuccessorOfNode(node1, node);
+                if (successor != null) {
+                    node.addEntryToSuccessorMap(node1, successor);
+                }
+                //System.out.println("finger fixed:"+ i+" node: "+ node1);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
         } catch (InterruptedException e) {
            e.printStackTrace();

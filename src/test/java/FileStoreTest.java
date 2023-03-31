@@ -4,11 +4,13 @@ import store.helper.PersistAndRetrieveMetadata;
 import store.helper.TreeStructure;
 import store.pojo.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileStoreTest {
@@ -94,7 +96,65 @@ public class FileStoreTest {
                 .findFirst();
         System.out.println(fileName.get());
     }
+    @Test
+    void openingAFile(){
+        {
+            try
+            {
+                File file_open = new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/main/resources/adharcard.pdf");
+                if(!Desktop.isDesktopSupported())
+                {
+                    System.out.println("Desktop Support Not Present in the system.");
+                    return;
+                }
+                Desktop desktop = Desktop.getDesktop();
+                if(file_open.exists())
+                    desktop.open(file_open);
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
+        }
+    }
+    @Test
+    void testDeleteNodeInfoCase1(){
+        Node node = new Node("10.0.0.30:9020", new LinkedHashMap<String,FingerTable>());
+        node.setPredecessor(new Node("10.0.0.30:9010"));
+        node.setSuccessor(new Node("10.0.0.30:9030"));
+        node.setSuccessorMap(new LinkedHashMap<>());
+        node.addEntryToSuccessorMap("10.0.0.30:9010","10.0.0.30:9020");
+        node.addEntryToSuccessorMap("10.0.0.30:9030","10.0.0.30:9010");
+        node.addEntryToSuccessorMap("10.0.0.30:9020","10.0.0.30:9030");
+        List<String> alKeys = new ArrayList<>(node.getFingertableMap().keySet());
+        Collections.reverse(alKeys);
+        node.getFingertableMap().put(alKeys.get(0),new FingerTable(alKeys.get(0),node.getSuccessor()));
+        node.getFingertableMap().put(alKeys.get(1),new FingerTable(alKeys.get(1),node.getSuccessor()));
+        node.getFingertableMap().put(alKeys.get(2),new FingerTable(alKeys.get(2),node.getSuccessor()));
+        node.deleteUnavailableNodeInfo("10.0.0.30:9030");
 
+
+
+    }
+    @Test
+    void exceptionTester(){
+        try{
+           int ans = divideFunc();
+        }catch(Exception e){
+            System.out.println("exception outside");
+        }
+        System.out.println("done");
+    }
+
+    private int divideFunc() {
+        int ans = 0;
+        try {
+            ans= 1 / 0;
+        }catch(Exception e){
+            System.out.println("exception in function");
+        }
+        return ans;
+    }
 
 
 }

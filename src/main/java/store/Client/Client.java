@@ -40,6 +40,7 @@ public class Client extends Thread {
             System.out.println("2. get a file using its content ID");
             System.out.println("3. get file using exact file name");
             System.out.println("4. Show my files stored");
+            System.out.println("5. Get a file using shared content ID");
             int option = sc.nextInt();
             switch (option) {
                 // Case
@@ -53,7 +54,7 @@ public class Client extends Thread {
                             String temp = fD.getFileName()+"-"+2;
                             fD.setFileName(temp);
                         }
-                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD);
+                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD,node);
                         files.put(fD.getFileName(),fD.getHashOfFile());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -72,7 +73,7 @@ public class Client extends Thread {
                             .findFirst();
                     if(fileName.stream().count()>0) {
                         if (fileNotPresentInMemory(contentID)) {
-                            RPCFunctions.retrieveRequest(node.getIpAddress(), contentID, fileName.get(), node.getIpAddress());
+                            RPCFunctions.retrieveRequest(node.getIpAddress(), contentID, fileName.get(), node.getIpAddress(),node);
                         } else {
                             try {
                                 reconstructFile(fileDetails.get(contentID).getContentList(), fileName.get(), node);
@@ -90,7 +91,7 @@ public class Client extends Thread {
                     String nameOfFile = sc.next();
                     if(files.containsKey(nameOfFile)){
                         if(fileNotPresentInMemory(files.get(nameOfFile))) {
-                            RPCFunctions.retrieveRequest(node.getIpAddress(), files.get(nameOfFile), nameOfFile, node.getIpAddress());
+                            RPCFunctions.retrieveRequest(node.getIpAddress(), files.get(nameOfFile), nameOfFile, node.getIpAddress(),node);
                         }else{
                             try {
                                 reconstructFile(fileDetails.get(files.get(nameOfFile)).getContentList(),nameOfFile,node);
@@ -106,6 +107,13 @@ public class Client extends Thread {
                     break;
                 case 4:
                     files.entrySet().forEach(x-> System.out.println(x.getValue()));
+                    break;
+                case 5:
+                    System.out.println("Enter the shared content id");
+                    String contentID2 = sc.next();
+                    System.out.println("Enter any name for the file");
+                    String fileName2 = sc.next();
+                    RPCFunctions.retrieveRequest(node.getIpAddress(), contentID2,fileName2, node.getIpAddress(),node);
                     break;
             }
         }while(!quit);

@@ -34,7 +34,7 @@ public class StabilizeFileStore extends Thread {
                             iP = node.findSuccessor(CalcHelper.getBigInt(storage.getContentHash()), node);
                             if (!node.getIpAddress().equals(iP)) {
                                 if (!checkIfDataSentToServerAlready.containsKey(iP) || !checkIfDataSentToServerAlready.get(iP).contains(storage.getContentHash())) {
-                                    RPCFunctions.sendDataContentBytesToNode(storage, iP);
+                                    RPCFunctions.sendDataContentBytesToNode(storage, iP,node);
                                     if (checkIfDataSentToServerAlready.containsKey(iP)) {
                                         checkIfDataSentToServerAlready.get(iP).add(storage.getContentHash());
                                     } else {
@@ -49,7 +49,7 @@ public class StabilizeFileStore extends Thread {
                             iP = node.findSuccessor(CalcHelper.getBigInt(storage.getRootHash()), node);
                             if (!node.getIpAddress().equals(iP)) {
                                 if (!checkIfDataSentToServerAlready.containsKey(iP) || !checkIfDataSentToServerAlready.get(iP).contains(storage.getRootHash())) {
-                                    RPCFunctions.sendFileDetailsToNode(storage, iP);
+                                    RPCFunctions.sendFileDetailsToNode(storage, iP,node);
                                     if (checkIfDataSentToServerAlready.containsKey(iP)) {
                                         checkIfDataSentToServerAlready.get(iP).add(storage.getRootHash());
                                     } else {
