@@ -272,5 +272,39 @@ public class RPCFunctions {
         }
     }
 
+    public static int replicateCall(Node node, boolean isContent, Storage storage,int replicateForward,String primary, String replica1){
+
+        ManagedChannel channel =null;
+        try{
+            channel = ManagedChannelBuilder.forTarget(node.getSuccessor().getIpAddress())
+                    .usePlaintext()
+                    .build();
+            SendReceiveGrpc.SendReceiveBlockingStub blockingStub = SendReceiveGrpc.newBlockingStub(channel);
+            Chord.sendReplica request = null;
+            if(isContent){
+                request = Chord.sendReplica.newBuilder().setFileName(storage.getFileName())
+                        .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
+                        .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
+                        .setIsContent(true).setPrimary(primary).setReplica1(replica1).setReplicateFurther(replicateForward).build();
+            }else{
+                request = Chord.sendReplica.newBuilder().setFileName(storage.getFileName())
+                        .setRootHash(storage.getRootHash())
+                        .addAllDataFD(storage.getContentList()).setReplica1(replica1).setFileSize(storage.getSize())
+                        .setIsContent(false).setPrimary(primary).setReplicateFurther(replicateForward).build();
+            }
+            Chord.replicaAck ack = blockingStub.replicate(request);
+            channel.shutdown();
+            if(ack.getResponse()==1) return 1;
+        }
+        catch (StatusRuntimeException e){
+            if(node!=null){
+                node.deleteUnavailableNodeInfo(node.getIpAddress());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     }
 

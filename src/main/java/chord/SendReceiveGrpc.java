@@ -139,6 +139,37 @@ public final class SendReceiveGrpc {
     return getSendDataMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<chord.Chord.sendReplica,
+      chord.Chord.replicaAck> getReplicateMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "replicate",
+      requestType = chord.Chord.sendReplica.class,
+      responseType = chord.Chord.replicaAck.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<chord.Chord.sendReplica,
+      chord.Chord.replicaAck> getReplicateMethod() {
+    io.grpc.MethodDescriptor<chord.Chord.sendReplica, chord.Chord.replicaAck> getReplicateMethod;
+    if ((getReplicateMethod = SendReceiveGrpc.getReplicateMethod) == null) {
+      synchronized (SendReceiveGrpc.class) {
+        if ((getReplicateMethod = SendReceiveGrpc.getReplicateMethod) == null) {
+          SendReceiveGrpc.getReplicateMethod = getReplicateMethod =
+              io.grpc.MethodDescriptor.<chord.Chord.sendReplica, chord.Chord.replicaAck>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "replicate"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.sendReplica.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.replicaAck.getDefaultInstance()))
+              .setSchemaDescriptor(new SendReceiveMethodDescriptorSupplier("replicate"))
+              .build();
+        }
+      }
+    }
+    return getReplicateMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -215,6 +246,13 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSendDataMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void replicate(chord.Chord.sendReplica request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicaAck> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -245,6 +283,13 @@ public final class SendReceiveGrpc {
                 chord.Chord.sendDataToOwner,
                 chord.Chord.acknowledgement>(
                   this, METHODID_SEND_DATA)))
+          .addMethod(
+            getReplicateMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                chord.Chord.sendReplica,
+                chord.Chord.replicaAck>(
+                  this, METHODID_REPLICATE)))
           .build();
     }
   }
@@ -294,6 +339,14 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSendDataMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void replicate(chord.Chord.sendReplica request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicaAck> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getReplicateMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -336,6 +389,13 @@ public final class SendReceiveGrpc {
     public chord.Chord.acknowledgement sendData(chord.Chord.sendDataToOwner request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSendDataMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public chord.Chord.replicaAck replicate(chord.Chord.sendReplica request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getReplicateMethod(), getCallOptions(), request);
     }
   }
 
@@ -384,12 +444,21 @@ public final class SendReceiveGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSendDataMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<chord.Chord.replicaAck> replicate(
+        chord.Chord.sendReplica request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getReplicateMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEND_BYTES = 0;
   private static final int METHODID_SEND_FD = 1;
   private static final int METHODID_RETRIEVE_FILE_REQUEST = 2;
   private static final int METHODID_SEND_DATA = 3;
+  private static final int METHODID_REPLICATE = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -423,6 +492,10 @@ public final class SendReceiveGrpc {
         case METHODID_SEND_DATA:
           serviceImpl.sendData((chord.Chord.sendDataToOwner) request,
               (io.grpc.stub.StreamObserver<chord.Chord.acknowledgement>) responseObserver);
+          break;
+        case METHODID_REPLICATE:
+          serviceImpl.replicate((chord.Chord.sendReplica) request,
+              (io.grpc.stub.StreamObserver<chord.Chord.replicaAck>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -489,6 +562,7 @@ public final class SendReceiveGrpc {
               .addMethod(getSendFDMethod())
               .addMethod(getRetrieveFileRequestMethod())
               .addMethod(getSendDataMethod())
+              .addMethod(getReplicateMethod())
               .build();
         }
       }

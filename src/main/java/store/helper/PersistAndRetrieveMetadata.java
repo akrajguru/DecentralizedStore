@@ -20,6 +20,8 @@ public class PersistAndRetrieveMetadata {
         StringBuilder fileName = new StringBuilder();
         fileName.append(node.getAppPath());
         fileName.append("/");
+        fileName.append("primary");
+        fileName.append("/");
         if(isContent){
             fileName.append("/content");
             fileName.append("/");
@@ -53,7 +55,7 @@ public class PersistAndRetrieveMetadata {
         return storage;
     }
 
-    public static String persistMetadataToFile(Storage storage, Node node) throws IOException {
+    public static String persistMetadataToFile(Storage storage, Node node,String directory) throws IOException {
 
         StringBuilder metaData = new StringBuilder();
         StringBuilder fileName = new StringBuilder();
@@ -69,7 +71,7 @@ public class PersistAndRetrieveMetadata {
             metaData.append("\n");
             metaData.append(Base64.getEncoder().encodeToString(storage.getDataBytes()));
             fileName.append(storage.getContentHash());
-             path = Files.createDirectories(Paths.get(node.getAppPath()+"/content"));
+             path = Files.createDirectories(Paths.get(node.getAppPath()+"/"+directory+"/content"));
         }else{
             metaData.append(storage.getSize());
             metaData.append("\n");
@@ -79,7 +81,7 @@ public class PersistAndRetrieveMetadata {
             }
             metaData.delete(metaData.length()-1,metaData.length());
             fileName.append(storage.getRootHash());
-            path = Files.createDirectories(Paths.get(node.getAppPath()+"/fileDetails"));
+            path = Files.createDirectories(Paths.get(node.getAppPath()+"/"+directory+"/fileDetails"));
         }
 
         String fileLocation = path.toString()+"/"+ fileName.toString();

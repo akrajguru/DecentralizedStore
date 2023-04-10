@@ -44,15 +44,20 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
     @Override
     public void sendFD(Chord.FDRequest request, StreamObserver<Chord.FDResponse> responseObserver) {
         System.out.println(" received FD request for:"+ request.getFileName() +" in "+ node.getIpAddress());
+        Storage storage=null;
+        String file=null;
         String fileName=request.getFileName();
         long size = request.getFileSiz();
         String hash = request.getFileRootHash();
         List<String> contentList = request.getDataList();
-        Storage storage = new Storage(fileName,size,hash,   contentList);
+         storage = new Storage(fileName,size,hash, contentList);
         try {
-            PersistAndRetrieveMetadata.persistMetadataToFile(storage, node);
+            file= PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"primary");
         }catch (Exception e){
             e.printStackTrace();
+        }
+        if(file!=null){
+            RPCFunctions.replicateCall(node, false,storage,2,node.getIpAddress(),node.getSuccessor().getIpAddress());
         }
         Chord.FDResponse response = Chord.FDResponse.newBuilder().setResp(1).build();
         responseObserver.onNext(response);
@@ -68,10 +73,14 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         String rootHash = request.getRootHash();
         byte[] bs = request.getData().toByteArray();
         Storage storage = new Storage(fN,rootHash, bs, cHash,  eob);
+        String file=null;
         try {
-            PersistAndRetrieveMetadata.persistMetadataToFile(storage, node);
+            file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"primary");
         }catch (Exception e){
             e.printStackTrace();
+        }
+        if(file!=null){
+            RPCFunctions.replicateCall(node, true,storage,2,node.getIpAddress(),node.getSuccessor().getIpAddress());
         }
         Chord.BytesResponse response = Chord.BytesResponse.newBuilder().setResp(1).build();
         responseObserver.onNext(response);
@@ -177,7 +186,55 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
 
     }
 
-    private void retrieveRequest(String contentId, String fileName,String addressOfArbNode) {
+    @Override
+    public void replicate(Chord.sendReplica request, StreamObserver<Chord.replicaAck> responseObserver) {
+        String fileName=request.getFileName();
+        String rootHash = request.getRootHash();
+        String file = null;
+        Storage storage=null;
+        int replicateForward = request.getReplicateFurther();
+        if(!request.getIsContent()) {
+            long size = request.getFileSize();
+            List<String> contentList = request.getDataFDList();
+            storage = new Storage(fileName, size, rootHash, contentList);
+            try {
+                if(replicateForward==2){
+                    file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"replica1");
+                }else if(replicateForward==1){
+                    file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"replica2");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            String cHash = request.getBlockHash();
+            long eob=request.getEndOfBlock();
+            byte[] byteArray = request.getDataContent().toByteArray();
+            storage = new Storage(fileName,rootHash, byteArray, cHash,  eob);
+            try {
+                if(replicateForward==2){
+                    file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"replica1");
+                }else if(replicateForward==1){
+                    file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"replica2");
+                }
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        --replicateForward;
+        if(replicateForward>0) {
+            if (file != null) {
+                RPCFunctions.replicateCall(node, request.getIsContent(), storage, replicateForward, request.getPrimary(),node.getIpAddress());
+            }
+        }
+        Chord.replicaAck response = Chord.replicaAck.newBuilder().setResponse(1).build();
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+
+    }
+
+    private void retrieveRequest(String contentId, String fileName, String addressOfArbNode) {
         Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,null);
         ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()

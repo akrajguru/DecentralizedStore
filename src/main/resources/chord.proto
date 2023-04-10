@@ -20,13 +20,45 @@ service Node {
   rpc successorCall(SuccessorCallRequest) returns (SuccessorCallReply) {}
   rpc getPredecessorOfNode(PredecessorOfNodeRequest) returns (PredecessorOfNodeReqponse) {}
   rpc getSuccessorOfNode(SuccessorOfNodeRequest) returns (SuccessorOfNodeResponse) {}
+  rpc checkIfAlive(AliveRequest) returns (AliveResponse) {}
 }
+
 
 service SendReceive {
   rpc SendBytes (BytesRequest) returns (BytesResponse) {}
   rpc SendFD (FDRequest) returns (FDResponse) {}
   rpc retrieveFileRequest (RetRequest) returns (RetResponse) {}
   rpc sendData(sendDataToOwner) returns (acknowledgement){}
+  rpc replicate(sendReplica) returns (replicaAck){}
+}
+
+
+message AliveRequest{
+
+}
+
+message  AliveResponse{
+  int32 alive=1;  //send 1 while alive
+}
+
+
+message  sendReplica{
+  string rootHash=1;
+  string fileName =2;
+  bool isContent=3;
+  string blockHash=4;
+  int64 endOfBlock=5;
+  bytes dataContent = 6;
+  repeated string dataFD = 7;
+  int64 fileSize=8;
+  string primary=9;
+  string replica1=10;
+  string replica2 = 11;
+  int32 replicateFurther=12;
+}
+
+message  replicaAck{
+  int32 response=1; //1 if success or else 0
 }
 
 message sendDataToOwner{

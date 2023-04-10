@@ -1,5 +1,6 @@
 import junit.framework.Assert;
 import org.junit.jupiter.api.Test;
+import store.Logger.LogToFile;
 import store.helper.PersistAndRetrieveMetadata;
 import store.helper.TreeStructure;
 import store.pojo.*;
@@ -22,7 +23,7 @@ public class FileStoreTest {
         Node node = new Node("10.0.0.30:9000");
         node.setAppPath("/Users/ajinkyarajguru/Documents/CS298_data/metadata");
         Storage store = getFileDetails("/Users/ajinkyarajguru/Downloads/CS298_Proposal.pdf");
-        PersistAndRetrieveMetadata.persistMetadataToFile(store,node);
+        PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary");
     }
 
     private static Storage getFileDetails(String fileName) throws IOException, NoSuchAlgorithmException {
@@ -59,7 +60,7 @@ public class FileStoreTest {
         Storage storage = new Storage(fileName1,byteArray.length,sb.toString(),   fDList);
         for(Content content: contentList){
             Storage store = new Storage(fileName1,sb.toString(), content.getData(), content.getHash(),  content.getEndByte());
-            PersistAndRetrieveMetadata.persistMetadataToFile(store,node);
+            PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary");
         }
     }
     @Test
@@ -154,6 +155,29 @@ public class FileStoreTest {
             System.out.println("exception in function");
         }
         return ans;
+    }
+
+    @Test
+    void decrementTester(){
+
+        int i =23;
+        --i;
+        System.out.println(i);
+
+
+    }
+
+    @Test
+    void logTester(){
+
+        LogToFile log= new LogToFile("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/main/resources2");
+
+        for(int i =0;i<100;i++){
+            log.writeLog("info","hey there",null);
+            log.writeLog("error","hey there",new Exception("exception mein aya na"));
+        }
+
+
     }
 
 

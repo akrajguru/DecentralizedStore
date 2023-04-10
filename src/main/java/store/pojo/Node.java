@@ -1,6 +1,7 @@
 package store.pojo;
 
 
+import store.Logger.LogToFile;
 import store.helper.CalcHelper;
 import store.helper.RPCFunctions;
 import store.helper.NodeHelper;
@@ -12,6 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Node {
+    private LogToFile logger;
     private String ipAddress;
     private String hashId;
     private Map<String, FingerTable> fingertableMap;
@@ -111,6 +113,7 @@ public class Node {
         DisplayFingerTable dFT = new DisplayFingerTable(this);
         StabilizeFileStore stabilizeFileStore = new StabilizeFileStore(this);
         PopulateSuccessorList populateSuccessorList = new PopulateSuccessorList(this);
+        logger=new LogToFile(this.appPath);
         stabilize.start();
         fix_fingers.start();
         dFT.start();
@@ -258,5 +261,13 @@ public class Node {
 
     public void addEntryToSuccessorMap(String key, String value) {
         this.successorMap.put(key,value);
+    }
+
+    public LogToFile getLogger() {
+        return logger;
+    }
+
+    public void setLogger(LogToFile logger) {
+        this.logger = logger;
     }
 }
