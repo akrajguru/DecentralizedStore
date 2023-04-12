@@ -12,7 +12,9 @@ import store.pojo.FileDetails;
 import store.pojo.Node;
 import store.pojo.Storage;
 
+import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -138,17 +140,20 @@ public class RPCFunctions {
     public static void updateSuccessor(String nD,String successor,Node myNode) {
         //if(successor.equals())
         //System.out.println("updating successor: "+successor);
+        ManagedChannel channel=null;
         try {
-            ManagedChannel channel = ManagedChannelBuilder.forTarget(successor).usePlaintext().build();
+            channel = ManagedChannelBuilder.forTarget(successor).usePlaintext().build();
             NodeGrpc.NodeBlockingStub stub = NodeGrpc.newBlockingStub(channel);
             Chord.UpdateSPRequest req = Chord.UpdateSPRequest.newBuilder().setPredecessor(nD).build();
             Chord.UpdateSPResponse response = stub.updateSuccessorPredecessor(req);
             if (response.getResponse() == 0) //System.out.println(successor+ " node's predecessor updated to:" + myPort);
                 channel.shutdown();
         }catch(StatusRuntimeException e){
+            channel.shutdown();
             myNode.deleteUnavailableNodeInfo(successor);
         }catch(Exception e){
             e.printStackTrace();
+            channel.shutdown();
         }
     }
 
@@ -211,12 +216,19 @@ public class RPCFunctions {
             if (resp.getResp() == 1) {
                 for (Content content : fD.getContentList()) {
                     Chord.BytesResponse sentResp = sendContentAndGetBytesResponse(fD, myNode, content, nodeAddr);
-                    while (sentResp.getResp() != 1) {
+                    while (sentResp.getResp() <1) {
                         sentResp = sendContentAndGetBytesResponse(fD, myNode, content, nodeAddr);
                     }
+                    if(sentResp.getResp()==2){
+                        System.out.println("Cannot store file as it cannot be replicated");
+                    }else if(sentResp.getResp()==1){
+                        System.out.println(" File saved:" + fD);
+                    }
                 }
+            }else{
+                System.out.println("Cannot store file as it cannot be replicated");
             }
-            System.out.println(" File saved:" + fD);
+
             channel1.shutdown();
         }catch(StatusRuntimeException e){
             if(myNode!=null) {
@@ -294,7 +306,7 @@ public class RPCFunctions {
             }
             Chord.replicaAck ack = blockingStub.replicate(request);
             channel.shutdown();
-            if(ack.getResponse()==1) return 1;
+            if(ack!=null) return ack.getResponse();
         }
         catch (StatusRuntimeException e){
             if(node!=null){
@@ -306,5 +318,45 @@ public class RPCFunctions {
         return 0;
     }
 
+    public static int  replicateAfterDeletion(Node node, String deletedNode, int replicateFurther,List<Storage> files) throws IOException {
+        ManagedChannel channel = null;
+        try{
+            channel = ManagedChannelBuilder.forTarget(node.getSuccessor().getIpAddress())
+                    .usePlaintext()
+                    .build();
+            SendReceiveGrpc.SendReceiveBlockingStub blockingStub = SendReceiveGrpc.newBlockingStub(channel);
+            Chord.replicateMyFiles request = null;
+            List<Chord.fileContent> fileContentList = new ArrayList<>();
+            for(Storage storage: files) {
+                Chord.fileContent fileContent=null;
+                if (storage.isContainsContent()) {
+                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+                            .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
+                            .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
+                            .setIsContent(true).build();
+                } else {
+                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+                            .setRootHash(storage.getRootHash()).setFileSize(storage.getSize())
+                            .addAllDataFD(storage.getContentList()).build();
+                }
+                fileContentList.add(fileContent);
+            }
+            Chord.replicaInfo repInfo = Chord.replicaInfo.newBuilder().setReplicateFurther(replicateFurther)
+                    .setDeletedNode(deletedNode).setMeYourPredecessor(node.getIpAddress()).build();
+            request= Chord.replicateMyFiles.newBuilder().setCreate(repInfo).addAllData(fileContentList).build();
+            Chord.replicateMyFilesAck ack = blockingStub.replicateAsSuccessorDeleted(request);
+            channel.shutdown();
+            if(ack.getAck()==1) return 1;
+        }
+        catch (StatusRuntimeException e){
+            if(node!=null){
+                node.deleteUnavailableNodeInfo(node.getSuccessor().getIpAddress());
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return 0;
     }
+    }
+
 

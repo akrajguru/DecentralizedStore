@@ -3,17 +3,20 @@ package store.pojo;
 
 import store.Logger.LogToFile;
 import store.helper.CalcHelper;
+import store.helper.PersistAndRetrieveMetadata;
 import store.helper.RPCFunctions;
 import store.helper.NodeHelper;
 import store.start.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Node {
     private LogToFile logger;
+    private StorageInformation storageInfo;
     private String ipAddress;
     private String hashId;
     private Map<String, FingerTable> fingertableMap;
@@ -107,6 +110,7 @@ public class Node {
         if(!file2.exists()){
             file2.mkdir();
         }
+        storageInfo = new StorageInformation();
         // if want to stop as required - add one more argument boolean where you can set the while loop as false in stabilize
         this.stabilize = new Stabilize(this);
         FixFingers fix_fingers = new FixFingers(this);
@@ -211,10 +215,12 @@ public class Node {
         RPCFunctions.updateSuccessor(nD,successor,this);
     }
 
-    public void deleteUnavailableNodeInfo(String ipAddr) {
+    public void deleteUnavailableNodeInfo(String ipAddr)  {
         //stabilize.wait();
         List<Map.Entry<String, String>> list = getSuccessorMap().entrySet().stream().filter(x -> x.getValue().equals(ipAddr)).collect(Collectors.toList());
+        String delKey=null;
         for(Map.Entry<String, String> m:list){
+            delKey=m.getKey();
             getSuccessorMap().remove(m.getKey());
         }
         List<String> alKeys = new ArrayList<>(fingertableMap.keySet());
@@ -235,10 +241,20 @@ public class Node {
         }
         if(succIP==null) succIP=getIpAddress();
         if(getSuccessor().getIpAddress().equals(ipAddr)){
+            System.out.println("updating successor in the deleteUnavailableNodeInfo func");
             setSuccessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
+            try {
+                if(!successor.getIpAddress().equals(ipAddress)) {
+                    List<Storage> files = PersistAndRetrieveMetadata.retrieveFilesAsAList(getStorageInfo().getServerStoreInformation().get("replica1"), this);
+                    RPCFunctions.replicateAfterDeletion(this, ipAddr, 2,files);
+                }
+            }catch (Exception e){
+                logger.writeLog("error","error in replicateAfterDeletion",e);
+            }
         }
         if(getPredecessor().getIpAddress().equals(ipAddr)){
             setPredecessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
+            System.out.println("settin preedecessor to:"+ ipAddr +" or " + succIP);
         }
         //stabilize.notify();
     }
@@ -269,5 +285,19 @@ public class Node {
 
     public void setLogger(LogToFile logger) {
         this.logger = logger;
+    }
+
+    public StorageInformation getStorageInfo() {
+        return storageInfo;
+    }
+
+    public void setStorageInfo(StorageInformation storageInfo) {
+        this.storageInfo = storageInfo;
+    }
+
+    private void replicateDataAfterSuccessorDeletion(){
+
+
+
     }
 }

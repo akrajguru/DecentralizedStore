@@ -14,6 +14,1772 @@ public final class Chord {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface nodeDeletedUpdateRequiredOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.nodeDeletedUpdateRequired)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *only relevant if newFiles is 2
+     * </pre>
+     *
+     * <code>string newPredecessor = 1;</code>
+     * @return The newPredecessor.
+     */
+    java.lang.String getNewPredecessor();
+    /**
+     * <pre>
+     *only relevant if newFiles is 2
+     * </pre>
+     *
+     * <code>string newPredecessor = 1;</code>
+     * @return The bytes for newPredecessor.
+     */
+    com.google.protobuf.ByteString
+        getNewPredecessorBytes();
+
+    /**
+     * <pre>
+     * fyi
+     * </pre>
+     *
+     * <code>string deletedNode = 2;</code>
+     * @return The deletedNode.
+     */
+    java.lang.String getDeletedNode();
+    /**
+     * <pre>
+     * fyi
+     * </pre>
+     *
+     * <code>string deletedNode = 2;</code>
+     * @return The bytes for deletedNode.
+     */
+    com.google.protobuf.ByteString
+        getDeletedNodeBytes();
+
+    /**
+     * <pre>
+     * if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+     * </pre>
+     *
+     * <code>int32 newFiles = 3;</code>
+     * @return The newFiles.
+     */
+    int getNewFiles();
+  }
+  /**
+   * Protobuf type {@code chord.nodeDeletedUpdateRequired}
+   */
+  public static final class nodeDeletedUpdateRequired extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.nodeDeletedUpdateRequired)
+      nodeDeletedUpdateRequiredOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use nodeDeletedUpdateRequired.newBuilder() to construct.
+    private nodeDeletedUpdateRequired(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private nodeDeletedUpdateRequired() {
+      newPredecessor_ = "";
+      deletedNode_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new nodeDeletedUpdateRequired();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_nodeDeletedUpdateRequired_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_nodeDeletedUpdateRequired_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.nodeDeletedUpdateRequired.class, chord.Chord.nodeDeletedUpdateRequired.Builder.class);
+    }
+
+    public static final int NEWPREDECESSOR_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object newPredecessor_ = "";
+    /**
+     * <pre>
+     *only relevant if newFiles is 2
+     * </pre>
+     *
+     * <code>string newPredecessor = 1;</code>
+     * @return The newPredecessor.
+     */
+    @java.lang.Override
+    public java.lang.String getNewPredecessor() {
+      java.lang.Object ref = newPredecessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        newPredecessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     *only relevant if newFiles is 2
+     * </pre>
+     *
+     * <code>string newPredecessor = 1;</code>
+     * @return The bytes for newPredecessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getNewPredecessorBytes() {
+      java.lang.Object ref = newPredecessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        newPredecessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int DELETEDNODE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deletedNode_ = "";
+    /**
+     * <pre>
+     * fyi
+     * </pre>
+     *
+     * <code>string deletedNode = 2;</code>
+     * @return The deletedNode.
+     */
+    @java.lang.Override
+    public java.lang.String getDeletedNode() {
+      java.lang.Object ref = deletedNode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        deletedNode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <pre>
+     * fyi
+     * </pre>
+     *
+     * <code>string deletedNode = 2;</code>
+     * @return The bytes for deletedNode.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDeletedNodeBytes() {
+      java.lang.Object ref = deletedNode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        deletedNode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int NEWFILES_FIELD_NUMBER = 3;
+    private int newFiles_ = 0;
+    /**
+     * <pre>
+     * if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+     * </pre>
+     *
+     * <code>int32 newFiles = 3;</code>
+     * @return The newFiles.
+     */
+    @java.lang.Override
+    public int getNewFiles() {
+      return newFiles_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(newPredecessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, newPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deletedNode_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, deletedNode_);
+      }
+      if (newFiles_ != 0) {
+        output.writeInt32(3, newFiles_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(newPredecessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, newPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deletedNode_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, deletedNode_);
+      }
+      if (newFiles_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(3, newFiles_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.nodeDeletedUpdateRequired)) {
+        return super.equals(obj);
+      }
+      chord.Chord.nodeDeletedUpdateRequired other = (chord.Chord.nodeDeletedUpdateRequired) obj;
+
+      if (!getNewPredecessor()
+          .equals(other.getNewPredecessor())) return false;
+      if (!getDeletedNode()
+          .equals(other.getDeletedNode())) return false;
+      if (getNewFiles()
+          != other.getNewFiles()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + NEWPREDECESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getNewPredecessor().hashCode();
+      hash = (37 * hash) + DELETEDNODE_FIELD_NUMBER;
+      hash = (53 * hash) + getDeletedNode().hashCode();
+      hash = (37 * hash) + NEWFILES_FIELD_NUMBER;
+      hash = (53 * hash) + getNewFiles();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.nodeDeletedUpdateRequired parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.nodeDeletedUpdateRequired prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.nodeDeletedUpdateRequired}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.nodeDeletedUpdateRequired)
+        chord.Chord.nodeDeletedUpdateRequiredOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_nodeDeletedUpdateRequired_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_nodeDeletedUpdateRequired_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.nodeDeletedUpdateRequired.class, chord.Chord.nodeDeletedUpdateRequired.Builder.class);
+      }
+
+      // Construct using chord.Chord.nodeDeletedUpdateRequired.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        newPredecessor_ = "";
+        deletedNode_ = "";
+        newFiles_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_nodeDeletedUpdateRequired_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.nodeDeletedUpdateRequired getDefaultInstanceForType() {
+        return chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.nodeDeletedUpdateRequired build() {
+        chord.Chord.nodeDeletedUpdateRequired result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.nodeDeletedUpdateRequired buildPartial() {
+        chord.Chord.nodeDeletedUpdateRequired result = new chord.Chord.nodeDeletedUpdateRequired(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(chord.Chord.nodeDeletedUpdateRequired result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.newPredecessor_ = newPredecessor_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.deletedNode_ = deletedNode_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.newFiles_ = newFiles_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.nodeDeletedUpdateRequired) {
+          return mergeFrom((chord.Chord.nodeDeletedUpdateRequired)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.nodeDeletedUpdateRequired other) {
+        if (other == chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance()) return this;
+        if (!other.getNewPredecessor().isEmpty()) {
+          newPredecessor_ = other.newPredecessor_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getDeletedNode().isEmpty()) {
+          deletedNode_ = other.deletedNode_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getNewFiles() != 0) {
+          setNewFiles(other.getNewFiles());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                newPredecessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                deletedNode_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                newFiles_ = input.readInt32();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object newPredecessor_ = "";
+      /**
+       * <pre>
+       *only relevant if newFiles is 2
+       * </pre>
+       *
+       * <code>string newPredecessor = 1;</code>
+       * @return The newPredecessor.
+       */
+      public java.lang.String getNewPredecessor() {
+        java.lang.Object ref = newPredecessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          newPredecessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       *only relevant if newFiles is 2
+       * </pre>
+       *
+       * <code>string newPredecessor = 1;</code>
+       * @return The bytes for newPredecessor.
+       */
+      public com.google.protobuf.ByteString
+          getNewPredecessorBytes() {
+        java.lang.Object ref = newPredecessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          newPredecessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       *only relevant if newFiles is 2
+       * </pre>
+       *
+       * <code>string newPredecessor = 1;</code>
+       * @param value The newPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNewPredecessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        newPredecessor_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *only relevant if newFiles is 2
+       * </pre>
+       *
+       * <code>string newPredecessor = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearNewPredecessor() {
+        newPredecessor_ = getDefaultInstance().getNewPredecessor();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *only relevant if newFiles is 2
+       * </pre>
+       *
+       * <code>string newPredecessor = 1;</code>
+       * @param value The bytes for newPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNewPredecessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        newPredecessor_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object deletedNode_ = "";
+      /**
+       * <pre>
+       * fyi
+       * </pre>
+       *
+       * <code>string deletedNode = 2;</code>
+       * @return The deletedNode.
+       */
+      public java.lang.String getDeletedNode() {
+        java.lang.Object ref = deletedNode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          deletedNode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <pre>
+       * fyi
+       * </pre>
+       *
+       * <code>string deletedNode = 2;</code>
+       * @return The bytes for deletedNode.
+       */
+      public com.google.protobuf.ByteString
+          getDeletedNodeBytes() {
+        java.lang.Object ref = deletedNode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          deletedNode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <pre>
+       * fyi
+       * </pre>
+       *
+       * <code>string deletedNode = 2;</code>
+       * @param value The deletedNode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDeletedNode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        deletedNode_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * fyi
+       * </pre>
+       *
+       * <code>string deletedNode = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDeletedNode() {
+        deletedNode_ = getDefaultInstance().getDeletedNode();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * fyi
+       * </pre>
+       *
+       * <code>string deletedNode = 2;</code>
+       * @param value The bytes for deletedNode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDeletedNodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        deletedNode_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private int newFiles_ ;
+      /**
+       * <pre>
+       * if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+       * </pre>
+       *
+       * <code>int32 newFiles = 3;</code>
+       * @return The newFiles.
+       */
+      @java.lang.Override
+      public int getNewFiles() {
+        return newFiles_;
+      }
+      /**
+       * <pre>
+       * if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+       * </pre>
+       *
+       * <code>int32 newFiles = 3;</code>
+       * @param value The newFiles to set.
+       * @return This builder for chaining.
+       */
+      public Builder setNewFiles(int value) {
+        
+        newFiles_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+       * </pre>
+       *
+       * <code>int32 newFiles = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearNewFiles() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        newFiles_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.nodeDeletedUpdateRequired)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.nodeDeletedUpdateRequired)
+    private static final chord.Chord.nodeDeletedUpdateRequired DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.nodeDeletedUpdateRequired();
+    }
+
+    public static chord.Chord.nodeDeletedUpdateRequired getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<nodeDeletedUpdateRequired>
+        PARSER = new com.google.protobuf.AbstractParser<nodeDeletedUpdateRequired>() {
+      @java.lang.Override
+      public nodeDeletedUpdateRequired parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<nodeDeletedUpdateRequired> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<nodeDeletedUpdateRequired> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.nodeDeletedUpdateRequired getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AliveRequestOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.AliveRequest)
+      com.google.protobuf.MessageOrBuilder {
+  }
+  /**
+   * Protobuf type {@code chord.AliveRequest}
+   */
+  public static final class AliveRequest extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.AliveRequest)
+      AliveRequestOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use AliveRequest.newBuilder() to construct.
+    private AliveRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private AliveRequest() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new AliveRequest();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_AliveRequest_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_AliveRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.AliveRequest.class, chord.Chord.AliveRequest.Builder.class);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.AliveRequest)) {
+        return super.equals(obj);
+      }
+      chord.Chord.AliveRequest other = (chord.Chord.AliveRequest) obj;
+
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.AliveRequest parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.AliveRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.AliveRequest prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.AliveRequest}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.AliveRequest)
+        chord.Chord.AliveRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_AliveRequest_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_AliveRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.AliveRequest.class, chord.Chord.AliveRequest.Builder.class);
+      }
+
+      // Construct using chord.Chord.AliveRequest.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_AliveRequest_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveRequest getDefaultInstanceForType() {
+        return chord.Chord.AliveRequest.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveRequest build() {
+        chord.Chord.AliveRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveRequest buildPartial() {
+        chord.Chord.AliveRequest result = new chord.Chord.AliveRequest(this);
+        onBuilt();
+        return result;
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.AliveRequest) {
+          return mergeFrom((chord.Chord.AliveRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.AliveRequest other) {
+        if (other == chord.Chord.AliveRequest.getDefaultInstance()) return this;
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.AliveRequest)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.AliveRequest)
+    private static final chord.Chord.AliveRequest DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.AliveRequest();
+    }
+
+    public static chord.Chord.AliveRequest getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AliveRequest>
+        PARSER = new com.google.protobuf.AbstractParser<AliveRequest>() {
+      @java.lang.Override
+      public AliveRequest parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AliveRequest> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AliveRequest> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.AliveRequest getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface AliveResponseOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.AliveResponse)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     *send 1 while alive
+     * </pre>
+     *
+     * <code>int32 alive = 1;</code>
+     * @return The alive.
+     */
+    int getAlive();
+  }
+  /**
+   * Protobuf type {@code chord.AliveResponse}
+   */
+  public static final class AliveResponse extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.AliveResponse)
+      AliveResponseOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use AliveResponse.newBuilder() to construct.
+    private AliveResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private AliveResponse() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new AliveResponse();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_AliveResponse_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_AliveResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.AliveResponse.class, chord.Chord.AliveResponse.Builder.class);
+    }
+
+    public static final int ALIVE_FIELD_NUMBER = 1;
+    private int alive_ = 0;
+    /**
+     * <pre>
+     *send 1 while alive
+     * </pre>
+     *
+     * <code>int32 alive = 1;</code>
+     * @return The alive.
+     */
+    @java.lang.Override
+    public int getAlive() {
+      return alive_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (alive_ != 0) {
+        output.writeInt32(1, alive_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (alive_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, alive_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.AliveResponse)) {
+        return super.equals(obj);
+      }
+      chord.Chord.AliveResponse other = (chord.Chord.AliveResponse) obj;
+
+      if (getAlive()
+          != other.getAlive()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ALIVE_FIELD_NUMBER;
+      hash = (53 * hash) + getAlive();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.AliveResponse parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveResponse parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.AliveResponse parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.AliveResponse parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveResponse parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.AliveResponse parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.AliveResponse prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.AliveResponse}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.AliveResponse)
+        chord.Chord.AliveResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_AliveResponse_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_AliveResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.AliveResponse.class, chord.Chord.AliveResponse.Builder.class);
+      }
+
+      // Construct using chord.Chord.AliveResponse.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        alive_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_AliveResponse_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveResponse getDefaultInstanceForType() {
+        return chord.Chord.AliveResponse.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveResponse build() {
+        chord.Chord.AliveResponse result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.AliveResponse buildPartial() {
+        chord.Chord.AliveResponse result = new chord.Chord.AliveResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(chord.Chord.AliveResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.alive_ = alive_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.AliveResponse) {
+          return mergeFrom((chord.Chord.AliveResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.AliveResponse other) {
+        if (other == chord.Chord.AliveResponse.getDefaultInstance()) return this;
+        if (other.getAlive() != 0) {
+          setAlive(other.getAlive());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                alive_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int alive_ ;
+      /**
+       * <pre>
+       *send 1 while alive
+       * </pre>
+       *
+       * <code>int32 alive = 1;</code>
+       * @return The alive.
+       */
+      @java.lang.Override
+      public int getAlive() {
+        return alive_;
+      }
+      /**
+       * <pre>
+       *send 1 while alive
+       * </pre>
+       *
+       * <code>int32 alive = 1;</code>
+       * @param value The alive to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAlive(int value) {
+        
+        alive_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       *send 1 while alive
+       * </pre>
+       *
+       * <code>int32 alive = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAlive() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        alive_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.AliveResponse)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.AliveResponse)
+    private static final chord.Chord.AliveResponse DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.AliveResponse();
+    }
+
+    public static chord.Chord.AliveResponse getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<AliveResponse>
+        PARSER = new com.google.protobuf.AbstractParser<AliveResponse>() {
+      @java.lang.Override
+      public AliveResponse parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<AliveResponse> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<AliveResponse> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.AliveResponse getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface sendReplicaOrBuilder extends
       // @@protoc_insertion_point(interface_extends:chord.sendReplica)
       com.google.protobuf.MessageOrBuilder {
@@ -144,6 +1910,21 @@ public final class Chord {
      * @return The replicateFurther.
      */
     int getReplicateFurther();
+
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * @return Whether the updateReplicasInfo field is set.
+     */
+    boolean hasUpdateReplicasInfo();
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * @return The updateReplicasInfo.
+     */
+    chord.Chord.nodeDeletedUpdateRequired getUpdateReplicasInfo();
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     */
+    chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder();
   }
   /**
    * Protobuf type {@code chord.sendReplica}
@@ -518,6 +2299,32 @@ public final class Chord {
       return replicateFurther_;
     }
 
+    public static final int UPDATEREPLICASINFO_FIELD_NUMBER = 13;
+    private chord.Chord.nodeDeletedUpdateRequired updateReplicasInfo_;
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * @return Whether the updateReplicasInfo field is set.
+     */
+    @java.lang.Override
+    public boolean hasUpdateReplicasInfo() {
+      return updateReplicasInfo_ != null;
+    }
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * @return The updateReplicasInfo.
+     */
+    @java.lang.Override
+    public chord.Chord.nodeDeletedUpdateRequired getUpdateReplicasInfo() {
+      return updateReplicasInfo_ == null ? chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance() : updateReplicasInfo_;
+    }
+    /**
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder() {
+      return updateReplicasInfo_ == null ? chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance() : updateReplicasInfo_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -567,6 +2374,9 @@ public final class Chord {
       }
       if (replicateFurther_ != 0) {
         output.writeInt32(12, replicateFurther_);
+      }
+      if (updateReplicasInfo_ != null) {
+        output.writeMessage(13, getUpdateReplicasInfo());
       }
       getUnknownFields().writeTo(output);
     }
@@ -623,6 +2433,10 @@ public final class Chord {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(12, replicateFurther_);
       }
+      if (updateReplicasInfo_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(13, getUpdateReplicasInfo());
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -662,6 +2476,11 @@ public final class Chord {
           .equals(other.getReplica2())) return false;
       if (getReplicateFurther()
           != other.getReplicateFurther()) return false;
+      if (hasUpdateReplicasInfo() != other.hasUpdateReplicasInfo()) return false;
+      if (hasUpdateReplicasInfo()) {
+        if (!getUpdateReplicasInfo()
+            .equals(other.getUpdateReplicasInfo())) return false;
+      }
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -702,6 +2521,10 @@ public final class Chord {
       hash = (53 * hash) + getReplica2().hashCode();
       hash = (37 * hash) + REPLICATEFURTHER_FIELD_NUMBER;
       hash = (53 * hash) + getReplicateFurther();
+      if (hasUpdateReplicasInfo()) {
+        hash = (37 * hash) + UPDATEREPLICASINFO_FIELD_NUMBER;
+        hash = (53 * hash) + getUpdateReplicasInfo().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -844,6 +2667,11 @@ public final class Chord {
         replica1_ = "";
         replica2_ = "";
         replicateFurther_ = 0;
+        updateReplicasInfo_ = null;
+        if (updateReplicasInfoBuilder_ != null) {
+          updateReplicasInfoBuilder_.dispose();
+          updateReplicasInfoBuilder_ = null;
+        }
         return this;
       }
 
@@ -918,6 +2746,11 @@ public final class Chord {
         }
         if (((from_bitField0_ & 0x00000800) != 0)) {
           result.replicateFurther_ = replicateFurther_;
+        }
+        if (((from_bitField0_ & 0x00001000) != 0)) {
+          result.updateReplicasInfo_ = updateReplicasInfoBuilder_ == null
+              ? updateReplicasInfo_
+              : updateReplicasInfoBuilder_.build();
         }
       }
 
@@ -1020,6 +2853,9 @@ public final class Chord {
         if (other.getReplicateFurther() != 0) {
           setReplicateFurther(other.getReplicateFurther());
         }
+        if (other.hasUpdateReplicasInfo()) {
+          mergeUpdateReplicasInfo(other.getUpdateReplicasInfo());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -1107,6 +2943,13 @@ public final class Chord {
                 bitField0_ |= 0x00000800;
                 break;
               } // case 96
+              case 106: {
+                input.readMessage(
+                    getUpdateReplicasInfoFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00001000;
+                break;
+              } // case 106
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -1819,6 +3662,125 @@ public final class Chord {
         onChanged();
         return this;
       }
+
+      private chord.Chord.nodeDeletedUpdateRequired updateReplicasInfo_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          chord.Chord.nodeDeletedUpdateRequired, chord.Chord.nodeDeletedUpdateRequired.Builder, chord.Chord.nodeDeletedUpdateRequiredOrBuilder> updateReplicasInfoBuilder_;
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * @return Whether the updateReplicasInfo field is set.
+       */
+      public boolean hasUpdateReplicasInfo() {
+        return ((bitField0_ & 0x00001000) != 0);
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * @return The updateReplicasInfo.
+       */
+      public chord.Chord.nodeDeletedUpdateRequired getUpdateReplicasInfo() {
+        if (updateReplicasInfoBuilder_ == null) {
+          return updateReplicasInfo_ == null ? chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance() : updateReplicasInfo_;
+        } else {
+          return updateReplicasInfoBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public Builder setUpdateReplicasInfo(chord.Chord.nodeDeletedUpdateRequired value) {
+        if (updateReplicasInfoBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          updateReplicasInfo_ = value;
+        } else {
+          updateReplicasInfoBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public Builder setUpdateReplicasInfo(
+          chord.Chord.nodeDeletedUpdateRequired.Builder builderForValue) {
+        if (updateReplicasInfoBuilder_ == null) {
+          updateReplicasInfo_ = builderForValue.build();
+        } else {
+          updateReplicasInfoBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public Builder mergeUpdateReplicasInfo(chord.Chord.nodeDeletedUpdateRequired value) {
+        if (updateReplicasInfoBuilder_ == null) {
+          if (((bitField0_ & 0x00001000) != 0) &&
+            updateReplicasInfo_ != null &&
+            updateReplicasInfo_ != chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance()) {
+            getUpdateReplicasInfoBuilder().mergeFrom(value);
+          } else {
+            updateReplicasInfo_ = value;
+          }
+        } else {
+          updateReplicasInfoBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public Builder clearUpdateReplicasInfo() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        updateReplicasInfo_ = null;
+        if (updateReplicasInfoBuilder_ != null) {
+          updateReplicasInfoBuilder_.dispose();
+          updateReplicasInfoBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public chord.Chord.nodeDeletedUpdateRequired.Builder getUpdateReplicasInfoBuilder() {
+        bitField0_ |= 0x00001000;
+        onChanged();
+        return getUpdateReplicasInfoFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      public chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder() {
+        if (updateReplicasInfoBuilder_ != null) {
+          return updateReplicasInfoBuilder_.getMessageOrBuilder();
+        } else {
+          return updateReplicasInfo_ == null ?
+              chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance() : updateReplicasInfo_;
+        }
+      }
+      /**
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          chord.Chord.nodeDeletedUpdateRequired, chord.Chord.nodeDeletedUpdateRequired.Builder, chord.Chord.nodeDeletedUpdateRequiredOrBuilder> 
+          getUpdateReplicasInfoFieldBuilder() {
+        if (updateReplicasInfoBuilder_ == null) {
+          updateReplicasInfoBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              chord.Chord.nodeDeletedUpdateRequired, chord.Chord.nodeDeletedUpdateRequired.Builder, chord.Chord.nodeDeletedUpdateRequiredOrBuilder>(
+                  getUpdateReplicasInfo(),
+                  getParentForChildren(),
+                  isClean());
+          updateReplicasInfo_ = null;
+        }
+        return updateReplicasInfoBuilder_;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -1878,6 +3840,3614 @@ public final class Chord {
 
     @java.lang.Override
     public chord.Chord.sendReplica getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface replicaInfoOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.replicaInfo)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>int32 replicateFurther = 1;</code>
+     * @return The replicateFurther.
+     */
+    int getReplicateFurther();
+
+    /**
+     * <code>string deletedNode = 2;</code>
+     * @return The deletedNode.
+     */
+    java.lang.String getDeletedNode();
+    /**
+     * <code>string deletedNode = 2;</code>
+     * @return The bytes for deletedNode.
+     */
+    com.google.protobuf.ByteString
+        getDeletedNodeBytes();
+
+    /**
+     * <code>string meYourPredecessor = 3;</code>
+     * @return The meYourPredecessor.
+     */
+    java.lang.String getMeYourPredecessor();
+    /**
+     * <code>string meYourPredecessor = 3;</code>
+     * @return The bytes for meYourPredecessor.
+     */
+    com.google.protobuf.ByteString
+        getMeYourPredecessorBytes();
+  }
+  /**
+   * Protobuf type {@code chord.replicaInfo}
+   */
+  public static final class replicaInfo extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.replicaInfo)
+      replicaInfoOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use replicaInfo.newBuilder() to construct.
+    private replicaInfo(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private replicaInfo() {
+      deletedNode_ = "";
+      meYourPredecessor_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new replicaInfo();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_replicaInfo_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_replicaInfo_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.replicaInfo.class, chord.Chord.replicaInfo.Builder.class);
+    }
+
+    public static final int REPLICATEFURTHER_FIELD_NUMBER = 1;
+    private int replicateFurther_ = 0;
+    /**
+     * <code>int32 replicateFurther = 1;</code>
+     * @return The replicateFurther.
+     */
+    @java.lang.Override
+    public int getReplicateFurther() {
+      return replicateFurther_;
+    }
+
+    public static final int DELETEDNODE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object deletedNode_ = "";
+    /**
+     * <code>string deletedNode = 2;</code>
+     * @return The deletedNode.
+     */
+    @java.lang.Override
+    public java.lang.String getDeletedNode() {
+      java.lang.Object ref = deletedNode_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        deletedNode_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string deletedNode = 2;</code>
+     * @return The bytes for deletedNode.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getDeletedNodeBytes() {
+      java.lang.Object ref = deletedNode_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        deletedNode_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int MEYOURPREDECESSOR_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object meYourPredecessor_ = "";
+    /**
+     * <code>string meYourPredecessor = 3;</code>
+     * @return The meYourPredecessor.
+     */
+    @java.lang.Override
+    public java.lang.String getMeYourPredecessor() {
+      java.lang.Object ref = meYourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        meYourPredecessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string meYourPredecessor = 3;</code>
+     * @return The bytes for meYourPredecessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getMeYourPredecessorBytes() {
+      java.lang.Object ref = meYourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        meYourPredecessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (replicateFurther_ != 0) {
+        output.writeInt32(1, replicateFurther_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deletedNode_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, deletedNode_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(meYourPredecessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, meYourPredecessor_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (replicateFurther_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, replicateFurther_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(deletedNode_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, deletedNode_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(meYourPredecessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, meYourPredecessor_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.replicaInfo)) {
+        return super.equals(obj);
+      }
+      chord.Chord.replicaInfo other = (chord.Chord.replicaInfo) obj;
+
+      if (getReplicateFurther()
+          != other.getReplicateFurther()) return false;
+      if (!getDeletedNode()
+          .equals(other.getDeletedNode())) return false;
+      if (!getMeYourPredecessor()
+          .equals(other.getMeYourPredecessor())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + REPLICATEFURTHER_FIELD_NUMBER;
+      hash = (53 * hash) + getReplicateFurther();
+      hash = (37 * hash) + DELETEDNODE_FIELD_NUMBER;
+      hash = (53 * hash) + getDeletedNode().hashCode();
+      hash = (37 * hash) + MEYOURPREDECESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getMeYourPredecessor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.replicaInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaInfo parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaInfo parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicaInfo parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaInfo parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaInfo parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.replicaInfo prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.replicaInfo}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.replicaInfo)
+        chord.Chord.replicaInfoOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_replicaInfo_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_replicaInfo_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.replicaInfo.class, chord.Chord.replicaInfo.Builder.class);
+      }
+
+      // Construct using chord.Chord.replicaInfo.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        replicateFurther_ = 0;
+        deletedNode_ = "";
+        meYourPredecessor_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_replicaInfo_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaInfo getDefaultInstanceForType() {
+        return chord.Chord.replicaInfo.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaInfo build() {
+        chord.Chord.replicaInfo result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaInfo buildPartial() {
+        chord.Chord.replicaInfo result = new chord.Chord.replicaInfo(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(chord.Chord.replicaInfo result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.replicateFurther_ = replicateFurther_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.deletedNode_ = deletedNode_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.meYourPredecessor_ = meYourPredecessor_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.replicaInfo) {
+          return mergeFrom((chord.Chord.replicaInfo)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.replicaInfo other) {
+        if (other == chord.Chord.replicaInfo.getDefaultInstance()) return this;
+        if (other.getReplicateFurther() != 0) {
+          setReplicateFurther(other.getReplicateFurther());
+        }
+        if (!other.getDeletedNode().isEmpty()) {
+          deletedNode_ = other.deletedNode_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getMeYourPredecessor().isEmpty()) {
+          meYourPredecessor_ = other.meYourPredecessor_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                replicateFurther_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              case 18: {
+                deletedNode_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                meYourPredecessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int replicateFurther_ ;
+      /**
+       * <code>int32 replicateFurther = 1;</code>
+       * @return The replicateFurther.
+       */
+      @java.lang.Override
+      public int getReplicateFurther() {
+        return replicateFurther_;
+      }
+      /**
+       * <code>int32 replicateFurther = 1;</code>
+       * @param value The replicateFurther to set.
+       * @return This builder for chaining.
+       */
+      public Builder setReplicateFurther(int value) {
+        
+        replicateFurther_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 replicateFurther = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearReplicateFurther() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        replicateFurther_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object deletedNode_ = "";
+      /**
+       * <code>string deletedNode = 2;</code>
+       * @return The deletedNode.
+       */
+      public java.lang.String getDeletedNode() {
+        java.lang.Object ref = deletedNode_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          deletedNode_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string deletedNode = 2;</code>
+       * @return The bytes for deletedNode.
+       */
+      public com.google.protobuf.ByteString
+          getDeletedNodeBytes() {
+        java.lang.Object ref = deletedNode_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          deletedNode_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string deletedNode = 2;</code>
+       * @param value The deletedNode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDeletedNode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        deletedNode_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string deletedNode = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDeletedNode() {
+        deletedNode_ = getDefaultInstance().getDeletedNode();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string deletedNode = 2;</code>
+       * @param value The bytes for deletedNode to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDeletedNodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        deletedNode_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object meYourPredecessor_ = "";
+      /**
+       * <code>string meYourPredecessor = 3;</code>
+       * @return The meYourPredecessor.
+       */
+      public java.lang.String getMeYourPredecessor() {
+        java.lang.Object ref = meYourPredecessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          meYourPredecessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string meYourPredecessor = 3;</code>
+       * @return The bytes for meYourPredecessor.
+       */
+      public com.google.protobuf.ByteString
+          getMeYourPredecessorBytes() {
+        java.lang.Object ref = meYourPredecessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          meYourPredecessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string meYourPredecessor = 3;</code>
+       * @param value The meYourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeYourPredecessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        meYourPredecessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string meYourPredecessor = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearMeYourPredecessor() {
+        meYourPredecessor_ = getDefaultInstance().getMeYourPredecessor();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string meYourPredecessor = 3;</code>
+       * @param value The bytes for meYourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setMeYourPredecessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        meYourPredecessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.replicaInfo)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.replicaInfo)
+    private static final chord.Chord.replicaInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.replicaInfo();
+    }
+
+    public static chord.Chord.replicaInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<replicaInfo>
+        PARSER = new com.google.protobuf.AbstractParser<replicaInfo>() {
+      @java.lang.Override
+      public replicaInfo parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<replicaInfo> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<replicaInfo> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.replicaInfo getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface replicateMyFilesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.replicateMyFiles)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     * @return Whether the create field is set.
+     */
+    boolean hasCreate();
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     * @return The create.
+     */
+    chord.Chord.replicaInfo getCreate();
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     */
+    chord.Chord.replicaInfoOrBuilder getCreateOrBuilder();
+
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    java.util.List<chord.Chord.fileContent> 
+        getDataList();
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    chord.Chord.fileContent getData(int index);
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    int getDataCount();
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getDataOrBuilderList();
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    chord.Chord.fileContentOrBuilder getDataOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code chord.replicateMyFiles}
+   */
+  public static final class replicateMyFiles extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.replicateMyFiles)
+      replicateMyFilesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use replicateMyFiles.newBuilder() to construct.
+    private replicateMyFiles(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private replicateMyFiles() {
+      data_ = java.util.Collections.emptyList();
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new replicateMyFiles();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_replicateMyFiles_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_replicateMyFiles_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.replicateMyFiles.class, chord.Chord.replicateMyFiles.Builder.class);
+    }
+
+    public static final int CREATE_FIELD_NUMBER = 1;
+    private chord.Chord.replicaInfo create_;
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     * @return Whether the create field is set.
+     */
+    @java.lang.Override
+    public boolean hasCreate() {
+      return create_ != null;
+    }
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     * @return The create.
+     */
+    @java.lang.Override
+    public chord.Chord.replicaInfo getCreate() {
+      return create_ == null ? chord.Chord.replicaInfo.getDefaultInstance() : create_;
+    }
+    /**
+     * <code>.chord.replicaInfo create = 1;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.replicaInfoOrBuilder getCreateOrBuilder() {
+      return create_ == null ? chord.Chord.replicaInfo.getDefaultInstance() : create_;
+    }
+
+    public static final int DATA_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private java.util.List<chord.Chord.fileContent> data_;
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<chord.Chord.fileContent> getDataList() {
+      return data_;
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getDataOrBuilderList() {
+      return data_;
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    @java.lang.Override
+    public int getDataCount() {
+      return data_.size();
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContent getData(int index) {
+      return data_.get(index);
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 2;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContentOrBuilder getDataOrBuilder(
+        int index) {
+      return data_.get(index);
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (create_ != null) {
+        output.writeMessage(1, getCreate());
+      }
+      for (int i = 0; i < data_.size(); i++) {
+        output.writeMessage(2, data_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (create_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, getCreate());
+      }
+      for (int i = 0; i < data_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, data_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.replicateMyFiles)) {
+        return super.equals(obj);
+      }
+      chord.Chord.replicateMyFiles other = (chord.Chord.replicateMyFiles) obj;
+
+      if (hasCreate() != other.hasCreate()) return false;
+      if (hasCreate()) {
+        if (!getCreate()
+            .equals(other.getCreate())) return false;
+      }
+      if (!getDataList()
+          .equals(other.getDataList())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (hasCreate()) {
+        hash = (37 * hash) + CREATE_FIELD_NUMBER;
+        hash = (53 * hash) + getCreate().hashCode();
+      }
+      if (getDataCount() > 0) {
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getDataList().hashCode();
+      }
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.replicateMyFiles parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFiles parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFiles parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFiles parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.replicateMyFiles prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.replicateMyFiles}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.replicateMyFiles)
+        chord.Chord.replicateMyFilesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_replicateMyFiles_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_replicateMyFiles_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.replicateMyFiles.class, chord.Chord.replicateMyFiles.Builder.class);
+      }
+
+      // Construct using chord.Chord.replicateMyFiles.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        create_ = null;
+        if (createBuilder_ != null) {
+          createBuilder_.dispose();
+          createBuilder_ = null;
+        }
+        if (dataBuilder_ == null) {
+          data_ = java.util.Collections.emptyList();
+        } else {
+          data_ = null;
+          dataBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_replicateMyFiles_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFiles getDefaultInstanceForType() {
+        return chord.Chord.replicateMyFiles.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFiles build() {
+        chord.Chord.replicateMyFiles result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFiles buildPartial() {
+        chord.Chord.replicateMyFiles result = new chord.Chord.replicateMyFiles(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.replicateMyFiles result) {
+        if (dataBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            data_ = java.util.Collections.unmodifiableList(data_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.data_ = data_;
+        } else {
+          result.data_ = dataBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(chord.Chord.replicateMyFiles result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.create_ = createBuilder_ == null
+              ? create_
+              : createBuilder_.build();
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.replicateMyFiles) {
+          return mergeFrom((chord.Chord.replicateMyFiles)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.replicateMyFiles other) {
+        if (other == chord.Chord.replicateMyFiles.getDefaultInstance()) return this;
+        if (other.hasCreate()) {
+          mergeCreate(other.getCreate());
+        }
+        if (dataBuilder_ == null) {
+          if (!other.data_.isEmpty()) {
+            if (data_.isEmpty()) {
+              data_ = other.data_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureDataIsMutable();
+              data_.addAll(other.data_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.data_.isEmpty()) {
+            if (dataBuilder_.isEmpty()) {
+              dataBuilder_.dispose();
+              dataBuilder_ = null;
+              data_ = other.data_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              dataBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getDataFieldBuilder() : null;
+            } else {
+              dataBuilder_.addAllMessages(other.data_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                input.readMessage(
+                    getCreateFieldBuilder().getBuilder(),
+                    extensionRegistry);
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                chord.Chord.fileContent m =
+                    input.readMessage(
+                        chord.Chord.fileContent.parser(),
+                        extensionRegistry);
+                if (dataBuilder_ == null) {
+                  ensureDataIsMutable();
+                  data_.add(m);
+                } else {
+                  dataBuilder_.addMessage(m);
+                }
+                break;
+              } // case 18
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private chord.Chord.replicaInfo create_;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          chord.Chord.replicaInfo, chord.Chord.replicaInfo.Builder, chord.Chord.replicaInfoOrBuilder> createBuilder_;
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       * @return Whether the create field is set.
+       */
+      public boolean hasCreate() {
+        return ((bitField0_ & 0x00000001) != 0);
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       * @return The create.
+       */
+      public chord.Chord.replicaInfo getCreate() {
+        if (createBuilder_ == null) {
+          return create_ == null ? chord.Chord.replicaInfo.getDefaultInstance() : create_;
+        } else {
+          return createBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public Builder setCreate(chord.Chord.replicaInfo value) {
+        if (createBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          create_ = value;
+        } else {
+          createBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public Builder setCreate(
+          chord.Chord.replicaInfo.Builder builderForValue) {
+        if (createBuilder_ == null) {
+          create_ = builderForValue.build();
+        } else {
+          createBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public Builder mergeCreate(chord.Chord.replicaInfo value) {
+        if (createBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0) &&
+            create_ != null &&
+            create_ != chord.Chord.replicaInfo.getDefaultInstance()) {
+            getCreateBuilder().mergeFrom(value);
+          } else {
+            create_ = value;
+          }
+        } else {
+          createBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public Builder clearCreate() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        create_ = null;
+        if (createBuilder_ != null) {
+          createBuilder_.dispose();
+          createBuilder_ = null;
+        }
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public chord.Chord.replicaInfo.Builder getCreateBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getCreateFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      public chord.Chord.replicaInfoOrBuilder getCreateOrBuilder() {
+        if (createBuilder_ != null) {
+          return createBuilder_.getMessageOrBuilder();
+        } else {
+          return create_ == null ?
+              chord.Chord.replicaInfo.getDefaultInstance() : create_;
+        }
+      }
+      /**
+       * <code>.chord.replicaInfo create = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          chord.Chord.replicaInfo, chord.Chord.replicaInfo.Builder, chord.Chord.replicaInfoOrBuilder> 
+          getCreateFieldBuilder() {
+        if (createBuilder_ == null) {
+          createBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              chord.Chord.replicaInfo, chord.Chord.replicaInfo.Builder, chord.Chord.replicaInfoOrBuilder>(
+                  getCreate(),
+                  getParentForChildren(),
+                  isClean());
+          create_ = null;
+        }
+        return createBuilder_;
+      }
+
+      private java.util.List<chord.Chord.fileContent> data_ =
+        java.util.Collections.emptyList();
+      private void ensureDataIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          data_ = new java.util.ArrayList<chord.Chord.fileContent>(data_);
+          bitField0_ |= 0x00000002;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> dataBuilder_;
+
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public java.util.List<chord.Chord.fileContent> getDataList() {
+        if (dataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(data_);
+        } else {
+          return dataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public int getDataCount() {
+        if (dataBuilder_ == null) {
+          return data_.size();
+        } else {
+          return dataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public chord.Chord.fileContent getData(int index) {
+        if (dataBuilder_ == null) {
+          return data_.get(index);
+        } else {
+          return dataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder setData(
+          int index, chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.set(index, value);
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder setData(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder addData(chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.add(value);
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder addData(
+          int index, chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.add(index, value);
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder addData(
+          chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.add(builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder addData(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder addAllData(
+          java.lang.Iterable<? extends chord.Chord.fileContent> values) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, data_);
+          onChanged();
+        } else {
+          dataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder clearData() {
+        if (dataBuilder_ == null) {
+          data_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          dataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public Builder removeData(int index) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.remove(index);
+          onChanged();
+        } else {
+          dataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public chord.Chord.fileContent.Builder getDataBuilder(
+          int index) {
+        return getDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public chord.Chord.fileContentOrBuilder getDataOrBuilder(
+          int index) {
+        if (dataBuilder_ == null) {
+          return data_.get(index);  } else {
+          return dataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+           getDataOrBuilderList() {
+        if (dataBuilder_ != null) {
+          return dataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(data_);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public chord.Chord.fileContent.Builder addDataBuilder() {
+        return getDataFieldBuilder().addBuilder(
+            chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public chord.Chord.fileContent.Builder addDataBuilder(
+          int index) {
+        return getDataFieldBuilder().addBuilder(
+            index, chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 2;</code>
+       */
+      public java.util.List<chord.Chord.fileContent.Builder> 
+           getDataBuilderList() {
+        return getDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> 
+          getDataFieldBuilder() {
+        if (dataBuilder_ == null) {
+          dataBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder>(
+                  data_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        return dataBuilder_;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.replicateMyFiles)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.replicateMyFiles)
+    private static final chord.Chord.replicateMyFiles DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.replicateMyFiles();
+    }
+
+    public static chord.Chord.replicateMyFiles getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<replicateMyFiles>
+        PARSER = new com.google.protobuf.AbstractParser<replicateMyFiles>() {
+      @java.lang.Override
+      public replicateMyFiles parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<replicateMyFiles> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<replicateMyFiles> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.replicateMyFiles getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface replicateMyFilesAckOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.replicateMyFilesAck)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 1 if successful
+     * </pre>
+     *
+     * <code>int32 ack = 1;</code>
+     * @return The ack.
+     */
+    int getAck();
+  }
+  /**
+   * Protobuf type {@code chord.replicateMyFilesAck}
+   */
+  public static final class replicateMyFilesAck extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.replicateMyFilesAck)
+      replicateMyFilesAckOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use replicateMyFilesAck.newBuilder() to construct.
+    private replicateMyFilesAck(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private replicateMyFilesAck() {
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new replicateMyFilesAck();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_replicateMyFilesAck_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_replicateMyFilesAck_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.replicateMyFilesAck.class, chord.Chord.replicateMyFilesAck.Builder.class);
+    }
+
+    public static final int ACK_FIELD_NUMBER = 1;
+    private int ack_ = 0;
+    /**
+     * <pre>
+     * 1 if successful
+     * </pre>
+     *
+     * <code>int32 ack = 1;</code>
+     * @return The ack.
+     */
+    @java.lang.Override
+    public int getAck() {
+      return ack_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (ack_ != 0) {
+        output.writeInt32(1, ack_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (ack_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, ack_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.replicateMyFilesAck)) {
+        return super.equals(obj);
+      }
+      chord.Chord.replicateMyFilesAck other = (chord.Chord.replicateMyFilesAck) obj;
+
+      if (getAck()
+          != other.getAck()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ACK_FIELD_NUMBER;
+      hash = (53 * hash) + getAck();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFilesAck parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFilesAck parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicateMyFilesAck parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.replicateMyFilesAck prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.replicateMyFilesAck}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.replicateMyFilesAck)
+        chord.Chord.replicateMyFilesAckOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_replicateMyFilesAck_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_replicateMyFilesAck_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.replicateMyFilesAck.class, chord.Chord.replicateMyFilesAck.Builder.class);
+      }
+
+      // Construct using chord.Chord.replicateMyFilesAck.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        ack_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_replicateMyFilesAck_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFilesAck getDefaultInstanceForType() {
+        return chord.Chord.replicateMyFilesAck.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFilesAck build() {
+        chord.Chord.replicateMyFilesAck result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicateMyFilesAck buildPartial() {
+        chord.Chord.replicateMyFilesAck result = new chord.Chord.replicateMyFilesAck(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartial0(chord.Chord.replicateMyFilesAck result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.ack_ = ack_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.replicateMyFilesAck) {
+          return mergeFrom((chord.Chord.replicateMyFilesAck)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.replicateMyFilesAck other) {
+        if (other == chord.Chord.replicateMyFilesAck.getDefaultInstance()) return this;
+        if (other.getAck() != 0) {
+          setAck(other.getAck());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 8: {
+                ack_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int ack_ ;
+      /**
+       * <pre>
+       * 1 if successful
+       * </pre>
+       *
+       * <code>int32 ack = 1;</code>
+       * @return The ack.
+       */
+      @java.lang.Override
+      public int getAck() {
+        return ack_;
+      }
+      /**
+       * <pre>
+       * 1 if successful
+       * </pre>
+       *
+       * <code>int32 ack = 1;</code>
+       * @param value The ack to set.
+       * @return This builder for chaining.
+       */
+      public Builder setAck(int value) {
+        
+        ack_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 1 if successful
+       * </pre>
+       *
+       * <code>int32 ack = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearAck() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        ack_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.replicateMyFilesAck)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.replicateMyFilesAck)
+    private static final chord.Chord.replicateMyFilesAck DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.replicateMyFilesAck();
+    }
+
+    public static chord.Chord.replicateMyFilesAck getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<replicateMyFilesAck>
+        PARSER = new com.google.protobuf.AbstractParser<replicateMyFilesAck>() {
+      @java.lang.Override
+      public replicateMyFilesAck parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<replicateMyFilesAck> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<replicateMyFilesAck> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.replicateMyFilesAck getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface fileContentOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.fileContent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>string rootHash = 1;</code>
+     * @return The rootHash.
+     */
+    java.lang.String getRootHash();
+    /**
+     * <code>string rootHash = 1;</code>
+     * @return The bytes for rootHash.
+     */
+    com.google.protobuf.ByteString
+        getRootHashBytes();
+
+    /**
+     * <code>string fileName = 2;</code>
+     * @return The fileName.
+     */
+    java.lang.String getFileName();
+    /**
+     * <code>string fileName = 2;</code>
+     * @return The bytes for fileName.
+     */
+    com.google.protobuf.ByteString
+        getFileNameBytes();
+
+    /**
+     * <code>bool isContent = 3;</code>
+     * @return The isContent.
+     */
+    boolean getIsContent();
+
+    /**
+     * <code>string blockHash = 4;</code>
+     * @return The blockHash.
+     */
+    java.lang.String getBlockHash();
+    /**
+     * <code>string blockHash = 4;</code>
+     * @return The bytes for blockHash.
+     */
+    com.google.protobuf.ByteString
+        getBlockHashBytes();
+
+    /**
+     * <code>int64 endOfBlock = 5;</code>
+     * @return The endOfBlock.
+     */
+    long getEndOfBlock();
+
+    /**
+     * <code>bytes dataContent = 6;</code>
+     * @return The dataContent.
+     */
+    com.google.protobuf.ByteString getDataContent();
+
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @return A list containing the dataFD.
+     */
+    java.util.List<java.lang.String>
+        getDataFDList();
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @return The count of dataFD.
+     */
+    int getDataFDCount();
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @param index The index of the element to return.
+     * @return The dataFD at the given index.
+     */
+    java.lang.String getDataFD(int index);
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dataFD at the given index.
+     */
+    com.google.protobuf.ByteString
+        getDataFDBytes(int index);
+
+    /**
+     * <code>int64 fileSize = 8;</code>
+     * @return The fileSize.
+     */
+    long getFileSize();
+  }
+  /**
+   * Protobuf type {@code chord.fileContent}
+   */
+  public static final class fileContent extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.fileContent)
+      fileContentOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use fileContent.newBuilder() to construct.
+    private fileContent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private fileContent() {
+      rootHash_ = "";
+      fileName_ = "";
+      blockHash_ = "";
+      dataContent_ = com.google.protobuf.ByteString.EMPTY;
+      dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new fileContent();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_fileContent_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_fileContent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.fileContent.class, chord.Chord.fileContent.Builder.class);
+    }
+
+    public static final int ROOTHASH_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object rootHash_ = "";
+    /**
+     * <code>string rootHash = 1;</code>
+     * @return The rootHash.
+     */
+    @java.lang.Override
+    public java.lang.String getRootHash() {
+      java.lang.Object ref = rootHash_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        rootHash_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string rootHash = 1;</code>
+     * @return The bytes for rootHash.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getRootHashBytes() {
+      java.lang.Object ref = rootHash_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        rootHash_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int FILENAME_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object fileName_ = "";
+    /**
+     * <code>string fileName = 2;</code>
+     * @return The fileName.
+     */
+    @java.lang.Override
+    public java.lang.String getFileName() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fileName_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string fileName = 2;</code>
+     * @return The bytes for fileName.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getFileNameBytes() {
+      java.lang.Object ref = fileName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fileName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ISCONTENT_FIELD_NUMBER = 3;
+    private boolean isContent_ = false;
+    /**
+     * <code>bool isContent = 3;</code>
+     * @return The isContent.
+     */
+    @java.lang.Override
+    public boolean getIsContent() {
+      return isContent_;
+    }
+
+    public static final int BLOCKHASH_FIELD_NUMBER = 4;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object blockHash_ = "";
+    /**
+     * <code>string blockHash = 4;</code>
+     * @return The blockHash.
+     */
+    @java.lang.Override
+    public java.lang.String getBlockHash() {
+      java.lang.Object ref = blockHash_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        blockHash_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string blockHash = 4;</code>
+     * @return The bytes for blockHash.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getBlockHashBytes() {
+      java.lang.Object ref = blockHash_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        blockHash_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ENDOFBLOCK_FIELD_NUMBER = 5;
+    private long endOfBlock_ = 0L;
+    /**
+     * <code>int64 endOfBlock = 5;</code>
+     * @return The endOfBlock.
+     */
+    @java.lang.Override
+    public long getEndOfBlock() {
+      return endOfBlock_;
+    }
+
+    public static final int DATACONTENT_FIELD_NUMBER = 6;
+    private com.google.protobuf.ByteString dataContent_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>bytes dataContent = 6;</code>
+     * @return The dataContent.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString getDataContent() {
+      return dataContent_;
+    }
+
+    public static final int DATAFD_FIELD_NUMBER = 7;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringList dataFD_;
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @return A list containing the dataFD.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getDataFDList() {
+      return dataFD_;
+    }
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @return The count of dataFD.
+     */
+    public int getDataFDCount() {
+      return dataFD_.size();
+    }
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @param index The index of the element to return.
+     * @return The dataFD at the given index.
+     */
+    public java.lang.String getDataFD(int index) {
+      return dataFD_.get(index);
+    }
+    /**
+     * <code>repeated string dataFD = 7;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the dataFD at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getDataFDBytes(int index) {
+      return dataFD_.getByteString(index);
+    }
+
+    public static final int FILESIZE_FIELD_NUMBER = 8;
+    private long fileSize_ = 0L;
+    /**
+     * <code>int64 fileSize = 8;</code>
+     * @return The fileSize.
+     */
+    @java.lang.Override
+    public long getFileSize() {
+      return fileSize_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, rootHash_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fileName_);
+      }
+      if (isContent_ != false) {
+        output.writeBool(3, isContent_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, blockHash_);
+      }
+      if (endOfBlock_ != 0L) {
+        output.writeInt64(5, endOfBlock_);
+      }
+      if (!dataContent_.isEmpty()) {
+        output.writeBytes(6, dataContent_);
+      }
+      for (int i = 0; i < dataFD_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, dataFD_.getRaw(i));
+      }
+      if (fileSize_ != 0L) {
+        output.writeInt64(8, fileSize_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, rootHash_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fileName_);
+      }
+      if (isContent_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(3, isContent_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, blockHash_);
+      }
+      if (endOfBlock_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(5, endOfBlock_);
+      }
+      if (!dataContent_.isEmpty()) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(6, dataContent_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < dataFD_.size(); i++) {
+          dataSize += computeStringSizeNoTag(dataFD_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getDataFDList().size();
+      }
+      if (fileSize_ != 0L) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(8, fileSize_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.fileContent)) {
+        return super.equals(obj);
+      }
+      chord.Chord.fileContent other = (chord.Chord.fileContent) obj;
+
+      if (!getRootHash()
+          .equals(other.getRootHash())) return false;
+      if (!getFileName()
+          .equals(other.getFileName())) return false;
+      if (getIsContent()
+          != other.getIsContent()) return false;
+      if (!getBlockHash()
+          .equals(other.getBlockHash())) return false;
+      if (getEndOfBlock()
+          != other.getEndOfBlock()) return false;
+      if (!getDataContent()
+          .equals(other.getDataContent())) return false;
+      if (!getDataFDList()
+          .equals(other.getDataFDList())) return false;
+      if (getFileSize()
+          != other.getFileSize()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + ROOTHASH_FIELD_NUMBER;
+      hash = (53 * hash) + getRootHash().hashCode();
+      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
+      hash = (53 * hash) + getFileName().hashCode();
+      hash = (37 * hash) + ISCONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsContent());
+      hash = (37 * hash) + BLOCKHASH_FIELD_NUMBER;
+      hash = (53 * hash) + getBlockHash().hashCode();
+      hash = (37 * hash) + ENDOFBLOCK_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getEndOfBlock());
+      hash = (37 * hash) + DATACONTENT_FIELD_NUMBER;
+      hash = (53 * hash) + getDataContent().hashCode();
+      if (getDataFDCount() > 0) {
+        hash = (37 * hash) + DATAFD_FIELD_NUMBER;
+        hash = (53 * hash) + getDataFDList().hashCode();
+      }
+      hash = (37 * hash) + FILESIZE_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+          getFileSize());
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.fileContent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.fileContent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.fileContent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.fileContent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.fileContent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.fileContent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.fileContent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.fileContent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.fileContent)
+        chord.Chord.fileContentOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_fileContent_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_fileContent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.fileContent.class, chord.Chord.fileContent.Builder.class);
+      }
+
+      // Construct using chord.Chord.fileContent.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        rootHash_ = "";
+        fileName_ = "";
+        isContent_ = false;
+        blockHash_ = "";
+        endOfBlock_ = 0L;
+        dataContent_ = com.google.protobuf.ByteString.EMPTY;
+        dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fileSize_ = 0L;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_fileContent_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.fileContent getDefaultInstanceForType() {
+        return chord.Chord.fileContent.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.fileContent build() {
+        chord.Chord.fileContent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.fileContent buildPartial() {
+        chord.Chord.fileContent result = new chord.Chord.fileContent(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.fileContent result) {
+        if (((bitField0_ & 0x00000040) != 0)) {
+          dataFD_ = dataFD_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000040);
+        }
+        result.dataFD_ = dataFD_;
+      }
+
+      private void buildPartial0(chord.Chord.fileContent result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.rootHash_ = rootHash_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.fileName_ = fileName_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.isContent_ = isContent_;
+        }
+        if (((from_bitField0_ & 0x00000008) != 0)) {
+          result.blockHash_ = blockHash_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.endOfBlock_ = endOfBlock_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.dataContent_ = dataContent_;
+        }
+        if (((from_bitField0_ & 0x00000080) != 0)) {
+          result.fileSize_ = fileSize_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.fileContent) {
+          return mergeFrom((chord.Chord.fileContent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.fileContent other) {
+        if (other == chord.Chord.fileContent.getDefaultInstance()) return this;
+        if (!other.getRootHash().isEmpty()) {
+          rootHash_ = other.rootHash_;
+          bitField0_ |= 0x00000001;
+          onChanged();
+        }
+        if (!other.getFileName().isEmpty()) {
+          fileName_ = other.fileName_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (other.getIsContent() != false) {
+          setIsContent(other.getIsContent());
+        }
+        if (!other.getBlockHash().isEmpty()) {
+          blockHash_ = other.blockHash_;
+          bitField0_ |= 0x00000008;
+          onChanged();
+        }
+        if (other.getEndOfBlock() != 0L) {
+          setEndOfBlock(other.getEndOfBlock());
+        }
+        if (other.getDataContent() != com.google.protobuf.ByteString.EMPTY) {
+          setDataContent(other.getDataContent());
+        }
+        if (!other.dataFD_.isEmpty()) {
+          if (dataFD_.isEmpty()) {
+            dataFD_ = other.dataFD_;
+            bitField0_ = (bitField0_ & ~0x00000040);
+          } else {
+            ensureDataFDIsMutable();
+            dataFD_.addAll(other.dataFD_);
+          }
+          onChanged();
+        }
+        if (other.getFileSize() != 0L) {
+          setFileSize(other.getFileSize());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                rootHash_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 10
+              case 18: {
+                fileName_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 24: {
+                isContent_ = input.readBool();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 24
+              case 34: {
+                blockHash_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000008;
+                break;
+              } // case 34
+              case 40: {
+                endOfBlock_ = input.readInt64();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 40
+              case 50: {
+                dataContent_ = input.readBytes();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 50
+              case 58: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureDataFDIsMutable();
+                dataFD_.add(s);
+                break;
+              } // case 58
+              case 64: {
+                fileSize_ = input.readInt64();
+                bitField0_ |= 0x00000080;
+                break;
+              } // case 64
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object rootHash_ = "";
+      /**
+       * <code>string rootHash = 1;</code>
+       * @return The rootHash.
+       */
+      public java.lang.String getRootHash() {
+        java.lang.Object ref = rootHash_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          rootHash_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string rootHash = 1;</code>
+       * @return The bytes for rootHash.
+       */
+      public com.google.protobuf.ByteString
+          getRootHashBytes() {
+        java.lang.Object ref = rootHash_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          rootHash_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string rootHash = 1;</code>
+       * @param value The rootHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRootHash(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        rootHash_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string rootHash = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearRootHash() {
+        rootHash_ = getDefaultInstance().getRootHash();
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string rootHash = 1;</code>
+       * @param value The bytes for rootHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setRootHashBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        rootHash_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object fileName_ = "";
+      /**
+       * <code>string fileName = 2;</code>
+       * @return The fileName.
+       */
+      public java.lang.String getFileName() {
+        java.lang.Object ref = fileName_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          fileName_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string fileName = 2;</code>
+       * @return The bytes for fileName.
+       */
+      public com.google.protobuf.ByteString
+          getFileNameBytes() {
+        java.lang.Object ref = fileName_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fileName_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string fileName = 2;</code>
+       * @param value The fileName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFileName(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        fileName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string fileName = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFileName() {
+        fileName_ = getDefaultInstance().getFileName();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string fileName = 2;</code>
+       * @param value The bytes for fileName to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFileNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        fileName_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private boolean isContent_ ;
+      /**
+       * <code>bool isContent = 3;</code>
+       * @return The isContent.
+       */
+      @java.lang.Override
+      public boolean getIsContent() {
+        return isContent_;
+      }
+      /**
+       * <code>bool isContent = 3;</code>
+       * @param value The isContent to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsContent(boolean value) {
+        
+        isContent_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isContent = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsContent() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        isContent_ = false;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object blockHash_ = "";
+      /**
+       * <code>string blockHash = 4;</code>
+       * @return The blockHash.
+       */
+      public java.lang.String getBlockHash() {
+        java.lang.Object ref = blockHash_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          blockHash_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string blockHash = 4;</code>
+       * @return The bytes for blockHash.
+       */
+      public com.google.protobuf.ByteString
+          getBlockHashBytes() {
+        java.lang.Object ref = blockHash_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          blockHash_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string blockHash = 4;</code>
+       * @param value The blockHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBlockHash(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        blockHash_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string blockHash = 4;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearBlockHash() {
+        blockHash_ = getDefaultInstance().getBlockHash();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string blockHash = 4;</code>
+       * @param value The bytes for blockHash to set.
+       * @return This builder for chaining.
+       */
+      public Builder setBlockHashBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        blockHash_ = value;
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return this;
+      }
+
+      private long endOfBlock_ ;
+      /**
+       * <code>int64 endOfBlock = 5;</code>
+       * @return The endOfBlock.
+       */
+      @java.lang.Override
+      public long getEndOfBlock() {
+        return endOfBlock_;
+      }
+      /**
+       * <code>int64 endOfBlock = 5;</code>
+       * @param value The endOfBlock to set.
+       * @return This builder for chaining.
+       */
+      public Builder setEndOfBlock(long value) {
+        
+        endOfBlock_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 endOfBlock = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearEndOfBlock() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        endOfBlock_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.ByteString dataContent_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>bytes dataContent = 6;</code>
+       * @return The dataContent.
+       */
+      @java.lang.Override
+      public com.google.protobuf.ByteString getDataContent() {
+        return dataContent_;
+      }
+      /**
+       * <code>bytes dataContent = 6;</code>
+       * @param value The dataContent to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataContent(com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        dataContent_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bytes dataContent = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDataContent() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        dataContent_ = getDefaultInstance().getDataContent();
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureDataFDIsMutable() {
+        if (!((bitField0_ & 0x00000040) != 0)) {
+          dataFD_ = new com.google.protobuf.LazyStringArrayList(dataFD_);
+          bitField0_ |= 0x00000040;
+         }
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @return A list containing the dataFD.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getDataFDList() {
+        return dataFD_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @return The count of dataFD.
+       */
+      public int getDataFDCount() {
+        return dataFD_.size();
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param index The index of the element to return.
+       * @return The dataFD at the given index.
+       */
+      public java.lang.String getDataFD(int index) {
+        return dataFD_.get(index);
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the dataFD at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getDataFDBytes(int index) {
+        return dataFD_.getByteString(index);
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param index The index to set the value at.
+       * @param value The dataFD to set.
+       * @return This builder for chaining.
+       */
+      public Builder setDataFD(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDataFDIsMutable();
+        dataFD_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param value The dataFD to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDataFD(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureDataFDIsMutable();
+        dataFD_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param values The dataFD to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllDataFD(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureDataFDIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, dataFD_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearDataFD() {
+        dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string dataFD = 7;</code>
+       * @param value The bytes of the dataFD to add.
+       * @return This builder for chaining.
+       */
+      public Builder addDataFDBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureDataFDIsMutable();
+        dataFD_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private long fileSize_ ;
+      /**
+       * <code>int64 fileSize = 8;</code>
+       * @return The fileSize.
+       */
+      @java.lang.Override
+      public long getFileSize() {
+        return fileSize_;
+      }
+      /**
+       * <code>int64 fileSize = 8;</code>
+       * @param value The fileSize to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFileSize(long value) {
+        
+        fileSize_ = value;
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int64 fileSize = 8;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFileSize() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        fileSize_ = 0L;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.fileContent)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.fileContent)
+    private static final chord.Chord.fileContent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.fileContent();
+    }
+
+    public static chord.Chord.fileContent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<fileContent>
+        PARSER = new com.google.protobuf.AbstractParser<fileContent>() {
+      @java.lang.Override
+      public fileContent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<fileContent> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<fileContent> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.fileContent getDefaultInstanceForType() {
       return DEFAULT_INSTANCE;
     }
 
@@ -24710,10 +30280,45 @@ public final class Chord {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_nodeDeletedUpdateRequired_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_nodeDeletedUpdateRequired_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_AliveRequest_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_AliveRequest_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_AliveResponse_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_AliveResponse_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_chord_sendReplica_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_chord_sendReplica_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_replicaInfo_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_replicaInfo_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_replicateMyFiles_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_replicateMyFiles_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_replicateMyFilesAck_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_replicateMyFilesAck_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_fileContent_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_fileContent_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_chord_replicaAck_descriptor;
   private static final 
@@ -24903,309 +30508,369 @@ public final class Chord {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013chord.proto\022\005chord\"\361\001\n\013sendReplica\022\020\n\010" +
-      "rootHash\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\022\021\n\tisCo" +
-      "ntent\030\003 \001(\010\022\021\n\tblockHash\030\004 \001(\t\022\022\n\nendOfB" +
-      "lock\030\005 \001(\003\022\023\n\013dataContent\030\006 \001(\014\022\016\n\006dataF" +
-      "D\030\007 \003(\t\022\020\n\010fileSize\030\010 \001(\003\022\017\n\007primary\030\t \001" +
-      "(\t\022\020\n\010replica1\030\n \001(\t\022\020\n\010replica2\030\013 \001(\t\022\030" +
-      "\n\020replicateFurther\030\014 \001(\005\"\036\n\nreplicaAck\022\020" +
-      "\n\010response\030\001 \001(\005\"l\n\017sendDataToOwner\022\020\n\010r" +
-      "ootHash\030\001 \001(\t\022\023\n\013contentHash\030\002 \001(\t\022\020\n\010fi" +
-      "leName\030\003 \001(\t\022\022\n\nendOfBlock\030\004 \001(\003\022\014\n\004data" +
-      "\030\005 \001(\014\"\021\n\017acknowledgement\"Q\n\nRetRequest\022" +
-      "\020\n\010fileName\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\022\020\n\010clien" +
-      "tIP\030\003 \001(\t\022\021\n\tisContent\030\004 \001(\010\"\r\n\013RetRespo" +
-      "nse\"g\n\014BytesRequest\022\021\n\tblockHash\030\001 \001(\t\022\020" +
-      "\n\010fileName\030\002 \001(\t\022\022\n\nendOfBlock\030\003 \001(\003\022\020\n\010" +
-      "rootHash\030\004 \001(\t\022\014\n\004data\030\005 \001(\014\"\035\n\rBytesRes" +
-      "ponse\022\014\n\004resp\030\001 \001(\005\"R\n\tFDRequest\022\020\n\010file" +
-      "Name\030\001 \001(\t\022\024\n\014fileRootHash\030\002 \001(\t\022\014\n\004data" +
-      "\030\004 \003(\t\022\017\n\007fileSiz\030\005 \001(\003\"\032\n\nFDResponse\022\014\n" +
-      "\004resp\030\001 \001(\005\"\030\n\026SuccessorOfNodeRequest\",\n" +
-      "\027SuccessorOfNodeResponse\022\021\n\tsuccessor\030\001 " +
-      "\001(\t\"\032\n\030PredecessorOfNodeRequest\"0\n\031Prede" +
-      "cessorOfNodeReqponse\022\023\n\013predecessor\030\001 \001(" +
-      "\t\"1\n\024SuccessorCallRequest\022\n\n\002id\030\001 \001(\t\022\r\n" +
-      "\005start\030\002 \001(\t\"8\n\022SuccessorCallReply\022\"\n\tsu" +
-      "ccessor\030\001 \001(\0132\017.chord.NodeFull\"@\n\030Finger" +
-      "TableUpdateRequest\022\021\n\titeration\030\002 \001(\005\022\021\n" +
-      "\tstartNode\030\003 \001(\005\",\n\031FingerTableUpdateRes" +
-      "ponse\022\017\n\007success\030\001 \001(\005\"9\n\017UpdateSPReques" +
-      "t\022\021\n\tsuccessor\030\001 \001(\t\022\023\n\013predecessor\030\002 \001(" +
-      "\t\"$\n\020UpdateSPResponse\022\020\n\010response\030\001 \001(\005\"" +
-      "2\n\020AddServerRequest\022\014\n\004port\030\001 \001(\t\022\020\n\010hea" +
-      "dNode\030\002 \001(\t\"\"\n\021AddServerResponse\022\r\n\005repl" +
-      "y\030\001 \001(\005\"\021\n\017NodeInfoRequest\"n\n\020NodeInfoRe" +
-      "sponse\022\023\n\013predecessor\030\001 \001(\t\022\021\n\tsuccessor" +
-      "\030\002 \001(\t\022\"\n\006fTable\030\003 \003(\0132\022.chord.FingerTab" +
-      "le\022\016\n\006myPort\030\004 \001(\t\"\036\n\020ClosestPFRequest\022\n" +
-      "\n\002id\030\001 \001(\t\"K\n\013FingerTable\022\016\n\006nodeId\030\001 \001(" +
-      "\005\022\r\n\005start\030\002 \001(\001\022\013\n\003end\030\003 \001(\001\022\020\n\010nodePor" +
-      "t\030\004 \001(\t\"A\n\016ClosestPFReply\022/\n\026closestPrec" +
-      "edingFinger\030\001 \001(\0132\017.chord.NodeFull\"+\n\010No" +
-      "deFull\022\021\n\tipAddress\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\"" +
-      "\030\n\026FingerTableListRequest\"c\n\024FingerTable" +
-      "ListReply\022#\n\007entries\030\001 \003(\0132\022.chord.Finge" +
-      "rEntry\022\021\n\tsuccessor\030\002 \001(\t\022\023\n\013predecessor" +
-      "\030\003 \001(\t\"\037\n\020InsertKeyRequest\022\013\n\003key\030\001 \001(\t\"" +
-      ".\n\016InsertKeyReply\022\016\n\006stored\030\002 \001(\005\022\014\n\004nod" +
-      "e\030\001 \001(\t\" \n\021ForwardKeyRequest\022\013\n\003key\030\001 \001(" +
-      "\t\" \n\017ForwardKeyReply\022\r\n\005reply\030\001 \001(\005\"^\n\013F" +
-      "ingerEntry\022\020\n\010nodePort\030\001 \001(\t\022\016\n\006nodeId\030\002" +
-      " \001(\005\022\r\n\005start\030\003 \001(\001\022\013\n\003end\030\004 \001(\001\022\021\n\titer" +
-      "ation\030\005 \001(\005\"1\n\035HeartBeatToPredecessorReq" +
-      "uest\022\020\n\010hostPort\030\003 \001(\t\")\n\033HeartBeatReply" +
-      "FromSuccessor\022\n\n\002rc\030\001 \001(\0052\326\005\n\004Node\022@\n\nfo" +
-      "rwardKey\022\030.chord.ForwardKeyRequest\032\026.cho" +
-      "rd.ForwardKeyReply\"\000\022@\n\013getNodeData\022\026.ch" +
-      "ord.NodeInfoRequest\032\027.chord.NodeInfoResp" +
-      "onse\"\000\022W\n\theartBeat\022$.chord.HeartBeatToP" +
-      "redecessorRequest\032\".chord.HeartBeatReply" +
-      "FromSuccessor\"\000\022G\n\023closestPrecedFinger\022\027" +
-      ".chord.ClosestPFRequest\032\025.chord.ClosestP" +
-      "FReply\"\000\022O\n\032updateSuccessorPredecessor\022\026" +
-      ".chord.UpdateSPRequest\032\027.chord.UpdateSPR" +
-      "esponse\"\000\022X\n\021updateFingerTable\022\037.chord.F" +
-      "ingerTableUpdateRequest\032 .chord.FingerTa" +
-      "bleUpdateResponse\"\000\022I\n\rsuccessorCall\022\033.c" +
-      "hord.SuccessorCallRequest\032\031.chord.Succes" +
-      "sorCallReply\"\000\022[\n\024getPredecessorOfNode\022\037" +
-      ".chord.PredecessorOfNodeRequest\032 .chord." +
-      "PredecessorOfNodeReqponse\"\000\022U\n\022getSucces" +
-      "sorOfNode\022\035.chord.SuccessorOfNodeRequest" +
-      "\032\036.chord.SuccessorOfNodeResponse\"\0002\254\002\n\013S" +
-      "endReceive\0228\n\tSendBytes\022\023.chord.BytesReq" +
-      "uest\032\024.chord.BytesResponse\"\000\022/\n\006SendFD\022\020" +
-      ".chord.FDRequest\032\021.chord.FDResponse\"\000\022>\n" +
-      "\023retrieveFileRequest\022\021.chord.RetRequest\032" +
-      "\022.chord.RetResponse\"\000\022<\n\010sendData\022\026.chor" +
-      "d.sendDataToOwner\032\026.chord.acknowledgemen" +
-      "t\"\000\0224\n\treplicate\022\022.chord.sendReplica\032\021.c" +
-      "hord.replicaAck\"\000b\006proto3"
+      "\n\013chord.proto\022\005chord\"Z\n\031nodeDeletedUpdat" +
+      "eRequired\022\026\n\016newPredecessor\030\001 \001(\t\022\023\n\013del" +
+      "etedNode\030\002 \001(\t\022\020\n\010newFiles\030\003 \001(\005\"\016\n\014Aliv" +
+      "eRequest\"\036\n\rAliveResponse\022\r\n\005alive\030\001 \001(\005" +
+      "\"\257\002\n\013sendReplica\022\020\n\010rootHash\030\001 \001(\t\022\020\n\010fi" +
+      "leName\030\002 \001(\t\022\021\n\tisContent\030\003 \001(\010\022\021\n\tblock" +
+      "Hash\030\004 \001(\t\022\022\n\nendOfBlock\030\005 \001(\003\022\023\n\013dataCo" +
+      "ntent\030\006 \001(\014\022\016\n\006dataFD\030\007 \003(\t\022\020\n\010fileSize\030" +
+      "\010 \001(\003\022\017\n\007primary\030\t \001(\t\022\020\n\010replica1\030\n \001(\t" +
+      "\022\020\n\010replica2\030\013 \001(\t\022\030\n\020replicateFurther\030\014" +
+      " \001(\005\022<\n\022updateReplicasInfo\030\r \001(\0132 .chord" +
+      ".nodeDeletedUpdateRequired\"W\n\013replicaInf" +
+      "o\022\030\n\020replicateFurther\030\001 \001(\005\022\023\n\013deletedNo" +
+      "de\030\002 \001(\t\022\031\n\021meYourPredecessor\030\003 \001(\t\"X\n\020r" +
+      "eplicateMyFiles\022\"\n\006create\030\001 \001(\0132\022.chord." +
+      "replicaInfo\022 \n\004data\030\002 \003(\0132\022.chord.fileCo" +
+      "ntent\"\"\n\023replicateMyFilesAck\022\013\n\003ack\030\001 \001(" +
+      "\005\"\242\001\n\013fileContent\022\020\n\010rootHash\030\001 \001(\t\022\020\n\010f" +
+      "ileName\030\002 \001(\t\022\021\n\tisContent\030\003 \001(\010\022\021\n\tbloc" +
+      "kHash\030\004 \001(\t\022\022\n\nendOfBlock\030\005 \001(\003\022\023\n\013dataC" +
+      "ontent\030\006 \001(\014\022\016\n\006dataFD\030\007 \003(\t\022\020\n\010fileSize" +
+      "\030\010 \001(\003\"\036\n\nreplicaAck\022\020\n\010response\030\001 \001(\005\"l" +
+      "\n\017sendDataToOwner\022\020\n\010rootHash\030\001 \001(\t\022\023\n\013c" +
+      "ontentHash\030\002 \001(\t\022\020\n\010fileName\030\003 \001(\t\022\022\n\nen" +
+      "dOfBlock\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\"\021\n\017acknowle" +
+      "dgement\"Q\n\nRetRequest\022\020\n\010fileName\030\001 \001(\t\022" +
+      "\014\n\004hash\030\002 \001(\t\022\020\n\010clientIP\030\003 \001(\t\022\021\n\tisCon" +
+      "tent\030\004 \001(\010\"\r\n\013RetResponse\"g\n\014BytesReques" +
+      "t\022\021\n\tblockHash\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\022\022" +
+      "\n\nendOfBlock\030\003 \001(\003\022\020\n\010rootHash\030\004 \001(\t\022\014\n\004" +
+      "data\030\005 \001(\014\"\035\n\rBytesResponse\022\014\n\004resp\030\001 \001(" +
+      "\005\"R\n\tFDRequest\022\020\n\010fileName\030\001 \001(\t\022\024\n\014file" +
+      "RootHash\030\002 \001(\t\022\014\n\004data\030\004 \003(\t\022\017\n\007fileSiz\030" +
+      "\005 \001(\003\"\032\n\nFDResponse\022\014\n\004resp\030\001 \001(\005\"\030\n\026Suc" +
+      "cessorOfNodeRequest\",\n\027SuccessorOfNodeRe" +
+      "sponse\022\021\n\tsuccessor\030\001 \001(\t\"\032\n\030Predecessor" +
+      "OfNodeRequest\"0\n\031PredecessorOfNodeReqpon" +
+      "se\022\023\n\013predecessor\030\001 \001(\t\"1\n\024SuccessorCall" +
+      "Request\022\n\n\002id\030\001 \001(\t\022\r\n\005start\030\002 \001(\t\"8\n\022Su" +
+      "ccessorCallReply\022\"\n\tsuccessor\030\001 \001(\0132\017.ch" +
+      "ord.NodeFull\"@\n\030FingerTableUpdateRequest" +
+      "\022\021\n\titeration\030\002 \001(\005\022\021\n\tstartNode\030\003 \001(\005\"," +
+      "\n\031FingerTableUpdateResponse\022\017\n\007success\030\001" +
+      " \001(\005\"9\n\017UpdateSPRequest\022\021\n\tsuccessor\030\001 \001" +
+      "(\t\022\023\n\013predecessor\030\002 \001(\t\"$\n\020UpdateSPRespo" +
+      "nse\022\020\n\010response\030\001 \001(\005\"2\n\020AddServerReques" +
+      "t\022\014\n\004port\030\001 \001(\t\022\020\n\010headNode\030\002 \001(\t\"\"\n\021Add" +
+      "ServerResponse\022\r\n\005reply\030\001 \001(\005\"\021\n\017NodeInf" +
+      "oRequest\"n\n\020NodeInfoResponse\022\023\n\013predeces" +
+      "sor\030\001 \001(\t\022\021\n\tsuccessor\030\002 \001(\t\022\"\n\006fTable\030\003" +
+      " \003(\0132\022.chord.FingerTable\022\016\n\006myPort\030\004 \001(\t" +
+      "\"\036\n\020ClosestPFRequest\022\n\n\002id\030\001 \001(\t\"K\n\013Fing" +
+      "erTable\022\016\n\006nodeId\030\001 \001(\005\022\r\n\005start\030\002 \001(\001\022\013" +
+      "\n\003end\030\003 \001(\001\022\020\n\010nodePort\030\004 \001(\t\"A\n\016Closest" +
+      "PFReply\022/\n\026closestPrecedingFinger\030\001 \001(\0132" +
+      "\017.chord.NodeFull\"+\n\010NodeFull\022\021\n\tipAddres" +
+      "s\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\"\030\n\026FingerTableList" +
+      "Request\"c\n\024FingerTableListReply\022#\n\007entri" +
+      "es\030\001 \003(\0132\022.chord.FingerEntry\022\021\n\tsuccesso" +
+      "r\030\002 \001(\t\022\023\n\013predecessor\030\003 \001(\t\"\037\n\020InsertKe" +
+      "yRequest\022\013\n\003key\030\001 \001(\t\".\n\016InsertKeyReply\022" +
+      "\016\n\006stored\030\002 \001(\005\022\014\n\004node\030\001 \001(\t\" \n\021Forward" +
+      "KeyRequest\022\013\n\003key\030\001 \001(\t\" \n\017ForwardKeyRep" +
+      "ly\022\r\n\005reply\030\001 \001(\005\"^\n\013FingerEntry\022\020\n\010node" +
+      "Port\030\001 \001(\t\022\016\n\006nodeId\030\002 \001(\005\022\r\n\005start\030\003 \001(" +
+      "\001\022\013\n\003end\030\004 \001(\001\022\021\n\titeration\030\005 \001(\005\"1\n\035Hea" +
+      "rtBeatToPredecessorRequest\022\020\n\010hostPort\030\003" +
+      " \001(\t\")\n\033HeartBeatReplyFromSuccessor\022\n\n\002r" +
+      "c\030\001 \001(\0052\223\006\n\004Node\022@\n\nforwardKey\022\030.chord.F" +
+      "orwardKeyRequest\032\026.chord.ForwardKeyReply" +
+      "\"\000\022@\n\013getNodeData\022\026.chord.NodeInfoReques" +
+      "t\032\027.chord.NodeInfoResponse\"\000\022W\n\theartBea" +
+      "t\022$.chord.HeartBeatToPredecessorRequest\032" +
+      "\".chord.HeartBeatReplyFromSuccessor\"\000\022G\n" +
+      "\023closestPrecedFinger\022\027.chord.ClosestPFRe" +
+      "quest\032\025.chord.ClosestPFReply\"\000\022O\n\032update" +
+      "SuccessorPredecessor\022\026.chord.UpdateSPReq" +
+      "uest\032\027.chord.UpdateSPResponse\"\000\022X\n\021updat" +
+      "eFingerTable\022\037.chord.FingerTableUpdateRe" +
+      "quest\032 .chord.FingerTableUpdateResponse\"" +
+      "\000\022I\n\rsuccessorCall\022\033.chord.SuccessorCall" +
+      "Request\032\031.chord.SuccessorCallReply\"\000\022[\n\024" +
+      "getPredecessorOfNode\022\037.chord.Predecessor" +
+      "OfNodeRequest\032 .chord.PredecessorOfNodeR" +
+      "eqponse\"\000\022U\n\022getSuccessorOfNode\022\035.chord." +
+      "SuccessorOfNodeRequest\032\036.chord.Successor" +
+      "OfNodeResponse\"\000\022;\n\014checkIfAlive\022\023.chord" +
+      ".AliveRequest\032\024.chord.AliveResponse\"\0002\202\003" +
+      "\n\013SendReceive\0228\n\tSendBytes\022\023.chord.Bytes" +
+      "Request\032\024.chord.BytesResponse\"\000\022/\n\006SendF" +
+      "D\022\020.chord.FDRequest\032\021.chord.FDResponse\"\000" +
+      "\022>\n\023retrieveFileRequest\022\021.chord.RetReque" +
+      "st\032\022.chord.RetResponse\"\000\022<\n\010sendData\022\026.c" +
+      "hord.sendDataToOwner\032\026.chord.acknowledge" +
+      "ment\"\000\0224\n\treplicate\022\022.chord.sendReplica\032" +
+      "\021.chord.replicaAck\"\000\022T\n\033replicateAsSucce" +
+      "ssorDeleted\022\027.chord.replicateMyFiles\032\032.c" +
+      "hord.replicateMyFilesAck\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_chord_sendReplica_descriptor =
+    internal_static_chord_nodeDeletedUpdateRequired_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_chord_nodeDeletedUpdateRequired_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_nodeDeletedUpdateRequired_descriptor,
+        new java.lang.String[] { "NewPredecessor", "DeletedNode", "NewFiles", });
+    internal_static_chord_AliveRequest_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_chord_AliveRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_AliveRequest_descriptor,
+        new java.lang.String[] { });
+    internal_static_chord_AliveResponse_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_chord_AliveResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_AliveResponse_descriptor,
+        new java.lang.String[] { "Alive", });
+    internal_static_chord_sendReplica_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_chord_sendReplica_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_sendReplica_descriptor,
-        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", "Primary", "Replica1", "Replica2", "ReplicateFurther", });
+        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", "Primary", "Replica1", "Replica2", "ReplicateFurther", "UpdateReplicasInfo", });
+    internal_static_chord_replicaInfo_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_chord_replicaInfo_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_replicaInfo_descriptor,
+        new java.lang.String[] { "ReplicateFurther", "DeletedNode", "MeYourPredecessor", });
+    internal_static_chord_replicateMyFiles_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_chord_replicateMyFiles_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_replicateMyFiles_descriptor,
+        new java.lang.String[] { "Create", "Data", });
+    internal_static_chord_replicateMyFilesAck_descriptor =
+      getDescriptor().getMessageTypes().get(6);
+    internal_static_chord_replicateMyFilesAck_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_replicateMyFilesAck_descriptor,
+        new java.lang.String[] { "Ack", });
+    internal_static_chord_fileContent_descriptor =
+      getDescriptor().getMessageTypes().get(7);
+    internal_static_chord_fileContent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_fileContent_descriptor,
+        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", });
     internal_static_chord_replicaAck_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_chord_replicaAck_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_replicaAck_descriptor,
         new java.lang.String[] { "Response", });
     internal_static_chord_sendDataToOwner_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_chord_sendDataToOwner_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_sendDataToOwner_descriptor,
         new java.lang.String[] { "RootHash", "ContentHash", "FileName", "EndOfBlock", "Data", });
     internal_static_chord_acknowledgement_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_chord_acknowledgement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_acknowledgement_descriptor,
         new java.lang.String[] { });
     internal_static_chord_RetRequest_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_chord_RetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetRequest_descriptor,
         new java.lang.String[] { "FileName", "Hash", "ClientIP", "IsContent", });
     internal_static_chord_RetResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_chord_RetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetResponse_descriptor,
         new java.lang.String[] { });
     internal_static_chord_BytesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_chord_BytesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_BytesRequest_descriptor,
         new java.lang.String[] { "BlockHash", "FileName", "EndOfBlock", "RootHash", "Data", });
     internal_static_chord_BytesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_chord_BytesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_BytesResponse_descriptor,
         new java.lang.String[] { "Resp", });
     internal_static_chord_FDRequest_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_chord_FDRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FDRequest_descriptor,
         new java.lang.String[] { "FileName", "FileRootHash", "Data", "FileSiz", });
     internal_static_chord_FDResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_chord_FDResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FDResponse_descriptor,
         new java.lang.String[] { "Resp", });
     internal_static_chord_SuccessorOfNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_chord_SuccessorOfNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorOfNodeRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_SuccessorOfNodeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_chord_SuccessorOfNodeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorOfNodeResponse_descriptor,
         new java.lang.String[] { "Successor", });
     internal_static_chord_PredecessorOfNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_chord_PredecessorOfNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_PredecessorOfNodeRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_PredecessorOfNodeReqponse_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_chord_PredecessorOfNodeReqponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_PredecessorOfNodeReqponse_descriptor,
         new java.lang.String[] { "Predecessor", });
     internal_static_chord_SuccessorCallRequest_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_chord_SuccessorCallRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorCallRequest_descriptor,
         new java.lang.String[] { "Id", "Start", });
     internal_static_chord_SuccessorCallReply_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_chord_SuccessorCallReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorCallReply_descriptor,
         new java.lang.String[] { "Successor", });
     internal_static_chord_FingerTableUpdateRequest_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_chord_FingerTableUpdateRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableUpdateRequest_descriptor,
         new java.lang.String[] { "Iteration", "StartNode", });
     internal_static_chord_FingerTableUpdateResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_chord_FingerTableUpdateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableUpdateResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_chord_UpdateSPRequest_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_chord_UpdateSPRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_UpdateSPRequest_descriptor,
         new java.lang.String[] { "Successor", "Predecessor", });
     internal_static_chord_UpdateSPResponse_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_chord_UpdateSPResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_UpdateSPResponse_descriptor,
         new java.lang.String[] { "Response", });
     internal_static_chord_AddServerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_chord_AddServerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AddServerRequest_descriptor,
         new java.lang.String[] { "Port", "HeadNode", });
     internal_static_chord_AddServerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_chord_AddServerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AddServerResponse_descriptor,
         new java.lang.String[] { "Reply", });
     internal_static_chord_NodeInfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_chord_NodeInfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeInfoRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_NodeInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_chord_NodeInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeInfoResponse_descriptor,
         new java.lang.String[] { "Predecessor", "Successor", "FTable", "MyPort", });
     internal_static_chord_ClosestPFRequest_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_chord_ClosestPFRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ClosestPFRequest_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_chord_FingerTable_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_chord_FingerTable_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTable_descriptor,
         new java.lang.String[] { "NodeId", "Start", "End", "NodePort", });
     internal_static_chord_ClosestPFReply_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_chord_ClosestPFReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ClosestPFReply_descriptor,
         new java.lang.String[] { "ClosestPrecedingFinger", });
     internal_static_chord_NodeFull_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_chord_NodeFull_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeFull_descriptor,
         new java.lang.String[] { "IpAddress", "Hash", });
     internal_static_chord_FingerTableListRequest_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(35);
     internal_static_chord_FingerTableListRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableListRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_FingerTableListReply_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(36);
     internal_static_chord_FingerTableListReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableListReply_descriptor,
         new java.lang.String[] { "Entries", "Successor", "Predecessor", });
     internal_static_chord_InsertKeyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(37);
     internal_static_chord_InsertKeyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_InsertKeyRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_chord_InsertKeyReply_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(38);
     internal_static_chord_InsertKeyReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_InsertKeyReply_descriptor,
         new java.lang.String[] { "Stored", "Node", });
     internal_static_chord_ForwardKeyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(39);
     internal_static_chord_ForwardKeyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ForwardKeyRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_chord_ForwardKeyReply_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(40);
     internal_static_chord_ForwardKeyReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ForwardKeyReply_descriptor,
         new java.lang.String[] { "Reply", });
     internal_static_chord_FingerEntry_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(41);
     internal_static_chord_FingerEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerEntry_descriptor,
         new java.lang.String[] { "NodePort", "NodeId", "Start", "End", "Iteration", });
     internal_static_chord_HeartBeatToPredecessorRequest_descriptor =
-      getDescriptor().getMessageTypes().get(35);
+      getDescriptor().getMessageTypes().get(42);
     internal_static_chord_HeartBeatToPredecessorRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_HeartBeatToPredecessorRequest_descriptor,
         new java.lang.String[] { "HostPort", });
     internal_static_chord_HeartBeatReplyFromSuccessor_descriptor =
-      getDescriptor().getMessageTypes().get(36);
+      getDescriptor().getMessageTypes().get(43);
     internal_static_chord_HeartBeatReplyFromSuccessor_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_HeartBeatReplyFromSuccessor_descriptor,

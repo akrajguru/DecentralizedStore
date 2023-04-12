@@ -170,6 +170,37 @@ public final class SendReceiveGrpc {
     return getReplicateMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<chord.Chord.replicateMyFiles,
+      chord.Chord.replicateMyFilesAck> getReplicateAsSuccessorDeletedMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "replicateAsSuccessorDeleted",
+      requestType = chord.Chord.replicateMyFiles.class,
+      responseType = chord.Chord.replicateMyFilesAck.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<chord.Chord.replicateMyFiles,
+      chord.Chord.replicateMyFilesAck> getReplicateAsSuccessorDeletedMethod() {
+    io.grpc.MethodDescriptor<chord.Chord.replicateMyFiles, chord.Chord.replicateMyFilesAck> getReplicateAsSuccessorDeletedMethod;
+    if ((getReplicateAsSuccessorDeletedMethod = SendReceiveGrpc.getReplicateAsSuccessorDeletedMethod) == null) {
+      synchronized (SendReceiveGrpc.class) {
+        if ((getReplicateAsSuccessorDeletedMethod = SendReceiveGrpc.getReplicateAsSuccessorDeletedMethod) == null) {
+          SendReceiveGrpc.getReplicateAsSuccessorDeletedMethod = getReplicateAsSuccessorDeletedMethod =
+              io.grpc.MethodDescriptor.<chord.Chord.replicateMyFiles, chord.Chord.replicateMyFilesAck>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "replicateAsSuccessorDeleted"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.replicateMyFiles.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.replicateMyFilesAck.getDefaultInstance()))
+              .setSchemaDescriptor(new SendReceiveMethodDescriptorSupplier("replicateAsSuccessorDeleted"))
+              .build();
+        }
+      }
+    }
+    return getReplicateAsSuccessorDeletedMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -253,6 +284,13 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void replicateAsSuccessorDeleted(chord.Chord.replicateMyFiles request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicateMyFilesAck> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateAsSuccessorDeletedMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -290,6 +328,13 @@ public final class SendReceiveGrpc {
                 chord.Chord.sendReplica,
                 chord.Chord.replicaAck>(
                   this, METHODID_REPLICATE)))
+          .addMethod(
+            getReplicateAsSuccessorDeletedMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                chord.Chord.replicateMyFiles,
+                chord.Chord.replicateMyFilesAck>(
+                  this, METHODID_REPLICATE_AS_SUCCESSOR_DELETED)))
           .build();
     }
   }
@@ -347,6 +392,14 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getReplicateMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void replicateAsSuccessorDeleted(chord.Chord.replicateMyFiles request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicateMyFilesAck> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getReplicateAsSuccessorDeletedMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -396,6 +449,13 @@ public final class SendReceiveGrpc {
     public chord.Chord.replicaAck replicate(chord.Chord.sendReplica request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getReplicateMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public chord.Chord.replicateMyFilesAck replicateAsSuccessorDeleted(chord.Chord.replicateMyFiles request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getReplicateAsSuccessorDeletedMethod(), getCallOptions(), request);
     }
   }
 
@@ -452,6 +512,14 @@ public final class SendReceiveGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getReplicateMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<chord.Chord.replicateMyFilesAck> replicateAsSuccessorDeleted(
+        chord.Chord.replicateMyFiles request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getReplicateAsSuccessorDeletedMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEND_BYTES = 0;
@@ -459,6 +527,7 @@ public final class SendReceiveGrpc {
   private static final int METHODID_RETRIEVE_FILE_REQUEST = 2;
   private static final int METHODID_SEND_DATA = 3;
   private static final int METHODID_REPLICATE = 4;
+  private static final int METHODID_REPLICATE_AS_SUCCESSOR_DELETED = 5;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -496,6 +565,10 @@ public final class SendReceiveGrpc {
         case METHODID_REPLICATE:
           serviceImpl.replicate((chord.Chord.sendReplica) request,
               (io.grpc.stub.StreamObserver<chord.Chord.replicaAck>) responseObserver);
+          break;
+        case METHODID_REPLICATE_AS_SUCCESSOR_DELETED:
+          serviceImpl.replicateAsSuccessorDeleted((chord.Chord.replicateMyFiles) request,
+              (io.grpc.stub.StreamObserver<chord.Chord.replicateMyFilesAck>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -563,6 +636,7 @@ public final class SendReceiveGrpc {
               .addMethod(getRetrieveFileRequestMethod())
               .addMethod(getSendDataMethod())
               .addMethod(getReplicateMethod())
+              .addMethod(getReplicateAsSuccessorDeletedMethod())
               .build();
         }
       }

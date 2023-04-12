@@ -30,7 +30,15 @@ service SendReceive {
   rpc retrieveFileRequest (RetRequest) returns (RetResponse) {}
   rpc sendData(sendDataToOwner) returns (acknowledgement){}
   rpc replicate(sendReplica) returns (replicaAck){}
+  rpc replicateAsSuccessorDeleted(replicateMyFiles) returns (replicateMyFilesAck){}
 }
+
+message  nodeDeletedUpdateRequired{
+  string newPredecessor=1; //only relevant if newFiles is 2
+  string deletedNode=2; // fyi
+  int32 newFiles=3; // if 2 then add replica 1 files to primary // if 1 then add replica 2 files to replica 1 before that replicate files
+}
+
 
 
 message AliveRequest{
@@ -55,10 +63,38 @@ message  sendReplica{
   string replica1=10;
   string replica2 = 11;
   int32 replicateFurther=12;
+  nodeDeletedUpdateRequired updateReplicasInfo=13;
+
+}
+
+message replicaInfo{
+  int32  replicateFurther=1;
+  string deletedNode=2;
+  string meYourPredecessor=3;
+}
+
+message replicateMyFiles{
+    replicaInfo create = 1;
+    repeated fileContent data = 2;
+}
+
+message replicateMyFilesAck{
+  int32 ack =1; // 1 if successful
+}
+
+message fileContent{
+  string rootHash=1;
+  string fileName =2;
+  bool isContent=3;
+  string blockHash=4;
+  int64 endOfBlock=5;
+  bytes dataContent = 6;
+  repeated string dataFD = 7;
+  int64 fileSize=8;
 }
 
 message  replicaAck{
-  int32 response=1; //1 if success or else 0
+  int32 response=1; //1 if success or else if only 2 nodes are present then dont replicate and send response 2.
 }
 
 message sendDataToOwner{

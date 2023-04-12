@@ -25,9 +25,13 @@ public class Stabilize extends Thread {
                 Thread.sleep(5000);
                 Node xNode = RPCFunctions.getPredecessorOfNode(node.getSuccessor(), node);
                 if (xNode != null) {
+                    System.out.println("X node is not null"+ xNode.getIpAddress());
                     BigInteger x = CalcHelper.getBigInt(xNode.getHashId());
+                    System.out.println("x ="+ x);
                     BigInteger succ_rel_id = CalcHelper.calculateRelID(CalcHelper.getBigInt(node.getSuccessor().getHashId()), CalcHelper.getBigInt(node.getHashId()));
+                    System.out.println("succ_rel_id ="+ succ_rel_id);
                     BigInteger x_rel_id = CalcHelper.calculateRelID(x, CalcHelper.getBigInt(node.getHashId()));
+                    System.out.println("x_rel_id ="+ x_rel_id);
                     if (x_rel_id.compareTo(BigInteger.ZERO) == 1 && x_rel_id.compareTo(succ_rel_id) < 0) {
                         node.setSuccessor(xNode);
                         node.addEntryToSuccessorMap(node.getIpAddress(), xNode.getIpAddress());
@@ -36,6 +40,7 @@ public class Stabilize extends Thread {
                         node.notifyCall(node.getIpAddress(), node.getSuccessor().getIpAddress());
                     // updateSuccessor(successorPort);
                     System.out.println("I am " + node.getIpAddress() + ", successor is:" + node.getSuccessor().getIpAddress());
+                    System.out.println("I am " + node.getIpAddress() + ", predcessor is:" + node.getPredecessor().getIpAddress());
                 }
             }catch(Exception e){
                 e.printStackTrace();

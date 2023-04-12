@@ -28,32 +28,37 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
 
 
     public static void main(String[] args) throws InterruptedException, UnknownHostException, SocketException {
-
-        String ip = NodeHelper.getIPAddress();
+    //public StartNode(String[] args) {
+        String ip=null;
+        try {
+             ip = NodeHelper.getIPAddress();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
         String port = args[0];
-        String nodeIP = ip+":"+port;
-        String ipAddressOfKnownNode=null;
-        if(args.length==1){
-            ipAddressOfKnownNode= nodeIP;
-        }else {
-             ipAddressOfKnownNode = args[1];
+        String nodeIP = ip + ":" + port;
+        String ipAddressOfKnownNode = null;
+        if (args.length == 1) {
+            ipAddressOfKnownNode = nodeIP;
+        } else {
+            ipAddressOfKnownNode = args[1];
         }
 
-        Node node = new Node(nodeIP,true);
-        Node arbNode= new Node(ipAddressOfKnownNode);
+        Node node = new Node(nodeIP, true);
+        Node arbNode = new Node(ipAddressOfKnownNode);
         CountDownLatch cd = new CountDownLatch(1);
-        StartNode startNode = new StartNode(node,cd);
-        Thread serverThread = new Thread(() ->{
-            Server server = ServerBuilder.forPort(Integer.parseInt(args[0].substring(args[0].indexOf(":")+1))).addService(startNode).addService(new SendReceiveService(node)).build();
+        StartNode startNode = new StartNode(node, cd);
+        Thread serverThread = new Thread(() -> {
+            Server server = ServerBuilder.forPort(Integer.parseInt(args[0].substring(args[0].indexOf(":") + 1))).addService(startNode).addService(new SendReceiveService(node)).build();
             try {
                 server.start();
             } catch (IOException e) {
                 e.printStackTrace();
-                System.out.println("Port already in Use:+"+ args[0]);
+                System.out.println("Port already in Use:+" + args[0]);
                 return;
             }
-            System.out.println("Server started at"+ node.getIpAddress() );
-            System.out.println(args[0].substring(args[0].indexOf(":")+1));
+            System.out.println("Server started at" + node.getIpAddress());
+            System.out.println(args[0].substring(args[0].indexOf(":") + 1));
             try {
                 server.awaitTermination();
             } catch (InterruptedException e) {
@@ -62,7 +67,12 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
         });
         serverThread.start();
         node.join(arbNode);
-        cd.await();
+        try {
+            cd.await();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        // }
     }
 
 
@@ -103,7 +113,7 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
 
         }
         node.setPredecessor(new Node(nodeN));
-
+        System.out.println("updating predecessor to: "+nodeN );
         //System.out.println("updating predecessor to:"+ nodeN);
         Chord.UpdateSPResponse.Builder resp = Chord.UpdateSPResponse.newBuilder();
         resp.setResponse(0);
@@ -131,6 +141,7 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
     public void getPredecessorOfNode(Chord.PredecessorOfNodeRequest request, StreamObserver<Chord.PredecessorOfNodeReqponse> responseObserver) {
         Chord.PredecessorOfNodeReqponse.Builder resp = Chord.PredecessorOfNodeReqponse.newBuilder();
         resp.setPredecessor(node.getPredecessor().getIpAddress());
+
         responseObserver.onNext(resp.build());
         responseObserver.onCompleted();
     }

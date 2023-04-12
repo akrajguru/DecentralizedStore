@@ -12,6 +12,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class PersistAndRetrieveMetadata {
 
@@ -20,8 +21,7 @@ public class PersistAndRetrieveMetadata {
         StringBuilder fileName = new StringBuilder();
         fileName.append(node.getAppPath());
         fileName.append("/");
-        fileName.append("primary");
-        fileName.append("/");
+
         if(isContent){
             fileName.append("/content");
             fileName.append("/");
@@ -55,7 +55,7 @@ public class PersistAndRetrieveMetadata {
         return storage;
     }
 
-    public static String persistMetadataToFile(Storage storage, Node node,String directory) throws IOException {
+    public static String persistMetadataToFile(Storage storage, Node node,String typeOfFile) throws IOException {
 
         StringBuilder metaData = new StringBuilder();
         StringBuilder fileName = new StringBuilder();
@@ -71,7 +71,7 @@ public class PersistAndRetrieveMetadata {
             metaData.append("\n");
             metaData.append(Base64.getEncoder().encodeToString(storage.getDataBytes()));
             fileName.append(storage.getContentHash());
-             path = Files.createDirectories(Paths.get(node.getAppPath()+"/"+directory+"/content"));
+             path = Files.createDirectories(Paths.get(node.getAppPath()+"/content"));
         }else{
             metaData.append(storage.getSize());
             metaData.append("\n");
@@ -81,7 +81,7 @@ public class PersistAndRetrieveMetadata {
             }
             metaData.delete(metaData.length()-1,metaData.length());
             fileName.append(storage.getRootHash());
-            path = Files.createDirectories(Paths.get(node.getAppPath()+"/"+directory+"/fileDetails"));
+            path = Files.createDirectories(Paths.get(node.getAppPath()+"/fileDetails"));
         }
 
         String fileLocation = path.toString()+"/"+ fileName.toString();
@@ -92,6 +92,7 @@ public class PersistAndRetrieveMetadata {
                 System.out.println("hashes clashes");
             }
         }
+        node.getStorageInfo().getServerStoreInformation().get(typeOfFile).add(fileName.toString());
         FileWriter writer = new FileWriter(file);
         writer.append(metaData);
         writer.close();
@@ -127,6 +128,12 @@ public class PersistAndRetrieveMetadata {
                 recursiveFn(dir[i].listFiles(), storageList,node);
             }
         }
+    }
+
+    public static List<Storage> retrieveFilesAsAList(List<String> fileNames,Node node) throws IOException {
+        List<Storage> allFilesList = getAllDataFromFileStore(node);
+        List<Storage> list = allFilesList.stream().filter(x -> fileNames.contains(x.getFileName())).collect(Collectors.toList());
+        return list;
     }
 
 }

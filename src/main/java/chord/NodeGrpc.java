@@ -294,6 +294,37 @@ public final class NodeGrpc {
     return getGetSuccessorOfNodeMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<chord.Chord.AliveRequest,
+      chord.Chord.AliveResponse> getCheckIfAliveMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "checkIfAlive",
+      requestType = chord.Chord.AliveRequest.class,
+      responseType = chord.Chord.AliveResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<chord.Chord.AliveRequest,
+      chord.Chord.AliveResponse> getCheckIfAliveMethod() {
+    io.grpc.MethodDescriptor<chord.Chord.AliveRequest, chord.Chord.AliveResponse> getCheckIfAliveMethod;
+    if ((getCheckIfAliveMethod = NodeGrpc.getCheckIfAliveMethod) == null) {
+      synchronized (NodeGrpc.class) {
+        if ((getCheckIfAliveMethod = NodeGrpc.getCheckIfAliveMethod) == null) {
+          NodeGrpc.getCheckIfAliveMethod = getCheckIfAliveMethod =
+              io.grpc.MethodDescriptor.<chord.Chord.AliveRequest, chord.Chord.AliveResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "checkIfAlive"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.AliveRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.AliveResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new NodeMethodDescriptorSupplier("checkIfAlive"))
+              .build();
+        }
+      }
+    }
+    return getCheckIfAliveMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -405,6 +436,13 @@ public final class NodeGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetSuccessorOfNodeMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void checkIfAlive(chord.Chord.AliveRequest request,
+        io.grpc.stub.StreamObserver<chord.Chord.AliveResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckIfAliveMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -470,6 +508,13 @@ public final class NodeGrpc {
                 chord.Chord.SuccessorOfNodeRequest,
                 chord.Chord.SuccessorOfNodeResponse>(
                   this, METHODID_GET_SUCCESSOR_OF_NODE)))
+          .addMethod(
+            getCheckIfAliveMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                chord.Chord.AliveRequest,
+                chord.Chord.AliveResponse>(
+                  this, METHODID_CHECK_IF_ALIVE)))
           .build();
     }
   }
@@ -559,6 +604,14 @@ public final class NodeGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getGetSuccessorOfNodeMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void checkIfAlive(chord.Chord.AliveRequest request,
+        io.grpc.stub.StreamObserver<chord.Chord.AliveResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCheckIfAliveMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -636,6 +689,13 @@ public final class NodeGrpc {
     public chord.Chord.SuccessorOfNodeResponse getSuccessorOfNode(chord.Chord.SuccessorOfNodeRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getGetSuccessorOfNodeMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public chord.Chord.AliveResponse checkIfAlive(chord.Chord.AliveRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCheckIfAliveMethod(), getCallOptions(), request);
     }
   }
 
@@ -724,6 +784,14 @@ public final class NodeGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getGetSuccessorOfNodeMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<chord.Chord.AliveResponse> checkIfAlive(
+        chord.Chord.AliveRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCheckIfAliveMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_FORWARD_KEY = 0;
@@ -735,6 +803,7 @@ public final class NodeGrpc {
   private static final int METHODID_SUCCESSOR_CALL = 6;
   private static final int METHODID_GET_PREDECESSOR_OF_NODE = 7;
   private static final int METHODID_GET_SUCCESSOR_OF_NODE = 8;
+  private static final int METHODID_CHECK_IF_ALIVE = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -788,6 +857,10 @@ public final class NodeGrpc {
         case METHODID_GET_SUCCESSOR_OF_NODE:
           serviceImpl.getSuccessorOfNode((chord.Chord.SuccessorOfNodeRequest) request,
               (io.grpc.stub.StreamObserver<chord.Chord.SuccessorOfNodeResponse>) responseObserver);
+          break;
+        case METHODID_CHECK_IF_ALIVE:
+          serviceImpl.checkIfAlive((chord.Chord.AliveRequest) request,
+              (io.grpc.stub.StreamObserver<chord.Chord.AliveResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -859,6 +932,7 @@ public final class NodeGrpc {
               .addMethod(getSuccessorCallMethod())
               .addMethod(getGetPredecessorOfNodeMethod())
               .addMethod(getGetSuccessorOfNodeMethod())
+              .addMethod(getCheckIfAliveMethod())
               .build();
         }
       }

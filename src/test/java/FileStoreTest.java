@@ -1,6 +1,8 @@
 import junit.framework.Assert;
 import org.junit.jupiter.api.Test;
 import store.Logger.LogToFile;
+import store.helper.CalcHelper;
+import store.helper.NodeHelper;
 import store.helper.PersistAndRetrieveMetadata;
 import store.helper.TreeStructure;
 import store.pojo.*;
@@ -9,6 +11,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.List;
@@ -179,6 +182,59 @@ public class FileStoreTest {
 
 
     }
+@Test
+    void TestStabilize(){
+            String xNode ="10.0.0.30:9321";
+            String myHash = NodeHelper.getNodeHashId("10.0.0.30:9300");
+            Node node = new Node("10.0.0.30:9300");
+        String succHash = NodeHelper.getNodeHashId("10.0.0.30:9301");
+        if ("10.0.0.30:9321" != null) {
+            System.out.println("X node is not null"+ xNode);
+            BigInteger x = CalcHelper.getBigInt(NodeHelper.getNodeHashId(xNode));
+            BigInteger succ_rel_id = CalcHelper.calculateRelID(CalcHelper.getBigInt(succHash), CalcHelper.getBigInt(myHash));
+            BigInteger x_rel_id = CalcHelper.calculateRelID(x, CalcHelper.getBigInt(myHash));
+            if (x_rel_id.compareTo(BigInteger.ZERO) == 1 && x_rel_id.compareTo(succ_rel_id) < 0) {
+                node.setSuccessor(new Node(xNode));
+                //node.addEntryToSuccessorMap(node.getIpAddress(), xNode.getIpAddress());
+            }
+            if (!node.getIpAddress().equals(node.getSuccessor().getIpAddress()))
+                node.notifyCall(node.getIpAddress(), node.getSuccessor().getIpAddress());
+            // updateSuccessor(successorPort);
+            System.out.println("I am " + node.getIpAddress() + ", successor is:" + node.getSuccessor().getIpAddress());
+            System.out.println("I am " + node.getIpAddress() + ", predcessor is:" + node.getPredecessor().getIpAddress());
+        }
+    }
+
+    @Test
+    void testMap(){
+        Map<String,List<String >> map = new LinkedHashMap();
+        List<String> list1 = new ArrayList<>();
+        List<String> list2 = new ArrayList<>();
+        List<String> list3 = new ArrayList<>();
+        list1.add("abcd");
+        list1.add("pqre");
+        list2.add("list2");
+        list3.add("list3");
+        map.put("replica1",list1 );
+        map.put("replica2", list2);
+
+        list2.add("lis2next");
+
+       //map.get("replica2").stream().forEach(x-> System.out.println(x));
+
+       map.put("replica1",map.get("replica2"));
+       map.put("replica2", list3);
+
+        map.get("replica1").stream().forEach(x-> System.out.println(x));
+
+
+
+
+
+    }
 
 
 }
+// x = 9388678843049699872693523751868732993745455895450095253087370288178975330688
+//succ_rel_id = 104746184419508495330189265421246045466027213160551391808614594263847840006779
+// x_relid =    70145733255680817016647183804354613911377163843883562658187451729054354231157
