@@ -21,26 +21,37 @@ public class Stabilize extends Thread {
         Thread.sleep(5000);
         while (true) {
             try {
-                System.out.println("in stabilize");
+                //System.out.println("in stabilize");
                 Thread.sleep(5000);
                 Node xNode = RPCFunctions.getPredecessorOfNode(node.getSuccessor(), node);
                 if (xNode != null) {
-                    System.out.println("X node is not null"+ xNode.getIpAddress());
+                   // System.out.println("X node is not null"+ xNode.getIpAddress());
                     BigInteger x = CalcHelper.getBigInt(xNode.getHashId());
-                    System.out.println("x ="+ x);
+                   // System.out.println("x ="+ x);
                     BigInteger succ_rel_id = CalcHelper.calculateRelID(CalcHelper.getBigInt(node.getSuccessor().getHashId()), CalcHelper.getBigInt(node.getHashId()));
-                    System.out.println("succ_rel_id ="+ succ_rel_id);
+                   // System.out.println("succ_rel_id ="+ succ_rel_id);
                     BigInteger x_rel_id = CalcHelper.calculateRelID(x, CalcHelper.getBigInt(node.getHashId()));
-                    System.out.println("x_rel_id ="+ x_rel_id);
+                   // System.out.println("x_rel_id ="+ x_rel_id);
                     if (x_rel_id.compareTo(BigInteger.ZERO) == 1 && x_rel_id.compareTo(succ_rel_id) < 0) {
                         node.setSuccessor(xNode);
+                        System.out.println("setting succ: "+ xNode.getIpAddress() );
                         node.addEntryToSuccessorMap(node.getIpAddress(), xNode.getIpAddress());
+                        // delete entries from map so that new succ/pred can receieve files from stablize filestore
+                        //null pointer check TODO
+                        if(node.getCheckIfDataSentToServerAlready().containsKey(node.getPredecessor().getIpAddress())){
+                            node.getCheckIfDataSentToServerAlready().remove(node.getPredecessor().getIpAddress());
+                        }
+                        if(node.getCheckIfDataSentToServerAlready().containsKey(node.getSuccessor().getIpAddress())){
+                            node.getCheckIfDataSentToServerAlready().remove(node.getSuccessor().getIpAddress());
+                        }
                     }
                     if (!node.getIpAddress().equals(node.getSuccessor().getIpAddress()))
                         node.notifyCall(node.getIpAddress(), node.getSuccessor().getIpAddress());
                     // updateSuccessor(successorPort);
                     System.out.println("I am " + node.getIpAddress() + ", successor is:" + node.getSuccessor().getIpAddress());
-                    System.out.println("I am " + node.getIpAddress() + ", predcessor is:" + node.getPredecessor().getIpAddress());
+                    if(node.getPredecessor()!=null && node.getPredecessor().getIpAddress()!=null) {
+                        System.out.println("I am " + node.getIpAddress() + ", predcessor is:" + node.getPredecessor().getIpAddress());
+                    }
                 }
             }catch(Exception e){
                 e.printStackTrace();

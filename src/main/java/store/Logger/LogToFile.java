@@ -94,9 +94,10 @@ public class LogToFile {
             bw.write("\n");
 
             if(ex!=null){
-
-                bw.write(ex.getMessage());
-                bw.write("\n");
+                if(ex.getMessage()!=null) {
+                    bw.write(ex.getMessage());
+                    bw.write("\n");
+                }
             }
 
         } catch (IOException e) {

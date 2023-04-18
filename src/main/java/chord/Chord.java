@@ -14,6 +14,2709 @@ public final class Chord {
     registerAllExtensions(
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
+  public interface replicaFileNamesOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.replicaFileNames)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @return A list containing the fileNames.
+     */
+    java.util.List<java.lang.String>
+        getFileNamesList();
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @return The count of fileNames.
+     */
+    int getFileNamesCount();
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @param index The index of the element to return.
+     * @return The fileNames at the given index.
+     */
+    java.lang.String getFileNames(int index);
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the fileNames at the given index.
+     */
+    com.google.protobuf.ByteString
+        getFileNamesBytes(int index);
+
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The yourPredecessor.
+     */
+    java.lang.String getYourPredecessor();
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The bytes for yourPredecessor.
+     */
+    com.google.protobuf.ByteString
+        getYourPredecessorBytes();
+
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The yourSuccessor.
+     */
+    java.lang.String getYourSuccessor();
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The bytes for yourSuccessor.
+     */
+    com.google.protobuf.ByteString
+        getYourSuccessorBytes();
+  }
+  /**
+   * Protobuf type {@code chord.replicaFileNames}
+   */
+  public static final class replicaFileNames extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.replicaFileNames)
+      replicaFileNamesOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use replicaFileNames.newBuilder() to construct.
+    private replicaFileNames(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private replicaFileNames() {
+      fileNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      yourPredecessor_ = "";
+      yourSuccessor_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new replicaFileNames();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_replicaFileNames_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_replicaFileNames_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.replicaFileNames.class, chord.Chord.replicaFileNames.Builder.class);
+    }
+
+    public static final int FILENAMES_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringList fileNames_;
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @return A list containing the fileNames.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getFileNamesList() {
+      return fileNames_;
+    }
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @return The count of fileNames.
+     */
+    public int getFileNamesCount() {
+      return fileNames_.size();
+    }
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @param index The index of the element to return.
+     * @return The fileNames at the given index.
+     */
+    public java.lang.String getFileNames(int index) {
+      return fileNames_.get(index);
+    }
+    /**
+     * <code>repeated string fileNames = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the fileNames at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getFileNamesBytes(int index) {
+      return fileNames_.getByteString(index);
+    }
+
+    public static final int YOURPREDECESSOR_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object yourPredecessor_ = "";
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The yourPredecessor.
+     */
+    @java.lang.Override
+    public java.lang.String getYourPredecessor() {
+      java.lang.Object ref = yourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        yourPredecessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The bytes for yourPredecessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getYourPredecessorBytes() {
+      java.lang.Object ref = yourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        yourPredecessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int YOURSUCCESSOR_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object yourSuccessor_ = "";
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The yourSuccessor.
+     */
+    @java.lang.Override
+    public java.lang.String getYourSuccessor() {
+      java.lang.Object ref = yourSuccessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        yourSuccessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The bytes for yourSuccessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getYourSuccessorBytes() {
+      java.lang.Object ref = yourSuccessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        yourSuccessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < fileNames_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, fileNames_.getRaw(i));
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourPredecessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, yourPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourSuccessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, yourSuccessor_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < fileNames_.size(); i++) {
+          dataSize += computeStringSizeNoTag(fileNames_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getFileNamesList().size();
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourPredecessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, yourPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourSuccessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, yourSuccessor_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.replicaFileNames)) {
+        return super.equals(obj);
+      }
+      chord.Chord.replicaFileNames other = (chord.Chord.replicaFileNames) obj;
+
+      if (!getFileNamesList()
+          .equals(other.getFileNamesList())) return false;
+      if (!getYourPredecessor()
+          .equals(other.getYourPredecessor())) return false;
+      if (!getYourSuccessor()
+          .equals(other.getYourSuccessor())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getFileNamesCount() > 0) {
+        hash = (37 * hash) + FILENAMES_FIELD_NUMBER;
+        hash = (53 * hash) + getFileNamesList().hashCode();
+      }
+      hash = (37 * hash) + YOURPREDECESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getYourPredecessor().hashCode();
+      hash = (37 * hash) + YOURSUCCESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getYourSuccessor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.replicaFileNames parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicaFileNames parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaFileNames parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.replicaFileNames parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.replicaFileNames prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.replicaFileNames}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.replicaFileNames)
+        chord.Chord.replicaFileNamesOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_replicaFileNames_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_replicaFileNames_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.replicaFileNames.class, chord.Chord.replicaFileNames.Builder.class);
+      }
+
+      // Construct using chord.Chord.replicaFileNames.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        fileNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        yourPredecessor_ = "";
+        yourSuccessor_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_replicaFileNames_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaFileNames getDefaultInstanceForType() {
+        return chord.Chord.replicaFileNames.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaFileNames build() {
+        chord.Chord.replicaFileNames result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.replicaFileNames buildPartial() {
+        chord.Chord.replicaFileNames result = new chord.Chord.replicaFileNames(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.replicaFileNames result) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          fileNames_ = fileNames_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.fileNames_ = fileNames_;
+      }
+
+      private void buildPartial0(chord.Chord.replicaFileNames result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.yourPredecessor_ = yourPredecessor_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.yourSuccessor_ = yourSuccessor_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.replicaFileNames) {
+          return mergeFrom((chord.Chord.replicaFileNames)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.replicaFileNames other) {
+        if (other == chord.Chord.replicaFileNames.getDefaultInstance()) return this;
+        if (!other.fileNames_.isEmpty()) {
+          if (fileNames_.isEmpty()) {
+            fileNames_ = other.fileNames_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFileNamesIsMutable();
+            fileNames_.addAll(other.fileNames_);
+          }
+          onChanged();
+        }
+        if (!other.getYourPredecessor().isEmpty()) {
+          yourPredecessor_ = other.yourPredecessor_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getYourSuccessor().isEmpty()) {
+          yourSuccessor_ = other.yourSuccessor_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureFileNamesIsMutable();
+                fileNames_.add(s);
+                break;
+              } // case 10
+              case 18: {
+                yourPredecessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                yourSuccessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringList fileNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureFileNamesIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          fileNames_ = new com.google.protobuf.LazyStringArrayList(fileNames_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @return A list containing the fileNames.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getFileNamesList() {
+        return fileNames_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @return The count of fileNames.
+       */
+      public int getFileNamesCount() {
+        return fileNames_.size();
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param index The index of the element to return.
+       * @return The fileNames at the given index.
+       */
+      public java.lang.String getFileNames(int index) {
+        return fileNames_.get(index);
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the fileNames at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getFileNamesBytes(int index) {
+        return fileNames_.getByteString(index);
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The fileNames to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFileNames(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureFileNamesIsMutable();
+        fileNames_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param value The fileNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFileNames(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureFileNamesIsMutable();
+        fileNames_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param values The fileNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllFileNames(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureFileNamesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, fileNames_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFileNames() {
+        fileNames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string fileNames = 1;</code>
+       * @param value The bytes of the fileNames to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFileNamesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureFileNamesIsMutable();
+        fileNames_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object yourPredecessor_ = "";
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return The yourPredecessor.
+       */
+      public java.lang.String getYourPredecessor() {
+        java.lang.Object ref = yourPredecessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          yourPredecessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return The bytes for yourPredecessor.
+       */
+      public com.google.protobuf.ByteString
+          getYourPredecessorBytes() {
+        java.lang.Object ref = yourPredecessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          yourPredecessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @param value The yourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourPredecessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        yourPredecessor_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearYourPredecessor() {
+        yourPredecessor_ = getDefaultInstance().getYourPredecessor();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @param value The bytes for yourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourPredecessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        yourPredecessor_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object yourSuccessor_ = "";
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return The yourSuccessor.
+       */
+      public java.lang.String getYourSuccessor() {
+        java.lang.Object ref = yourSuccessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          yourSuccessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return The bytes for yourSuccessor.
+       */
+      public com.google.protobuf.ByteString
+          getYourSuccessorBytes() {
+        java.lang.Object ref = yourSuccessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          yourSuccessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @param value The yourSuccessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourSuccessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        yourSuccessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearYourSuccessor() {
+        yourSuccessor_ = getDefaultInstance().getYourSuccessor();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @param value The bytes for yourSuccessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourSuccessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        yourSuccessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.replicaFileNames)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.replicaFileNames)
+    private static final chord.Chord.replicaFileNames DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.replicaFileNames();
+    }
+
+    public static chord.Chord.replicaFileNames getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<replicaFileNames>
+        PARSER = new com.google.protobuf.AbstractParser<replicaFileNames>() {
+      @java.lang.Override
+      public replicaFileNames parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<replicaFileNames> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<replicaFileNames> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.replicaFileNames getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface sendFileDataOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.sendFileData)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    java.util.List<chord.Chord.fileContent> 
+        getDataList();
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    chord.Chord.fileContent getData(int index);
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    int getDataCount();
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getDataOrBuilderList();
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    chord.Chord.fileContentOrBuilder getDataOrBuilder(
+        int index);
+
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The yourPredecessor.
+     */
+    java.lang.String getYourPredecessor();
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The bytes for yourPredecessor.
+     */
+    com.google.protobuf.ByteString
+        getYourPredecessorBytes();
+
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The yourSuccessor.
+     */
+    java.lang.String getYourSuccessor();
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The bytes for yourSuccessor.
+     */
+    com.google.protobuf.ByteString
+        getYourSuccessorBytes();
+  }
+  /**
+   * Protobuf type {@code chord.sendFileData}
+   */
+  public static final class sendFileData extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.sendFileData)
+      sendFileDataOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use sendFileData.newBuilder() to construct.
+    private sendFileData(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private sendFileData() {
+      data_ = java.util.Collections.emptyList();
+      yourPredecessor_ = "";
+      yourSuccessor_ = "";
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new sendFileData();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_sendFileData_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_sendFileData_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.sendFileData.class, chord.Chord.sendFileData.Builder.class);
+    }
+
+    public static final int DATA_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private java.util.List<chord.Chord.fileContent> data_;
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<chord.Chord.fileContent> getDataList() {
+      return data_;
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getDataOrBuilderList() {
+      return data_;
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    @java.lang.Override
+    public int getDataCount() {
+      return data_.size();
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContent getData(int index) {
+      return data_.get(index);
+    }
+    /**
+     * <code>repeated .chord.fileContent data = 1;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContentOrBuilder getDataOrBuilder(
+        int index) {
+      return data_.get(index);
+    }
+
+    public static final int YOURPREDECESSOR_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object yourPredecessor_ = "";
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The yourPredecessor.
+     */
+    @java.lang.Override
+    public java.lang.String getYourPredecessor() {
+      java.lang.Object ref = yourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        yourPredecessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string yourPredecessor = 2;</code>
+     * @return The bytes for yourPredecessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getYourPredecessorBytes() {
+      java.lang.Object ref = yourPredecessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        yourPredecessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int YOURSUCCESSOR_FIELD_NUMBER = 3;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object yourSuccessor_ = "";
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The yourSuccessor.
+     */
+    @java.lang.Override
+    public java.lang.String getYourSuccessor() {
+      java.lang.Object ref = yourSuccessor_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        yourSuccessor_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string yourSuccessor = 3;</code>
+     * @return The bytes for yourSuccessor.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getYourSuccessorBytes() {
+      java.lang.Object ref = yourSuccessor_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        yourSuccessor_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < data_.size(); i++) {
+        output.writeMessage(1, data_.get(i));
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourPredecessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, yourPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourSuccessor_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, yourSuccessor_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < data_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, data_.get(i));
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourPredecessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, yourPredecessor_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(yourSuccessor_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, yourSuccessor_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.sendFileData)) {
+        return super.equals(obj);
+      }
+      chord.Chord.sendFileData other = (chord.Chord.sendFileData) obj;
+
+      if (!getDataList()
+          .equals(other.getDataList())) return false;
+      if (!getYourPredecessor()
+          .equals(other.getYourPredecessor())) return false;
+      if (!getYourSuccessor()
+          .equals(other.getYourSuccessor())) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getDataCount() > 0) {
+        hash = (37 * hash) + DATA_FIELD_NUMBER;
+        hash = (53 * hash) + getDataList().hashCode();
+      }
+      hash = (37 * hash) + YOURPREDECESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getYourPredecessor().hashCode();
+      hash = (37 * hash) + YOURSUCCESSOR_FIELD_NUMBER;
+      hash = (53 * hash) + getYourSuccessor().hashCode();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.sendFileData parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.sendFileData parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.sendFileData parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.sendFileData parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.sendFileData parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.sendFileData parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.sendFileData prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.sendFileData}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.sendFileData)
+        chord.Chord.sendFileDataOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_sendFileData_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_sendFileData_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.sendFileData.class, chord.Chord.sendFileData.Builder.class);
+      }
+
+      // Construct using chord.Chord.sendFileData.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        if (dataBuilder_ == null) {
+          data_ = java.util.Collections.emptyList();
+        } else {
+          data_ = null;
+          dataBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        yourPredecessor_ = "";
+        yourSuccessor_ = "";
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_sendFileData_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.sendFileData getDefaultInstanceForType() {
+        return chord.Chord.sendFileData.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.sendFileData build() {
+        chord.Chord.sendFileData result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.sendFileData buildPartial() {
+        chord.Chord.sendFileData result = new chord.Chord.sendFileData(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.sendFileData result) {
+        if (dataBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            data_ = java.util.Collections.unmodifiableList(data_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.data_ = data_;
+        } else {
+          result.data_ = dataBuilder_.build();
+        }
+      }
+
+      private void buildPartial0(chord.Chord.sendFileData result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.yourPredecessor_ = yourPredecessor_;
+        }
+        if (((from_bitField0_ & 0x00000004) != 0)) {
+          result.yourSuccessor_ = yourSuccessor_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.sendFileData) {
+          return mergeFrom((chord.Chord.sendFileData)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.sendFileData other) {
+        if (other == chord.Chord.sendFileData.getDefaultInstance()) return this;
+        if (dataBuilder_ == null) {
+          if (!other.data_.isEmpty()) {
+            if (data_.isEmpty()) {
+              data_ = other.data_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureDataIsMutable();
+              data_.addAll(other.data_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.data_.isEmpty()) {
+            if (dataBuilder_.isEmpty()) {
+              dataBuilder_.dispose();
+              dataBuilder_ = null;
+              data_ = other.data_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              dataBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getDataFieldBuilder() : null;
+            } else {
+              dataBuilder_.addAllMessages(other.data_);
+            }
+          }
+        }
+        if (!other.getYourPredecessor().isEmpty()) {
+          yourPredecessor_ = other.yourPredecessor_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
+        if (!other.getYourSuccessor().isEmpty()) {
+          yourSuccessor_ = other.yourSuccessor_;
+          bitField0_ |= 0x00000004;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                chord.Chord.fileContent m =
+                    input.readMessage(
+                        chord.Chord.fileContent.parser(),
+                        extensionRegistry);
+                if (dataBuilder_ == null) {
+                  ensureDataIsMutable();
+                  data_.add(m);
+                } else {
+                  dataBuilder_.addMessage(m);
+                }
+                break;
+              } // case 10
+              case 18: {
+                yourPredecessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
+              case 26: {
+                yourSuccessor_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000004;
+                break;
+              } // case 26
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private java.util.List<chord.Chord.fileContent> data_ =
+        java.util.Collections.emptyList();
+      private void ensureDataIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          data_ = new java.util.ArrayList<chord.Chord.fileContent>(data_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> dataBuilder_;
+
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public java.util.List<chord.Chord.fileContent> getDataList() {
+        if (dataBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(data_);
+        } else {
+          return dataBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public int getDataCount() {
+        if (dataBuilder_ == null) {
+          return data_.size();
+        } else {
+          return dataBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public chord.Chord.fileContent getData(int index) {
+        if (dataBuilder_ == null) {
+          return data_.get(index);
+        } else {
+          return dataBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder setData(
+          int index, chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.set(index, value);
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder setData(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder addData(chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.add(value);
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder addData(
+          int index, chord.Chord.fileContent value) {
+        if (dataBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureDataIsMutable();
+          data_.add(index, value);
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder addData(
+          chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.add(builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder addData(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          dataBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder addAllData(
+          java.lang.Iterable<? extends chord.Chord.fileContent> values) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, data_);
+          onChanged();
+        } else {
+          dataBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder clearData() {
+        if (dataBuilder_ == null) {
+          data_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          dataBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public Builder removeData(int index) {
+        if (dataBuilder_ == null) {
+          ensureDataIsMutable();
+          data_.remove(index);
+          onChanged();
+        } else {
+          dataBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder getDataBuilder(
+          int index) {
+        return getDataFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public chord.Chord.fileContentOrBuilder getDataOrBuilder(
+          int index) {
+        if (dataBuilder_ == null) {
+          return data_.get(index);  } else {
+          return dataBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+           getDataOrBuilderList() {
+        if (dataBuilder_ != null) {
+          return dataBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(data_);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder addDataBuilder() {
+        return getDataFieldBuilder().addBuilder(
+            chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder addDataBuilder(
+          int index) {
+        return getDataFieldBuilder().addBuilder(
+            index, chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent data = 1;</code>
+       */
+      public java.util.List<chord.Chord.fileContent.Builder> 
+           getDataBuilderList() {
+        return getDataFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> 
+          getDataFieldBuilder() {
+        if (dataBuilder_ == null) {
+          dataBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder>(
+                  data_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          data_ = null;
+        }
+        return dataBuilder_;
+      }
+
+      private java.lang.Object yourPredecessor_ = "";
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return The yourPredecessor.
+       */
+      public java.lang.String getYourPredecessor() {
+        java.lang.Object ref = yourPredecessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          yourPredecessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return The bytes for yourPredecessor.
+       */
+      public com.google.protobuf.ByteString
+          getYourPredecessorBytes() {
+        java.lang.Object ref = yourPredecessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          yourPredecessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @param value The yourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourPredecessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        yourPredecessor_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearYourPredecessor() {
+        yourPredecessor_ = getDefaultInstance().getYourPredecessor();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourPredecessor = 2;</code>
+       * @param value The bytes for yourPredecessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourPredecessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        yourPredecessor_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object yourSuccessor_ = "";
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return The yourSuccessor.
+       */
+      public java.lang.String getYourSuccessor() {
+        java.lang.Object ref = yourSuccessor_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          yourSuccessor_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return The bytes for yourSuccessor.
+       */
+      public com.google.protobuf.ByteString
+          getYourSuccessorBytes() {
+        java.lang.Object ref = yourSuccessor_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          yourSuccessor_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @param value The yourSuccessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourSuccessor(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        yourSuccessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearYourSuccessor() {
+        yourSuccessor_ = getDefaultInstance().getYourSuccessor();
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string yourSuccessor = 3;</code>
+       * @param value The bytes for yourSuccessor to set.
+       * @return This builder for chaining.
+       */
+      public Builder setYourSuccessorBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        yourSuccessor_ = value;
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.sendFileData)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.sendFileData)
+    private static final chord.Chord.sendFileData DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.sendFileData();
+    }
+
+    public static chord.Chord.sendFileData getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<sendFileData>
+        PARSER = new com.google.protobuf.AbstractParser<sendFileData>() {
+      @java.lang.Override
+      public sendFileData parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<sendFileData> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<sendFileData> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.sendFileData getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
+  public interface filesNotPresentOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:chord.filesNotPresent)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @return A list containing the filesNotPresent.
+     */
+    java.util.List<java.lang.String>
+        getFilesNotPresentList();
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @return The count of filesNotPresent.
+     */
+    int getFilesNotPresentCount();
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @param index The index of the element to return.
+     * @return The filesNotPresent at the given index.
+     */
+    java.lang.String getFilesNotPresent(int index);
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the filesNotPresent at the given index.
+     */
+    com.google.protobuf.ByteString
+        getFilesNotPresentBytes(int index);
+
+    /**
+     * <pre>
+     * 1 if error or else 0
+     * </pre>
+     *
+     * <code>int32 error = 2;</code>
+     * @return The error.
+     */
+    int getError();
+  }
+  /**
+   * Protobuf type {@code chord.filesNotPresent}
+   */
+  public static final class filesNotPresent extends
+      com.google.protobuf.GeneratedMessageV3 implements
+      // @@protoc_insertion_point(message_implements:chord.filesNotPresent)
+      filesNotPresentOrBuilder {
+  private static final long serialVersionUID = 0L;
+    // Use filesNotPresent.newBuilder() to construct.
+    private filesNotPresent(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+      super(builder);
+    }
+    private filesNotPresent() {
+      filesNotPresent_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+    }
+
+    @java.lang.Override
+    @SuppressWarnings({"unused"})
+    protected java.lang.Object newInstance(
+        UnusedPrivateParameter unused) {
+      return new filesNotPresent();
+    }
+
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+    getUnknownFields() {
+      return this.unknownFields;
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return chord.Chord.internal_static_chord_filesNotPresent_descriptor;
+    }
+
+    @java.lang.Override
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return chord.Chord.internal_static_chord_filesNotPresent_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              chord.Chord.filesNotPresent.class, chord.Chord.filesNotPresent.Builder.class);
+    }
+
+    public static final int FILESNOTPRESENT_FIELD_NUMBER = 1;
+    @SuppressWarnings("serial")
+    private com.google.protobuf.LazyStringList filesNotPresent_;
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @return A list containing the filesNotPresent.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getFilesNotPresentList() {
+      return filesNotPresent_;
+    }
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @return The count of filesNotPresent.
+     */
+    public int getFilesNotPresentCount() {
+      return filesNotPresent_.size();
+    }
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @param index The index of the element to return.
+     * @return The filesNotPresent at the given index.
+     */
+    public java.lang.String getFilesNotPresent(int index) {
+      return filesNotPresent_.get(index);
+    }
+    /**
+     * <code>repeated string filesNotPresent = 1;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the filesNotPresent at the given index.
+     */
+    public com.google.protobuf.ByteString
+        getFilesNotPresentBytes(int index) {
+      return filesNotPresent_.getByteString(index);
+    }
+
+    public static final int ERROR_FIELD_NUMBER = 2;
+    private int error_ = 0;
+    /**
+     * <pre>
+     * 1 if error or else 0
+     * </pre>
+     *
+     * <code>int32 error = 2;</code>
+     * @return The error.
+     */
+    @java.lang.Override
+    public int getError() {
+      return error_;
+    }
+
+    private byte memoizedIsInitialized = -1;
+    @java.lang.Override
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    @java.lang.Override
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      for (int i = 0; i < filesNotPresent_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, filesNotPresent_.getRaw(i));
+      }
+      if (error_ != 0) {
+        output.writeInt32(2, error_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    @java.lang.Override
+    public int getSerializedSize() {
+      int size = memoizedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      {
+        int dataSize = 0;
+        for (int i = 0; i < filesNotPresent_.size(); i++) {
+          dataSize += computeStringSizeNoTag(filesNotPresent_.getRaw(i));
+        }
+        size += dataSize;
+        size += 1 * getFilesNotPresentList().size();
+      }
+      if (error_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, error_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSize = size;
+      return size;
+    }
+
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
+      if (obj == this) {
+       return true;
+      }
+      if (!(obj instanceof chord.Chord.filesNotPresent)) {
+        return super.equals(obj);
+      }
+      chord.Chord.filesNotPresent other = (chord.Chord.filesNotPresent) obj;
+
+      if (!getFilesNotPresentList()
+          .equals(other.getFilesNotPresentList())) return false;
+      if (getError()
+          != other.getError()) return false;
+      if (!getUnknownFields().equals(other.getUnknownFields())) return false;
+      return true;
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+      if (memoizedHashCode != 0) {
+        return memoizedHashCode;
+      }
+      int hash = 41;
+      hash = (19 * hash) + getDescriptor().hashCode();
+      if (getFilesNotPresentCount() > 0) {
+        hash = (37 * hash) + FILESNOTPRESENT_FIELD_NUMBER;
+        hash = (53 * hash) + getFilesNotPresentList().hashCode();
+      }
+      hash = (37 * hash) + ERROR_FIELD_NUMBER;
+      hash = (53 * hash) + getError();
+      hash = (29 * hash) + getUnknownFields().hashCode();
+      memoizedHashCode = hash;
+      return hash;
+    }
+
+    public static chord.Chord.filesNotPresent parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.filesNotPresent parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input);
+    }
+    public static chord.Chord.filesNotPresent parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input);
+    }
+    public static chord.Chord.filesNotPresent parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageV3
+          .parseWithIOException(PARSER, input, extensionRegistry);
+    }
+
+    @java.lang.Override
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder() {
+      return DEFAULT_INSTANCE.toBuilder();
+    }
+    public static Builder newBuilder(chord.Chord.filesNotPresent prototype) {
+      return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+    }
+    @java.lang.Override
+    public Builder toBuilder() {
+      return this == DEFAULT_INSTANCE
+          ? new Builder() : new Builder().mergeFrom(this);
+    }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code chord.filesNotPresent}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:chord.filesNotPresent)
+        chord.Chord.filesNotPresentOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return chord.Chord.internal_static_chord_filesNotPresent_descriptor;
+      }
+
+      @java.lang.Override
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return chord.Chord.internal_static_chord_filesNotPresent_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                chord.Chord.filesNotPresent.class, chord.Chord.filesNotPresent.Builder.class);
+      }
+
+      // Construct using chord.Chord.filesNotPresent.newBuilder()
+      private Builder() {
+
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
+        super(parent);
+
+      }
+      @java.lang.Override
+      public Builder clear() {
+        super.clear();
+        bitField0_ = 0;
+        filesNotPresent_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        error_ = 0;
+        return this;
+      }
+
+      @java.lang.Override
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return chord.Chord.internal_static_chord_filesNotPresent_descriptor;
+      }
+
+      @java.lang.Override
+      public chord.Chord.filesNotPresent getDefaultInstanceForType() {
+        return chord.Chord.filesNotPresent.getDefaultInstance();
+      }
+
+      @java.lang.Override
+      public chord.Chord.filesNotPresent build() {
+        chord.Chord.filesNotPresent result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      @java.lang.Override
+      public chord.Chord.filesNotPresent buildPartial() {
+        chord.Chord.filesNotPresent result = new chord.Chord.filesNotPresent(this);
+        buildPartialRepeatedFields(result);
+        if (bitField0_ != 0) { buildPartial0(result); }
+        onBuilt();
+        return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.filesNotPresent result) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          filesNotPresent_ = filesNotPresent_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
+        result.filesNotPresent_ = filesNotPresent_;
+      }
+
+      private void buildPartial0(chord.Chord.filesNotPresent result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.error_ = error_;
+        }
+      }
+
+      @java.lang.Override
+      public Builder clone() {
+        return super.clone();
+      }
+      @java.lang.Override
+      public Builder setField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.setField(field, value);
+      }
+      @java.lang.Override
+      public Builder clearField(
+          com.google.protobuf.Descriptors.FieldDescriptor field) {
+        return super.clearField(field);
+      }
+      @java.lang.Override
+      public Builder clearOneof(
+          com.google.protobuf.Descriptors.OneofDescriptor oneof) {
+        return super.clearOneof(oneof);
+      }
+      @java.lang.Override
+      public Builder setRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          int index, java.lang.Object value) {
+        return super.setRepeatedField(field, index, value);
+      }
+      @java.lang.Override
+      public Builder addRepeatedField(
+          com.google.protobuf.Descriptors.FieldDescriptor field,
+          java.lang.Object value) {
+        return super.addRepeatedField(field, value);
+      }
+      @java.lang.Override
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof chord.Chord.filesNotPresent) {
+          return mergeFrom((chord.Chord.filesNotPresent)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(chord.Chord.filesNotPresent other) {
+        if (other == chord.Chord.filesNotPresent.getDefaultInstance()) return this;
+        if (!other.filesNotPresent_.isEmpty()) {
+          if (filesNotPresent_.isEmpty()) {
+            filesNotPresent_ = other.filesNotPresent_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureFilesNotPresentIsMutable();
+            filesNotPresent_.addAll(other.filesNotPresent_);
+          }
+          onChanged();
+        }
+        if (other.getError() != 0) {
+          setError(other.getError());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        onChanged();
+        return this;
+      }
+
+      @java.lang.Override
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      @java.lang.Override
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        if (extensionRegistry == null) {
+          throw new java.lang.NullPointerException();
+        }
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              case 10: {
+                java.lang.String s = input.readStringRequireUtf8();
+                ensureFilesNotPresentIsMutable();
+                filesNotPresent_.add(s);
+                break;
+              } // case 10
+              case 16: {
+                error_ = input.readInt32();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 16
+              default: {
+                if (!super.parseUnknownField(input, extensionRegistry, tag)) {
+                  done = true; // was an endgroup tag
+                }
+                break;
+              } // default:
+            } // switch (tag)
+          } // while (!done)
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.unwrapIOException();
+        } finally {
+          onChanged();
+        } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private com.google.protobuf.LazyStringList filesNotPresent_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureFilesNotPresentIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          filesNotPresent_ = new com.google.protobuf.LazyStringArrayList(filesNotPresent_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @return A list containing the filesNotPresent.
+       */
+      public com.google.protobuf.ProtocolStringList
+          getFilesNotPresentList() {
+        return filesNotPresent_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @return The count of filesNotPresent.
+       */
+      public int getFilesNotPresentCount() {
+        return filesNotPresent_.size();
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param index The index of the element to return.
+       * @return The filesNotPresent at the given index.
+       */
+      public java.lang.String getFilesNotPresent(int index) {
+        return filesNotPresent_.get(index);
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param index The index of the value to return.
+       * @return The bytes of the filesNotPresent at the given index.
+       */
+      public com.google.protobuf.ByteString
+          getFilesNotPresentBytes(int index) {
+        return filesNotPresent_.getByteString(index);
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param index The index to set the value at.
+       * @param value The filesNotPresent to set.
+       * @return This builder for chaining.
+       */
+      public Builder setFilesNotPresent(
+          int index, java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureFilesNotPresentIsMutable();
+        filesNotPresent_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param value The filesNotPresent to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFilesNotPresent(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        ensureFilesNotPresentIsMutable();
+        filesNotPresent_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param values The filesNotPresent to add.
+       * @return This builder for chaining.
+       */
+      public Builder addAllFilesNotPresent(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureFilesNotPresentIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, filesNotPresent_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearFilesNotPresent() {
+        filesNotPresent_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string filesNotPresent = 1;</code>
+       * @param value The bytes of the filesNotPresent to add.
+       * @return This builder for chaining.
+       */
+      public Builder addFilesNotPresentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        ensureFilesNotPresentIsMutable();
+        filesNotPresent_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private int error_ ;
+      /**
+       * <pre>
+       * 1 if error or else 0
+       * </pre>
+       *
+       * <code>int32 error = 2;</code>
+       * @return The error.
+       */
+      @java.lang.Override
+      public int getError() {
+        return error_;
+      }
+      /**
+       * <pre>
+       * 1 if error or else 0
+       * </pre>
+       *
+       * <code>int32 error = 2;</code>
+       * @param value The error to set.
+       * @return This builder for chaining.
+       */
+      public Builder setError(int value) {
+        
+        error_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 1 if error or else 0
+       * </pre>
+       *
+       * <code>int32 error = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearError() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        error_ = 0;
+        onChanged();
+        return this;
+      }
+      @java.lang.Override
+      public final Builder setUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.setUnknownFields(unknownFields);
+      }
+
+      @java.lang.Override
+      public final Builder mergeUnknownFields(
+          final com.google.protobuf.UnknownFieldSet unknownFields) {
+        return super.mergeUnknownFields(unknownFields);
+      }
+
+
+      // @@protoc_insertion_point(builder_scope:chord.filesNotPresent)
+    }
+
+    // @@protoc_insertion_point(class_scope:chord.filesNotPresent)
+    private static final chord.Chord.filesNotPresent DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new chord.Chord.filesNotPresent();
+    }
+
+    public static chord.Chord.filesNotPresent getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static final com.google.protobuf.Parser<filesNotPresent>
+        PARSER = new com.google.protobuf.AbstractParser<filesNotPresent>() {
+      @java.lang.Override
+      public filesNotPresent parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        Builder builder = newBuilder();
+        try {
+          builder.mergeFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(builder.buildPartial());
+        } catch (com.google.protobuf.UninitializedMessageException e) {
+          throw e.asInvalidProtocolBufferException().setUnfinishedMessage(builder.buildPartial());
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(e)
+              .setUnfinishedMessage(builder.buildPartial());
+        }
+        return builder.buildPartial();
+      }
+    };
+
+    public static com.google.protobuf.Parser<filesNotPresent> parser() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<filesNotPresent> getParserForType() {
+      return PARSER;
+    }
+
+    @java.lang.Override
+    public chord.Chord.filesNotPresent getDefaultInstanceForType() {
+      return DEFAULT_INSTANCE;
+    }
+
+  }
+
   public interface nodeDeletedUpdateRequiredOrBuilder extends
       // @@protoc_insertion_point(interface_extends:chord.nodeDeletedUpdateRequired)
       com.google.protobuf.MessageOrBuilder {
@@ -1785,144 +4488,59 @@ public final class Chord {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string rootHash = 1;</code>
-     * @return The rootHash.
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
      */
-    java.lang.String getRootHash();
+    java.util.List<chord.Chord.fileContent> 
+        getFileContentList();
     /**
-     * <code>string rootHash = 1;</code>
-     * @return The bytes for rootHash.
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
      */
-    com.google.protobuf.ByteString
-        getRootHashBytes();
+    chord.Chord.fileContent getFileContent(int index);
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    int getFileContentCount();
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList();
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index);
 
     /**
-     * <code>string fileName = 2;</code>
-     * @return The fileName.
-     */
-    java.lang.String getFileName();
-    /**
-     * <code>string fileName = 2;</code>
-     * @return The bytes for fileName.
-     */
-    com.google.protobuf.ByteString
-        getFileNameBytes();
-
-    /**
-     * <code>bool isContent = 3;</code>
-     * @return The isContent.
-     */
-    boolean getIsContent();
-
-    /**
-     * <code>string blockHash = 4;</code>
-     * @return The blockHash.
-     */
-    java.lang.String getBlockHash();
-    /**
-     * <code>string blockHash = 4;</code>
-     * @return The bytes for blockHash.
-     */
-    com.google.protobuf.ByteString
-        getBlockHashBytes();
-
-    /**
-     * <code>int64 endOfBlock = 5;</code>
-     * @return The endOfBlock.
-     */
-    long getEndOfBlock();
-
-    /**
-     * <code>bytes dataContent = 6;</code>
-     * @return The dataContent.
-     */
-    com.google.protobuf.ByteString getDataContent();
-
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @return A list containing the dataFD.
-     */
-    java.util.List<java.lang.String>
-        getDataFDList();
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @return The count of dataFD.
-     */
-    int getDataFDCount();
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @param index The index of the element to return.
-     * @return The dataFD at the given index.
-     */
-    java.lang.String getDataFD(int index);
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the dataFD at the given index.
-     */
-    com.google.protobuf.ByteString
-        getDataFDBytes(int index);
-
-    /**
-     * <code>int64 fileSize = 8;</code>
-     * @return The fileSize.
-     */
-    long getFileSize();
-
-    /**
-     * <code>string primary = 9;</code>
+     * <code>string primary = 2;</code>
      * @return The primary.
      */
     java.lang.String getPrimary();
     /**
-     * <code>string primary = 9;</code>
+     * <code>string primary = 2;</code>
      * @return The bytes for primary.
      */
     com.google.protobuf.ByteString
         getPrimaryBytes();
 
     /**
-     * <code>string replica1 = 10;</code>
-     * @return The replica1.
-     */
-    java.lang.String getReplica1();
-    /**
-     * <code>string replica1 = 10;</code>
-     * @return The bytes for replica1.
-     */
-    com.google.protobuf.ByteString
-        getReplica1Bytes();
-
-    /**
-     * <code>string replica2 = 11;</code>
-     * @return The replica2.
-     */
-    java.lang.String getReplica2();
-    /**
-     * <code>string replica2 = 11;</code>
-     * @return The bytes for replica2.
-     */
-    com.google.protobuf.ByteString
-        getReplica2Bytes();
-
-    /**
-     * <code>int32 replicateFurther = 12;</code>
+     * <code>int32 replicateFurther = 3;</code>
      * @return The replicateFurther.
      */
     int getReplicateFurther();
 
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      * @return Whether the updateReplicasInfo field is set.
      */
     boolean hasUpdateReplicasInfo();
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      * @return The updateReplicasInfo.
      */
     chord.Chord.nodeDeletedUpdateRequired getUpdateReplicasInfo();
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      */
     chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder();
   }
@@ -1939,14 +4557,8 @@ public final class Chord {
       super(builder);
     }
     private sendReplica() {
-      rootHash_ = "";
-      fileName_ = "";
-      blockHash_ = "";
-      dataContent_ = com.google.protobuf.ByteString.EMPTY;
-      dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      fileContent_ = java.util.Collections.emptyList();
       primary_ = "";
-      replica1_ = "";
-      replica2_ = "";
     }
 
     @java.lang.Override
@@ -1974,208 +4586,52 @@ public final class Chord {
               chord.Chord.sendReplica.class, chord.Chord.sendReplica.Builder.class);
     }
 
-    public static final int ROOTHASH_FIELD_NUMBER = 1;
+    public static final int FILECONTENT_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object rootHash_ = "";
+    private java.util.List<chord.Chord.fileContent> fileContent_;
     /**
-     * <code>string rootHash = 1;</code>
-     * @return The rootHash.
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
      */
     @java.lang.Override
-    public java.lang.String getRootHash() {
-      java.lang.Object ref = rootHash_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        rootHash_ = s;
-        return s;
-      }
+    public java.util.List<chord.Chord.fileContent> getFileContentList() {
+      return fileContent_;
     }
     /**
-     * <code>string rootHash = 1;</code>
-     * @return The bytes for rootHash.
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getRootHashBytes() {
-      java.lang.Object ref = rootHash_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        rootHash_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList() {
+      return fileContent_;
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    @java.lang.Override
+    public int getFileContentCount() {
+      return fileContent_.size();
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContent getFileContent(int index) {
+      return fileContent_.get(index);
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 1;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index) {
+      return fileContent_.get(index);
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 2;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object fileName_ = "";
-    /**
-     * <code>string fileName = 2;</code>
-     * @return The fileName.
-     */
-    @java.lang.Override
-    public java.lang.String getFileName() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        fileName_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string fileName = 2;</code>
-     * @return The bytes for fileName.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFileNameBytes() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fileName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ISCONTENT_FIELD_NUMBER = 3;
-    private boolean isContent_ = false;
-    /**
-     * <code>bool isContent = 3;</code>
-     * @return The isContent.
-     */
-    @java.lang.Override
-    public boolean getIsContent() {
-      return isContent_;
-    }
-
-    public static final int BLOCKHASH_FIELD_NUMBER = 4;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object blockHash_ = "";
-    /**
-     * <code>string blockHash = 4;</code>
-     * @return The blockHash.
-     */
-    @java.lang.Override
-    public java.lang.String getBlockHash() {
-      java.lang.Object ref = blockHash_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        blockHash_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string blockHash = 4;</code>
-     * @return The bytes for blockHash.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getBlockHashBytes() {
-      java.lang.Object ref = blockHash_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        blockHash_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ENDOFBLOCK_FIELD_NUMBER = 5;
-    private long endOfBlock_ = 0L;
-    /**
-     * <code>int64 endOfBlock = 5;</code>
-     * @return The endOfBlock.
-     */
-    @java.lang.Override
-    public long getEndOfBlock() {
-      return endOfBlock_;
-    }
-
-    public static final int DATACONTENT_FIELD_NUMBER = 6;
-    private com.google.protobuf.ByteString dataContent_ = com.google.protobuf.ByteString.EMPTY;
-    /**
-     * <code>bytes dataContent = 6;</code>
-     * @return The dataContent.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getDataContent() {
-      return dataContent_;
-    }
-
-    public static final int DATAFD_FIELD_NUMBER = 7;
-    @SuppressWarnings("serial")
-    private com.google.protobuf.LazyStringList dataFD_;
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @return A list containing the dataFD.
-     */
-    public com.google.protobuf.ProtocolStringList
-        getDataFDList() {
-      return dataFD_;
-    }
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @return The count of dataFD.
-     */
-    public int getDataFDCount() {
-      return dataFD_.size();
-    }
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @param index The index of the element to return.
-     * @return The dataFD at the given index.
-     */
-    public java.lang.String getDataFD(int index) {
-      return dataFD_.get(index);
-    }
-    /**
-     * <code>repeated string dataFD = 7;</code>
-     * @param index The index of the value to return.
-     * @return The bytes of the dataFD at the given index.
-     */
-    public com.google.protobuf.ByteString
-        getDataFDBytes(int index) {
-      return dataFD_.getByteString(index);
-    }
-
-    public static final int FILESIZE_FIELD_NUMBER = 8;
-    private long fileSize_ = 0L;
-    /**
-     * <code>int64 fileSize = 8;</code>
-     * @return The fileSize.
-     */
-    @java.lang.Override
-    public long getFileSize() {
-      return fileSize_;
-    }
-
-    public static final int PRIMARY_FIELD_NUMBER = 9;
+    public static final int PRIMARY_FIELD_NUMBER = 2;
     @SuppressWarnings("serial")
     private volatile java.lang.Object primary_ = "";
     /**
-     * <code>string primary = 9;</code>
+     * <code>string primary = 2;</code>
      * @return The primary.
      */
     @java.lang.Override
@@ -2192,7 +4648,7 @@ public final class Chord {
       }
     }
     /**
-     * <code>string primary = 9;</code>
+     * <code>string primary = 2;</code>
      * @return The bytes for primary.
      */
     @java.lang.Override
@@ -2210,88 +4666,10 @@ public final class Chord {
       }
     }
 
-    public static final int REPLICA1_FIELD_NUMBER = 10;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object replica1_ = "";
-    /**
-     * <code>string replica1 = 10;</code>
-     * @return The replica1.
-     */
-    @java.lang.Override
-    public java.lang.String getReplica1() {
-      java.lang.Object ref = replica1_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        replica1_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string replica1 = 10;</code>
-     * @return The bytes for replica1.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getReplica1Bytes() {
-      java.lang.Object ref = replica1_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        replica1_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int REPLICA2_FIELD_NUMBER = 11;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object replica2_ = "";
-    /**
-     * <code>string replica2 = 11;</code>
-     * @return The replica2.
-     */
-    @java.lang.Override
-    public java.lang.String getReplica2() {
-      java.lang.Object ref = replica2_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        replica2_ = s;
-        return s;
-      }
-    }
-    /**
-     * <code>string replica2 = 11;</code>
-     * @return The bytes for replica2.
-     */
-    @java.lang.Override
-    public com.google.protobuf.ByteString
-        getReplica2Bytes() {
-      java.lang.Object ref = replica2_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        replica2_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int REPLICATEFURTHER_FIELD_NUMBER = 12;
+    public static final int REPLICATEFURTHER_FIELD_NUMBER = 3;
     private int replicateFurther_ = 0;
     /**
-     * <code>int32 replicateFurther = 12;</code>
+     * <code>int32 replicateFurther = 3;</code>
      * @return The replicateFurther.
      */
     @java.lang.Override
@@ -2299,10 +4677,10 @@ public final class Chord {
       return replicateFurther_;
     }
 
-    public static final int UPDATEREPLICASINFO_FIELD_NUMBER = 13;
+    public static final int UPDATEREPLICASINFO_FIELD_NUMBER = 4;
     private chord.Chord.nodeDeletedUpdateRequired updateReplicasInfo_;
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      * @return Whether the updateReplicasInfo field is set.
      */
     @java.lang.Override
@@ -2310,7 +4688,7 @@ public final class Chord {
       return updateReplicasInfo_ != null;
     }
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      * @return The updateReplicasInfo.
      */
     @java.lang.Override
@@ -2318,7 +4696,7 @@ public final class Chord {
       return updateReplicasInfo_ == null ? chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance() : updateReplicasInfo_;
     }
     /**
-     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+     * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
      */
     @java.lang.Override
     public chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder() {
@@ -2339,44 +4717,17 @@ public final class Chord {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, rootHash_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fileName_);
-      }
-      if (isContent_ != false) {
-        output.writeBool(3, isContent_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, blockHash_);
-      }
-      if (endOfBlock_ != 0L) {
-        output.writeInt64(5, endOfBlock_);
-      }
-      if (!dataContent_.isEmpty()) {
-        output.writeBytes(6, dataContent_);
-      }
-      for (int i = 0; i < dataFD_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 7, dataFD_.getRaw(i));
-      }
-      if (fileSize_ != 0L) {
-        output.writeInt64(8, fileSize_);
+      for (int i = 0; i < fileContent_.size(); i++) {
+        output.writeMessage(1, fileContent_.get(i));
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(primary_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, primary_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(replica1_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 10, replica1_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(replica2_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 11, replica2_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, primary_);
       }
       if (replicateFurther_ != 0) {
-        output.writeInt32(12, replicateFurther_);
+        output.writeInt32(3, replicateFurther_);
       }
       if (updateReplicasInfo_ != null) {
-        output.writeMessage(13, getUpdateReplicasInfo());
+        output.writeMessage(4, getUpdateReplicasInfo());
       }
       getUnknownFields().writeTo(output);
     }
@@ -2387,55 +4738,20 @@ public final class Chord {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, rootHash_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fileName_);
-      }
-      if (isContent_ != false) {
+      for (int i = 0; i < fileContent_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(3, isContent_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, blockHash_);
-      }
-      if (endOfBlock_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(5, endOfBlock_);
-      }
-      if (!dataContent_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, dataContent_);
-      }
-      {
-        int dataSize = 0;
-        for (int i = 0; i < dataFD_.size(); i++) {
-          dataSize += computeStringSizeNoTag(dataFD_.getRaw(i));
-        }
-        size += dataSize;
-        size += 1 * getDataFDList().size();
-      }
-      if (fileSize_ != 0L) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(8, fileSize_);
+          .computeMessageSize(1, fileContent_.get(i));
       }
       if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(primary_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, primary_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(replica1_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(10, replica1_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(replica2_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(11, replica2_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, primary_);
       }
       if (replicateFurther_ != 0) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(12, replicateFurther_);
+          .computeInt32Size(3, replicateFurther_);
       }
       if (updateReplicasInfo_ != null) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(13, getUpdateReplicasInfo());
+          .computeMessageSize(4, getUpdateReplicasInfo());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -2452,28 +4768,10 @@ public final class Chord {
       }
       chord.Chord.sendReplica other = (chord.Chord.sendReplica) obj;
 
-      if (!getRootHash()
-          .equals(other.getRootHash())) return false;
-      if (!getFileName()
-          .equals(other.getFileName())) return false;
-      if (getIsContent()
-          != other.getIsContent()) return false;
-      if (!getBlockHash()
-          .equals(other.getBlockHash())) return false;
-      if (getEndOfBlock()
-          != other.getEndOfBlock()) return false;
-      if (!getDataContent()
-          .equals(other.getDataContent())) return false;
-      if (!getDataFDList()
-          .equals(other.getDataFDList())) return false;
-      if (getFileSize()
-          != other.getFileSize()) return false;
+      if (!getFileContentList()
+          .equals(other.getFileContentList())) return false;
       if (!getPrimary()
           .equals(other.getPrimary())) return false;
-      if (!getReplica1()
-          .equals(other.getReplica1())) return false;
-      if (!getReplica2()
-          .equals(other.getReplica2())) return false;
       if (getReplicateFurther()
           != other.getReplicateFurther()) return false;
       if (hasUpdateReplicasInfo() != other.hasUpdateReplicasInfo()) return false;
@@ -2492,33 +4790,12 @@ public final class Chord {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + ROOTHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getRootHash().hashCode();
-      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFileName().hashCode();
-      hash = (37 * hash) + ISCONTENT_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-          getIsContent());
-      hash = (37 * hash) + BLOCKHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockHash().hashCode();
-      hash = (37 * hash) + ENDOFBLOCK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getEndOfBlock());
-      hash = (37 * hash) + DATACONTENT_FIELD_NUMBER;
-      hash = (53 * hash) + getDataContent().hashCode();
-      if (getDataFDCount() > 0) {
-        hash = (37 * hash) + DATAFD_FIELD_NUMBER;
-        hash = (53 * hash) + getDataFDList().hashCode();
+      if (getFileContentCount() > 0) {
+        hash = (37 * hash) + FILECONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getFileContentList().hashCode();
       }
-      hash = (37 * hash) + FILESIZE_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getFileSize());
       hash = (37 * hash) + PRIMARY_FIELD_NUMBER;
       hash = (53 * hash) + getPrimary().hashCode();
-      hash = (37 * hash) + REPLICA1_FIELD_NUMBER;
-      hash = (53 * hash) + getReplica1().hashCode();
-      hash = (37 * hash) + REPLICA2_FIELD_NUMBER;
-      hash = (53 * hash) + getReplica2().hashCode();
       hash = (37 * hash) + REPLICATEFURTHER_FIELD_NUMBER;
       hash = (53 * hash) + getReplicateFurther();
       if (hasUpdateReplicasInfo()) {
@@ -2654,18 +4931,14 @@ public final class Chord {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        rootHash_ = "";
-        fileName_ = "";
-        isContent_ = false;
-        blockHash_ = "";
-        endOfBlock_ = 0L;
-        dataContent_ = com.google.protobuf.ByteString.EMPTY;
-        dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        fileSize_ = 0L;
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+        } else {
+          fileContent_ = null;
+          fileContentBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
         primary_ = "";
-        replica1_ = "";
-        replica2_ = "";
         replicateFurther_ = 0;
         updateReplicasInfo_ = null;
         if (updateReplicasInfoBuilder_ != null) {
@@ -2705,49 +4978,26 @@ public final class Chord {
       }
 
       private void buildPartialRepeatedFields(chord.Chord.sendReplica result) {
-        if (((bitField0_ & 0x00000040) != 0)) {
-          dataFD_ = dataFD_.getUnmodifiableView();
-          bitField0_ = (bitField0_ & ~0x00000040);
+        if (fileContentBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) != 0)) {
+            fileContent_ = java.util.Collections.unmodifiableList(fileContent_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.fileContent_ = fileContent_;
+        } else {
+          result.fileContent_ = fileContentBuilder_.build();
         }
-        result.dataFD_ = dataFD_;
       }
 
       private void buildPartial0(chord.Chord.sendReplica result) {
         int from_bitField0_ = bitField0_;
-        if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.rootHash_ = rootHash_;
-        }
         if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.fileName_ = fileName_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.isContent_ = isContent_;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.blockHash_ = blockHash_;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.endOfBlock_ = endOfBlock_;
-        }
-        if (((from_bitField0_ & 0x00000020) != 0)) {
-          result.dataContent_ = dataContent_;
-        }
-        if (((from_bitField0_ & 0x00000080) != 0)) {
-          result.fileSize_ = fileSize_;
-        }
-        if (((from_bitField0_ & 0x00000100) != 0)) {
           result.primary_ = primary_;
         }
-        if (((from_bitField0_ & 0x00000200) != 0)) {
-          result.replica1_ = replica1_;
-        }
-        if (((from_bitField0_ & 0x00000400) != 0)) {
-          result.replica2_ = replica2_;
-        }
-        if (((from_bitField0_ & 0x00000800) != 0)) {
+        if (((from_bitField0_ & 0x00000004) != 0)) {
           result.replicateFurther_ = replicateFurther_;
         }
-        if (((from_bitField0_ & 0x00001000) != 0)) {
+        if (((from_bitField0_ & 0x00000008) != 0)) {
           result.updateReplicasInfo_ = updateReplicasInfoBuilder_ == null
               ? updateReplicasInfo_
               : updateReplicasInfoBuilder_.build();
@@ -2798,56 +5048,35 @@ public final class Chord {
 
       public Builder mergeFrom(chord.Chord.sendReplica other) {
         if (other == chord.Chord.sendReplica.getDefaultInstance()) return this;
-        if (!other.getRootHash().isEmpty()) {
-          rootHash_ = other.rootHash_;
-          bitField0_ |= 0x00000001;
-          onChanged();
-        }
-        if (!other.getFileName().isEmpty()) {
-          fileName_ = other.fileName_;
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
-        if (other.getIsContent() != false) {
-          setIsContent(other.getIsContent());
-        }
-        if (!other.getBlockHash().isEmpty()) {
-          blockHash_ = other.blockHash_;
-          bitField0_ |= 0x00000008;
-          onChanged();
-        }
-        if (other.getEndOfBlock() != 0L) {
-          setEndOfBlock(other.getEndOfBlock());
-        }
-        if (other.getDataContent() != com.google.protobuf.ByteString.EMPTY) {
-          setDataContent(other.getDataContent());
-        }
-        if (!other.dataFD_.isEmpty()) {
-          if (dataFD_.isEmpty()) {
-            dataFD_ = other.dataFD_;
-            bitField0_ = (bitField0_ & ~0x00000040);
-          } else {
-            ensureDataFDIsMutable();
-            dataFD_.addAll(other.dataFD_);
+        if (fileContentBuilder_ == null) {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContent_.isEmpty()) {
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureFileContentIsMutable();
+              fileContent_.addAll(other.fileContent_);
+            }
+            onChanged();
           }
-          onChanged();
-        }
-        if (other.getFileSize() != 0L) {
-          setFileSize(other.getFileSize());
+        } else {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContentBuilder_.isEmpty()) {
+              fileContentBuilder_.dispose();
+              fileContentBuilder_ = null;
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              fileContentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getFileContentFieldBuilder() : null;
+            } else {
+              fileContentBuilder_.addAllMessages(other.fileContent_);
+            }
+          }
         }
         if (!other.getPrimary().isEmpty()) {
           primary_ = other.primary_;
-          bitField0_ |= 0x00000100;
-          onChanged();
-        }
-        if (!other.getReplica1().isEmpty()) {
-          replica1_ = other.replica1_;
-          bitField0_ |= 0x00000200;
-          onChanged();
-        }
-        if (!other.getReplica2().isEmpty()) {
-          replica2_ = other.replica2_;
-          bitField0_ |= 0x00000400;
+          bitField0_ |= 0x00000002;
           onChanged();
         }
         if (other.getReplicateFurther() != 0) {
@@ -2883,73 +5112,35 @@ public final class Chord {
                 done = true;
                 break;
               case 10: {
-                rootHash_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000001;
+                chord.Chord.fileContent m =
+                    input.readMessage(
+                        chord.Chord.fileContent.parser(),
+                        extensionRegistry);
+                if (fileContentBuilder_ == null) {
+                  ensureFileContentIsMutable();
+                  fileContent_.add(m);
+                } else {
+                  fileContentBuilder_.addMessage(m);
+                }
                 break;
               } // case 10
               case 18: {
-                fileName_ = input.readStringRequireUtf8();
+                primary_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000002;
                 break;
               } // case 18
               case 24: {
-                isContent_ = input.readBool();
+                replicateFurther_ = input.readInt32();
                 bitField0_ |= 0x00000004;
                 break;
               } // case 24
               case 34: {
-                blockHash_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 34
-              case 40: {
-                endOfBlock_ = input.readInt64();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 40
-              case 50: {
-                dataContent_ = input.readBytes();
-                bitField0_ |= 0x00000020;
-                break;
-              } // case 50
-              case 58: {
-                java.lang.String s = input.readStringRequireUtf8();
-                ensureDataFDIsMutable();
-                dataFD_.add(s);
-                break;
-              } // case 58
-              case 64: {
-                fileSize_ = input.readInt64();
-                bitField0_ |= 0x00000080;
-                break;
-              } // case 64
-              case 74: {
-                primary_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000100;
-                break;
-              } // case 74
-              case 82: {
-                replica1_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000200;
-                break;
-              } // case 82
-              case 90: {
-                replica2_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000400;
-                break;
-              } // case 90
-              case 96: {
-                replicateFurther_ = input.readInt32();
-                bitField0_ |= 0x00000800;
-                break;
-              } // case 96
-              case 106: {
                 input.readMessage(
                     getUpdateReplicasInfoFieldBuilder().getBuilder(),
                     extensionRegistry);
-                bitField0_ |= 0x00001000;
+                bitField0_ |= 0x00000008;
                 break;
-              } // case 106
+              } // case 34
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -2967,457 +5158,249 @@ public final class Chord {
       }
       private int bitField0_;
 
-      private java.lang.Object rootHash_ = "";
-      /**
-       * <code>string rootHash = 1;</code>
-       * @return The rootHash.
-       */
-      public java.lang.String getRootHash() {
-        java.lang.Object ref = rootHash_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          rootHash_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string rootHash = 1;</code>
-       * @return The bytes for rootHash.
-       */
-      public com.google.protobuf.ByteString
-          getRootHashBytes() {
-        java.lang.Object ref = rootHash_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          rootHash_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string rootHash = 1;</code>
-       * @param value The rootHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRootHash(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        rootHash_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string rootHash = 1;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearRootHash() {
-        rootHash_ = getDefaultInstance().getRootHash();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string rootHash = 1;</code>
-       * @param value The bytes for rootHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setRootHashBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        rootHash_ = value;
-        bitField0_ |= 0x00000001;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object fileName_ = "";
-      /**
-       * <code>string fileName = 2;</code>
-       * @return The fileName.
-       */
-      public java.lang.String getFileName() {
-        java.lang.Object ref = fileName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          fileName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @return The bytes for fileName.
-       */
-      public com.google.protobuf.ByteString
-          getFileNameBytes() {
-        java.lang.Object ref = fileName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fileName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @param value The fileName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFileName(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        fileName_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFileName() {
-        fileName_ = getDefaultInstance().getFileName();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @param value The bytes for fileName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFileNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        fileName_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-
-      private boolean isContent_ ;
-      /**
-       * <code>bool isContent = 3;</code>
-       * @return The isContent.
-       */
-      @java.lang.Override
-      public boolean getIsContent() {
-        return isContent_;
-      }
-      /**
-       * <code>bool isContent = 3;</code>
-       * @param value The isContent to set.
-       * @return This builder for chaining.
-       */
-      public Builder setIsContent(boolean value) {
-        
-        isContent_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bool isContent = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearIsContent() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        isContent_ = false;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object blockHash_ = "";
-      /**
-       * <code>string blockHash = 4;</code>
-       * @return The blockHash.
-       */
-      public java.lang.String getBlockHash() {
-        java.lang.Object ref = blockHash_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          blockHash_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string blockHash = 4;</code>
-       * @return The bytes for blockHash.
-       */
-      public com.google.protobuf.ByteString
-          getBlockHashBytes() {
-        java.lang.Object ref = blockHash_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          blockHash_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string blockHash = 4;</code>
-       * @param value The blockHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBlockHash(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        blockHash_ = value;
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string blockHash = 4;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearBlockHash() {
-        blockHash_ = getDefaultInstance().getBlockHash();
-        bitField0_ = (bitField0_ & ~0x00000008);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string blockHash = 4;</code>
-       * @param value The bytes for blockHash to set.
-       * @return This builder for chaining.
-       */
-      public Builder setBlockHashBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        blockHash_ = value;
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return this;
-      }
-
-      private long endOfBlock_ ;
-      /**
-       * <code>int64 endOfBlock = 5;</code>
-       * @return The endOfBlock.
-       */
-      @java.lang.Override
-      public long getEndOfBlock() {
-        return endOfBlock_;
-      }
-      /**
-       * <code>int64 endOfBlock = 5;</code>
-       * @param value The endOfBlock to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEndOfBlock(long value) {
-        
-        endOfBlock_ = value;
-        bitField0_ |= 0x00000010;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 endOfBlock = 5;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEndOfBlock() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        endOfBlock_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString dataContent_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes dataContent = 6;</code>
-       * @return The dataContent.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getDataContent() {
-        return dataContent_;
-      }
-      /**
-       * <code>bytes dataContent = 6;</code>
-       * @param value The dataContent to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDataContent(com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        dataContent_ = value;
-        bitField0_ |= 0x00000020;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>bytes dataContent = 6;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDataContent() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        dataContent_ = getDefaultInstance().getDataContent();
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.LazyStringList dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureDataFDIsMutable() {
-        if (!((bitField0_ & 0x00000040) != 0)) {
-          dataFD_ = new com.google.protobuf.LazyStringArrayList(dataFD_);
-          bitField0_ |= 0x00000040;
+      private java.util.List<chord.Chord.fileContent> fileContent_ =
+        java.util.Collections.emptyList();
+      private void ensureFileContentIsMutable() {
+        if (!((bitField0_ & 0x00000001) != 0)) {
+          fileContent_ = new java.util.ArrayList<chord.Chord.fileContent>(fileContent_);
+          bitField0_ |= 0x00000001;
          }
       }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @return A list containing the dataFD.
-       */
-      public com.google.protobuf.ProtocolStringList
-          getDataFDList() {
-        return dataFD_.getUnmodifiableView();
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @return The count of dataFD.
-       */
-      public int getDataFDCount() {
-        return dataFD_.size();
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param index The index of the element to return.
-       * @return The dataFD at the given index.
-       */
-      public java.lang.String getDataFD(int index) {
-        return dataFD_.get(index);
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param index The index of the value to return.
-       * @return The bytes of the dataFD at the given index.
-       */
-      public com.google.protobuf.ByteString
-          getDataFDBytes(int index) {
-        return dataFD_.getByteString(index);
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param index The index to set the value at.
-       * @param value The dataFD to set.
-       * @return This builder for chaining.
-       */
-      public Builder setDataFD(
-          int index, java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureDataFDIsMutable();
-        dataFD_.set(index, value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param value The dataFD to add.
-       * @return This builder for chaining.
-       */
-      public Builder addDataFD(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        ensureDataFDIsMutable();
-        dataFD_.add(value);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param values The dataFD to add.
-       * @return This builder for chaining.
-       */
-      public Builder addAllDataFD(
-          java.lang.Iterable<java.lang.String> values) {
-        ensureDataFDIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, dataFD_);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearDataFD() {
-        dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>repeated string dataFD = 7;</code>
-       * @param value The bytes of the dataFD to add.
-       * @return This builder for chaining.
-       */
-      public Builder addDataFDBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        ensureDataFDIsMutable();
-        dataFD_.add(value);
-        onChanged();
-        return this;
-      }
 
-      private long fileSize_ ;
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> fileContentBuilder_;
+
       /**
-       * <code>int64 fileSize = 8;</code>
-       * @return The fileSize.
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
        */
-      @java.lang.Override
-      public long getFileSize() {
-        return fileSize_;
+      public java.util.List<chord.Chord.fileContent> getFileContentList() {
+        if (fileContentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(fileContent_);
+        } else {
+          return fileContentBuilder_.getMessageList();
+        }
       }
       /**
-       * <code>int64 fileSize = 8;</code>
-       * @param value The fileSize to set.
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
        */
-      public Builder setFileSize(long value) {
-        
-        fileSize_ = value;
-        bitField0_ |= 0x00000080;
-        onChanged();
+      public int getFileContentCount() {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.size();
+        } else {
+          return fileContentBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public chord.Chord.fileContent getFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);
+        } else {
+          return fileContentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.set(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>int64 fileSize = 8;</code>
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
        */
-      public Builder clearFileSize() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        fileSize_ = 0L;
-        onChanged();
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder addFileContent(chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder addFileContent(
+          chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder addAllFileContent(
+          java.lang.Iterable<? extends chord.Chord.fileContent> values) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, fileContent_);
+          onChanged();
+        } else {
+          fileContentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder clearFileContent() {
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          fileContentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public Builder removeFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.remove(index);
+          onChanged();
+        } else {
+          fileContentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder getFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+          int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);  } else {
+          return fileContentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+           getFileContentOrBuilderList() {
+        if (fileContentBuilder_ != null) {
+          return fileContentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(fileContent_);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder() {
+        return getFileContentFieldBuilder().addBuilder(
+            chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().addBuilder(
+            index, chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 1;</code>
+       */
+      public java.util.List<chord.Chord.fileContent.Builder> 
+           getFileContentBuilderList() {
+        return getFileContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> 
+          getFileContentFieldBuilder() {
+        if (fileContentBuilder_ == null) {
+          fileContentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder>(
+                  fileContent_,
+                  ((bitField0_ & 0x00000001) != 0),
+                  getParentForChildren(),
+                  isClean());
+          fileContent_ = null;
+        }
+        return fileContentBuilder_;
       }
 
       private java.lang.Object primary_ = "";
       /**
-       * <code>string primary = 9;</code>
+       * <code>string primary = 2;</code>
        * @return The primary.
        */
       public java.lang.String getPrimary() {
@@ -3433,7 +5416,7 @@ public final class Chord {
         }
       }
       /**
-       * <code>string primary = 9;</code>
+       * <code>string primary = 2;</code>
        * @return The bytes for primary.
        */
       public com.google.protobuf.ByteString
@@ -3450,7 +5433,7 @@ public final class Chord {
         }
       }
       /**
-       * <code>string primary = 9;</code>
+       * <code>string primary = 2;</code>
        * @param value The primary to set.
        * @return This builder for chaining.
        */
@@ -3458,22 +5441,22 @@ public final class Chord {
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
         primary_ = value;
-        bitField0_ |= 0x00000100;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
       /**
-       * <code>string primary = 9;</code>
+       * <code>string primary = 2;</code>
        * @return This builder for chaining.
        */
       public Builder clearPrimary() {
         primary_ = getDefaultInstance().getPrimary();
-        bitField0_ = (bitField0_ & ~0x00000100);
+        bitField0_ = (bitField0_ & ~0x00000002);
         onChanged();
         return this;
       }
       /**
-       * <code>string primary = 9;</code>
+       * <code>string primary = 2;</code>
        * @param value The bytes for primary to set.
        * @return This builder for chaining.
        */
@@ -3482,158 +5465,14 @@ public final class Chord {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
         primary_ = value;
-        bitField0_ |= 0x00000100;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object replica1_ = "";
-      /**
-       * <code>string replica1 = 10;</code>
-       * @return The replica1.
-       */
-      public java.lang.String getReplica1() {
-        java.lang.Object ref = replica1_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          replica1_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string replica1 = 10;</code>
-       * @return The bytes for replica1.
-       */
-      public com.google.protobuf.ByteString
-          getReplica1Bytes() {
-        java.lang.Object ref = replica1_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          replica1_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string replica1 = 10;</code>
-       * @param value The replica1 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReplica1(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        replica1_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string replica1 = 10;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearReplica1() {
-        replica1_ = getDefaultInstance().getReplica1();
-        bitField0_ = (bitField0_ & ~0x00000200);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string replica1 = 10;</code>
-       * @param value The bytes for replica1 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReplica1Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        replica1_ = value;
-        bitField0_ |= 0x00000200;
-        onChanged();
-        return this;
-      }
-
-      private java.lang.Object replica2_ = "";
-      /**
-       * <code>string replica2 = 11;</code>
-       * @return The replica2.
-       */
-      public java.lang.String getReplica2() {
-        java.lang.Object ref = replica2_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          replica2_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string replica2 = 11;</code>
-       * @return The bytes for replica2.
-       */
-      public com.google.protobuf.ByteString
-          getReplica2Bytes() {
-        java.lang.Object ref = replica2_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          replica2_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string replica2 = 11;</code>
-       * @param value The replica2 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReplica2(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        replica2_ = value;
-        bitField0_ |= 0x00000400;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string replica2 = 11;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearReplica2() {
-        replica2_ = getDefaultInstance().getReplica2();
-        bitField0_ = (bitField0_ & ~0x00000400);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string replica2 = 11;</code>
-       * @param value The bytes for replica2 to set.
-       * @return This builder for chaining.
-       */
-      public Builder setReplica2Bytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        replica2_ = value;
-        bitField0_ |= 0x00000400;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
 
       private int replicateFurther_ ;
       /**
-       * <code>int32 replicateFurther = 12;</code>
+       * <code>int32 replicateFurther = 3;</code>
        * @return The replicateFurther.
        */
       @java.lang.Override
@@ -3641,23 +5480,23 @@ public final class Chord {
         return replicateFurther_;
       }
       /**
-       * <code>int32 replicateFurther = 12;</code>
+       * <code>int32 replicateFurther = 3;</code>
        * @param value The replicateFurther to set.
        * @return This builder for chaining.
        */
       public Builder setReplicateFurther(int value) {
         
         replicateFurther_ = value;
-        bitField0_ |= 0x00000800;
+        bitField0_ |= 0x00000004;
         onChanged();
         return this;
       }
       /**
-       * <code>int32 replicateFurther = 12;</code>
+       * <code>int32 replicateFurther = 3;</code>
        * @return This builder for chaining.
        */
       public Builder clearReplicateFurther() {
-        bitField0_ = (bitField0_ & ~0x00000800);
+        bitField0_ = (bitField0_ & ~0x00000004);
         replicateFurther_ = 0;
         onChanged();
         return this;
@@ -3667,14 +5506,14 @@ public final class Chord {
       private com.google.protobuf.SingleFieldBuilderV3<
           chord.Chord.nodeDeletedUpdateRequired, chord.Chord.nodeDeletedUpdateRequired.Builder, chord.Chord.nodeDeletedUpdateRequiredOrBuilder> updateReplicasInfoBuilder_;
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        * @return Whether the updateReplicasInfo field is set.
        */
       public boolean hasUpdateReplicasInfo() {
-        return ((bitField0_ & 0x00001000) != 0);
+        return ((bitField0_ & 0x00000008) != 0);
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        * @return The updateReplicasInfo.
        */
       public chord.Chord.nodeDeletedUpdateRequired getUpdateReplicasInfo() {
@@ -3685,7 +5524,7 @@ public final class Chord {
         }
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public Builder setUpdateReplicasInfo(chord.Chord.nodeDeletedUpdateRequired value) {
         if (updateReplicasInfoBuilder_ == null) {
@@ -3696,12 +5535,12 @@ public final class Chord {
         } else {
           updateReplicasInfoBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public Builder setUpdateReplicasInfo(
           chord.Chord.nodeDeletedUpdateRequired.Builder builderForValue) {
@@ -3710,16 +5549,16 @@ public final class Chord {
         } else {
           updateReplicasInfoBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public Builder mergeUpdateReplicasInfo(chord.Chord.nodeDeletedUpdateRequired value) {
         if (updateReplicasInfoBuilder_ == null) {
-          if (((bitField0_ & 0x00001000) != 0) &&
+          if (((bitField0_ & 0x00000008) != 0) &&
             updateReplicasInfo_ != null &&
             updateReplicasInfo_ != chord.Chord.nodeDeletedUpdateRequired.getDefaultInstance()) {
             getUpdateReplicasInfoBuilder().mergeFrom(value);
@@ -3729,15 +5568,15 @@ public final class Chord {
         } else {
           updateReplicasInfoBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00000008;
         onChanged();
         return this;
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public Builder clearUpdateReplicasInfo() {
-        bitField0_ = (bitField0_ & ~0x00001000);
+        bitField0_ = (bitField0_ & ~0x00000008);
         updateReplicasInfo_ = null;
         if (updateReplicasInfoBuilder_ != null) {
           updateReplicasInfoBuilder_.dispose();
@@ -3747,15 +5586,15 @@ public final class Chord {
         return this;
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public chord.Chord.nodeDeletedUpdateRequired.Builder getUpdateReplicasInfoBuilder() {
-        bitField0_ |= 0x00001000;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getUpdateReplicasInfoFieldBuilder().getBuilder();
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       public chord.Chord.nodeDeletedUpdateRequiredOrBuilder getUpdateReplicasInfoOrBuilder() {
         if (updateReplicasInfoBuilder_ != null) {
@@ -3766,7 +5605,7 @@ public final class Chord {
         }
       }
       /**
-       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 13;</code>
+       * <code>.chord.nodeDeletedUpdateRequired updateReplicasInfo = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
           chord.Chord.nodeDeletedUpdateRequired, chord.Chord.nodeDeletedUpdateRequired.Builder, chord.Chord.nodeDeletedUpdateRequiredOrBuilder> 
@@ -6188,6 +8027,18 @@ public final class Chord {
      * @return The fileSize.
      */
     long getFileSize();
+
+    /**
+     * <code>string owner = 9;</code>
+     * @return The owner.
+     */
+    java.lang.String getOwner();
+    /**
+     * <code>string owner = 9;</code>
+     * @return The bytes for owner.
+     */
+    com.google.protobuf.ByteString
+        getOwnerBytes();
   }
   /**
    * Protobuf type {@code chord.fileContent}
@@ -6207,6 +8058,7 @@ public final class Chord {
       blockHash_ = "";
       dataContent_ = com.google.protobuf.ByteString.EMPTY;
       dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      owner_ = "";
     }
 
     @java.lang.Override
@@ -6431,6 +8283,45 @@ public final class Chord {
       return fileSize_;
     }
 
+    public static final int OWNER_FIELD_NUMBER = 9;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object owner_ = "";
+    /**
+     * <code>string owner = 9;</code>
+     * @return The owner.
+     */
+    @java.lang.Override
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        owner_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string owner = 9;</code>
+     * @return The bytes for owner.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        owner_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -6468,6 +8359,9 @@ public final class Chord {
       }
       if (fileSize_ != 0L) {
         output.writeInt64(8, fileSize_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 9, owner_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6511,6 +8405,9 @@ public final class Chord {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(8, fileSize_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(9, owner_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -6542,6 +8439,8 @@ public final class Chord {
           .equals(other.getDataFDList())) return false;
       if (getFileSize()
           != other.getFileSize()) return false;
+      if (!getOwner()
+          .equals(other.getOwner())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -6574,6 +8473,8 @@ public final class Chord {
       hash = (37 * hash) + FILESIZE_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getFileSize());
+      hash = (37 * hash) + OWNER_FIELD_NUMBER;
+      hash = (53 * hash) + getOwner().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -6712,6 +8613,7 @@ public final class Chord {
         dataFD_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000040);
         fileSize_ = 0L;
+        owner_ = "";
         return this;
       }
 
@@ -6774,6 +8676,9 @@ public final class Chord {
         }
         if (((from_bitField0_ & 0x00000080) != 0)) {
           result.fileSize_ = fileSize_;
+        }
+        if (((from_bitField0_ & 0x00000100) != 0)) {
+          result.owner_ = owner_;
         }
       }
 
@@ -6858,6 +8763,11 @@ public final class Chord {
         if (other.getFileSize() != 0L) {
           setFileSize(other.getFileSize());
         }
+        if (!other.getOwner().isEmpty()) {
+          owner_ = other.owner_;
+          bitField0_ |= 0x00000100;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -6925,6 +8835,11 @@ public final class Chord {
                 bitField0_ |= 0x00000080;
                 break;
               } // case 64
+              case 74: {
+                owner_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000100;
+                break;
+              } // case 74
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -7389,6 +9304,78 @@ public final class Chord {
         onChanged();
         return this;
       }
+
+      private java.lang.Object owner_ = "";
+      /**
+       * <code>string owner = 9;</code>
+       * @return The owner.
+       */
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          owner_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string owner = 9;</code>
+       * @return The bytes for owner.
+       */
+      public com.google.protobuf.ByteString
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          owner_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string owner = 9;</code>
+       * @param value The owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwner(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        owner_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 9;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOwner() {
+        owner_ = getDefaultInstance().getOwner();
+        bitField0_ = (bitField0_ & ~0x00000100);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 9;</code>
+       * @param value The bytes for owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwnerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        owner_ = value;
+        bitField0_ |= 0x00000100;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -7459,7 +9446,7 @@ public final class Chord {
 
     /**
      * <pre>
-     *1 if success or else 0
+     *1 if success or else if only 2 nodes are present then dont replicate and send response 2.
      * </pre>
      *
      * <code>int32 response = 1;</code>
@@ -7511,7 +9498,7 @@ public final class Chord {
     private int response_ = 0;
     /**
      * <pre>
-     *1 if success or else 0
+     *1 if success or else if only 2 nodes are present then dont replicate and send response 2.
      * </pre>
      *
      * <code>int32 response = 1;</code>
@@ -7848,7 +9835,7 @@ public final class Chord {
       private int response_ ;
       /**
        * <pre>
-       *1 if success or else 0
+       *1 if success or else if only 2 nodes are present then dont replicate and send response 2.
        * </pre>
        *
        * <code>int32 response = 1;</code>
@@ -7860,7 +9847,7 @@ public final class Chord {
       }
       /**
        * <pre>
-       *1 if success or else 0
+       *1 if success or else if only 2 nodes are present then dont replicate and send response 2.
        * </pre>
        *
        * <code>int32 response = 1;</code>
@@ -7876,7 +9863,7 @@ public final class Chord {
       }
       /**
        * <pre>
-       *1 if success or else 0
+       *1 if success or else if only 2 nodes are present then dont replicate and send response 2.
        * </pre>
        *
        * <code>int32 response = 1;</code>
@@ -8003,6 +9990,30 @@ public final class Chord {
      * @return The data.
      */
     com.google.protobuf.ByteString getData();
+
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    java.util.List<chord.Chord.fileContent> 
+        getFileContentList();
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    chord.Chord.fileContent getFileContent(int index);
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    int getFileContentCount();
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList();
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code chord.sendDataToOwner}
@@ -8021,6 +10032,7 @@ public final class Chord {
       contentHash_ = "";
       fileName_ = "";
       data_ = com.google.protobuf.ByteString.EMPTY;
+      fileContent_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -8187,6 +10199,47 @@ public final class Chord {
       return data_;
     }
 
+    public static final int FILECONTENT_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private java.util.List<chord.Chord.fileContent> fileContent_;
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public java.util.List<chord.Chord.fileContent> getFileContentList() {
+      return fileContent_;
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList() {
+      return fileContent_;
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public int getFileContentCount() {
+      return fileContent_.size();
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContent getFileContent(int index) {
+      return fileContent_.get(index);
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index) {
+      return fileContent_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -8216,6 +10269,9 @@ public final class Chord {
       if (!data_.isEmpty()) {
         output.writeBytes(5, data_);
       }
+      for (int i = 0; i < fileContent_.size(); i++) {
+        output.writeMessage(6, fileContent_.get(i));
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -8242,6 +10298,10 @@ public final class Chord {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, data_);
       }
+      for (int i = 0; i < fileContent_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, fileContent_.get(i));
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -8267,6 +10327,8 @@ public final class Chord {
           != other.getEndOfBlock()) return false;
       if (!getData()
           .equals(other.getData())) return false;
+      if (!getFileContentList()
+          .equals(other.getFileContentList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -8289,6 +10351,10 @@ public final class Chord {
           getEndOfBlock());
       hash = (37 * hash) + DATA_FIELD_NUMBER;
       hash = (53 * hash) + getData().hashCode();
+      if (getFileContentCount() > 0) {
+        hash = (37 * hash) + FILECONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getFileContentList().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -8423,6 +10489,13 @@ public final class Chord {
         fileName_ = "";
         endOfBlock_ = 0L;
         data_ = com.google.protobuf.ByteString.EMPTY;
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+        } else {
+          fileContent_ = null;
+          fileContentBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -8449,9 +10522,22 @@ public final class Chord {
       @java.lang.Override
       public chord.Chord.sendDataToOwner buildPartial() {
         chord.Chord.sendDataToOwner result = new chord.Chord.sendDataToOwner(this);
+        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartialRepeatedFields(chord.Chord.sendDataToOwner result) {
+        if (fileContentBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) != 0)) {
+            fileContent_ = java.util.Collections.unmodifiableList(fileContent_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.fileContent_ = fileContent_;
+        } else {
+          result.fileContent_ = fileContentBuilder_.build();
+        }
       }
 
       private void buildPartial0(chord.Chord.sendDataToOwner result) {
@@ -8538,6 +10624,32 @@ public final class Chord {
         if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
           setData(other.getData());
         }
+        if (fileContentBuilder_ == null) {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContent_.isEmpty()) {
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureFileContentIsMutable();
+              fileContent_.addAll(other.fileContent_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContentBuilder_.isEmpty()) {
+              fileContentBuilder_.dispose();
+              fileContentBuilder_ = null;
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              fileContentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getFileContentFieldBuilder() : null;
+            } else {
+              fileContentBuilder_.addAllMessages(other.fileContent_);
+            }
+          }
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -8589,6 +10701,19 @@ public final class Chord {
                 bitField0_ |= 0x00000010;
                 break;
               } // case 42
+              case 50: {
+                chord.Chord.fileContent m =
+                    input.readMessage(
+                        chord.Chord.fileContent.parser(),
+                        extensionRegistry);
+                if (fileContentBuilder_ == null) {
+                  ensureFileContentIsMutable();
+                  fileContent_.add(m);
+                } else {
+                  fileContentBuilder_.addMessage(m);
+                }
+                break;
+              } // case 50
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -8884,6 +11009,246 @@ public final class Chord {
         data_ = getDefaultInstance().getData();
         onChanged();
         return this;
+      }
+
+      private java.util.List<chord.Chord.fileContent> fileContent_ =
+        java.util.Collections.emptyList();
+      private void ensureFileContentIsMutable() {
+        if (!((bitField0_ & 0x00000020) != 0)) {
+          fileContent_ = new java.util.ArrayList<chord.Chord.fileContent>(fileContent_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> fileContentBuilder_;
+
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public java.util.List<chord.Chord.fileContent> getFileContentList() {
+        if (fileContentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(fileContent_);
+        } else {
+          return fileContentBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public int getFileContentCount() {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.size();
+        } else {
+          return fileContentBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent getFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);
+        } else {
+          return fileContentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.set(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(
+          chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addAllFileContent(
+          java.lang.Iterable<? extends chord.Chord.fileContent> values) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, fileContent_);
+          onChanged();
+        } else {
+          fileContentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder clearFileContent() {
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          fileContentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder removeFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.remove(index);
+          onChanged();
+        } else {
+          fileContentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder getFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+          int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);  } else {
+          return fileContentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+           getFileContentOrBuilderList() {
+        if (fileContentBuilder_ != null) {
+          return fileContentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(fileContent_);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder() {
+        return getFileContentFieldBuilder().addBuilder(
+            chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().addBuilder(
+            index, chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public java.util.List<chord.Chord.fileContent.Builder> 
+           getFileContentBuilderList() {
+        return getFileContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> 
+          getFileContentFieldBuilder() {
+        if (fileContentBuilder_ == null) {
+          fileContentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder>(
+                  fileContent_,
+                  ((bitField0_ & 0x00000020) != 0),
+                  getParentForChildren(),
+                  isClean());
+          fileContent_ = null;
+        }
+        return fileContentBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -10678,52 +13043,40 @@ public final class Chord {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>string blockHash = 1;</code>
-     * @return The blockHash.
+     * <code>string owner = 1;</code>
+     * @return The owner.
      */
-    java.lang.String getBlockHash();
+    java.lang.String getOwner();
     /**
-     * <code>string blockHash = 1;</code>
-     * @return The bytes for blockHash.
+     * <code>string owner = 1;</code>
+     * @return The bytes for owner.
      */
     com.google.protobuf.ByteString
-        getBlockHashBytes();
+        getOwnerBytes();
 
     /**
-     * <code>string fileName = 2;</code>
-     * @return The fileName.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
-    java.lang.String getFileName();
+    java.util.List<chord.Chord.fileContent> 
+        getFileContentList();
     /**
-     * <code>string fileName = 2;</code>
-     * @return The bytes for fileName.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
-    com.google.protobuf.ByteString
-        getFileNameBytes();
-
+    chord.Chord.fileContent getFileContent(int index);
     /**
-     * <code>int64 endOfBlock = 3;</code>
-     * @return The endOfBlock.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
-    long getEndOfBlock();
-
+    int getFileContentCount();
     /**
-     * <code>string rootHash = 4;</code>
-     * @return The rootHash.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
-    java.lang.String getRootHash();
+    java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList();
     /**
-     * <code>string rootHash = 4;</code>
-     * @return The bytes for rootHash.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
-    com.google.protobuf.ByteString
-        getRootHashBytes();
-
-    /**
-     * <code>bytes data = 5;</code>
-     * @return The data.
-     */
-    com.google.protobuf.ByteString getData();
+    chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code chord.BytesRequest}
@@ -10738,10 +13091,8 @@ public final class Chord {
       super(builder);
     }
     private BytesRequest() {
-      blockHash_ = "";
-      fileName_ = "";
-      rootHash_ = "";
-      data_ = com.google.protobuf.ByteString.EMPTY;
+      owner_ = "";
+      fileContent_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -10769,143 +13120,84 @@ public final class Chord {
               chord.Chord.BytesRequest.class, chord.Chord.BytesRequest.Builder.class);
     }
 
-    public static final int BLOCKHASH_FIELD_NUMBER = 1;
+    public static final int OWNER_FIELD_NUMBER = 1;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object blockHash_ = "";
+    private volatile java.lang.Object owner_ = "";
     /**
-     * <code>string blockHash = 1;</code>
-     * @return The blockHash.
+     * <code>string owner = 1;</code>
+     * @return The owner.
      */
     @java.lang.Override
-    public java.lang.String getBlockHash() {
-      java.lang.Object ref = blockHash_;
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
       if (ref instanceof java.lang.String) {
         return (java.lang.String) ref;
       } else {
         com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        blockHash_ = s;
+        owner_ = s;
         return s;
       }
     }
     /**
-     * <code>string blockHash = 1;</code>
-     * @return The bytes for blockHash.
+     * <code>string owner = 1;</code>
+     * @return The bytes for owner.
      */
     @java.lang.Override
     public com.google.protobuf.ByteString
-        getBlockHashBytes() {
-      java.lang.Object ref = blockHash_;
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
       if (ref instanceof java.lang.String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        blockHash_ = b;
+        owner_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
 
-    public static final int FILENAME_FIELD_NUMBER = 2;
+    public static final int FILECONTENT_FIELD_NUMBER = 6;
     @SuppressWarnings("serial")
-    private volatile java.lang.Object fileName_ = "";
+    private java.util.List<chord.Chord.fileContent> fileContent_;
     /**
-     * <code>string fileName = 2;</code>
-     * @return The fileName.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
     @java.lang.Override
-    public java.lang.String getFileName() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        fileName_ = s;
-        return s;
-      }
+    public java.util.List<chord.Chord.fileContent> getFileContentList() {
+      return fileContent_;
     }
     /**
-     * <code>string fileName = 2;</code>
-     * @return The bytes for fileName.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getFileNameBytes() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fileName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ENDOFBLOCK_FIELD_NUMBER = 3;
-    private long endOfBlock_ = 0L;
-    /**
-     * <code>int64 endOfBlock = 3;</code>
-     * @return The endOfBlock.
-     */
-    @java.lang.Override
-    public long getEndOfBlock() {
-      return endOfBlock_;
-    }
-
-    public static final int ROOTHASH_FIELD_NUMBER = 4;
-    @SuppressWarnings("serial")
-    private volatile java.lang.Object rootHash_ = "";
-    /**
-     * <code>string rootHash = 4;</code>
-     * @return The rootHash.
-     */
-    @java.lang.Override
-    public java.lang.String getRootHash() {
-      java.lang.Object ref = rootHash_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        rootHash_ = s;
-        return s;
-      }
+    public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+        getFileContentOrBuilderList() {
+      return fileContent_;
     }
     /**
-     * <code>string rootHash = 4;</code>
-     * @return The bytes for rootHash.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString
-        getRootHashBytes() {
-      java.lang.Object ref = rootHash_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        rootHash_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+    public int getFileContentCount() {
+      return fileContent_.size();
     }
-
-    public static final int DATA_FIELD_NUMBER = 5;
-    private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
     /**
-     * <code>bytes data = 5;</code>
-     * @return The data.
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
      */
     @java.lang.Override
-    public com.google.protobuf.ByteString getData() {
-      return data_;
+    public chord.Chord.fileContent getFileContent(int index) {
+      return fileContent_.get(index);
+    }
+    /**
+     * <code>repeated .chord.fileContent fileContent = 6;</code>
+     */
+    @java.lang.Override
+    public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+        int index) {
+      return fileContent_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -10922,20 +13214,11 @@ public final class Chord {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, blockHash_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 1, owner_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, fileName_);
-      }
-      if (endOfBlock_ != 0L) {
-        output.writeInt64(3, endOfBlock_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 4, rootHash_);
-      }
-      if (!data_.isEmpty()) {
-        output.writeBytes(5, data_);
+      for (int i = 0; i < fileContent_.size(); i++) {
+        output.writeMessage(6, fileContent_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -10946,22 +13229,12 @@ public final class Chord {
       if (size != -1) return size;
 
       size = 0;
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(blockHash_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, blockHash_);
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, owner_);
       }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(fileName_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, fileName_);
-      }
-      if (endOfBlock_ != 0L) {
+      for (int i = 0; i < fileContent_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(3, endOfBlock_);
-      }
-      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(rootHash_)) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, rootHash_);
-      }
-      if (!data_.isEmpty()) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, data_);
+          .computeMessageSize(6, fileContent_.get(i));
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -10978,16 +13251,10 @@ public final class Chord {
       }
       chord.Chord.BytesRequest other = (chord.Chord.BytesRequest) obj;
 
-      if (!getBlockHash()
-          .equals(other.getBlockHash())) return false;
-      if (!getFileName()
-          .equals(other.getFileName())) return false;
-      if (getEndOfBlock()
-          != other.getEndOfBlock()) return false;
-      if (!getRootHash()
-          .equals(other.getRootHash())) return false;
-      if (!getData()
-          .equals(other.getData())) return false;
+      if (!getOwner()
+          .equals(other.getOwner())) return false;
+      if (!getFileContentList()
+          .equals(other.getFileContentList())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -10999,17 +13266,12 @@ public final class Chord {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
-      hash = (37 * hash) + BLOCKHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getBlockHash().hashCode();
-      hash = (37 * hash) + FILENAME_FIELD_NUMBER;
-      hash = (53 * hash) + getFileName().hashCode();
-      hash = (37 * hash) + ENDOFBLOCK_FIELD_NUMBER;
-      hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
-          getEndOfBlock());
-      hash = (37 * hash) + ROOTHASH_FIELD_NUMBER;
-      hash = (53 * hash) + getRootHash().hashCode();
-      hash = (37 * hash) + DATA_FIELD_NUMBER;
-      hash = (53 * hash) + getData().hashCode();
+      hash = (37 * hash) + OWNER_FIELD_NUMBER;
+      hash = (53 * hash) + getOwner().hashCode();
+      if (getFileContentCount() > 0) {
+        hash = (37 * hash) + FILECONTENT_FIELD_NUMBER;
+        hash = (53 * hash) + getFileContentList().hashCode();
+      }
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -11139,11 +13401,14 @@ public final class Chord {
       public Builder clear() {
         super.clear();
         bitField0_ = 0;
-        blockHash_ = "";
-        fileName_ = "";
-        endOfBlock_ = 0L;
-        rootHash_ = "";
-        data_ = com.google.protobuf.ByteString.EMPTY;
+        owner_ = "";
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+        } else {
+          fileContent_ = null;
+          fileContentBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -11170,27 +13435,28 @@ public final class Chord {
       @java.lang.Override
       public chord.Chord.BytesRequest buildPartial() {
         chord.Chord.BytesRequest result = new chord.Chord.BytesRequest(this);
+        buildPartialRepeatedFields(result);
         if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
       }
 
+      private void buildPartialRepeatedFields(chord.Chord.BytesRequest result) {
+        if (fileContentBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) != 0)) {
+            fileContent_ = java.util.Collections.unmodifiableList(fileContent_);
+            bitField0_ = (bitField0_ & ~0x00000002);
+          }
+          result.fileContent_ = fileContent_;
+        } else {
+          result.fileContent_ = fileContentBuilder_.build();
+        }
+      }
+
       private void buildPartial0(chord.Chord.BytesRequest result) {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
-          result.blockHash_ = blockHash_;
-        }
-        if (((from_bitField0_ & 0x00000002) != 0)) {
-          result.fileName_ = fileName_;
-        }
-        if (((from_bitField0_ & 0x00000004) != 0)) {
-          result.endOfBlock_ = endOfBlock_;
-        }
-        if (((from_bitField0_ & 0x00000008) != 0)) {
-          result.rootHash_ = rootHash_;
-        }
-        if (((from_bitField0_ & 0x00000010) != 0)) {
-          result.data_ = data_;
+          result.owner_ = owner_;
         }
       }
 
@@ -11238,26 +13504,36 @@ public final class Chord {
 
       public Builder mergeFrom(chord.Chord.BytesRequest other) {
         if (other == chord.Chord.BytesRequest.getDefaultInstance()) return this;
-        if (!other.getBlockHash().isEmpty()) {
-          blockHash_ = other.blockHash_;
+        if (!other.getOwner().isEmpty()) {
+          owner_ = other.owner_;
           bitField0_ |= 0x00000001;
           onChanged();
         }
-        if (!other.getFileName().isEmpty()) {
-          fileName_ = other.fileName_;
-          bitField0_ |= 0x00000002;
-          onChanged();
-        }
-        if (other.getEndOfBlock() != 0L) {
-          setEndOfBlock(other.getEndOfBlock());
-        }
-        if (!other.getRootHash().isEmpty()) {
-          rootHash_ = other.rootHash_;
-          bitField0_ |= 0x00000008;
-          onChanged();
-        }
-        if (other.getData() != com.google.protobuf.ByteString.EMPTY) {
-          setData(other.getData());
+        if (fileContentBuilder_ == null) {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContent_.isEmpty()) {
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+            } else {
+              ensureFileContentIsMutable();
+              fileContent_.addAll(other.fileContent_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.fileContent_.isEmpty()) {
+            if (fileContentBuilder_.isEmpty()) {
+              fileContentBuilder_.dispose();
+              fileContentBuilder_ = null;
+              fileContent_ = other.fileContent_;
+              bitField0_ = (bitField0_ & ~0x00000002);
+              fileContentBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getFileContentFieldBuilder() : null;
+            } else {
+              fileContentBuilder_.addAllMessages(other.fileContent_);
+            }
+          }
         }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
@@ -11286,30 +13562,23 @@ public final class Chord {
                 done = true;
                 break;
               case 10: {
-                blockHash_ = input.readStringRequireUtf8();
+                owner_ = input.readStringRequireUtf8();
                 bitField0_ |= 0x00000001;
                 break;
               } // case 10
-              case 18: {
-                fileName_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000002;
+              case 50: {
+                chord.Chord.fileContent m =
+                    input.readMessage(
+                        chord.Chord.fileContent.parser(),
+                        extensionRegistry);
+                if (fileContentBuilder_ == null) {
+                  ensureFileContentIsMutable();
+                  fileContent_.add(m);
+                } else {
+                  fileContentBuilder_.addMessage(m);
+                }
                 break;
-              } // case 18
-              case 24: {
-                endOfBlock_ = input.readInt64();
-                bitField0_ |= 0x00000004;
-                break;
-              } // case 24
-              case 34: {
-                rootHash_ = input.readStringRequireUtf8();
-                bitField0_ |= 0x00000008;
-                break;
-              } // case 34
-              case 42: {
-                data_ = input.readBytes();
-                bitField0_ |= 0x00000010;
-                break;
-              } // case 42
+              } // case 50
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -11327,284 +13596,316 @@ public final class Chord {
       }
       private int bitField0_;
 
-      private java.lang.Object blockHash_ = "";
+      private java.lang.Object owner_ = "";
       /**
-       * <code>string blockHash = 1;</code>
-       * @return The blockHash.
+       * <code>string owner = 1;</code>
+       * @return The owner.
        */
-      public java.lang.String getBlockHash() {
-        java.lang.Object ref = blockHash_;
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
         if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
           java.lang.String s = bs.toStringUtf8();
-          blockHash_ = s;
+          owner_ = s;
           return s;
         } else {
           return (java.lang.String) ref;
         }
       }
       /**
-       * <code>string blockHash = 1;</code>
-       * @return The bytes for blockHash.
+       * <code>string owner = 1;</code>
+       * @return The bytes for owner.
        */
       public com.google.protobuf.ByteString
-          getBlockHashBytes() {
-        java.lang.Object ref = blockHash_;
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
         if (ref instanceof String) {
           com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (java.lang.String) ref);
-          blockHash_ = b;
+          owner_ = b;
           return b;
         } else {
           return (com.google.protobuf.ByteString) ref;
         }
       }
       /**
-       * <code>string blockHash = 1;</code>
-       * @param value The blockHash to set.
+       * <code>string owner = 1;</code>
+       * @param value The owner to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockHash(
+      public Builder setOwner(
           java.lang.String value) {
         if (value == null) { throw new NullPointerException(); }
-        blockHash_ = value;
+        owner_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
       /**
-       * <code>string blockHash = 1;</code>
+       * <code>string owner = 1;</code>
        * @return This builder for chaining.
        */
-      public Builder clearBlockHash() {
-        blockHash_ = getDefaultInstance().getBlockHash();
+      public Builder clearOwner() {
+        owner_ = getDefaultInstance().getOwner();
         bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
         return this;
       }
       /**
-       * <code>string blockHash = 1;</code>
-       * @param value The bytes for blockHash to set.
+       * <code>string owner = 1;</code>
+       * @param value The bytes for owner to set.
        * @return This builder for chaining.
        */
-      public Builder setBlockHashBytes(
+      public Builder setOwnerBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) { throw new NullPointerException(); }
         checkByteStringIsUtf8(value);
-        blockHash_ = value;
+        owner_ = value;
         bitField0_ |= 0x00000001;
         onChanged();
         return this;
       }
 
-      private java.lang.Object fileName_ = "";
-      /**
-       * <code>string fileName = 2;</code>
-       * @return The fileName.
-       */
-      public java.lang.String getFileName() {
-        java.lang.Object ref = fileName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          fileName_ = s;
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @return The bytes for fileName.
-       */
-      public com.google.protobuf.ByteString
-          getFileNameBytes() {
-        java.lang.Object ref = fileName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fileName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @param value The fileName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFileName(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        fileName_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearFileName() {
-        fileName_ = getDefaultInstance().getFileName();
-        bitField0_ = (bitField0_ & ~0x00000002);
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>string fileName = 2;</code>
-       * @param value The bytes for fileName to set.
-       * @return This builder for chaining.
-       */
-      public Builder setFileNameBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        fileName_ = value;
-        bitField0_ |= 0x00000002;
-        onChanged();
-        return this;
+      private java.util.List<chord.Chord.fileContent> fileContent_ =
+        java.util.Collections.emptyList();
+      private void ensureFileContentIsMutable() {
+        if (!((bitField0_ & 0x00000002) != 0)) {
+          fileContent_ = new java.util.ArrayList<chord.Chord.fileContent>(fileContent_);
+          bitField0_ |= 0x00000002;
+         }
       }
 
-      private long endOfBlock_ ;
-      /**
-       * <code>int64 endOfBlock = 3;</code>
-       * @return The endOfBlock.
-       */
-      @java.lang.Override
-      public long getEndOfBlock() {
-        return endOfBlock_;
-      }
-      /**
-       * <code>int64 endOfBlock = 3;</code>
-       * @param value The endOfBlock to set.
-       * @return This builder for chaining.
-       */
-      public Builder setEndOfBlock(long value) {
-        
-        endOfBlock_ = value;
-        bitField0_ |= 0x00000004;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>int64 endOfBlock = 3;</code>
-       * @return This builder for chaining.
-       */
-      public Builder clearEndOfBlock() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        endOfBlock_ = 0L;
-        onChanged();
-        return this;
-      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> fileContentBuilder_;
 
-      private java.lang.Object rootHash_ = "";
       /**
-       * <code>string rootHash = 4;</code>
-       * @return The rootHash.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public java.lang.String getRootHash() {
-        java.lang.Object ref = rootHash_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          rootHash_ = s;
-          return s;
+      public java.util.List<chord.Chord.fileContent> getFileContentList() {
+        if (fileContentBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(fileContent_);
         } else {
-          return (java.lang.String) ref;
+          return fileContentBuilder_.getMessageList();
         }
       }
       /**
-       * <code>string rootHash = 4;</code>
-       * @return The bytes for rootHash.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public com.google.protobuf.ByteString
-          getRootHashBytes() {
-        java.lang.Object ref = rootHash_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          rootHash_ = b;
-          return b;
+      public int getFileContentCount() {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.size();
         } else {
-          return (com.google.protobuf.ByteString) ref;
+          return fileContentBuilder_.getCount();
         }
       }
       /**
-       * <code>string rootHash = 4;</code>
-       * @param value The rootHash to set.
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public Builder setRootHash(
-          java.lang.String value) {
-        if (value == null) { throw new NullPointerException(); }
-        rootHash_ = value;
-        bitField0_ |= 0x00000008;
-        onChanged();
+      public chord.Chord.fileContent getFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);
+        } else {
+          return fileContentBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.set(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, value);
+        }
         return this;
       }
       /**
-       * <code>string rootHash = 4;</code>
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public Builder clearRootHash() {
-        rootHash_ = getDefaultInstance().getRootHash();
-        bitField0_ = (bitField0_ & ~0x00000008);
-        onChanged();
+      public Builder setFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
-       * <code>string rootHash = 4;</code>
-       * @param value The bytes for rootHash to set.
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public Builder setRootHashBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        checkByteStringIsUtf8(value);
-        rootHash_ = value;
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return this;
-      }
-
-      private com.google.protobuf.ByteString data_ = com.google.protobuf.ByteString.EMPTY;
-      /**
-       * <code>bytes data = 5;</code>
-       * @return The data.
-       */
-      @java.lang.Override
-      public com.google.protobuf.ByteString getData() {
-        return data_;
-      }
-      /**
-       * <code>bytes data = 5;</code>
-       * @param value The data to set.
-       * @return This builder for chaining.
-       */
-      public Builder setData(com.google.protobuf.ByteString value) {
-        if (value == null) { throw new NullPointerException(); }
-        data_ = value;
-        bitField0_ |= 0x00000010;
-        onChanged();
+      public Builder addFileContent(chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(value);
+        }
         return this;
       }
       /**
-       * <code>bytes data = 5;</code>
-       * @return This builder for chaining.
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
        */
-      public Builder clearData() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        data_ = getDefaultInstance().getData();
-        onChanged();
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent value) {
+        if (fileContentBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureFileContentIsMutable();
+          fileContent_.add(index, value);
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, value);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(
+          chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addFileContent(
+          int index, chord.Chord.fileContent.Builder builderForValue) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          fileContentBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder addAllFileContent(
+          java.lang.Iterable<? extends chord.Chord.fileContent> values) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, fileContent_);
+          onChanged();
+        } else {
+          fileContentBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder clearFileContent() {
+        if (fileContentBuilder_ == null) {
+          fileContent_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000002);
+          onChanged();
+        } else {
+          fileContentBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public Builder removeFileContent(int index) {
+        if (fileContentBuilder_ == null) {
+          ensureFileContentIsMutable();
+          fileContent_.remove(index);
+          onChanged();
+        } else {
+          fileContentBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder getFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContentOrBuilder getFileContentOrBuilder(
+          int index) {
+        if (fileContentBuilder_ == null) {
+          return fileContent_.get(index);  } else {
+          return fileContentBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public java.util.List<? extends chord.Chord.fileContentOrBuilder> 
+           getFileContentOrBuilderList() {
+        if (fileContentBuilder_ != null) {
+          return fileContentBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(fileContent_);
+        }
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder() {
+        return getFileContentFieldBuilder().addBuilder(
+            chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public chord.Chord.fileContent.Builder addFileContentBuilder(
+          int index) {
+        return getFileContentFieldBuilder().addBuilder(
+            index, chord.Chord.fileContent.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .chord.fileContent fileContent = 6;</code>
+       */
+      public java.util.List<chord.Chord.fileContent.Builder> 
+           getFileContentBuilderList() {
+        return getFileContentFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder> 
+          getFileContentFieldBuilder() {
+        if (fileContentBuilder_ == null) {
+          fileContentBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              chord.Chord.fileContent, chord.Chord.fileContent.Builder, chord.Chord.fileContentOrBuilder>(
+                  fileContent_,
+                  ((bitField0_ & 0x00000002) != 0),
+                  getParentForChildren(),
+                  isClean());
+          fileContent_ = null;
+        }
+        return fileContentBuilder_;
       }
       @java.lang.Override
       public final Builder setUnknownFields(
@@ -12227,6 +14528,18 @@ public final class Chord {
      * @return The fileSiz.
      */
     long getFileSiz();
+
+    /**
+     * <code>string owner = 6;</code>
+     * @return The owner.
+     */
+    java.lang.String getOwner();
+    /**
+     * <code>string owner = 6;</code>
+     * @return The bytes for owner.
+     */
+    com.google.protobuf.ByteString
+        getOwnerBytes();
   }
   /**
    * Protobuf type {@code chord.FDRequest}
@@ -12244,6 +14557,7 @@ public final class Chord {
       fileName_ = "";
       fileRootHash_ = "";
       data_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      owner_ = "";
     }
 
     @java.lang.Override
@@ -12396,6 +14710,45 @@ public final class Chord {
       return fileSiz_;
     }
 
+    public static final int OWNER_FIELD_NUMBER = 6;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object owner_ = "";
+    /**
+     * <code>string owner = 6;</code>
+     * @return The owner.
+     */
+    @java.lang.Override
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        owner_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string owner = 6;</code>
+     * @return The bytes for owner.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        owner_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -12421,6 +14774,9 @@ public final class Chord {
       }
       if (fileSiz_ != 0L) {
         output.writeInt64(5, fileSiz_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, owner_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -12449,6 +14805,9 @@ public final class Chord {
         size += com.google.protobuf.CodedOutputStream
           .computeInt64Size(5, fileSiz_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, owner_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -12472,6 +14831,8 @@ public final class Chord {
           .equals(other.getDataList())) return false;
       if (getFileSiz()
           != other.getFileSiz()) return false;
+      if (!getOwner()
+          .equals(other.getOwner())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -12494,6 +14855,8 @@ public final class Chord {
       hash = (37 * hash) + FILESIZ_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
           getFileSiz());
+      hash = (37 * hash) + OWNER_FIELD_NUMBER;
+      hash = (53 * hash) + getOwner().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12628,6 +14991,7 @@ public final class Chord {
         data_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
         fileSiz_ = 0L;
+        owner_ = "";
         return this;
       }
 
@@ -12678,6 +15042,9 @@ public final class Chord {
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.fileSiz_ = fileSiz_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.owner_ = owner_;
         }
       }
 
@@ -12748,6 +15115,11 @@ public final class Chord {
         if (other.getFileSiz() != 0L) {
           setFileSiz(other.getFileSiz());
         }
+        if (!other.getOwner().isEmpty()) {
+          owner_ = other.owner_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -12795,6 +15167,11 @@ public final class Chord {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 40
+              case 50: {
+                owner_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 50
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -13088,6 +15465,78 @@ public final class Chord {
       public Builder clearFileSiz() {
         bitField0_ = (bitField0_ & ~0x00000008);
         fileSiz_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object owner_ = "";
+      /**
+       * <code>string owner = 6;</code>
+       * @return The owner.
+       */
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          owner_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string owner = 6;</code>
+       * @return The bytes for owner.
+       */
+      public com.google.protobuf.ByteString
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          owner_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string owner = 6;</code>
+       * @param value The owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwner(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        owner_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOwner() {
+        owner_ = getDefaultInstance().getOwner();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 6;</code>
+       * @param value The bytes for owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwnerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        owner_ = value;
+        bitField0_ |= 0x00000010;
         onChanged();
         return this;
       }
@@ -30280,6 +32729,21 @@ public final class Chord {
   }
 
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_replicaFileNames_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_replicaFileNames_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_sendFileData_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_sendFileData_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_chord_filesNotPresent_descriptor;
+  private static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_chord_filesNotPresent_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_chord_nodeDeletedUpdateRequired_descriptor;
   private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -30508,369 +32972,394 @@ public final class Chord {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013chord.proto\022\005chord\"Z\n\031nodeDeletedUpdat" +
-      "eRequired\022\026\n\016newPredecessor\030\001 \001(\t\022\023\n\013del" +
-      "etedNode\030\002 \001(\t\022\020\n\010newFiles\030\003 \001(\005\"\016\n\014Aliv" +
-      "eRequest\"\036\n\rAliveResponse\022\r\n\005alive\030\001 \001(\005" +
-      "\"\257\002\n\013sendReplica\022\020\n\010rootHash\030\001 \001(\t\022\020\n\010fi" +
-      "leName\030\002 \001(\t\022\021\n\tisContent\030\003 \001(\010\022\021\n\tblock" +
-      "Hash\030\004 \001(\t\022\022\n\nendOfBlock\030\005 \001(\003\022\023\n\013dataCo" +
-      "ntent\030\006 \001(\014\022\016\n\006dataFD\030\007 \003(\t\022\020\n\010fileSize\030" +
-      "\010 \001(\003\022\017\n\007primary\030\t \001(\t\022\020\n\010replica1\030\n \001(\t" +
-      "\022\020\n\010replica2\030\013 \001(\t\022\030\n\020replicateFurther\030\014" +
-      " \001(\005\022<\n\022updateReplicasInfo\030\r \001(\0132 .chord" +
-      ".nodeDeletedUpdateRequired\"W\n\013replicaInf" +
-      "o\022\030\n\020replicateFurther\030\001 \001(\005\022\023\n\013deletedNo" +
-      "de\030\002 \001(\t\022\031\n\021meYourPredecessor\030\003 \001(\t\"X\n\020r" +
-      "eplicateMyFiles\022\"\n\006create\030\001 \001(\0132\022.chord." +
-      "replicaInfo\022 \n\004data\030\002 \003(\0132\022.chord.fileCo" +
-      "ntent\"\"\n\023replicateMyFilesAck\022\013\n\003ack\030\001 \001(" +
-      "\005\"\242\001\n\013fileContent\022\020\n\010rootHash\030\001 \001(\t\022\020\n\010f" +
-      "ileName\030\002 \001(\t\022\021\n\tisContent\030\003 \001(\010\022\021\n\tbloc" +
-      "kHash\030\004 \001(\t\022\022\n\nendOfBlock\030\005 \001(\003\022\023\n\013dataC" +
-      "ontent\030\006 \001(\014\022\016\n\006dataFD\030\007 \003(\t\022\020\n\010fileSize" +
-      "\030\010 \001(\003\"\036\n\nreplicaAck\022\020\n\010response\030\001 \001(\005\"l" +
-      "\n\017sendDataToOwner\022\020\n\010rootHash\030\001 \001(\t\022\023\n\013c" +
-      "ontentHash\030\002 \001(\t\022\020\n\010fileName\030\003 \001(\t\022\022\n\nen" +
-      "dOfBlock\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\"\021\n\017acknowle" +
-      "dgement\"Q\n\nRetRequest\022\020\n\010fileName\030\001 \001(\t\022" +
-      "\014\n\004hash\030\002 \001(\t\022\020\n\010clientIP\030\003 \001(\t\022\021\n\tisCon" +
-      "tent\030\004 \001(\010\"\r\n\013RetResponse\"g\n\014BytesReques" +
-      "t\022\021\n\tblockHash\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\022\022" +
-      "\n\nendOfBlock\030\003 \001(\003\022\020\n\010rootHash\030\004 \001(\t\022\014\n\004" +
-      "data\030\005 \001(\014\"\035\n\rBytesResponse\022\014\n\004resp\030\001 \001(" +
-      "\005\"R\n\tFDRequest\022\020\n\010fileName\030\001 \001(\t\022\024\n\014file" +
-      "RootHash\030\002 \001(\t\022\014\n\004data\030\004 \003(\t\022\017\n\007fileSiz\030" +
-      "\005 \001(\003\"\032\n\nFDResponse\022\014\n\004resp\030\001 \001(\005\"\030\n\026Suc" +
-      "cessorOfNodeRequest\",\n\027SuccessorOfNodeRe" +
-      "sponse\022\021\n\tsuccessor\030\001 \001(\t\"\032\n\030Predecessor" +
-      "OfNodeRequest\"0\n\031PredecessorOfNodeReqpon" +
-      "se\022\023\n\013predecessor\030\001 \001(\t\"1\n\024SuccessorCall" +
-      "Request\022\n\n\002id\030\001 \001(\t\022\r\n\005start\030\002 \001(\t\"8\n\022Su" +
-      "ccessorCallReply\022\"\n\tsuccessor\030\001 \001(\0132\017.ch" +
-      "ord.NodeFull\"@\n\030FingerTableUpdateRequest" +
-      "\022\021\n\titeration\030\002 \001(\005\022\021\n\tstartNode\030\003 \001(\005\"," +
-      "\n\031FingerTableUpdateResponse\022\017\n\007success\030\001" +
-      " \001(\005\"9\n\017UpdateSPRequest\022\021\n\tsuccessor\030\001 \001" +
-      "(\t\022\023\n\013predecessor\030\002 \001(\t\"$\n\020UpdateSPRespo" +
-      "nse\022\020\n\010response\030\001 \001(\005\"2\n\020AddServerReques" +
-      "t\022\014\n\004port\030\001 \001(\t\022\020\n\010headNode\030\002 \001(\t\"\"\n\021Add" +
-      "ServerResponse\022\r\n\005reply\030\001 \001(\005\"\021\n\017NodeInf" +
-      "oRequest\"n\n\020NodeInfoResponse\022\023\n\013predeces" +
-      "sor\030\001 \001(\t\022\021\n\tsuccessor\030\002 \001(\t\022\"\n\006fTable\030\003" +
-      " \003(\0132\022.chord.FingerTable\022\016\n\006myPort\030\004 \001(\t" +
-      "\"\036\n\020ClosestPFRequest\022\n\n\002id\030\001 \001(\t\"K\n\013Fing" +
-      "erTable\022\016\n\006nodeId\030\001 \001(\005\022\r\n\005start\030\002 \001(\001\022\013" +
-      "\n\003end\030\003 \001(\001\022\020\n\010nodePort\030\004 \001(\t\"A\n\016Closest" +
-      "PFReply\022/\n\026closestPrecedingFinger\030\001 \001(\0132" +
-      "\017.chord.NodeFull\"+\n\010NodeFull\022\021\n\tipAddres" +
-      "s\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\"\030\n\026FingerTableList" +
-      "Request\"c\n\024FingerTableListReply\022#\n\007entri" +
-      "es\030\001 \003(\0132\022.chord.FingerEntry\022\021\n\tsuccesso" +
-      "r\030\002 \001(\t\022\023\n\013predecessor\030\003 \001(\t\"\037\n\020InsertKe" +
-      "yRequest\022\013\n\003key\030\001 \001(\t\".\n\016InsertKeyReply\022" +
-      "\016\n\006stored\030\002 \001(\005\022\014\n\004node\030\001 \001(\t\" \n\021Forward" +
-      "KeyRequest\022\013\n\003key\030\001 \001(\t\" \n\017ForwardKeyRep" +
-      "ly\022\r\n\005reply\030\001 \001(\005\"^\n\013FingerEntry\022\020\n\010node" +
-      "Port\030\001 \001(\t\022\016\n\006nodeId\030\002 \001(\005\022\r\n\005start\030\003 \001(" +
-      "\001\022\013\n\003end\030\004 \001(\001\022\021\n\titeration\030\005 \001(\005\"1\n\035Hea" +
-      "rtBeatToPredecessorRequest\022\020\n\010hostPort\030\003" +
-      " \001(\t\")\n\033HeartBeatReplyFromSuccessor\022\n\n\002r" +
-      "c\030\001 \001(\0052\223\006\n\004Node\022@\n\nforwardKey\022\030.chord.F" +
-      "orwardKeyRequest\032\026.chord.ForwardKeyReply" +
-      "\"\000\022@\n\013getNodeData\022\026.chord.NodeInfoReques" +
-      "t\032\027.chord.NodeInfoResponse\"\000\022W\n\theartBea" +
-      "t\022$.chord.HeartBeatToPredecessorRequest\032" +
-      "\".chord.HeartBeatReplyFromSuccessor\"\000\022G\n" +
-      "\023closestPrecedFinger\022\027.chord.ClosestPFRe" +
-      "quest\032\025.chord.ClosestPFReply\"\000\022O\n\032update" +
-      "SuccessorPredecessor\022\026.chord.UpdateSPReq" +
-      "uest\032\027.chord.UpdateSPResponse\"\000\022X\n\021updat" +
-      "eFingerTable\022\037.chord.FingerTableUpdateRe" +
-      "quest\032 .chord.FingerTableUpdateResponse\"" +
-      "\000\022I\n\rsuccessorCall\022\033.chord.SuccessorCall" +
-      "Request\032\031.chord.SuccessorCallReply\"\000\022[\n\024" +
-      "getPredecessorOfNode\022\037.chord.Predecessor" +
-      "OfNodeRequest\032 .chord.PredecessorOfNodeR" +
-      "eqponse\"\000\022U\n\022getSuccessorOfNode\022\035.chord." +
-      "SuccessorOfNodeRequest\032\036.chord.Successor" +
-      "OfNodeResponse\"\000\022;\n\014checkIfAlive\022\023.chord" +
-      ".AliveRequest\032\024.chord.AliveResponse\"\0002\202\003" +
-      "\n\013SendReceive\0228\n\tSendBytes\022\023.chord.Bytes" +
-      "Request\032\024.chord.BytesResponse\"\000\022/\n\006SendF" +
-      "D\022\020.chord.FDRequest\032\021.chord.FDResponse\"\000" +
-      "\022>\n\023retrieveFileRequest\022\021.chord.RetReque" +
-      "st\032\022.chord.RetResponse\"\000\022<\n\010sendData\022\026.c" +
-      "hord.sendDataToOwner\032\026.chord.acknowledge" +
-      "ment\"\000\0224\n\treplicate\022\022.chord.sendReplica\032" +
-      "\021.chord.replicaAck\"\000\022T\n\033replicateAsSucce" +
-      "ssorDeleted\022\027.chord.replicateMyFiles\032\032.c" +
-      "hord.replicateMyFilesAck\"\000b\006proto3"
+      "\n\013chord.proto\022\005chord\"U\n\020replicaFileNames" +
+      "\022\021\n\tfileNames\030\001 \003(\t\022\027\n\017yourPredecessor\030\002" +
+      " \001(\t\022\025\n\ryourSuccessor\030\003 \001(\t\"`\n\014sendFileD" +
+      "ata\022 \n\004data\030\001 \003(\0132\022.chord.fileContent\022\027\n" +
+      "\017yourPredecessor\030\002 \001(\t\022\025\n\ryourSuccessor\030" +
+      "\003 \001(\t\"9\n\017filesNotPresent\022\027\n\017filesNotPres" +
+      "ent\030\001 \003(\t\022\r\n\005error\030\002 \001(\005\"Z\n\031nodeDeletedU" +
+      "pdateRequired\022\026\n\016newPredecessor\030\001 \001(\t\022\023\n" +
+      "\013deletedNode\030\002 \001(\t\022\020\n\010newFiles\030\003 \001(\005\"\016\n\014" +
+      "AliveRequest\"\036\n\rAliveResponse\022\r\n\005alive\030\001" +
+      " \001(\005\"\237\001\n\013sendReplica\022\'\n\013fileContent\030\001 \003(" +
+      "\0132\022.chord.fileContent\022\017\n\007primary\030\002 \001(\t\022\030" +
+      "\n\020replicateFurther\030\003 \001(\005\022<\n\022updateReplic" +
+      "asInfo\030\004 \001(\0132 .chord.nodeDeletedUpdateRe" +
+      "quired\"W\n\013replicaInfo\022\030\n\020replicateFurthe" +
+      "r\030\001 \001(\005\022\023\n\013deletedNode\030\002 \001(\t\022\031\n\021meYourPr" +
+      "edecessor\030\003 \001(\t\"X\n\020replicateMyFiles\022\"\n\006c" +
+      "reate\030\001 \001(\0132\022.chord.replicaInfo\022 \n\004data\030" +
+      "\002 \003(\0132\022.chord.fileContent\"\"\n\023replicateMy" +
+      "FilesAck\022\013\n\003ack\030\001 \001(\005\"\261\001\n\013fileContent\022\020\n" +
+      "\010rootHash\030\001 \001(\t\022\020\n\010fileName\030\002 \001(\t\022\021\n\tisC" +
+      "ontent\030\003 \001(\010\022\021\n\tblockHash\030\004 \001(\t\022\022\n\nendOf" +
+      "Block\030\005 \001(\003\022\023\n\013dataContent\030\006 \001(\014\022\016\n\006data" +
+      "FD\030\007 \003(\t\022\020\n\010fileSize\030\010 \001(\003\022\r\n\005owner\030\t \001(" +
+      "\t\"\036\n\nreplicaAck\022\020\n\010response\030\001 \001(\005\"\225\001\n\017se" +
+      "ndDataToOwner\022\020\n\010rootHash\030\001 \001(\t\022\023\n\013conte" +
+      "ntHash\030\002 \001(\t\022\020\n\010fileName\030\003 \001(\t\022\022\n\nendOfB" +
+      "lock\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\022\'\n\013fileContent\030" +
+      "\006 \003(\0132\022.chord.fileContent\"\021\n\017acknowledge" +
+      "ment\"Q\n\nRetRequest\022\020\n\010fileName\030\001 \001(\t\022\014\n\004" +
+      "hash\030\002 \001(\t\022\020\n\010clientIP\030\003 \001(\t\022\021\n\tisConten" +
+      "t\030\004 \001(\010\"\r\n\013RetResponse\"F\n\014BytesRequest\022\r" +
+      "\n\005owner\030\001 \001(\t\022\'\n\013fileContent\030\006 \003(\0132\022.cho" +
+      "rd.fileContent\"\035\n\rBytesResponse\022\014\n\004resp\030" +
+      "\001 \001(\005\"a\n\tFDRequest\022\020\n\010fileName\030\001 \001(\t\022\024\n\014" +
+      "fileRootHash\030\002 \001(\t\022\014\n\004data\030\004 \003(\t\022\017\n\007file" +
+      "Siz\030\005 \001(\003\022\r\n\005owner\030\006 \001(\t\"\032\n\nFDResponse\022\014" +
+      "\n\004resp\030\001 \001(\005\"\030\n\026SuccessorOfNodeRequest\"," +
+      "\n\027SuccessorOfNodeResponse\022\021\n\tsuccessor\030\001" +
+      " \001(\t\"\032\n\030PredecessorOfNodeRequest\"0\n\031Pred" +
+      "ecessorOfNodeReqponse\022\023\n\013predecessor\030\001 \001" +
+      "(\t\"1\n\024SuccessorCallRequest\022\n\n\002id\030\001 \001(\t\022\r" +
+      "\n\005start\030\002 \001(\t\"8\n\022SuccessorCallReply\022\"\n\ts" +
+      "uccessor\030\001 \001(\0132\017.chord.NodeFull\"@\n\030Finge" +
+      "rTableUpdateRequest\022\021\n\titeration\030\002 \001(\005\022\021" +
+      "\n\tstartNode\030\003 \001(\005\",\n\031FingerTableUpdateRe" +
+      "sponse\022\017\n\007success\030\001 \001(\005\"9\n\017UpdateSPReque" +
+      "st\022\021\n\tsuccessor\030\001 \001(\t\022\023\n\013predecessor\030\002 \001" +
+      "(\t\"$\n\020UpdateSPResponse\022\020\n\010response\030\001 \001(\005" +
+      "\"2\n\020AddServerRequest\022\014\n\004port\030\001 \001(\t\022\020\n\010he" +
+      "adNode\030\002 \001(\t\"\"\n\021AddServerResponse\022\r\n\005rep" +
+      "ly\030\001 \001(\005\"\021\n\017NodeInfoRequest\"n\n\020NodeInfoR" +
+      "esponse\022\023\n\013predecessor\030\001 \001(\t\022\021\n\tsuccesso" +
+      "r\030\002 \001(\t\022\"\n\006fTable\030\003 \003(\0132\022.chord.FingerTa" +
+      "ble\022\016\n\006myPort\030\004 \001(\t\"\036\n\020ClosestPFRequest\022" +
+      "\n\n\002id\030\001 \001(\t\"K\n\013FingerTable\022\016\n\006nodeId\030\001 \001" +
+      "(\005\022\r\n\005start\030\002 \001(\001\022\013\n\003end\030\003 \001(\001\022\020\n\010nodePo" +
+      "rt\030\004 \001(\t\"A\n\016ClosestPFReply\022/\n\026closestPre" +
+      "cedingFinger\030\001 \001(\0132\017.chord.NodeFull\"+\n\010N" +
+      "odeFull\022\021\n\tipAddress\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t" +
+      "\"\030\n\026FingerTableListRequest\"c\n\024FingerTabl" +
+      "eListReply\022#\n\007entries\030\001 \003(\0132\022.chord.Fing" +
+      "erEntry\022\021\n\tsuccessor\030\002 \001(\t\022\023\n\013predecesso" +
+      "r\030\003 \001(\t\"\037\n\020InsertKeyRequest\022\013\n\003key\030\001 \001(\t" +
+      "\".\n\016InsertKeyReply\022\016\n\006stored\030\002 \001(\005\022\014\n\004no" +
+      "de\030\001 \001(\t\" \n\021ForwardKeyRequest\022\013\n\003key\030\001 \001" +
+      "(\t\" \n\017ForwardKeyReply\022\r\n\005reply\030\001 \001(\005\"^\n\013" +
+      "FingerEntry\022\020\n\010nodePort\030\001 \001(\t\022\016\n\006nodeId\030" +
+      "\002 \001(\005\022\r\n\005start\030\003 \001(\001\022\013\n\003end\030\004 \001(\001\022\021\n\tite" +
+      "ration\030\005 \001(\005\"1\n\035HeartBeatToPredecessorRe" +
+      "quest\022\020\n\010hostPort\030\003 \001(\t\")\n\033HeartBeatRepl" +
+      "yFromSuccessor\022\n\n\002rc\030\001 \001(\0052\223\006\n\004Node\022@\n\nf" +
+      "orwardKey\022\030.chord.ForwardKeyRequest\032\026.ch" +
+      "ord.ForwardKeyReply\"\000\022@\n\013getNodeData\022\026.c" +
+      "hord.NodeInfoRequest\032\027.chord.NodeInfoRes" +
+      "ponse\"\000\022W\n\theartBeat\022$.chord.HeartBeatTo" +
+      "PredecessorRequest\032\".chord.HeartBeatRepl" +
+      "yFromSuccessor\"\000\022G\n\023closestPrecedFinger\022" +
+      "\027.chord.ClosestPFRequest\032\025.chord.Closest" +
+      "PFReply\"\000\022O\n\032updateSuccessorPredecessor\022" +
+      "\026.chord.UpdateSPRequest\032\027.chord.UpdateSP" +
+      "Response\"\000\022X\n\021updateFingerTable\022\037.chord." +
+      "FingerTableUpdateRequest\032 .chord.FingerT" +
+      "ableUpdateResponse\"\000\022I\n\rsuccessorCall\022\033." +
+      "chord.SuccessorCallRequest\032\031.chord.Succe" +
+      "ssorCallReply\"\000\022[\n\024getPredecessorOfNode\022" +
+      "\037.chord.PredecessorOfNodeRequest\032 .chord" +
+      ".PredecessorOfNodeReqponse\"\000\022U\n\022getSucce" +
+      "ssorOfNode\022\035.chord.SuccessorOfNodeReques" +
+      "t\032\036.chord.SuccessorOfNodeResponse\"\000\022;\n\014c" +
+      "heckIfAlive\022\023.chord.AliveRequest\032\024.chord" +
+      ".AliveResponse\"\0002\221\004\n\013SendReceive\0228\n\tSend" +
+      "Bytes\022\023.chord.BytesRequest\032\024.chord.Bytes" +
+      "Response\"\000\022/\n\006SendFD\022\020.chord.FDRequest\032\021" +
+      ".chord.FDResponse\"\000\022>\n\023retrieveFileReque" +
+      "st\022\021.chord.RetRequest\032\022.chord.RetRespons" +
+      "e\"\000\022<\n\010sendData\022\026.chord.sendDataToOwner\032" +
+      "\026.chord.acknowledgement\"\000\0224\n\treplicate\022\022" +
+      ".chord.sendReplica\032\021.chord.replicaAck\"\000\022" +
+      "T\n\033replicateAsSuccessorDeleted\022\027.chord.r" +
+      "eplicateMyFiles\032\032.chord.replicateMyFiles" +
+      "Ack\"\000\022K\n\026checkIFReplicasPresent\022\027.chord." +
+      "replicaFileNames\032\026.chord.filesNotPresent" +
+      "\"\000\022@\n\024replicateAbsentFiles\022\023.chord.sendF" +
+      "ileData\032\021.chord.replicaAck\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_chord_nodeDeletedUpdateRequired_descriptor =
+    internal_static_chord_replicaFileNames_descriptor =
       getDescriptor().getMessageTypes().get(0);
+    internal_static_chord_replicaFileNames_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_replicaFileNames_descriptor,
+        new java.lang.String[] { "FileNames", "YourPredecessor", "YourSuccessor", });
+    internal_static_chord_sendFileData_descriptor =
+      getDescriptor().getMessageTypes().get(1);
+    internal_static_chord_sendFileData_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_sendFileData_descriptor,
+        new java.lang.String[] { "Data", "YourPredecessor", "YourSuccessor", });
+    internal_static_chord_filesNotPresent_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_chord_filesNotPresent_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_chord_filesNotPresent_descriptor,
+        new java.lang.String[] { "FilesNotPresent", "Error", });
+    internal_static_chord_nodeDeletedUpdateRequired_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_chord_nodeDeletedUpdateRequired_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_nodeDeletedUpdateRequired_descriptor,
         new java.lang.String[] { "NewPredecessor", "DeletedNode", "NewFiles", });
     internal_static_chord_AliveRequest_descriptor =
-      getDescriptor().getMessageTypes().get(1);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_chord_AliveRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AliveRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_AliveResponse_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_chord_AliveResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AliveResponse_descriptor,
         new java.lang.String[] { "Alive", });
     internal_static_chord_sendReplica_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_chord_sendReplica_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_sendReplica_descriptor,
-        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", "Primary", "Replica1", "Replica2", "ReplicateFurther", "UpdateReplicasInfo", });
+        new java.lang.String[] { "FileContent", "Primary", "ReplicateFurther", "UpdateReplicasInfo", });
     internal_static_chord_replicaInfo_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_chord_replicaInfo_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_replicaInfo_descriptor,
         new java.lang.String[] { "ReplicateFurther", "DeletedNode", "MeYourPredecessor", });
     internal_static_chord_replicateMyFiles_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_chord_replicateMyFiles_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_replicateMyFiles_descriptor,
         new java.lang.String[] { "Create", "Data", });
     internal_static_chord_replicateMyFilesAck_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_chord_replicateMyFilesAck_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_replicateMyFilesAck_descriptor,
         new java.lang.String[] { "Ack", });
     internal_static_chord_fileContent_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_chord_fileContent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_fileContent_descriptor,
-        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", });
+        new java.lang.String[] { "RootHash", "FileName", "IsContent", "BlockHash", "EndOfBlock", "DataContent", "DataFD", "FileSize", "Owner", });
     internal_static_chord_replicaAck_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_chord_replicaAck_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_replicaAck_descriptor,
         new java.lang.String[] { "Response", });
     internal_static_chord_sendDataToOwner_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(12);
     internal_static_chord_sendDataToOwner_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_sendDataToOwner_descriptor,
-        new java.lang.String[] { "RootHash", "ContentHash", "FileName", "EndOfBlock", "Data", });
+        new java.lang.String[] { "RootHash", "ContentHash", "FileName", "EndOfBlock", "Data", "FileContent", });
     internal_static_chord_acknowledgement_descriptor =
-      getDescriptor().getMessageTypes().get(10);
+      getDescriptor().getMessageTypes().get(13);
     internal_static_chord_acknowledgement_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_acknowledgement_descriptor,
         new java.lang.String[] { });
     internal_static_chord_RetRequest_descriptor =
-      getDescriptor().getMessageTypes().get(11);
+      getDescriptor().getMessageTypes().get(14);
     internal_static_chord_RetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetRequest_descriptor,
         new java.lang.String[] { "FileName", "Hash", "ClientIP", "IsContent", });
     internal_static_chord_RetResponse_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(15);
     internal_static_chord_RetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetResponse_descriptor,
         new java.lang.String[] { });
     internal_static_chord_BytesRequest_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(16);
     internal_static_chord_BytesRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_BytesRequest_descriptor,
-        new java.lang.String[] { "BlockHash", "FileName", "EndOfBlock", "RootHash", "Data", });
+        new java.lang.String[] { "Owner", "FileContent", });
     internal_static_chord_BytesResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(17);
     internal_static_chord_BytesResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_BytesResponse_descriptor,
         new java.lang.String[] { "Resp", });
     internal_static_chord_FDRequest_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(18);
     internal_static_chord_FDRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FDRequest_descriptor,
-        new java.lang.String[] { "FileName", "FileRootHash", "Data", "FileSiz", });
+        new java.lang.String[] { "FileName", "FileRootHash", "Data", "FileSiz", "Owner", });
     internal_static_chord_FDResponse_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(19);
     internal_static_chord_FDResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FDResponse_descriptor,
         new java.lang.String[] { "Resp", });
     internal_static_chord_SuccessorOfNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(20);
     internal_static_chord_SuccessorOfNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorOfNodeRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_SuccessorOfNodeResponse_descriptor =
-      getDescriptor().getMessageTypes().get(18);
+      getDescriptor().getMessageTypes().get(21);
     internal_static_chord_SuccessorOfNodeResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorOfNodeResponse_descriptor,
         new java.lang.String[] { "Successor", });
     internal_static_chord_PredecessorOfNodeRequest_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(22);
     internal_static_chord_PredecessorOfNodeRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_PredecessorOfNodeRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_PredecessorOfNodeReqponse_descriptor =
-      getDescriptor().getMessageTypes().get(20);
+      getDescriptor().getMessageTypes().get(23);
     internal_static_chord_PredecessorOfNodeReqponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_PredecessorOfNodeReqponse_descriptor,
         new java.lang.String[] { "Predecessor", });
     internal_static_chord_SuccessorCallRequest_descriptor =
-      getDescriptor().getMessageTypes().get(21);
+      getDescriptor().getMessageTypes().get(24);
     internal_static_chord_SuccessorCallRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorCallRequest_descriptor,
         new java.lang.String[] { "Id", "Start", });
     internal_static_chord_SuccessorCallReply_descriptor =
-      getDescriptor().getMessageTypes().get(22);
+      getDescriptor().getMessageTypes().get(25);
     internal_static_chord_SuccessorCallReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_SuccessorCallReply_descriptor,
         new java.lang.String[] { "Successor", });
     internal_static_chord_FingerTableUpdateRequest_descriptor =
-      getDescriptor().getMessageTypes().get(23);
+      getDescriptor().getMessageTypes().get(26);
     internal_static_chord_FingerTableUpdateRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableUpdateRequest_descriptor,
         new java.lang.String[] { "Iteration", "StartNode", });
     internal_static_chord_FingerTableUpdateResponse_descriptor =
-      getDescriptor().getMessageTypes().get(24);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_chord_FingerTableUpdateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableUpdateResponse_descriptor,
         new java.lang.String[] { "Success", });
     internal_static_chord_UpdateSPRequest_descriptor =
-      getDescriptor().getMessageTypes().get(25);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_chord_UpdateSPRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_UpdateSPRequest_descriptor,
         new java.lang.String[] { "Successor", "Predecessor", });
     internal_static_chord_UpdateSPResponse_descriptor =
-      getDescriptor().getMessageTypes().get(26);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_chord_UpdateSPResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_UpdateSPResponse_descriptor,
         new java.lang.String[] { "Response", });
     internal_static_chord_AddServerRequest_descriptor =
-      getDescriptor().getMessageTypes().get(27);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_chord_AddServerRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AddServerRequest_descriptor,
         new java.lang.String[] { "Port", "HeadNode", });
     internal_static_chord_AddServerResponse_descriptor =
-      getDescriptor().getMessageTypes().get(28);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_chord_AddServerResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_AddServerResponse_descriptor,
         new java.lang.String[] { "Reply", });
     internal_static_chord_NodeInfoRequest_descriptor =
-      getDescriptor().getMessageTypes().get(29);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_chord_NodeInfoRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeInfoRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_NodeInfoResponse_descriptor =
-      getDescriptor().getMessageTypes().get(30);
+      getDescriptor().getMessageTypes().get(33);
     internal_static_chord_NodeInfoResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeInfoResponse_descriptor,
         new java.lang.String[] { "Predecessor", "Successor", "FTable", "MyPort", });
     internal_static_chord_ClosestPFRequest_descriptor =
-      getDescriptor().getMessageTypes().get(31);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_chord_ClosestPFRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ClosestPFRequest_descriptor,
         new java.lang.String[] { "Id", });
     internal_static_chord_FingerTable_descriptor =
-      getDescriptor().getMessageTypes().get(32);
+      getDescriptor().getMessageTypes().get(35);
     internal_static_chord_FingerTable_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTable_descriptor,
         new java.lang.String[] { "NodeId", "Start", "End", "NodePort", });
     internal_static_chord_ClosestPFReply_descriptor =
-      getDescriptor().getMessageTypes().get(33);
+      getDescriptor().getMessageTypes().get(36);
     internal_static_chord_ClosestPFReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ClosestPFReply_descriptor,
         new java.lang.String[] { "ClosestPrecedingFinger", });
     internal_static_chord_NodeFull_descriptor =
-      getDescriptor().getMessageTypes().get(34);
+      getDescriptor().getMessageTypes().get(37);
     internal_static_chord_NodeFull_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_NodeFull_descriptor,
         new java.lang.String[] { "IpAddress", "Hash", });
     internal_static_chord_FingerTableListRequest_descriptor =
-      getDescriptor().getMessageTypes().get(35);
+      getDescriptor().getMessageTypes().get(38);
     internal_static_chord_FingerTableListRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableListRequest_descriptor,
         new java.lang.String[] { });
     internal_static_chord_FingerTableListReply_descriptor =
-      getDescriptor().getMessageTypes().get(36);
+      getDescriptor().getMessageTypes().get(39);
     internal_static_chord_FingerTableListReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerTableListReply_descriptor,
         new java.lang.String[] { "Entries", "Successor", "Predecessor", });
     internal_static_chord_InsertKeyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(37);
+      getDescriptor().getMessageTypes().get(40);
     internal_static_chord_InsertKeyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_InsertKeyRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_chord_InsertKeyReply_descriptor =
-      getDescriptor().getMessageTypes().get(38);
+      getDescriptor().getMessageTypes().get(41);
     internal_static_chord_InsertKeyReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_InsertKeyReply_descriptor,
         new java.lang.String[] { "Stored", "Node", });
     internal_static_chord_ForwardKeyRequest_descriptor =
-      getDescriptor().getMessageTypes().get(39);
+      getDescriptor().getMessageTypes().get(42);
     internal_static_chord_ForwardKeyRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ForwardKeyRequest_descriptor,
         new java.lang.String[] { "Key", });
     internal_static_chord_ForwardKeyReply_descriptor =
-      getDescriptor().getMessageTypes().get(40);
+      getDescriptor().getMessageTypes().get(43);
     internal_static_chord_ForwardKeyReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_ForwardKeyReply_descriptor,
         new java.lang.String[] { "Reply", });
     internal_static_chord_FingerEntry_descriptor =
-      getDescriptor().getMessageTypes().get(41);
+      getDescriptor().getMessageTypes().get(44);
     internal_static_chord_FingerEntry_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_FingerEntry_descriptor,
         new java.lang.String[] { "NodePort", "NodeId", "Start", "End", "Iteration", });
     internal_static_chord_HeartBeatToPredecessorRequest_descriptor =
-      getDescriptor().getMessageTypes().get(42);
+      getDescriptor().getMessageTypes().get(45);
     internal_static_chord_HeartBeatToPredecessorRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_HeartBeatToPredecessorRequest_descriptor,
         new java.lang.String[] { "HostPort", });
     internal_static_chord_HeartBeatReplyFromSuccessor_descriptor =
-      getDescriptor().getMessageTypes().get(43);
+      getDescriptor().getMessageTypes().get(46);
     internal_static_chord_HeartBeatReplyFromSuccessor_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_HeartBeatReplyFromSuccessor_descriptor,

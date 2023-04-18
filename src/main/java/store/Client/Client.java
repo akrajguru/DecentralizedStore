@@ -54,7 +54,7 @@ public class Client extends Thread {
                             String temp = fD.getFileName()+"-"+2;
                             fD.setFileName(temp);
                         }
-                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD,node);
+                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD,node,node.getIpAddress());
                         files.put(fD.getFileName(),fD.getHashOfFile());
                     } catch (IOException e) {
                         throw new RuntimeException(e);

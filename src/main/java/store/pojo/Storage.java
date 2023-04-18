@@ -13,6 +13,7 @@ public class Storage {
     String contentHash;
     List<String> contentList;
     long endOfBlock;
+    String owner;
 
     public Storage() {
     }
@@ -100,6 +101,14 @@ public class Storage {
 
     public void printBytes(){}
 
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     @Override
     public String toString() {

@@ -42,7 +42,7 @@ public class StoreClientTester {
                     FileDetails fD = getFileDetails(file);
                     System.out.println("Enter the host address and port of the arbitraty node");
                     String host = sc.next();
-                    sendFileForStorageOnTheFS(host,fD);
+                    //sendFileForStorageOnTheFS(host,fD);
                 case 2:
                     System.out.println("Enter the port number of the Server");
                     String addressOfArbNode = sc.next();
@@ -84,41 +84,41 @@ public class StoreClientTester {
         return fD;
     }
 
-    private static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD) {
-
-
-        Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile(),null);
-        ManagedChannel channel1 = ManagedChannelBuilder.forTarget(node.getIpAddress())
-                .usePlaintext()
-                .build();
-        SendReceiveGrpc.SendReceiveBlockingStub sRBlockingStub = SendReceiveGrpc.newBlockingStub(channel1);
-        List<String> fDList = fD.getContentList().stream().map(x -> x.getHash()).collect(Collectors.toList());
-        Chord.FDRequest requestFD = Chord.FDRequest.newBuilder().setFileName(fD.getFileName()).setFileSiz(fD.getFileSize()).
-                setFileRootHash(fD.getHashOfFile()).addAllData(fDList).build();
-        Chord.FDResponse resp = sRBlockingStub.sendFD(requestFD);
-        Map<String,String> senderMap = new LinkedHashMap<>();
-        senderMap.put(node.getIpAddress(),"");
-        if(resp.getResp()==1){
-            for(Content content: fD.getContentList()){
-                Chord.BytesResponse sentResp = sendContentAndGetBytesResponse(fD, node, content,nodeAddr);
-                while(sentResp.getResp()!=1){
-                    sentResp=sendContentAndGetBytesResponse(fD, node, content,nodeAddr);
-                }
-            }
-        }
-        System.out.println(" File saved:"+ fD);
-    }
-
-    private static Chord.BytesResponse sendContentAndGetBytesResponse(FileDetails fD, Node node, Content content,String nodeAddr) {
-        Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),null);
-        ManagedChannel chnl = ManagedChannelBuilder.forTarget(nodeSucc.getIpAddress())
-                .usePlaintext()
-                .build();
-        SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
-        Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().setRootHash(fD.getHashOfFile()).setFileName(fD.getFileName()).setBlockHash(content.getHash())
-                .setEndOfBlock(content.getEndByte()).setData(ByteString.copyFrom(content.getData())).build();
-        Chord.BytesResponse sentResp = sRBStub.sendBytes(sendBytes);
-        return sentResp;
-    }
+//    private static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD) {
+//
+//
+//        Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile(),null);
+//        ManagedChannel channel1 = ManagedChannelBuilder.forTarget(node.getIpAddress())
+//                .usePlaintext()
+//                .build();
+//        SendReceiveGrpc.SendReceiveBlockingStub sRBlockingStub = SendReceiveGrpc.newBlockingStub(channel1);
+//        List<String> fDList = fD.getContentList().stream().map(x -> x.getHash()).collect(Collectors.toList());
+//        Chord.FDRequest requestFD = Chord.FDRequest.newBuilder().setFileName(fD.getFileName()).setFileSiz(fD.getFileSize()).
+//                setFileRootHash(fD.getHashOfFile()).addAllData(fDList).build();
+//        Chord.FDResponse resp = sRBlockingStub.sendFD(requestFD);
+//        Map<String,String> senderMap = new LinkedHashMap<>();
+//        senderMap.put(node.getIpAddress(),"");
+//        if(resp.getResp()==1){
+//            for(Content content: fD.getContentList()){
+//                Chord.BytesResponse sentResp = sendContentAndGetBytesResponse(fD, node, content,nodeAddr);
+//                while(sentResp.getResp()!=1){
+//                    sentResp=sendContentAndGetBytesResponse(fD, node, content,nodeAddr);
+//                }
+//            }
+//        }
+//        System.out.println(" File saved:"+ fD);
+//    }
+//
+//    private static Chord.BytesResponse sendContentAndGetBytesResponse(FileDetails fD, Node node, Content content,String nodeAddr) {
+//        Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),null);
+//        ManagedChannel chnl = ManagedChannelBuilder.forTarget(nodeSucc.getIpAddress())
+//                .usePlaintext()
+//                .build();
+//        SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
+//        Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().setRootHash(fD.getHashOfFile()).setFileName(fD.getFileName()).setBlockHash(content.getHash())
+//                .setEndOfBlock(content.getEndByte()).setData(ByteString.copyFrom(content.getData())).build();
+//        Chord.BytesResponse sentResp = sRBStub.sendBytes(sendBytes);
+//        return sentResp;
+//    }
     }
 

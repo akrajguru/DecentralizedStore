@@ -1,7 +1,6 @@
 package store.start;
 
 import chord.Chord;
-import chord.MyServiceGrpc;
 import chord.SendReceiveGrpc;
 import com.google.protobuf.ByteString;
 import io.grpc.ManagedChannel;
@@ -38,8 +37,9 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         cL = new ArrayList<>();
         fileDetailList= new HashMap<>();
         Client client = new Client(node, fileDetailList);
-        client.start();
+        //client.start();
     }
+
 
     @Override
     public void sendFD(Chord.FDRequest request, StreamObserver<Chord.FDResponse> responseObserver) {
@@ -53,17 +53,22 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         storage = new Storage(fileName,size,hash, contentList);
         Chord.FDResponse response = null;
         int res=2;
+        List<Chord.fileContent> fcList = new ArrayList<>();
+        Chord.fileContent fc = Chord.fileContent.newBuilder().setIsContent(false).setFileName(fileName).setFileSize(size).setRootHash(hash).setOwner(request.getOwner()).addAllDataFD(contentList).build();
+        fcList.add(fc);
         if (!node.getIpAddress().equals(node.getSuccessor().getIpAddress())) {
             try {
-                file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "primary");
+                file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "primary",request.getOwner());
+                res=1;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-            if (file != null) {
-                res = RPCFunctions.replicateCall(node, false, storage, 2, node.getIpAddress(), node.getSuccessor().getIpAddress());
-            }
+//            if (file != null) {
+//                res = RPCFunctions.replicateCall(node, false, fcList, 1, node.getIpAddress(), node.getSuccessor().getIpAddress());
+//                res = RPCFunctions.replicateCall(node, false, fcList, 2, node.getIpAddress(), node.getPredecessor().getIpAddress());
+//            }
         }
+
         response = Chord.FDResponse.newBuilder().setResp(res).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
@@ -71,23 +76,26 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
 
     @Override
     public void sendBytes(Chord.BytesRequest request, StreamObserver<Chord.BytesResponse> responseObserver) {
-        System.out.println(" received sendByte req for:"+ request.getFileName() +" in "+ node.getIpAddress());
-        String fN= request.getFileName();
-        String cHash = request.getBlockHash();
-        long eob=request.getEndOfBlock();
-        String rootHash = request.getRootHash();
-        byte[] bs = request.getData().toByteArray();
-        Storage storage = new Storage(fN,rootHash, bs, cHash,  eob);
+        //System.out.println(" received sendByte req for:"+ request.getgetFileName() +" in "+ node.getIpAddress());
+
         String file=null;
+        List<Storage> storageList = new ArrayList<>();
+        for(Chord.fileContent fC : request.getFileContentList()){
+            Storage storage = new Storage(fC.getFileName(),fC.getRootHash(), fC.getDataContent().toByteArray(), fC.getBlockHash(),  fC.getEndOfBlock());
+            storageList.add(storage);
+        }
         try {
-            file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node,"primary");
+            for(Storage store: storageList) {
+                file = PersistAndRetrieveMetadata.persistMetadataToFile(store, node, "primary",request.getOwner());
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
-        int res=0;
-        if(file!=null){
-            res= RPCFunctions.replicateCall(node, true,storage,2,node.getIpAddress(),node.getSuccessor().getIpAddress());
-        }
+        int res=1;
+//        if(file!=null){
+//            res = RPCFunctions.replicateCall(node, true, request.getFileContentList(), 1, node.getIpAddress(), node.getSuccessor().getIpAddress());
+//            res = RPCFunctions.replicateCall(node, true, request.getFileContentList(), 2, node.getIpAddress(), node.getPredecessor().getIpAddress());
+//        }
         Chord.BytesResponse response = Chord.BytesResponse.newBuilder().setResp(res).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
@@ -164,7 +172,6 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         }finally {
             channel.shutdown();
         }
-
     }
 
     @Override
@@ -189,57 +196,58 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
 
     @Override
     public void replicate(Chord.sendReplica request, StreamObserver<Chord.replicaAck> responseObserver) {
-        String fileName=request.getFileName();
-        String rootHash = request.getRootHash();
+
         String file = null;
         Storage storage=null;
         Chord.replicaAck response=null;
         int replicateForward = request.getReplicateFurther();
-        if(request.getReplicateFurther()==2 && request.getPrimary().equals(node.getSuccessor().getIpAddress())){
-            response = Chord.replicaAck.newBuilder().setResponse(2).build();
-        }else {
-            if (!request.getIsContent()) {
-                long size = request.getFileSize();
-                List<String> contentList = request.getDataFDList();
-                storage = new Storage(fileName, size, rootHash, contentList);
+//        if(request.getReplicateFurther()==2 && request.getPrimary().equals(node.getSuccessor().getIpAddress())){
+//            response = Chord.replicaAck.newBuilder().setResponse(2).build();
+//        }else {
+        List<Chord.fileContent> fCList = request.getFileContentList();
+        for(Chord.fileContent fC: fCList) {
+            if (!fC.getIsContent()) {
+                long size = fC.getFileSize();
+                List<String> contentList = fC.getDataFDList();
+                storage = new Storage(fC.getFileName(), size, fC.getRootHash(), contentList);
                 try {
-                    if (replicateForward == 2) {
-                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica1");
-                    } else if (replicateForward == 1) {
-                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica2");
+                    if (replicateForward == 1) {
+                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica1",fC.getOwner());
+                    } else if (replicateForward == 2) {
+                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica2",fC.getOwner());
                     }
 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             } else {
-                String cHash = request.getBlockHash();
-                long eob = request.getEndOfBlock();
-                byte[] byteArray = request.getDataContent().toByteArray();
-                storage = new Storage(fileName, rootHash, byteArray, cHash, eob);
+                String cHash = fC.getBlockHash();
+                long eob = fC.getEndOfBlock();
+                byte[] byteArray = fC.getDataContent().toByteArray();
+                storage = new Storage(fC.getFileName(), fC.getRootHash(), byteArray, cHash, eob);
                 try {
-                    if (replicateForward == 2) {
-                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica1");
-                    } else if (replicateForward == 1) {
-                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica2");
+                    if (replicateForward == 1) {
+                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica1",fC.getOwner());
+                    } else if (replicateForward == 2) {
+                        file = PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, "replica2",fC.getOwner());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-            --replicateForward;
-            if (replicateForward > 0) {
-                if (file != null) {
-                    RPCFunctions.replicateCall(node, request.getIsContent(), storage, replicateForward, request.getPrimary(), node.getIpAddress());
-                }
-            }
-            response = Chord.replicaAck.newBuilder().setResponse(1).build();
         }
+//            --replicateForward;
+//            if (replicateForward > 0) {
+//                if (file != null) {
+//                    RPCFunctions.replicateCall(node, request.getIsContent(), storage, replicateForward, request.getPrimary(), node.getIpAddress());
+//                }
+//            }
+            response = Chord.replicaAck.newBuilder().setResponse(1).build();
+
         responseObserver.onNext(response);
         responseObserver.onCompleted();
 
@@ -299,63 +307,129 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         int replicateFurther= request.getCreate().getReplicateFurther();
         String predecessor = request.getCreate().getMeYourPredecessor();
         node.setPredecessor(new Node(predecessor));
-        node.getLogger().writeLog("info","Predecessor updated to "+predecessor,null);
-        --replicateFurther;
         Chord.replicateMyFilesAck response = null;
-        if(replicateFurther==2) {
-            List<String> replica1 = new ArrayList<>();
-            replica1 = node.getStorageInfo().getServerStoreInformation().get("replica1");
-            node.getStorageInfo().getServerStoreInformation().get("primary").addAll(replica1);
-            List<String> oldReplica2 = node.getStorageInfo().getServerStoreInformation().get("replica2");
-            node.getStorageInfo().getServerStoreInformation().put("replica1", node.getStorageInfo().getServerStoreInformation().get("replica2"));
-            node.getStorageInfo().getServerStoreInformation().put("replica2", new ArrayList<>());
-            persistData(request,"replica2");
-            List<Storage> storageList=null;
-            try {
-                storageList= PersistAndRetrieveMetadata.retrieveFilesAsAList(oldReplica2, node);
-                int ack = RPCFunctions.replicateAfterDeletion(node, request.getCreate().getDeletedNode(), replicateFurther,storageList);
-                if(ack==1){
-                    response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
-                }else{
-                    response = Chord.replicateMyFilesAck.newBuilder().setAck(0).build();
-                }
-            }catch (Exception e){
-                node.getLogger().writeLog("info","error in replicateAsSuccessorDeleted line calling retrieveFilesAsAList",e);
-            }
-        }else if(replicateFurther==1){
-            List<String> replica2 = new ArrayList<>();
-            replica2 = node.getStorageInfo().getServerStoreInformation().get("replica2");
-            node.getStorageInfo().getServerStoreInformation().get("replica1").addAll(replica2);
-            node.getStorageInfo().getServerStoreInformation().put("replica2", new ArrayList<>());
-            persistData(request,"replica2");
-            response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
-        }else{
-
-        }
-//        if(replicateFurther==1) {
-//            ManagedChannel channel = null;
-//            channel = ManagedChannelBuilder.forTarget(node.getSuccessor().getIpAddress())
-//                    .usePlaintext()
-//                    .build();
-//            SendReceiveGrpc.SendReceiveBlockingStub blockingStub = SendReceiveGrpc.newBlockingStub(channel);
-//            Chord.replicaInfo repInfo = Chord.replicaInfo.newBuilder().setReplicateFurther(replicateFurther)
-//                    .setDeletedNode(request.getCreate().getDeletedNode()).setMeYourPredecessor(node.getIpAddress()).build();
-//            request = Chord.replicateMyFiles.newBuilder().setCreate(repInfo).addAllData(request.getDataList()).build();
-//            Chord.replicateMyFilesAck ack = blockingStub.replicateAsSuccessorDeleted(request);
-//            if (ack.getAck() == 1) {
-//                response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
-//            }else{
-//                response = Chord.replicateMyFilesAck.newBuilder().setAck(0).build();
+//        if(node.getPredecessor().getIpAddress().equals(node.getSuccessor().getIpAddress())){
+//            response = Chord.replicateMyFilesAck.newBuilder().setAck(2).build();
+//            responseObserver.onNext(response);
+//            responseObserver.onCompleted();
+//        }
+//        node.getLogger().writeLog("info","Predecessor updated to "+predecessor,null);
+//        --replicateFurther;
+//
+//        if(replicateFurther==2) {
+//            node.getStorageInfo().getServerStoreInformation().get("primary").addAll(node.getStorageInfo().getServerStoreInformation().get("replica1"));
+//            node.getStorageInfo().getServerStoreInformation().put("replica1",  node.getStorageInfo().getServerStoreInformation().get("replica2"));
+//            node.getStorageInfo().getServerStoreInformation().put("replica2", new ArrayList<>());
+//            persistData(request.getDataList(),"replica2");
+//            List<Storage> storageList=null;
+//            try {
+//                List<String> list = node.getStorageInfo().getServerStoreInformation().get("replica1");
+//                storageList= PersistAndRetrieveMetadata.retrieveFilesAsAList(list, node);
+//                int ack = RPCFunctions.replicateAfterDeletion(node, request.getCreate().getDeletedNode(), replicateFurther,storageList);
+//                if(ack==1){
+//                    response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
+//                }else{
+//                    response = Chord.replicateMyFilesAck.newBuilder().setAck(0).build();
+//                }
+//            }catch (Exception e){
+//                node.getLogger().writeLog("info","error in replicateAsSuccessorDeleted line calling retrieveFilesAsAList",e);
 //            }
-//        }else{
+//        }else if(replicateFurther==1){
+//            List<Storage> storageList=null;
+//            List<String> replica2 = new ArrayList<>();
+//            replica2 = node.getStorageInfo().getServerStoreInformation().get("replica2");
+//            node.getStorageInfo().getServerStoreInformation().get("replica1").addAll(replica2);
+//            node.getStorageInfo().getServerStoreInformation().put("replica2", new ArrayList<>());
+//            persistData(request.getDataList(),"replica2");
+//            try {
+//                response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
+//                storageList = PersistAndRetrieveMetadata.retrieveFilesAsAList(replica2, node);
+//                int ack = RPCFunctions.replicateAfterDeletion(node, request.getCreate().getDeletedNode(), replicateFurther, storageList);
+//                if (ack == 1) {
+//                    response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
+//                } else {
+//                    response = Chord.replicateMyFilesAck.newBuilder().setAck(0).build();
+//                }
+//            }catch(Exception e){
+//                e.printStackTrace();
+//            }
+//        }else if(replicateFurther==0){
+//            persistData(request.getDataList(),"replica2");
 //            response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
 //        }
+
+        node.getStorageInfo().getServerStoreInformation().get("primary1").addAll(node.getStorageInfo().getServerStoreInformation().get("replica1"));
+        node.getStorageInfo().getServerStoreInformation().put("replica1", new ArrayList<String>());
+        response = Chord.replicateMyFilesAck.newBuilder().setAck(1).build();
         responseObserver.onNext(response);
         responseObserver.onCompleted();
     }
 
-    private void persistData(Chord.replicateMyFiles request,String typeOfFile) {
-        List<Chord.fileContent> dataList = request.getDataList();
+    @Override
+    public void checkIFReplicasPresent(Chord.replicaFileNames request, StreamObserver<Chord.filesNotPresent> responseObserver) {
+        Chord.filesNotPresent response = null;
+        List<String> predFiles = request.getFileNamesList();
+
+        if(request.getYourPredecessor()!=null && node.getPredecessor().getIpAddress().equals(request.getYourPredecessor())){
+         List<String> Rep1Files =    node.getStorageInfo().getServerStoreInformation().get("replica1");
+         List<String> newReps = predFiles.stream().filter(x-> Rep1Files.contains(x)).collect(Collectors.toList());
+         List<String> retList =new ArrayList<>();
+         if(!newReps.isEmpty()) {
+             for(String s: newReps) {
+                 if(!predFiles.contains(s)) {
+                     retList.add(s);
+                 }
+             }
+             response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(retList).build();
+         }else{
+             response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(predFiles).build();
+         }
+
+            node.getStorageInfo().getServerStoreInformation().put("replica1",newReps);
+        }else if(request.getYourSuccessor()!=null && request.getYourSuccessor().equals(node.getSuccessor().getIpAddress())){
+            List<String> Rep2Files =    node.getStorageInfo().getServerStoreInformation().get("replica2");
+            List<String> newReps = predFiles.stream().filter(x-> Rep2Files.contains(x)).collect(Collectors.toList());
+            List<String> retList =new ArrayList<>();
+            if(!newReps.isEmpty()) {
+                for(String s: newReps) {
+                    if(!predFiles.contains(s)) {
+                        retList.add(s);
+                    }
+                }
+                response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(retList).build();
+            }else{
+                response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(predFiles).build();
+            }
+
+            node.getStorageInfo().getServerStoreInformation().put("replica2",newReps);
+        }else{
+            response= Chord.filesNotPresent.newBuilder().setError(1).build();
+        }
+        responseObserver.onNext(response);
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void replicateAbsentFiles(Chord.sendFileData request, StreamObserver<Chord.replicaAck> responseObserver) {
+
+        Chord.replicaAck resp =null;
+        if(request.getYourPredecessor()!=null && node.getPredecessor().getIpAddress().equals(request.getYourPredecessor())){
+            persistData(request.getDataList(), "replica1");
+            resp = Chord.replicaAck.newBuilder().setResponse(1).build();
+
+        }else if(request.getYourSuccessor()!=null && request.getYourSuccessor().equals(node.getSuccessor().getIpAddress())){
+            persistData(request.getDataList(), "replica2");
+            resp = Chord.replicaAck.newBuilder().setResponse(1).build();
+        }else{
+            resp = Chord.replicaAck.newBuilder().setResponse(0).build();
+        }
+
+        responseObserver.onNext(resp);
+        responseObserver.onCompleted();
+
+    }
+
+    private void persistData( List<Chord.fileContent> dataList, String typeOfFile) {
         for (Chord.fileContent fC : dataList) {
             Storage storage = null;
             if (fC.getIsContent()) {
@@ -364,7 +438,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
                 storage = new Storage(fC.getFileName(), fC.getFileSize(), fC.getRootHash(), fC.getDataFDList());
             }
             try {
-                PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, typeOfFile);
+                PersistAndRetrieveMetadata.persistMetadataToFile(storage, node, typeOfFile,fC.getOwner());
             } catch (Exception e) {
                 node.getLogger().writeLog("error", " error in replicateAsSuccessorDeleted", e);
             }

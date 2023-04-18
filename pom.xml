@@ -169,9 +169,9 @@
                         </includes>
                     </soliditySourceFiles>
                     <outputDirectory>
-                        <java>src/java/generated</java>
-                        <bin>src/bin/generated</bin>
-                        <abi>src/abi/generated</abi>
+                        <java>src/main/java/generated</java>
+                        <bin>src/main/bin/generated</bin>
+                        <abi>src/main/abi/generated</abi>
                     </outputDirectory>
                     <contract>
                         <includes>

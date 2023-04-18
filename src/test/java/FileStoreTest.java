@@ -6,6 +6,7 @@ import store.helper.NodeHelper;
 import store.helper.PersistAndRetrieveMetadata;
 import store.helper.TreeStructure;
 import store.pojo.*;
+import store.start.StartNode;
 
 import java.awt.*;
 import java.io.File;
@@ -26,7 +27,7 @@ public class FileStoreTest {
         Node node = new Node("10.0.0.30:9000");
         node.setAppPath("/Users/ajinkyarajguru/Documents/CS298_data/metadata");
         Storage store = getFileDetails("/Users/ajinkyarajguru/Downloads/CS298_Proposal.pdf");
-        PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary");
+        PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary","abc");
     }
 
     private static Storage getFileDetails(String fileName) throws IOException, NoSuchAlgorithmException {
@@ -63,7 +64,7 @@ public class FileStoreTest {
         Storage storage = new Storage(fileName1,byteArray.length,sb.toString(),   fDList);
         for(Content content: contentList){
             Storage store = new Storage(fileName1,sb.toString(), content.getData(), content.getHash(),  content.getEndByte());
-            PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary");
+            PersistAndRetrieveMetadata.persistMetadataToFile(store,node,"primary","abc");
         }
     }
     @Test
@@ -226,7 +227,38 @@ public class FileStoreTest {
        map.put("replica2", list3);
 
         map.get("replica1").stream().forEach(x-> System.out.println(x));
+    }
 
+    @Test
+    void testMapper(){
+        Node node = new Node("10.0.0.30:9300");
+        Map<String, List<String>> map = new LinkedHashMap<>();
+        node.setStorageInfo(new StorageInformation("10.0.0.30:9300"));
+//        node.getStorageInfo().setServerStoreInformation(map);
+        List<String> list = new LinkedList<>();
+        list.add("CNT");
+        list.add("fD");
+        node.getStorageInfo().getServerStoreInformation().put("replica2",list);
+        List<String> replica1 = new ArrayList<>();
+        replica1 = node.getStorageInfo().getServerStoreInformation().get("replica1");
+        node.getStorageInfo().getServerStoreInformation().get("primary").addAll(replica1);
+        List<String> oldReplica2 = node.getStorageInfo().getServerStoreInformation().get("replica2");
+        node.getStorageInfo().getServerStoreInformation().put("replica1", oldReplica2);
+        node.getStorageInfo().getServerStoreInformation().put("replica2", new ArrayList<>());
+        System.out.println(node.getStorageInfo().toString());
+        node.getStorageInfo().getServerStoreInformation().get("replica1").add("newAdded");
+        System.out.println(node.getStorageInfo().toString());
+    }
+
+    @Test
+    void testerWhole() throws IOException, NoSuchAlgorithmException {
+
+        FileDetails fd = TreeStructure.getFileDetails("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/main/resources2/adharcard.pdf");
+        Content c = fd.getContentList().get(0);
+        Storage s = new Storage("abc",fd.getHashOfFile(),c.getData(),c.getHash(),c.getEndByte());
+
+       // PersistAndRetrieveMetadata.persistMetadataToFile(s,new Node("10.0.0.30:9300"),"primary","me");
+        PersistAndRetrieveMetadata.getDataFromHash(null,null,true);
 
 
 

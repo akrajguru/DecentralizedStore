@@ -33,7 +33,6 @@ public class RPCFunctions {
                 //successorList.put(finger1Node, resp.getSuccessor());
                 channel.shutdown();
                 return resp.getSuccessor();
-
             }
             channel.shutdown();
            // System.out.println("predecessor call returned null from: " + finger1Node);
@@ -41,11 +40,14 @@ public class RPCFunctions {
         }catch(StatusRuntimeException e){
             if(node!=null){
                 node.deleteUnavailableNodeInfo(finger1Node);
+
             }
+            channel.shutdown();
         }
         catch(Exception e){
             System.out.println("exception in findSuccessorCall: "+ finger1Node);
             e.printStackTrace();
+            channel.shutdown();
         }
         //return successorPort;
         return null;
@@ -163,8 +165,11 @@ public class RPCFunctions {
                     .usePlaintext()
                     .build();
             SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
-            Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().setRootHash(store.getRootHash()).setFileName(store.getFileName()).setBlockHash(store.getContentHash())
-                    .setEndOfBlock(store.getEndOfBlock()).setData(ByteString.copyFrom(store.getDataBytes())).build();
+            List<Chord.fileContent> fCList = new ArrayList<>();
+            Chord.fileContent fC = Chord.fileContent.newBuilder().setRootHash(store.getRootHash()).setFileName(store.getFileName()).setBlockHash(store.getContentHash())
+                    .setEndOfBlock(store.getEndOfBlock()).setDataContent(ByteString.copyFrom(store.getDataBytes())).setOwner(store.getOwner()).build();
+            fCList.add(fC);
+            Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().addAllFileContent(fCList).build();
             Chord.BytesResponse sentResp = sRBStub.sendBytes(sendBytes);
             chnl.shutdown();
             return sentResp;
@@ -199,7 +204,7 @@ public class RPCFunctions {
         return null;
     }
 
-    public static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD,Node myNode) {
+    public static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD,Node myNode,String owner) {
 
         try {
             Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile(),myNode);
@@ -209,26 +214,29 @@ public class RPCFunctions {
             SendReceiveGrpc.SendReceiveBlockingStub sRBlockingStub = SendReceiveGrpc.newBlockingStub(channel1);
             List<String> fDList = fD.getContentList().stream().map(x -> x.getHash()).collect(Collectors.toList());
             Chord.FDRequest requestFD = Chord.FDRequest.newBuilder().setFileName(fD.getFileName()).setFileSiz(fD.getFileSize()).
-                    setFileRootHash(fD.getHashOfFile()).addAllData(fDList).build();
+                    setFileRootHash(fD.getHashOfFile()).addAllData(fDList).setOwner(owner).build();
             Chord.FDResponse resp = sRBlockingStub.sendFD(requestFD);
-            Map<String, String> senderMap = new LinkedHashMap<>();
-            senderMap.put(node.getIpAddress(), "");
+            Map<String, List<Content>> senderMap = new LinkedHashMap<>();
             if (resp.getResp() == 1) {
                 for (Content content : fD.getContentList()) {
-                    Chord.BytesResponse sentResp = sendContentAndGetBytesResponse(fD, myNode, content, nodeAddr);
-                    while (sentResp.getResp() <1) {
-                        sentResp = sendContentAndGetBytesResponse(fD, myNode, content, nodeAddr);
-                    }
-                    if(sentResp.getResp()==2){
-                        System.out.println("Cannot store file as it cannot be replicated");
-                    }else if(sentResp.getResp()==1){
-                        System.out.println(" File saved:" + fD);
-                    }
+                   Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),node);
+                   if(senderMap.containsKey(nodeSucc.getIpAddress())){
+                       List<Content> list = senderMap.get(nodeSucc.getIpAddress());
+                       list.add(content);
+                   }else{
+                       List<Content> contentL = new ArrayList<>();
+                       contentL.add(content);
+                       senderMap.put(nodeSucc.getIpAddress(),contentL);
+                   }
+                }
+                System.out.println("out of findsuccessor calls for all data");
+                for(Map.Entry<String,List<Content>> entry: senderMap.entrySet()) {
+                    Chord.BytesResponse sentResp = sendContentAndGetBytesResponse(fD, myNode, entry.getValue(), entry.getKey(),owner);
+                    if(sentResp!=null && sentResp.getResp()==1) System.out.println("files stored on "+entry.getKey());
                 }
             }else{
                 System.out.println("Cannot store file as it cannot be replicated");
             }
-
             channel1.shutdown();
         }catch(StatusRuntimeException e){
             if(myNode!=null) {
@@ -239,17 +247,42 @@ public class RPCFunctions {
         }
 
     }
-    private static Chord.BytesResponse sendContentAndGetBytesResponse(FileDetails fD, Node node, Content content,String nodeAddr) {
+    private static Chord.BytesResponse sendContentAndGetBytesResponse(FileDetails fD, Node node, List<Content> content,String nodeAddr,String owner) {
         Node nodeSucc=null;
+        Chord.BytesResponse sentResp=null;
+        int cnt =0;
         try {
-             nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),node);
-            ManagedChannel chnl = ManagedChannelBuilder.forTarget(nodeSucc.getIpAddress())
+            ManagedChannel chnl = ManagedChannelBuilder.forTarget(nodeAddr)
                     .usePlaintext()
                     .build();
-            SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
-            Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().setRootHash(fD.getHashOfFile()).setFileName(fD.getFileName()).setBlockHash(content.getHash())
-                    .setEndOfBlock(content.getEndByte()).setData(ByteString.copyFrom(content.getData())).build();
-            Chord.BytesResponse sentResp = sRBStub.sendBytes(sendBytes);
+            List<Content> limitedSizeUnder4MB = new ArrayList<>();
+            int stored=0;
+            for(int i =0; i<=content.size();i++) {
+                if (i < content.size() && content.get(i).getData().length + stored < 4000000) {
+                    limitedSizeUnder4MB.add(content.get(i));
+                    stored += content.get(i).getData().length;
+                } else {
+                    SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
+                    List<Chord.fileContent> fileContentList = new ArrayList<>();
+                    for (Content storage : limitedSizeUnder4MB) {
+                        Chord.fileContent fileContent = null;
+                        fileContent = Chord.fileContent.newBuilder().setFileName(fD.getFileName())
+                                .setBlockHash(storage.getHash()).setRootHash(fD.getHashOfFile())
+                                .setDataContent(ByteString.copyFrom(storage.getData())).setEndOfBlock(storage.getEndByte()).setOwner(owner)
+                                .setIsContent(true).build();
+                        fileContentList.add(fileContent);
+                        cnt++;
+                    }
+                    Chord.BytesRequest sendBytes = Chord.BytesRequest.newBuilder().addAllFileContent(fileContentList).setOwner(owner).build();
+                    sentResp = sRBStub.sendBytes(sendBytes);
+                    limitedSizeUnder4MB = new ArrayList<>();
+                    if(i<content.size()) {
+                        limitedSizeUnder4MB.add(content.get(i));
+                    }
+                    stored=0;
+                }
+            }
+            System.out.println("sent fileContents:" +cnt);
             chnl.shutdown();
             return sentResp;
         }catch (StatusRuntimeException e){
@@ -260,6 +293,61 @@ public class RPCFunctions {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static List<String> sendFileNamesToReplicate(List<String> fileList, Node node,ManagedChannel chnl, boolean setPredecessor) {
+            SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
+            Chord.replicaFileNames replicate=null;
+            if(setPredecessor) {
+                replicate = Chord.replicaFileNames.newBuilder().addAllFileNames(fileList).setYourPredecessor(node.getIpAddress()).build();
+            }else{
+                replicate = Chord.replicaFileNames.newBuilder().addAllFileNames(fileList).setYourSuccessor(node.getIpAddress()).build();
+            }
+            Chord.filesNotPresent sentResp = sRBStub.checkIFReplicasPresent(replicate);
+            if(sentResp!=null && sentResp.getFilesNotPresentList()!=null){
+                return sentResp.getFilesNotPresentList();
+            }
+
+        if(setPredecessor && sentResp.getError()==1){
+            System.out.println("The pointers of our successor are incorrect");
+        }else if(!setPredecessor && sentResp.getError()==1){
+            System.out.println("The pointers of our predecessir are incorrect");
+        }else if(sentResp.getFilesNotPresentList()!=null && !sentResp.getFilesNotPresentList().isEmpty()){
+            return sentResp.getFilesNotPresentList();
+        }
+        return null;
+    }
+
+    public static int sendFilesToReplicate(List<Storage> fileList, Node node,ManagedChannel chnl, boolean setPredecessor) {
+        SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
+       
+        Chord.sendFileData request = null;
+        List<Chord.fileContent> fileContentList = new ArrayList<>();
+        for(Storage storage: fileList) {
+            Chord.fileContent fileContent=null;
+            if (storage.isContainsContent()) {
+                fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+                        .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
+                        .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
+                        .setIsContent(true).setOwner(storage.getOwner()).build();
+            } else {
+                fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+                        .setRootHash(storage.getRootHash()).setFileSize(storage.getSize())
+                        .addAllDataFD(storage.getContentList()).setOwner(storage.getOwner()).build();
+            }
+            fileContentList.add(fileContent);
+        }
+        if(setPredecessor) {
+            request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourPredecessor(node.getIpAddress()).build();
+        }else{
+            request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourSuccessor(node.getIpAddress()).build();
+        }
+        Chord.replicaAck sentResp = sRBStub.replicateAbsentFiles(request);
+        if(sentResp.getResponse()==1){
+            System.out.println("successfully replicated remaining files");
+            return 1;
+        }
+        return 0;
     }
 
     public static void retrieveRequest(String clientIP, String contentId, String fileName, String addressOfArbNode,Node myNode) {
@@ -284,26 +372,18 @@ public class RPCFunctions {
         }
     }
 
-    public static int replicateCall(Node node, boolean isContent, Storage storage,int replicateForward,String primary, String replica1){
+    public static int replicateCall(Node node, boolean isContent, List<Chord.fileContent> fileContentList,int replicateForward,String primary, String replica){
 
         ManagedChannel channel =null;
         try{
-            channel = ManagedChannelBuilder.forTarget(node.getSuccessor().getIpAddress())
+            channel = ManagedChannelBuilder.forTarget(replica)
                     .usePlaintext()
                     .build();
             SendReceiveGrpc.SendReceiveBlockingStub blockingStub = SendReceiveGrpc.newBlockingStub(channel);
             Chord.sendReplica request = null;
-            if(isContent){
-                request = Chord.sendReplica.newBuilder().setFileName(storage.getFileName())
-                        .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
-                        .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
-                        .setIsContent(true).setPrimary(primary).setReplica1(replica1).setReplicateFurther(replicateForward).build();
-            }else{
-                request = Chord.sendReplica.newBuilder().setFileName(storage.getFileName())
-                        .setRootHash(storage.getRootHash())
-                        .addAllDataFD(storage.getContentList()).setReplica1(replica1).setFileSize(storage.getSize())
-                        .setIsContent(false).setPrimary(primary).setReplicateFurther(replicateForward).build();
-            }
+
+            request = Chord.sendReplica.newBuilder().addAllFileContent(fileContentList)
+                        .setPrimary(primary).setReplicateFurther(replicateForward).build();
             Chord.replicaAck ack = blockingStub.replicate(request);
             channel.shutdown();
             if(ack!=null) return ack.getResponse();
@@ -326,27 +406,27 @@ public class RPCFunctions {
                     .build();
             SendReceiveGrpc.SendReceiveBlockingStub blockingStub = SendReceiveGrpc.newBlockingStub(channel);
             Chord.replicateMyFiles request = null;
-            List<Chord.fileContent> fileContentList = new ArrayList<>();
-            for(Storage storage: files) {
-                Chord.fileContent fileContent=null;
-                if (storage.isContainsContent()) {
-                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
-                            .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
-                            .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
-                            .setIsContent(true).build();
-                } else {
-                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
-                            .setRootHash(storage.getRootHash()).setFileSize(storage.getSize())
-                            .addAllDataFD(storage.getContentList()).build();
-                }
-                fileContentList.add(fileContent);
-            }
+//            List<Chord.fileContent> fileContentList = new ArrayList<>();
+//            for(Storage storage: files) {
+//                Chord.fileContent fileContent=null;
+//                if (storage.isContainsContent()) {
+//                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+//                            .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
+//                            .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
+//                            .setIsContent(true).build();
+//                } else {
+//                    fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
+//                            .setRootHash(storage.getRootHash()).setFileSize(storage.getSize())
+//                            .addAllDataFD(storage.getContentList()).build();
+//                }
+//                fileContentList.add(fileContent);
+//            }
             Chord.replicaInfo repInfo = Chord.replicaInfo.newBuilder().setReplicateFurther(replicateFurther)
                     .setDeletedNode(deletedNode).setMeYourPredecessor(node.getIpAddress()).build();
-            request= Chord.replicateMyFiles.newBuilder().setCreate(repInfo).addAllData(fileContentList).build();
+            request= Chord.replicateMyFiles.newBuilder().setCreate(repInfo).build();
             Chord.replicateMyFilesAck ack = blockingStub.replicateAsSuccessorDeleted(request);
             channel.shutdown();
-            if(ack.getAck()==1) return 1;
+            if(ack.getAck()>01) return ack.getAck();
         }
         catch (StatusRuntimeException e){
             if(node!=null){

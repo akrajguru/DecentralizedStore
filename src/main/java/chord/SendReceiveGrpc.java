@@ -201,6 +201,68 @@ public final class SendReceiveGrpc {
     return getReplicateAsSuccessorDeletedMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<chord.Chord.replicaFileNames,
+      chord.Chord.filesNotPresent> getCheckIFReplicasPresentMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "checkIFReplicasPresent",
+      requestType = chord.Chord.replicaFileNames.class,
+      responseType = chord.Chord.filesNotPresent.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<chord.Chord.replicaFileNames,
+      chord.Chord.filesNotPresent> getCheckIFReplicasPresentMethod() {
+    io.grpc.MethodDescriptor<chord.Chord.replicaFileNames, chord.Chord.filesNotPresent> getCheckIFReplicasPresentMethod;
+    if ((getCheckIFReplicasPresentMethod = SendReceiveGrpc.getCheckIFReplicasPresentMethod) == null) {
+      synchronized (SendReceiveGrpc.class) {
+        if ((getCheckIFReplicasPresentMethod = SendReceiveGrpc.getCheckIFReplicasPresentMethod) == null) {
+          SendReceiveGrpc.getCheckIFReplicasPresentMethod = getCheckIFReplicasPresentMethod =
+              io.grpc.MethodDescriptor.<chord.Chord.replicaFileNames, chord.Chord.filesNotPresent>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "checkIFReplicasPresent"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.replicaFileNames.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.filesNotPresent.getDefaultInstance()))
+              .setSchemaDescriptor(new SendReceiveMethodDescriptorSupplier("checkIFReplicasPresent"))
+              .build();
+        }
+      }
+    }
+    return getCheckIFReplicasPresentMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<chord.Chord.sendFileData,
+      chord.Chord.replicaAck> getReplicateAbsentFilesMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "replicateAbsentFiles",
+      requestType = chord.Chord.sendFileData.class,
+      responseType = chord.Chord.replicaAck.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<chord.Chord.sendFileData,
+      chord.Chord.replicaAck> getReplicateAbsentFilesMethod() {
+    io.grpc.MethodDescriptor<chord.Chord.sendFileData, chord.Chord.replicaAck> getReplicateAbsentFilesMethod;
+    if ((getReplicateAbsentFilesMethod = SendReceiveGrpc.getReplicateAbsentFilesMethod) == null) {
+      synchronized (SendReceiveGrpc.class) {
+        if ((getReplicateAbsentFilesMethod = SendReceiveGrpc.getReplicateAbsentFilesMethod) == null) {
+          SendReceiveGrpc.getReplicateAbsentFilesMethod = getReplicateAbsentFilesMethod =
+              io.grpc.MethodDescriptor.<chord.Chord.sendFileData, chord.Chord.replicaAck>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "replicateAbsentFiles"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.sendFileData.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  chord.Chord.replicaAck.getDefaultInstance()))
+              .setSchemaDescriptor(new SendReceiveMethodDescriptorSupplier("replicateAbsentFiles"))
+              .build();
+        }
+      }
+    }
+    return getReplicateAbsentFilesMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -291,6 +353,20 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateAsSuccessorDeletedMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void checkIFReplicasPresent(chord.Chord.replicaFileNames request,
+        io.grpc.stub.StreamObserver<chord.Chord.filesNotPresent> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCheckIFReplicasPresentMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void replicateAbsentFiles(chord.Chord.sendFileData request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicaAck> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getReplicateAbsentFilesMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -335,6 +411,20 @@ public final class SendReceiveGrpc {
                 chord.Chord.replicateMyFiles,
                 chord.Chord.replicateMyFilesAck>(
                   this, METHODID_REPLICATE_AS_SUCCESSOR_DELETED)))
+          .addMethod(
+            getCheckIFReplicasPresentMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                chord.Chord.replicaFileNames,
+                chord.Chord.filesNotPresent>(
+                  this, METHODID_CHECK_IFREPLICAS_PRESENT)))
+          .addMethod(
+            getReplicateAbsentFilesMethod(),
+            io.grpc.stub.ServerCalls.asyncUnaryCall(
+              new MethodHandlers<
+                chord.Chord.sendFileData,
+                chord.Chord.replicaAck>(
+                  this, METHODID_REPLICATE_ABSENT_FILES)))
           .build();
     }
   }
@@ -400,6 +490,22 @@ public final class SendReceiveGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getReplicateAsSuccessorDeletedMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void checkIFReplicasPresent(chord.Chord.replicaFileNames request,
+        io.grpc.stub.StreamObserver<chord.Chord.filesNotPresent> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getCheckIFReplicasPresentMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void replicateAbsentFiles(chord.Chord.sendFileData request,
+        io.grpc.stub.StreamObserver<chord.Chord.replicaAck> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getReplicateAbsentFilesMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -456,6 +562,20 @@ public final class SendReceiveGrpc {
     public chord.Chord.replicateMyFilesAck replicateAsSuccessorDeleted(chord.Chord.replicateMyFiles request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getReplicateAsSuccessorDeletedMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public chord.Chord.filesNotPresent checkIFReplicasPresent(chord.Chord.replicaFileNames request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getCheckIFReplicasPresentMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public chord.Chord.replicaAck replicateAbsentFiles(chord.Chord.sendFileData request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getReplicateAbsentFilesMethod(), getCallOptions(), request);
     }
   }
 
@@ -520,6 +640,22 @@ public final class SendReceiveGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getReplicateAsSuccessorDeletedMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<chord.Chord.filesNotPresent> checkIFReplicasPresent(
+        chord.Chord.replicaFileNames request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getCheckIFReplicasPresentMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<chord.Chord.replicaAck> replicateAbsentFiles(
+        chord.Chord.sendFileData request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getReplicateAbsentFilesMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEND_BYTES = 0;
@@ -528,6 +664,8 @@ public final class SendReceiveGrpc {
   private static final int METHODID_SEND_DATA = 3;
   private static final int METHODID_REPLICATE = 4;
   private static final int METHODID_REPLICATE_AS_SUCCESSOR_DELETED = 5;
+  private static final int METHODID_CHECK_IFREPLICAS_PRESENT = 6;
+  private static final int METHODID_REPLICATE_ABSENT_FILES = 7;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -569,6 +707,14 @@ public final class SendReceiveGrpc {
         case METHODID_REPLICATE_AS_SUCCESSOR_DELETED:
           serviceImpl.replicateAsSuccessorDeleted((chord.Chord.replicateMyFiles) request,
               (io.grpc.stub.StreamObserver<chord.Chord.replicateMyFilesAck>) responseObserver);
+          break;
+        case METHODID_CHECK_IFREPLICAS_PRESENT:
+          serviceImpl.checkIFReplicasPresent((chord.Chord.replicaFileNames) request,
+              (io.grpc.stub.StreamObserver<chord.Chord.filesNotPresent>) responseObserver);
+          break;
+        case METHODID_REPLICATE_ABSENT_FILES:
+          serviceImpl.replicateAbsentFiles((chord.Chord.sendFileData) request,
+              (io.grpc.stub.StreamObserver<chord.Chord.replicaAck>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -637,6 +783,8 @@ public final class SendReceiveGrpc {
               .addMethod(getSendDataMethod())
               .addMethod(getReplicateMethod())
               .addMethod(getReplicateAsSuccessorDeletedMethod())
+              .addMethod(getCheckIFReplicasPresentMethod())
+              .addMethod(getReplicateAbsentFilesMethod())
               .build();
         }
       }

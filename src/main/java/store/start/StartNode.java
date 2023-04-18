@@ -16,14 +16,17 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.concurrent.CountDownLatch;
 
-public class StartNode extends NodeGrpc.NodeImplBase  {
+public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 
     private Node node;
     private CountDownLatch connectedSignal;
+    String args[];
+    String nodeIP;
+    String ipAddressOfKnownNode;
 
     public StartNode(Node node,CountDownLatch cd){
         this.node=node;
-        this.connectedSignal= cd;
+        this.connectedSignal=  new CountDownLatch(1);
     }
 
 
@@ -43,10 +46,18 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
         } else {
             ipAddressOfKnownNode = args[1];
         }
+//        this.args=args;
+//        this.nodeIP=nodeIP;
+//        this.ipAddressOfKnownNode=ipAddressOfKnownNode;
+        runMethod(args, nodeIP, ipAddressOfKnownNode,new CountDownLatch(1));
+        // }
+    }
 
+
+    private static void runMethod(String[] args, String nodeIP, String ipAddressOfKnownNode,CountDownLatch cd) {
         Node node = new Node(nodeIP, true);
         Node arbNode = new Node(ipAddressOfKnownNode);
-        CountDownLatch cd = new CountDownLatch(1);
+
         StartNode startNode = new StartNode(node, cd);
         Thread serverThread = new Thread(() -> {
             Server server = ServerBuilder.forPort(Integer.parseInt(args[0].substring(args[0].indexOf(":") + 1))).addService(startNode).addService(new SendReceiveService(node)).build();
@@ -67,14 +78,13 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
         });
         serverThread.start();
         node.join(arbNode);
-        try {
+        try{
             cd.await();
-        }catch(Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
-        // }
-    }
 
+    }
 
 
     @Override
@@ -110,7 +120,12 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
     public void updateSuccessorPredecessor(Chord.UpdateSPRequest request, StreamObserver<Chord.UpdateSPResponse> responseObserver) {
         String nodeN = request.getPredecessor();
         if(node.getPredecessor()!=null && !node.getPredecessor().getIpAddress().equals(nodeN)){
-
+            if(node.getCheckIfDataSentToServerAlready().containsKey(node.getPredecessor().getIpAddress())){
+                node.getCheckIfDataSentToServerAlready().remove(node.getPredecessor().getIpAddress());
+            }
+            if(node.getCheckIfDataSentToServerAlready().containsKey(node.getSuccessor().getIpAddress())){
+                node.getCheckIfDataSentToServerAlready().remove(node.getSuccessor().getIpAddress());
+            }
         }
         node.setPredecessor(new Node(nodeN));
         System.out.println("updating predecessor to: "+nodeN );
@@ -152,5 +167,10 @@ public class StartNode extends NodeGrpc.NodeImplBase  {
         resp.setSuccessor(node.getSuccessor().getIpAddress());
         responseObserver.onNext(resp.build());
         responseObserver.onCompleted();
+    }
+
+    @Override
+    public void run() {
+        runMethod(args, nodeIP, ipAddressOfKnownNode,connectedSignal);
     }
 }

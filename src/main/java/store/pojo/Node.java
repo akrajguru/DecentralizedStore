@@ -27,6 +27,7 @@ public class Node {
     private Map<String, Storage> contentMap;
     private String appPath;
     private Map<String,String> successorMap;
+    Map<String,List<String>> checkIfDataSentToServerAlready;
 
     public String getAppPath() {
         return appPath;
@@ -110,11 +111,12 @@ public class Node {
         if(!file2.exists()){
             file2.mkdir();
         }
-        storageInfo = new StorageInformation();
+        storageInfo = new StorageInformation(ipAddress);
         // if want to stop as required - add one more argument boolean where you can set the while loop as false in stabilize
         this.stabilize = new Stabilize(this);
         FixFingers fix_fingers = new FixFingers(this);
         DisplayFingerTable dFT = new DisplayFingerTable(this);
+        checkIfDataSentToServerAlready=new HashMap<>();
         StabilizeFileStore stabilizeFileStore = new StabilizeFileStore(this);
         PopulateSuccessorList populateSuccessorList = new PopulateSuccessorList(this);
         logger=new LogToFile(this.appPath);
@@ -123,6 +125,14 @@ public class Node {
         dFT.start();
         stabilizeFileStore.start();
         populateSuccessorList.start();
+    }
+
+    public Map<String, List<String>> getCheckIfDataSentToServerAlready() {
+        return checkIfDataSentToServerAlready;
+    }
+
+    public void setCheckIfDataSentToServerAlready(Map<String, List<String>> checkIfDataSentToServerAlready) {
+        this.checkIfDataSentToServerAlready = checkIfDataSentToServerAlready;
     }
 
     public void join(Node arbNode){
@@ -245,16 +255,36 @@ public class Node {
             setSuccessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
             try {
                 if(!successor.getIpAddress().equals(ipAddress)) {
-                    List<Storage> files = PersistAndRetrieveMetadata.retrieveFilesAsAList(getStorageInfo().getServerStoreInformation().get("replica1"), this);
-                    RPCFunctions.replicateAfterDeletion(this, ipAddr, 2,files);
+//                    List<Storage> files = PersistAndRetrieveMetadata.retrieveFilesAsAList(getStorageInfo().getServerStoreInformation().get("replica1"), this);
+//                    int ack = RPCFunctions.replicateAfterDeletion(this, ipAddr, 3,files);
+//                    if(ack==1){
+//                        System.out.println("files replicated");
+//                    }else if(ack==2){
+//                        System.out.println("only 2 nodes left in the ring");
+//                    }else{
+//                        System.out.println("some issue with file replica changes");
+//                    }
+                    //notify successor that I am your new pred
+                    notifyCall(getIpAddress(),successor.getIpAddress());
+                    //int ack = RPCFunctions.replicateAfterDeletion(this, ipAddr, 3,null);
                 }
             }catch (Exception e){
                 logger.writeLog("error","error in replicateAfterDeletion",e);
+                e.printStackTrace();
             }
         }
         if(getPredecessor().getIpAddress().equals(ipAddr)){
             setPredecessor(getSuccessorMap().containsKey(ipAddr) ? new Node(getSuccessorMap().get(ipAddr)):new Node(succIP));
             System.out.println("settin preedecessor to:"+ ipAddr +" or " + succIP);
+        }
+        if(getCheckIfDataSentToServerAlready().containsKey(ipAddr)){
+            getCheckIfDataSentToServerAlready().remove(ipAddr);
+        }
+        if(getCheckIfDataSentToServerAlready().containsKey(predecessor.getIpAddress())){
+            getCheckIfDataSentToServerAlready().remove(predecessor.getIpAddress());
+        }
+        if(getCheckIfDataSentToServerAlready().containsKey(successor.getIpAddress())){
+            getCheckIfDataSentToServerAlready().remove(successor.getIpAddress());
         }
         //stabilize.notify();
     }

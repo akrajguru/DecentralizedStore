@@ -31,6 +31,24 @@ service SendReceive {
   rpc sendData(sendDataToOwner) returns (acknowledgement){}
   rpc replicate(sendReplica) returns (replicaAck){}
   rpc replicateAsSuccessorDeleted(replicateMyFiles) returns (replicateMyFilesAck){}
+  rpc checkIFReplicasPresent(replicaFileNames) returns (filesNotPresent){}
+  rpc replicateAbsentFiles(sendFileData) returns (replicaAck){}
+}
+message replicaFileNames{
+  repeated string fileNames=1;
+  string yourPredecessor=2;
+  string yourSuccessor=3;
+}
+
+message sendFileData{
+  repeated fileContent data = 1;
+  string yourPredecessor=2;
+  string yourSuccessor=3;
+}
+
+message filesNotPresent{
+  repeated string filesNotPresent=1;
+  int32 error=2; // 1 if error or else 0
 }
 
 message  nodeDeletedUpdateRequired{
@@ -51,19 +69,10 @@ message  AliveResponse{
 
 
 message  sendReplica{
-  string rootHash=1;
-  string fileName =2;
-  bool isContent=3;
-  string blockHash=4;
-  int64 endOfBlock=5;
-  bytes dataContent = 6;
-  repeated string dataFD = 7;
-  int64 fileSize=8;
-  string primary=9;
-  string replica1=10;
-  string replica2 = 11;
-  int32 replicateFurther=12;
-  nodeDeletedUpdateRequired updateReplicasInfo=13;
+  repeated fileContent fileContent=1;
+  string primary=2;
+  int32 replicateFurther=3;
+  nodeDeletedUpdateRequired updateReplicasInfo=4;
 
 }
 
@@ -91,6 +100,7 @@ message fileContent{
   bytes dataContent = 6;
   repeated string dataFD = 7;
   int64 fileSize=8;
+  string owner=9;
 }
 
 message  replicaAck{
@@ -103,6 +113,7 @@ message sendDataToOwner{
   string fileName=3;
   int64 endOfBlock=4;
   bytes data=5;
+  repeated fileContent fileContent=6;
 
 }
 
@@ -122,11 +133,8 @@ message RetResponse{
 }
 
 message BytesRequest {
-  string blockHash=1;
-  string fileName =2;
-  int64 endOfBlock=3;
-  string rootHash=4;
-  bytes data = 5;
+  string owner=1;
+  repeated fileContent fileContent=6;
 }
 
 message BytesResponse {
@@ -140,6 +148,7 @@ message FDRequest {
   string fileRootHash=2;
   repeated string data = 4;
   int64 fileSiz=5;
+  string owner=6;
 }
 
 message FDResponse {
