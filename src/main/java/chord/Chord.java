@@ -11759,6 +11759,24 @@ public final class Chord {
      * @return The isContent.
      */
     boolean getIsContent();
+
+    /**
+     * <code>string owner = 5;</code>
+     * @return The owner.
+     */
+    java.lang.String getOwner();
+    /**
+     * <code>string owner = 5;</code>
+     * @return The bytes for owner.
+     */
+    com.google.protobuf.ByteString
+        getOwnerBytes();
+
+    /**
+     * <code>bool isDeleteRequest = 6;</code>
+     * @return The isDeleteRequest.
+     */
+    boolean getIsDeleteRequest();
   }
   /**
    * Protobuf type {@code chord.RetRequest}
@@ -11776,6 +11794,7 @@ public final class Chord {
       fileName_ = "";
       hash_ = "";
       clientIP_ = "";
+      owner_ = "";
     }
 
     @java.lang.Override
@@ -11931,6 +11950,56 @@ public final class Chord {
       return isContent_;
     }
 
+    public static final int OWNER_FIELD_NUMBER = 5;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object owner_ = "";
+    /**
+     * <code>string owner = 5;</code>
+     * @return The owner.
+     */
+    @java.lang.Override
+    public java.lang.String getOwner() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        owner_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string owner = 5;</code>
+     * @return The bytes for owner.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getOwnerBytes() {
+      java.lang.Object ref = owner_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        owner_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ISDELETEREQUEST_FIELD_NUMBER = 6;
+    private boolean isDeleteRequest_ = false;
+    /**
+     * <code>bool isDeleteRequest = 6;</code>
+     * @return The isDeleteRequest.
+     */
+    @java.lang.Override
+    public boolean getIsDeleteRequest() {
+      return isDeleteRequest_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -11957,6 +12026,12 @@ public final class Chord {
       if (isContent_ != false) {
         output.writeBool(4, isContent_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, owner_);
+      }
+      if (isDeleteRequest_ != false) {
+        output.writeBool(6, isDeleteRequest_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -11978,6 +12053,13 @@ public final class Chord {
       if (isContent_ != false) {
         size += com.google.protobuf.CodedOutputStream
           .computeBoolSize(4, isContent_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(owner_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, owner_);
+      }
+      if (isDeleteRequest_ != false) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(6, isDeleteRequest_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -12002,6 +12084,10 @@ public final class Chord {
           .equals(other.getClientIP())) return false;
       if (getIsContent()
           != other.getIsContent()) return false;
+      if (!getOwner()
+          .equals(other.getOwner())) return false;
+      if (getIsDeleteRequest()
+          != other.getIsDeleteRequest()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -12022,6 +12108,11 @@ public final class Chord {
       hash = (37 * hash) + ISCONTENT_FIELD_NUMBER;
       hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
           getIsContent());
+      hash = (37 * hash) + OWNER_FIELD_NUMBER;
+      hash = (53 * hash) + getOwner().hashCode();
+      hash = (37 * hash) + ISDELETEREQUEST_FIELD_NUMBER;
+      hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
+          getIsDeleteRequest());
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12155,6 +12246,8 @@ public final class Chord {
         hash_ = "";
         clientIP_ = "";
         isContent_ = false;
+        owner_ = "";
+        isDeleteRequest_ = false;
         return this;
       }
 
@@ -12199,6 +12292,12 @@ public final class Chord {
         }
         if (((from_bitField0_ & 0x00000008) != 0)) {
           result.isContent_ = isContent_;
+        }
+        if (((from_bitField0_ & 0x00000010) != 0)) {
+          result.owner_ = owner_;
+        }
+        if (((from_bitField0_ & 0x00000020) != 0)) {
+          result.isDeleteRequest_ = isDeleteRequest_;
         }
       }
 
@@ -12264,6 +12363,14 @@ public final class Chord {
         if (other.getIsContent() != false) {
           setIsContent(other.getIsContent());
         }
+        if (!other.getOwner().isEmpty()) {
+          owner_ = other.owner_;
+          bitField0_ |= 0x00000010;
+          onChanged();
+        }
+        if (other.getIsDeleteRequest() != false) {
+          setIsDeleteRequest(other.getIsDeleteRequest());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -12310,6 +12417,16 @@ public final class Chord {
                 bitField0_ |= 0x00000008;
                 break;
               } // case 32
+              case 42: {
+                owner_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000010;
+                break;
+              } // case 42
+              case 48: {
+                isDeleteRequest_ = input.readBool();
+                bitField0_ |= 0x00000020;
+                break;
+              } // case 48
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -12574,6 +12691,110 @@ public final class Chord {
         onChanged();
         return this;
       }
+
+      private java.lang.Object owner_ = "";
+      /**
+       * <code>string owner = 5;</code>
+       * @return The owner.
+       */
+      public java.lang.String getOwner() {
+        java.lang.Object ref = owner_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          owner_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string owner = 5;</code>
+       * @return The bytes for owner.
+       */
+      public com.google.protobuf.ByteString
+          getOwnerBytes() {
+        java.lang.Object ref = owner_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          owner_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string owner = 5;</code>
+       * @param value The owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwner(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        owner_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 5;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearOwner() {
+        owner_ = getDefaultInstance().getOwner();
+        bitField0_ = (bitField0_ & ~0x00000010);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string owner = 5;</code>
+       * @param value The bytes for owner to set.
+       * @return This builder for chaining.
+       */
+      public Builder setOwnerBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        owner_ = value;
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return this;
+      }
+
+      private boolean isDeleteRequest_ ;
+      /**
+       * <code>bool isDeleteRequest = 6;</code>
+       * @return The isDeleteRequest.
+       */
+      @java.lang.Override
+      public boolean getIsDeleteRequest() {
+        return isDeleteRequest_;
+      }
+      /**
+       * <code>bool isDeleteRequest = 6;</code>
+       * @param value The isDeleteRequest to set.
+       * @return This builder for chaining.
+       */
+      public Builder setIsDeleteRequest(boolean value) {
+        
+        isDeleteRequest_ = value;
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>bool isDeleteRequest = 6;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearIsDeleteRequest() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        isDeleteRequest_ = false;
+        onChanged();
+        return this;
+      }
       @java.lang.Override
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -12641,6 +12862,16 @@ public final class Chord {
   public interface RetResponseOrBuilder extends
       // @@protoc_insertion_point(interface_extends:chord.RetResponse)
       com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <pre>
+     * 0 is success, 1 is file not found, 2 is some other error
+     * </pre>
+     *
+     * <code>int32 response = 1;</code>
+     * @return The response.
+     */
+    int getResponse();
   }
   /**
    * Protobuf type {@code chord.RetResponse}
@@ -12682,6 +12913,21 @@ public final class Chord {
               chord.Chord.RetResponse.class, chord.Chord.RetResponse.Builder.class);
     }
 
+    public static final int RESPONSE_FIELD_NUMBER = 1;
+    private int response_ = 0;
+    /**
+     * <pre>
+     * 0 is success, 1 is file not found, 2 is some other error
+     * </pre>
+     *
+     * <code>int32 response = 1;</code>
+     * @return The response.
+     */
+    @java.lang.Override
+    public int getResponse() {
+      return response_;
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -12696,6 +12942,9 @@ public final class Chord {
     @java.lang.Override
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
+      if (response_ != 0) {
+        output.writeInt32(1, response_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -12705,6 +12954,10 @@ public final class Chord {
       if (size != -1) return size;
 
       size = 0;
+      if (response_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, response_);
+      }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
       return size;
@@ -12720,6 +12973,8 @@ public final class Chord {
       }
       chord.Chord.RetResponse other = (chord.Chord.RetResponse) obj;
 
+      if (getResponse()
+          != other.getResponse()) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -12731,6 +12986,8 @@ public final class Chord {
       }
       int hash = 41;
       hash = (19 * hash) + getDescriptor().hashCode();
+      hash = (37 * hash) + RESPONSE_FIELD_NUMBER;
+      hash = (53 * hash) + getResponse();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -12859,6 +13116,8 @@ public final class Chord {
       @java.lang.Override
       public Builder clear() {
         super.clear();
+        bitField0_ = 0;
+        response_ = 0;
         return this;
       }
 
@@ -12885,8 +13144,16 @@ public final class Chord {
       @java.lang.Override
       public chord.Chord.RetResponse buildPartial() {
         chord.Chord.RetResponse result = new chord.Chord.RetResponse(this);
+        if (bitField0_ != 0) { buildPartial0(result); }
         onBuilt();
         return result;
+      }
+
+      private void buildPartial0(chord.Chord.RetResponse result) {
+        int from_bitField0_ = bitField0_;
+        if (((from_bitField0_ & 0x00000001) != 0)) {
+          result.response_ = response_;
+        }
       }
 
       @java.lang.Override
@@ -12933,6 +13200,9 @@ public final class Chord {
 
       public Builder mergeFrom(chord.Chord.RetResponse other) {
         if (other == chord.Chord.RetResponse.getDefaultInstance()) return this;
+        if (other.getResponse() != 0) {
+          setResponse(other.getResponse());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -12959,6 +13229,11 @@ public final class Chord {
               case 0:
                 done = true;
                 break;
+              case 8: {
+                response_ = input.readInt32();
+                bitField0_ |= 0x00000001;
+                break;
+              } // case 8
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -12972,6 +13247,51 @@ public final class Chord {
         } finally {
           onChanged();
         } // finally
+        return this;
+      }
+      private int bitField0_;
+
+      private int response_ ;
+      /**
+       * <pre>
+       * 0 is success, 1 is file not found, 2 is some other error
+       * </pre>
+       *
+       * <code>int32 response = 1;</code>
+       * @return The response.
+       */
+      @java.lang.Override
+      public int getResponse() {
+        return response_;
+      }
+      /**
+       * <pre>
+       * 0 is success, 1 is file not found, 2 is some other error
+       * </pre>
+       *
+       * <code>int32 response = 1;</code>
+       * @param value The response to set.
+       * @return This builder for chaining.
+       */
+      public Builder setResponse(int value) {
+        
+        response_ = value;
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return this;
+      }
+      /**
+       * <pre>
+       * 0 is success, 1 is file not found, 2 is some other error
+       * </pre>
+       *
+       * <code>int32 response = 1;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearResponse() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        response_ = 0;
+        onChanged();
         return this;
       }
       @java.lang.Override
@@ -33001,82 +33321,84 @@ public final class Chord {
       "ntHash\030\002 \001(\t\022\020\n\010fileName\030\003 \001(\t\022\022\n\nendOfB" +
       "lock\030\004 \001(\003\022\014\n\004data\030\005 \001(\014\022\'\n\013fileContent\030" +
       "\006 \003(\0132\022.chord.fileContent\"\021\n\017acknowledge" +
-      "ment\"Q\n\nRetRequest\022\020\n\010fileName\030\001 \001(\t\022\014\n\004" +
+      "ment\"y\n\nRetRequest\022\020\n\010fileName\030\001 \001(\t\022\014\n\004" +
       "hash\030\002 \001(\t\022\020\n\010clientIP\030\003 \001(\t\022\021\n\tisConten" +
-      "t\030\004 \001(\010\"\r\n\013RetResponse\"F\n\014BytesRequest\022\r" +
-      "\n\005owner\030\001 \001(\t\022\'\n\013fileContent\030\006 \003(\0132\022.cho" +
-      "rd.fileContent\"\035\n\rBytesResponse\022\014\n\004resp\030" +
-      "\001 \001(\005\"a\n\tFDRequest\022\020\n\010fileName\030\001 \001(\t\022\024\n\014" +
-      "fileRootHash\030\002 \001(\t\022\014\n\004data\030\004 \003(\t\022\017\n\007file" +
-      "Siz\030\005 \001(\003\022\r\n\005owner\030\006 \001(\t\"\032\n\nFDResponse\022\014" +
-      "\n\004resp\030\001 \001(\005\"\030\n\026SuccessorOfNodeRequest\"," +
-      "\n\027SuccessorOfNodeResponse\022\021\n\tsuccessor\030\001" +
-      " \001(\t\"\032\n\030PredecessorOfNodeRequest\"0\n\031Pred" +
-      "ecessorOfNodeReqponse\022\023\n\013predecessor\030\001 \001" +
-      "(\t\"1\n\024SuccessorCallRequest\022\n\n\002id\030\001 \001(\t\022\r" +
-      "\n\005start\030\002 \001(\t\"8\n\022SuccessorCallReply\022\"\n\ts" +
-      "uccessor\030\001 \001(\0132\017.chord.NodeFull\"@\n\030Finge" +
-      "rTableUpdateRequest\022\021\n\titeration\030\002 \001(\005\022\021" +
-      "\n\tstartNode\030\003 \001(\005\",\n\031FingerTableUpdateRe" +
-      "sponse\022\017\n\007success\030\001 \001(\005\"9\n\017UpdateSPReque" +
-      "st\022\021\n\tsuccessor\030\001 \001(\t\022\023\n\013predecessor\030\002 \001" +
-      "(\t\"$\n\020UpdateSPResponse\022\020\n\010response\030\001 \001(\005" +
-      "\"2\n\020AddServerRequest\022\014\n\004port\030\001 \001(\t\022\020\n\010he" +
-      "adNode\030\002 \001(\t\"\"\n\021AddServerResponse\022\r\n\005rep" +
-      "ly\030\001 \001(\005\"\021\n\017NodeInfoRequest\"n\n\020NodeInfoR" +
-      "esponse\022\023\n\013predecessor\030\001 \001(\t\022\021\n\tsuccesso" +
-      "r\030\002 \001(\t\022\"\n\006fTable\030\003 \003(\0132\022.chord.FingerTa" +
-      "ble\022\016\n\006myPort\030\004 \001(\t\"\036\n\020ClosestPFRequest\022" +
-      "\n\n\002id\030\001 \001(\t\"K\n\013FingerTable\022\016\n\006nodeId\030\001 \001" +
-      "(\005\022\r\n\005start\030\002 \001(\001\022\013\n\003end\030\003 \001(\001\022\020\n\010nodePo" +
-      "rt\030\004 \001(\t\"A\n\016ClosestPFReply\022/\n\026closestPre" +
-      "cedingFinger\030\001 \001(\0132\017.chord.NodeFull\"+\n\010N" +
-      "odeFull\022\021\n\tipAddress\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t" +
-      "\"\030\n\026FingerTableListRequest\"c\n\024FingerTabl" +
-      "eListReply\022#\n\007entries\030\001 \003(\0132\022.chord.Fing" +
-      "erEntry\022\021\n\tsuccessor\030\002 \001(\t\022\023\n\013predecesso" +
-      "r\030\003 \001(\t\"\037\n\020InsertKeyRequest\022\013\n\003key\030\001 \001(\t" +
-      "\".\n\016InsertKeyReply\022\016\n\006stored\030\002 \001(\005\022\014\n\004no" +
-      "de\030\001 \001(\t\" \n\021ForwardKeyRequest\022\013\n\003key\030\001 \001" +
-      "(\t\" \n\017ForwardKeyReply\022\r\n\005reply\030\001 \001(\005\"^\n\013" +
-      "FingerEntry\022\020\n\010nodePort\030\001 \001(\t\022\016\n\006nodeId\030" +
-      "\002 \001(\005\022\r\n\005start\030\003 \001(\001\022\013\n\003end\030\004 \001(\001\022\021\n\tite" +
-      "ration\030\005 \001(\005\"1\n\035HeartBeatToPredecessorRe" +
-      "quest\022\020\n\010hostPort\030\003 \001(\t\")\n\033HeartBeatRepl" +
-      "yFromSuccessor\022\n\n\002rc\030\001 \001(\0052\223\006\n\004Node\022@\n\nf" +
-      "orwardKey\022\030.chord.ForwardKeyRequest\032\026.ch" +
-      "ord.ForwardKeyReply\"\000\022@\n\013getNodeData\022\026.c" +
-      "hord.NodeInfoRequest\032\027.chord.NodeInfoRes" +
-      "ponse\"\000\022W\n\theartBeat\022$.chord.HeartBeatTo" +
-      "PredecessorRequest\032\".chord.HeartBeatRepl" +
-      "yFromSuccessor\"\000\022G\n\023closestPrecedFinger\022" +
-      "\027.chord.ClosestPFRequest\032\025.chord.Closest" +
-      "PFReply\"\000\022O\n\032updateSuccessorPredecessor\022" +
-      "\026.chord.UpdateSPRequest\032\027.chord.UpdateSP" +
-      "Response\"\000\022X\n\021updateFingerTable\022\037.chord." +
-      "FingerTableUpdateRequest\032 .chord.FingerT" +
-      "ableUpdateResponse\"\000\022I\n\rsuccessorCall\022\033." +
-      "chord.SuccessorCallRequest\032\031.chord.Succe" +
-      "ssorCallReply\"\000\022[\n\024getPredecessorOfNode\022" +
-      "\037.chord.PredecessorOfNodeRequest\032 .chord" +
-      ".PredecessorOfNodeReqponse\"\000\022U\n\022getSucce" +
-      "ssorOfNode\022\035.chord.SuccessorOfNodeReques" +
-      "t\032\036.chord.SuccessorOfNodeResponse\"\000\022;\n\014c" +
-      "heckIfAlive\022\023.chord.AliveRequest\032\024.chord" +
-      ".AliveResponse\"\0002\221\004\n\013SendReceive\0228\n\tSend" +
-      "Bytes\022\023.chord.BytesRequest\032\024.chord.Bytes" +
-      "Response\"\000\022/\n\006SendFD\022\020.chord.FDRequest\032\021" +
-      ".chord.FDResponse\"\000\022>\n\023retrieveFileReque" +
-      "st\022\021.chord.RetRequest\032\022.chord.RetRespons" +
-      "e\"\000\022<\n\010sendData\022\026.chord.sendDataToOwner\032" +
-      "\026.chord.acknowledgement\"\000\0224\n\treplicate\022\022" +
-      ".chord.sendReplica\032\021.chord.replicaAck\"\000\022" +
-      "T\n\033replicateAsSuccessorDeleted\022\027.chord.r" +
-      "eplicateMyFiles\032\032.chord.replicateMyFiles" +
-      "Ack\"\000\022K\n\026checkIFReplicasPresent\022\027.chord." +
-      "replicaFileNames\032\026.chord.filesNotPresent" +
-      "\"\000\022@\n\024replicateAbsentFiles\022\023.chord.sendF" +
-      "ileData\032\021.chord.replicaAck\"\000b\006proto3"
+      "t\030\004 \001(\010\022\r\n\005owner\030\005 \001(\t\022\027\n\017isDeleteReques" +
+      "t\030\006 \001(\010\"\037\n\013RetResponse\022\020\n\010response\030\001 \001(\005" +
+      "\"F\n\014BytesRequest\022\r\n\005owner\030\001 \001(\t\022\'\n\013fileC" +
+      "ontent\030\006 \003(\0132\022.chord.fileContent\"\035\n\rByte" +
+      "sResponse\022\014\n\004resp\030\001 \001(\005\"a\n\tFDRequest\022\020\n\010" +
+      "fileName\030\001 \001(\t\022\024\n\014fileRootHash\030\002 \001(\t\022\014\n\004" +
+      "data\030\004 \003(\t\022\017\n\007fileSiz\030\005 \001(\003\022\r\n\005owner\030\006 \001" +
+      "(\t\"\032\n\nFDResponse\022\014\n\004resp\030\001 \001(\005\"\030\n\026Succes" +
+      "sorOfNodeRequest\",\n\027SuccessorOfNodeRespo" +
+      "nse\022\021\n\tsuccessor\030\001 \001(\t\"\032\n\030PredecessorOfN" +
+      "odeRequest\"0\n\031PredecessorOfNodeReqponse\022" +
+      "\023\n\013predecessor\030\001 \001(\t\"1\n\024SuccessorCallReq" +
+      "uest\022\n\n\002id\030\001 \001(\t\022\r\n\005start\030\002 \001(\t\"8\n\022Succe" +
+      "ssorCallReply\022\"\n\tsuccessor\030\001 \001(\0132\017.chord" +
+      ".NodeFull\"@\n\030FingerTableUpdateRequest\022\021\n" +
+      "\titeration\030\002 \001(\005\022\021\n\tstartNode\030\003 \001(\005\",\n\031F" +
+      "ingerTableUpdateResponse\022\017\n\007success\030\001 \001(" +
+      "\005\"9\n\017UpdateSPRequest\022\021\n\tsuccessor\030\001 \001(\t\022" +
+      "\023\n\013predecessor\030\002 \001(\t\"$\n\020UpdateSPResponse" +
+      "\022\020\n\010response\030\001 \001(\005\"2\n\020AddServerRequest\022\014" +
+      "\n\004port\030\001 \001(\t\022\020\n\010headNode\030\002 \001(\t\"\"\n\021AddSer" +
+      "verResponse\022\r\n\005reply\030\001 \001(\005\"\021\n\017NodeInfoRe" +
+      "quest\"n\n\020NodeInfoResponse\022\023\n\013predecessor" +
+      "\030\001 \001(\t\022\021\n\tsuccessor\030\002 \001(\t\022\"\n\006fTable\030\003 \003(" +
+      "\0132\022.chord.FingerTable\022\016\n\006myPort\030\004 \001(\t\"\036\n" +
+      "\020ClosestPFRequest\022\n\n\002id\030\001 \001(\t\"K\n\013FingerT" +
+      "able\022\016\n\006nodeId\030\001 \001(\005\022\r\n\005start\030\002 \001(\001\022\013\n\003e" +
+      "nd\030\003 \001(\001\022\020\n\010nodePort\030\004 \001(\t\"A\n\016ClosestPFR" +
+      "eply\022/\n\026closestPrecedingFinger\030\001 \001(\0132\017.c" +
+      "hord.NodeFull\"+\n\010NodeFull\022\021\n\tipAddress\030\001" +
+      " \001(\t\022\014\n\004hash\030\002 \001(\t\"\030\n\026FingerTableListReq" +
+      "uest\"c\n\024FingerTableListReply\022#\n\007entries\030" +
+      "\001 \003(\0132\022.chord.FingerEntry\022\021\n\tsuccessor\030\002" +
+      " \001(\t\022\023\n\013predecessor\030\003 \001(\t\"\037\n\020InsertKeyRe" +
+      "quest\022\013\n\003key\030\001 \001(\t\".\n\016InsertKeyReply\022\016\n\006" +
+      "stored\030\002 \001(\005\022\014\n\004node\030\001 \001(\t\" \n\021ForwardKey" +
+      "Request\022\013\n\003key\030\001 \001(\t\" \n\017ForwardKeyReply\022" +
+      "\r\n\005reply\030\001 \001(\005\"^\n\013FingerEntry\022\020\n\010nodePor" +
+      "t\030\001 \001(\t\022\016\n\006nodeId\030\002 \001(\005\022\r\n\005start\030\003 \001(\001\022\013" +
+      "\n\003end\030\004 \001(\001\022\021\n\titeration\030\005 \001(\005\"1\n\035HeartB" +
+      "eatToPredecessorRequest\022\020\n\010hostPort\030\003 \001(" +
+      "\t\")\n\033HeartBeatReplyFromSuccessor\022\n\n\002rc\030\001" +
+      " \001(\0052\223\006\n\004Node\022@\n\nforwardKey\022\030.chord.Forw" +
+      "ardKeyRequest\032\026.chord.ForwardKeyReply\"\000\022" +
+      "@\n\013getNodeData\022\026.chord.NodeInfoRequest\032\027" +
+      ".chord.NodeInfoResponse\"\000\022W\n\theartBeat\022$" +
+      ".chord.HeartBeatToPredecessorRequest\032\".c" +
+      "hord.HeartBeatReplyFromSuccessor\"\000\022G\n\023cl" +
+      "osestPrecedFinger\022\027.chord.ClosestPFReque" +
+      "st\032\025.chord.ClosestPFReply\"\000\022O\n\032updateSuc" +
+      "cessorPredecessor\022\026.chord.UpdateSPReques" +
+      "t\032\027.chord.UpdateSPResponse\"\000\022X\n\021updateFi" +
+      "ngerTable\022\037.chord.FingerTableUpdateReque" +
+      "st\032 .chord.FingerTableUpdateResponse\"\000\022I" +
+      "\n\rsuccessorCall\022\033.chord.SuccessorCallReq" +
+      "uest\032\031.chord.SuccessorCallReply\"\000\022[\n\024get" +
+      "PredecessorOfNode\022\037.chord.PredecessorOfN" +
+      "odeRequest\032 .chord.PredecessorOfNodeReqp" +
+      "onse\"\000\022U\n\022getSuccessorOfNode\022\035.chord.Suc" +
+      "cessorOfNodeRequest\032\036.chord.SuccessorOfN" +
+      "odeResponse\"\000\022;\n\014checkIfAlive\022\023.chord.Al" +
+      "iveRequest\032\024.chord.AliveResponse\"\0002\221\004\n\013S" +
+      "endReceive\0228\n\tSendBytes\022\023.chord.BytesReq" +
+      "uest\032\024.chord.BytesResponse\"\000\022/\n\006SendFD\022\020" +
+      ".chord.FDRequest\032\021.chord.FDResponse\"\000\022>\n" +
+      "\023retrieveFileRequest\022\021.chord.RetRequest\032" +
+      "\022.chord.RetResponse\"\000\022<\n\010sendData\022\026.chor" +
+      "d.sendDataToOwner\032\026.chord.acknowledgemen" +
+      "t\"\000\0224\n\treplicate\022\022.chord.sendReplica\032\021.c" +
+      "hord.replicaAck\"\000\022T\n\033replicateAsSuccesso" +
+      "rDeleted\022\027.chord.replicateMyFiles\032\032.chor" +
+      "d.replicateMyFilesAck\"\000\022K\n\026checkIFReplic" +
+      "asPresent\022\027.chord.replicaFileNames\032\026.cho" +
+      "rd.filesNotPresent\"\000\022@\n\024replicateAbsentF" +
+      "iles\022\023.chord.sendFileData\032\021.chord.replic" +
+      "aAck\"\000b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -33171,13 +33493,13 @@ public final class Chord {
     internal_static_chord_RetRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetRequest_descriptor,
-        new java.lang.String[] { "FileName", "Hash", "ClientIP", "IsContent", });
+        new java.lang.String[] { "FileName", "Hash", "ClientIP", "IsContent", "Owner", "IsDeleteRequest", });
     internal_static_chord_RetResponse_descriptor =
       getDescriptor().getMessageTypes().get(15);
     internal_static_chord_RetResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_chord_RetResponse_descriptor,
-        new java.lang.String[] { });
+        new java.lang.String[] { "Response", });
     internal_static_chord_BytesRequest_descriptor =
       getDescriptor().getMessageTypes().get(16);
     internal_static_chord_BytesRequest_fieldAccessorTable = new

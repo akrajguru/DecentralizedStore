@@ -1,6 +1,7 @@
 package store.pojo;
 
 
+import Blockchain.SmartContractConnection;
 import store.Logger.LogToFile;
 import store.helper.CalcHelper;
 import store.helper.PersistAndRetrieveMetadata;
@@ -28,6 +29,34 @@ public class Node {
     private String appPath;
     private Map<String,String> successorMap;
     Map<String,List<String>> checkIfDataSentToServerAlready;
+    SmartContractConnection contract;
+    List<String> forceReplication;
+    List<String> garbageCollectedFiles;
+
+
+    public List<String> getGarbageCollectedFiles() {
+        return garbageCollectedFiles;
+    }
+
+    public void setGarbageCollectedFiles(List<String> garbageCollectedFiles) {
+        this.garbageCollectedFiles = garbageCollectedFiles;
+    }
+
+    public List<String> getForceReplication() {
+        return forceReplication;
+    }
+
+    public void setForceReplication(List<String> forceReplication) {
+        this.forceReplication = forceReplication;
+    }
+
+    public SmartContractConnection getContract() {
+        return contract;
+    }
+
+    public void setContract(SmartContractConnection contract) {
+        this.contract = contract;
+    }
 
     public String getAppPath() {
         return appPath;
@@ -90,9 +119,10 @@ public class Node {
             String start = NodeHelper.getFingerStart(i,ipAddress);
             fingertableMap.put(start, new FingerTable(start,new Node(ipAddress)));
         }
+        this.appPath = System.getProperty("user.dir")+"/"+"testData-"+hashId;
     }
 
-    public Node(String ipAddress, boolean fingerTable) {
+    public Node(String ipAddress, boolean fingerTable, SmartContractConnection con) throws Exception {
         this.ipAddress = ipAddress;
         this.hashId = NodeHelper.getNodeHashId(ipAddress);
         this.fingertableMap = new LinkedHashMap<>();
@@ -103,6 +133,8 @@ public class Node {
         }
         this.appPath = System.getProperty("user.dir")+"/"+"StorageMetadata-"+hashId;
         this.successorMap = new LinkedHashMap<>();
+        this.contract=con;
+        contract.storeServerInformation(ipAddress,BigInteger.ZERO,new ArrayList<>());
         File file = new File(this.appPath);
         if(!file.exists()){
             file.mkdir();

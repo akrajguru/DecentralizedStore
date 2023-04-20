@@ -1,5 +1,6 @@
 package store.start;
 
+import Blockchain.SmartContractConnection;
 import chord.Chord;
 import chord.NodeGrpc;
 import io.grpc.Server;
@@ -15,6 +16,8 @@ import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 
@@ -24,13 +27,14 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
     String nodeIP;
     String ipAddressOfKnownNode;
 
+
     public StartNode(Node node,CountDownLatch cd){
         this.node=node;
         this.connectedSignal=  new CountDownLatch(1);
     }
 
 
-    public static void main(String[] args) throws InterruptedException, UnknownHostException, SocketException {
+    public static void main(String[] args) throws Exception {
     //public StartNode(String[] args) {
         String ip=null;
         try {
@@ -41,21 +45,44 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
         String port = args[0];
         String nodeIP = ip + ":" + port;
         String ipAddressOfKnownNode = null;
-        if (args.length == 1) {
+        String contractAddress = null,  credentials=null, networkIp =null;
+        if (args.length == 4) {
             ipAddressOfKnownNode = nodeIP;
-        } else {
+            contractAddress = args[1];
+            credentials=args[2];
+            networkIp=args[3];
+        } else if(args.length == 5){
             ipAddressOfKnownNode = args[1];
+            contractAddress = args[2];
+            credentials=args[3];
+            networkIp=args[4];
+        }else{
+            System.out.println("need either 4 [new node, contractAddress, credentials, network IP] " +
+                    "or 5 [new node, arbitrary node to join a chord ring ,contractAddress, credentials, network IP] " +
+                    "arguments you provided "+ args.length);
+        }
+        SmartContractConnection con=null;
+        try {
+             con = new SmartContractConnection(contractAddress, credentials, networkIp);
+        }catch(Exception e){
+            System.out.println("contract cannot be loaded check info");
+            e.printStackTrace();
+            return;
         }
 //        this.args=args;
 //        this.nodeIP=nodeIP;
 //        this.ipAddressOfKnownNode=ipAddressOfKnownNode;
-        runMethod(args, nodeIP, ipAddressOfKnownNode,new CountDownLatch(1));
+        if(con.checkBalanceServer()) {
+            runMethod(args, nodeIP, ipAddressOfKnownNode, new CountDownLatch(1), con);
+        }else{
+            System.out.println("low on ether");
+        }
         // }
     }
 
 
-    private static void runMethod(String[] args, String nodeIP, String ipAddressOfKnownNode,CountDownLatch cd) {
-        Node node = new Node(nodeIP, true);
+    private static void runMethod(String[] args, String nodeIP, String ipAddressOfKnownNode,CountDownLatch cd,SmartContractConnection con) throws Exception {
+        Node node = new Node(nodeIP, true,con);
         Node arbNode = new Node(ipAddressOfKnownNode);
 
         StartNode startNode = new StartNode(node, cd);
@@ -171,6 +198,10 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 
     @Override
     public void run() {
-        runMethod(args, nodeIP, ipAddressOfKnownNode,connectedSignal);
+        try {
+            runMethod(args, nodeIP, ipAddressOfKnownNode,connectedSignal,null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

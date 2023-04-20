@@ -372,6 +372,38 @@ public class RPCFunctions {
         }
     }
 
+    public static int deleteRequest(String clientIP, String contentId, String fileName, String addressOfArbNode,Node myNode,String owner,boolean isContent) {
+        Node node=null;
+        try {
+            node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,myNode);
+            if(myNode!=null && node.getIpAddress().equals(myNode.getIpAddress())){
+                try {
+                    PersistAndRetrieveMetadata.deleteFileForOwner(contentId, myNode, isContent, owner);
+                }catch (IOException e){
+                    return 1;
+                }
+                return 0;
+            }else {
+                ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
+                        .usePlaintext()
+                        .build();
+                SendReceiveGrpc.SendReceiveBlockingStub sRBlockingStub = SendReceiveGrpc.newBlockingStub(channel);
+                Chord.RetRequest retRequest = Chord.RetRequest.newBuilder().setFileName(fileName).setHash(contentId).
+                        setClientIP(clientIP).setIsContent(isContent).setIsDeleteRequest(true).setOwner(owner).build();
+                Chord.RetResponse resp = sRBlockingStub.retrieveFileRequest(retRequest);
+                channel.shutdown();
+                return resp.getResponse();
+            }
+        }catch (StatusRuntimeException e){
+            if(myNode!=null){
+                myNode.deleteUnavailableNodeInfo(node.getIpAddress());
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return 2;
+    }
+
     public static int replicateCall(Node node, boolean isContent, List<Chord.fileContent> fileContentList,int replicateForward,String primary, String replica){
 
         ManagedChannel channel =null;

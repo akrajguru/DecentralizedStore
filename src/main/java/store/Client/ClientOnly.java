@@ -67,6 +67,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
             System.out.println("3. get file using exact file name");
             System.out.println("4. Show my files stored");
             System.out.println("5. Get a file using shared content ID");
+            System.out.println("6. Delete a file using its name");
             int option = sc.nextInt();
             String nodeAddr=null;
             switch (option) {
@@ -84,7 +85,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
                             String temp = fD.getFileName()+"-"+2;
                             fD.setFileName(temp);
                         }
-                        RPCFunctions.sendFileForStorageOnTheFS(nodeAddr,fD,null,"8089");
+                        RPCFunctions.sendFileForStorageOnTheFS(nodeAddr,fD,null,"NOwns");
                         files.put(fD.getFileName(),fD.getHashOfFile());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
@@ -151,6 +152,20 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
                     nodeAddr = sc.next();
                     RPCFunctions.retrieveRequest("10.0.0.30:8089", contentID2,fileName2, nodeAddr,null);
                     break;
+                case 6:
+                    System.out.println("Enter the file name to be deleted");
+                    String nameToBeDeleted = sc.next();
+                    System.out.println("Enter an existing arbitrary node  ");
+                    nodeAddr = sc.next();
+                    if(files.containsKey(nameToBeDeleted)){
+
+                        RPCFunctions.deleteRequest("10.0.0.30:8089", files.get(nameToBeDeleted), nameToBeDeleted, nodeAddr,null,"NOwns",false);
+
+                    }else{
+                        System.out.println("check the file name again");
+                    }
+                    break;
+
             }
         }while(!quit);
     }

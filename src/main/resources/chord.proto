@@ -126,10 +126,12 @@ message  RetRequest{
   string hash=2;
   string clientIP=3;
   bool isContent=4;
+  string owner=5;
+  bool isDeleteRequest=6;
 }
 
 message RetResponse{
-
+  int32 response=1; // 0 is success, 1 is file not found, 2 is some other error
 }
 
 message BytesRequest {

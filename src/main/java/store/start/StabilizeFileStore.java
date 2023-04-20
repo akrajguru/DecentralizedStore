@@ -9,6 +9,7 @@ import store.pojo.Node;
 import store.pojo.Storage;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -102,8 +103,17 @@ public class StabilizeFileStore extends Thread {
                             .build();
                     // replicate to successor so send true
                     List<String> filesToReplicateSucc=RPCFunctions.sendFileNamesToReplicate(toBeReplicatedFiles,node,chnl,true);
-                    if(filesToReplicateSucc!=null && !filesToReplicateSucc.isEmpty()) {
-                        List<Storage> storageList1 = PersistAndRetrieveMetadata.retrieveFilesAsAList(filesToReplicateSucc, node);
+                    if(node.getForceReplication()==null) {
+                        node.setForceReplication(new ArrayList<>());
+                    }
+                        for(String file: filesToReplicateSucc) {
+                            if (!node.getForceReplication().contains(file)){
+                                node.getForceReplication().add(file);
+                            }
+                        }
+
+                    if(node.getForceReplication()!=null && !node.getForceReplication().isEmpty()) {
+                        List<Storage> storageList1 = PersistAndRetrieveMetadata.retrieveFilesAsAList(node.getForceReplication(), node);
                         RPCFunctions.sendFilesToReplicate(storageList1, node, chnl, true);
                     }
                     chnl.shutdown();
@@ -112,12 +122,27 @@ public class StabilizeFileStore extends Thread {
                             .build();
                     // replicate to predecessor so send true
                     List<String> filesToReplicatePred=RPCFunctions.sendFileNamesToReplicate(toBeReplicatedFiles,node,chnl,false);
-                    if(filesToReplicateSucc!=null && !filesToReplicateSucc.isEmpty()) {
-                        List<Storage> storageListPred = PersistAndRetrieveMetadata.retrieveFilesAsAList(filesToReplicatePred, node);
+                for(String file: filesToReplicatePred) {
+                    if (!node.getForceReplication().contains(file)){
+                        node.getForceReplication().add(file);
+                    }
+                }
+                    if(node.getForceReplication()!=null && !node.getForceReplication().isEmpty()) {
+                        List<Storage> storageListPred = PersistAndRetrieveMetadata.retrieveFilesAsAList(node.getForceReplication(), node);
                         RPCFunctions.sendFilesToReplicate(storageListPred, node, chnl, false);
                     }
                     chnl.shutdown();
 
+                    node.setForceReplication(new ArrayList<>());
+
+                    if(node.getContract()!=null && !node.getStorageInfo().getServerStoreInformation().get("primary").isEmpty()){
+                        if(node.getContract().getInformation(node.getIpAddress()).component2().compareTo(BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size()))!=0) {
+                            node.getContract().storeServerInformation(node.getIpAddress(), BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size())
+                                    , node.getStorageInfo().getServerStoreInformation().get("primary"));
+                        }else{
+                            System.out.println("no update to store on the contract");
+                        }
+                    }
 
             } catch (InterruptedException e) {
                 chnl.shutdown();

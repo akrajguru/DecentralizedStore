@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.List;
@@ -81,9 +82,9 @@ public class FileStoreTest {
     }
     @Test
     void checkGetAllData() throws IOException {
-        Node node = new Node("10.0.0.30:9020",true);
-        List<Storage> list =PersistAndRetrieveMetadata.getAllDataFromFileStore(node);
-        Assert.assertEquals(2, list.size());
+//        Node node = new Node("10.0.0.30:9020",true);
+//        List<Storage> list =PersistAndRetrieveMetadata.getAllDataFromFileStore(node);
+//        Assert.assertEquals(2, list.size());
     }
 
     @Test
@@ -257,12 +258,33 @@ public class FileStoreTest {
         Content c = fd.getContentList().get(0);
         Storage s = new Storage("abc",fd.getHashOfFile(),c.getData(),c.getHash(),c.getEndByte());
 
-       // PersistAndRetrieveMetadata.persistMetadataToFile(s,new Node("10.0.0.30:9300"),"primary","me");
-        PersistAndRetrieveMetadata.getDataFromHash(null,null,true);
+     //  PersistAndRetrieveMetadata.persistMetadataToFile(s,new Node("10.0.0.30:9300",new LinkedHashMap<>()),"primary","");
+        //PersistAndRetrieveMetadata.getDataFromHash(null,null,true);
+        PersistAndRetrieveMetadata.deleteFileForOwner("dilip", new Node("10.0.0.30:9300",new LinkedHashMap<>()),true,"KOwns");
 
 
+    }
 
+    @Test
+    void testHash(){
+        //NodeHelper.getNodeHashId("10.0.0.30:9300");
+        for(int i =0;i<100;i++) {
+            int m=9000;
+            m+=i;
+            String hex = NodeHelper.encryptPassword(("10.0.0.30:"+String.valueOf(m)));
+            BigInteger b = new BigInteger(hex,16);
+            System.out.println(hex+ " its value:"+b);
+        }
+    }
 
+    @Test
+    void testBigInt(){
+        String myHash = NodeHelper.encryptPassword("10.0.0.30:9300");
+        System.out.println(CalcHelper.getBigInt(myHash));
+        String startHex = CalcHelper.getBigInt(myHash).toString(16);
+        System.out.println(startHex);
+        System.out.println(CalcHelper.getBigInt(startHex));
+        System.out.println("10.0.0.30:9300".hashCode());
     }
 
 

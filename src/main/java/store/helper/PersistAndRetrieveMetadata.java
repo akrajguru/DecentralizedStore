@@ -59,6 +59,56 @@ public class PersistAndRetrieveMetadata {
         return storage;
     }
 
+    public static void deleteFileForOwner(String hash, Node node, boolean isContent,String owner) throws IOException {
+        StringBuilder fileName = new StringBuilder();
+        fileName.append(node.getAppPath());
+        fileName.append("/");
+
+        if(isContent){
+            fileName.append("/content");
+            fileName.append("/");
+        }else{
+            fileName.append("/fileDetails");
+            fileName.append("/");
+        }
+        fileName.append(hash);
+        //fileName.append("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/StorageMetadata-79acb9d0c00c0244daf7b95993a27c587a682e286b309712e58e6839dfa8020b/fileDetails/38bb8ad7a3df0184cc667b1eb3b42f9becacaf6f280107d38abf826634ba5480");
+
+        Path filePath = Paths.get(fileName.toString());
+        List<String> data = Files.readAllLines(filePath);
+        String[] owners = data.get(2).split(",");
+        if(owners.length==1 && owners[0].equals(owner)) {
+            //Path p = Files.move(filePath,Paths.get("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/StorageMetadata-79acb9d0c00c0244daf7b95993a27c587a682e286b309712e58e6839dfa8020b/"+hash+"deleted"));
+            Files.delete(filePath);
+            node.getStorageInfo().getServerStoreInformation().get("primary").remove(hash);
+
+            return ;
+        }
+        StringBuilder remainingOwners = new StringBuilder();
+        for(String ownerIt: owners){
+            if(!owner.equals(ownerIt)){
+                remainingOwners.append(ownerIt);
+                remainingOwners.append(",");
+            }
+        }
+        remainingOwners.replace(remainingOwners.length()-1,remainingOwners.length(),"");
+        data.set(2,remainingOwners.toString());
+        updateFile(fileName.toString(),data);
+
+    }
+    private static void updateFile(String file, List<String> arrData)
+            throws IOException {
+        FileWriter writer = new FileWriter(file);
+        int size = arrData.size();
+        for (int i=0;i<size;i++) {
+            String str = arrData.get(i).toString();
+            writer.write(str);
+            if(i < size-1)//This prevent creating a blank like at the end of the file**
+            writer.write("\n");
+        }
+        writer.close();
+    }
+
     public static String persistMetadataToFile(Storage storage, Node node,String typeOfFile,String owner) throws IOException {
 
         StringBuilder metaData = new StringBuilder();
@@ -78,7 +128,12 @@ public class PersistAndRetrieveMetadata {
         }
         String fileLocation = path.toString()+"/"+ fileName.toString();
         File file = new File(fileLocation);
-        write = checkIfFileForSameOwnerExists(owner, metaData, fileLocation, file, write);
+        if(typeOfFile.equals("primary")) {
+            write = checkIfFileForSameOwnerExists(owner, metaData, fileLocation, file, write);
+        }else{
+            metaData.append(owner);
+            metaData.append("\n");
+        }
         if(storage.isContainsContent()){
             metaData.append(storage.getContentHash());
             metaData.append("\n");
@@ -104,19 +159,26 @@ public class PersistAndRetrieveMetadata {
         FileWriter writer = new FileWriter(file);
         writer.append(metaData);
         writer.close();
+        if(write) {
+            if (typeOfFile.equals("primary")) {
+                if (node.getForceReplication() == null) {
+                    node.setForceReplication(new ArrayList<>());
+                }
+                node.getForceReplication().add(fileName.toString());
+            }
+        }
 
         return fileLocation;
     }
 
     private static boolean checkIfFileForSameOwnerExists(String owner, StringBuilder metaData, String fileLocation, File file, boolean write) throws IOException {
-
         if(file.exists()) {
             List<String> fileContents = Files.readAllLines(Paths.get(fileLocation));
             String owners= fileContents.get(2);
             String[] ownerArr = owners.split(",");
             if (ownerArr.length > 0) {
                 for (String s : ownerArr) {
-                    if (s.equals(owner)) {
+                    if (s.equals(owner) || owner.isBlank()) {
                         write = false;
                     }
                 }

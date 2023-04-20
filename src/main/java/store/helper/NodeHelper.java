@@ -2,6 +2,7 @@ package store.helper;
 
 import store.pojo.Node;
 
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -10,6 +11,7 @@ import java.net.SocketException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
+import java.util.Formatter;
 
 public class NodeHelper {
 
@@ -17,6 +19,7 @@ public class NodeHelper {
     public static String getNodeHashId(String ipAddress) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
+            //MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] hashBytes = md.digest(ipAddress.getBytes());
             String hashHex = bytesToHex(hashBytes);
             return hashHex;
@@ -69,6 +72,51 @@ public class NodeHelper {
             }
         }
         return null;
+    }
+
+    private static final int FNV_OFFSET_BASIS_32 = 0x811c9dc5;
+    private static final int FNV_PRIME_32 = 0x01000193;
+
+    public static int hash32(byte[] data) {
+        int hash = FNV_OFFSET_BASIS_32;
+        for (byte b : data) {
+            hash ^= (b & 0xff); // XOR the low 8 bits of the byte into the hash
+            hash *= FNV_PRIME_32;
+        }
+        return hash;
+    }
+
+    public static String encryptPassword(String password)
+    {
+        String sha1 = "";
+        try
+        {
+            MessageDigest crypt = MessageDigest.getInstance("MD5");
+            crypt.reset();
+            crypt.update(password.getBytes("UTF-8"));
+            sha1 = byteToHex(crypt.digest());
+        }
+        catch(NoSuchAlgorithmException e)
+        {
+            e.printStackTrace();
+        }
+        catch(UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        }
+        return sha1;
+    }
+
+    private static String byteToHex(final byte[] hash)
+    {
+        Formatter formatter = new Formatter();
+        for (byte b : hash)
+        {
+            formatter.format("%02x", b);
+        }
+        String result = formatter.toString();
+        formatter.close();
+        return result;
     }
 
 

@@ -17,10 +17,7 @@ import store.pojo.Node;
 import store.pojo.Storage;
 
 import java.awt.*;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -108,33 +105,45 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         String rootHash = request.getHash();
         String  clientIP= request.getClientIP();
         Storage store=null;
-        Chord.RetResponse.Builder resp = Chord.RetResponse.newBuilder();
-        Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), request.getHash(),null);
-        if(!node1.getIpAddress().equals(node.getIpAddress())) {
-            retrieveRequest(store.getRootHash(), store.getFileName(), node1.getIpAddress());
-        }else {
+        Chord.RetResponse resp =null;
+        try {
             if (!request.getIsContent()) {
-                try {
                     store = PersistAndRetrieveMetadata.getDataFromHash(rootHash, node, false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
                 if (!store.isContainsContent()) {
-                    for (String content : store.getContentList()) {
-                        forwardRequestToRespectiveServers(fileName, clientIP, content);
-                    }
+                        for (String content : store.getContentList()) {
+                            if(request.getIsDeleteRequest()){
+                                int r=RPCFunctions.deleteRequest(request.getClientIP(),content,request.getFileName(),
+                                        node.getIpAddress(),node,request.getOwner(),true);
+                                resp = Chord.RetResponse.newBuilder().setResponse(r).build();
+                            }else{
+                                forwardRequestToRespectiveServers(fileName, clientIP, content);
+                                resp = Chord.RetResponse.newBuilder().setResponse(0).build();
+                            }
+                        }
                 }
             } else {
-                try {
+                if(request.getIsDeleteRequest()){
+                    PersistAndRetrieveMetadata.deleteFileForOwner(rootHash,node,true,request.getOwner());
+                }else {
                     store = PersistAndRetrieveMetadata.getDataFromHash(rootHash, node, true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-
+                    sendDataToOwner(fileName, clientIP, store);
                 }
-                sendDataToOwner(fileName, clientIP, store);
+                resp = Chord.RetResponse.newBuilder().setResponse(0).build();
             }
+            PersistAndRetrieveMetadata.deleteFileForOwner(rootHash,node,false,request.getOwner());
+
+        }catch(IOException e){
+            Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), request.getHash(),null);
+            if(!node1.getIpAddress().equals(node.getIpAddress())) {
+            int r = retrieveRequest(store.getRootHash(), store.getFileName(), node1.getIpAddress());
+                resp = Chord.RetResponse.newBuilder().setResponse(r).build();
+        }else {
+                resp = Chord.RetResponse.newBuilder().setResponse(1).build();
         }
-        responseObserver.onNext(resp.build());
+        }catch(Exception e){
+            resp = Chord.RetResponse.newBuilder().setResponse(2).build();
+        }
+        responseObserver.onNext(resp);
         responseObserver.onCompleted();
     }
 
@@ -253,7 +262,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
 
     }
 
-    private void retrieveRequest(String contentId, String fileName, String addressOfArbNode) {
+    private int retrieveRequest(String contentId, String fileName, String addressOfArbNode) {
         Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,null);
         ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()
@@ -263,6 +272,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         Chord.RetRequest retRequest = Chord.RetRequest.newBuilder().setFileName(fileName).setHash(contentId).
                 setClientIP("10.0.0.30:8085").setIsContent(false).build();
         Chord.RetResponse resp = sRBlockingStub.retrieveFileRequest(retRequest);
+        return resp.getResponse();
     }
 
     private void checkRoothash(String rootHash,String gilename) throws NoSuchAlgorithmException, IOException {
