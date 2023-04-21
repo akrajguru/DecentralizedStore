@@ -14,4 +14,10 @@ public class CalcHelper {
         if(ret.compareTo(BigInteger.ZERO) !=1) ret=ret.add(BigInteger.valueOf(2).pow(256));
         return ret;
     }
+
+    public static long calculateRelID32(long nDSuccessor_id, long nDId) {
+        double ret = nDSuccessor_id - nDId;
+        if(ret <=0) ret=ret +(Math.pow(2,32));
+        return (long)ret;
+    }
 }

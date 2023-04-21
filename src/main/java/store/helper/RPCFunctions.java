@@ -52,7 +52,7 @@ public class RPCFunctions {
         //return successorPort;
         return null;
     }
-    public static Node closestPrecedingFingerCall(Node myNode, Node newNd, BigInteger id) {
+    public static Node closestPrecedingFingerCall(Node myNode, Node newNd, long id) {
         ManagedChannel channel =null;
         try {
              channel = ManagedChannelBuilder.forTarget(newNd.getIpAddress()).usePlaintext().build();
@@ -207,7 +207,7 @@ public class RPCFunctions {
     public static void sendFileForStorageOnTheFS(String nodeAddr, FileDetails fD,Node myNode,String owner) {
 
         try {
-            Node node = RPCFunctions.findSuccessorCall(nodeAddr, fD.getHashOfFile(),myNode);
+            Node node = RPCFunctions.findSuccessorCall(nodeAddr, String.valueOf(NodeHelper.fnv1aModifiedHash(fD.getHashOfFile())),myNode);
             ManagedChannel channel1 = ManagedChannelBuilder.forTarget(node.getIpAddress())
                     .usePlaintext()
                     .build();
@@ -219,7 +219,7 @@ public class RPCFunctions {
             Map<String, List<Content>> senderMap = new LinkedHashMap<>();
             if (resp.getResp() == 1) {
                 for (Content content : fD.getContentList()) {
-                   Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, content.getHash(),node);
+                   Node nodeSucc = RPCFunctions.findSuccessorCall(nodeAddr, String.valueOf(NodeHelper.fnv1aModifiedHash(content.getHash())),node);
                    if(senderMap.containsKey(nodeSucc.getIpAddress())){
                        List<Content> list = senderMap.get(nodeSucc.getIpAddress());
                        list.add(content);
@@ -353,7 +353,7 @@ public class RPCFunctions {
     public static void retrieveRequest(String clientIP, String contentId, String fileName, String addressOfArbNode,Node myNode) {
         Node node=null;
         try {
-             node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,myNode);
+             node = RPCFunctions.findSuccessorCall(addressOfArbNode, String.valueOf(NodeHelper.fnv1aModifiedHash(contentId)),myNode);
             ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                     .usePlaintext()
                     .build();
@@ -375,7 +375,7 @@ public class RPCFunctions {
     public static int deleteRequest(String clientIP, String contentId, String fileName, String addressOfArbNode,Node myNode,String owner,boolean isContent) {
         Node node=null;
         try {
-            node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,myNode);
+            node = RPCFunctions.findSuccessorCall(addressOfArbNode, String.valueOf(NodeHelper.fnv1aModifiedHash(contentId)),myNode);
             if(myNode!=null && node.getIpAddress().equals(myNode.getIpAddress())){
                 try {
                     PersistAndRetrieveMetadata.deleteFileForOwner(contentId, myNode, isContent, owner);

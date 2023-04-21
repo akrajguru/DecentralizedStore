@@ -26,6 +26,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
     String args[];
     String nodeIP;
     String ipAddressOfKnownNode;
+    SmartContractConnection con;
 
 
     public StartNode(Node node,CountDownLatch cd){
@@ -35,7 +36,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 
 
     public static void main(String[] args) throws Exception {
-    //public StartNode(String[] args) {
+    //public StartNode(String[] args) throws Exception {
         String ip=null;
         try {
              ip = NodeHelper.getIPAddress();
@@ -133,8 +134,8 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
     @Override
     public void closestPrecedFinger(Chord.ClosestPFRequest request, StreamObserver<Chord.ClosestPFReply> responseObserver) {
 
-        BigInteger start =new BigInteger(request.getId());
-        Node retPort = node.closestPreceedingFinger(start, CalcHelper.getBigInt(node.getHashId()),node);
+        //BigInteger start =new BigInteger(request.getId());
+        Node retPort = node.closestPreceedingFinger(Long.valueOf(request.getId()), Long.valueOf(node.getHashId()),node);
         Chord.ClosestPFReply.Builder resp = Chord.ClosestPFReply.newBuilder();
         Chord.NodeFull nodeFull = Chord.NodeFull.newBuilder().setIpAddress(retPort.getIpAddress()).setHash(node.getHashId()).build();
         resp.setClosestPrecedingFinger(nodeFull);
@@ -171,7 +172,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
     @Override
     public void successorCall(Chord.SuccessorCallRequest request, StreamObserver<Chord.SuccessorCallReply> responseObserver) {
         String start =request.getId();
-        String retPort = node.findSuccessor(CalcHelper.getBigInt(start),node);
+        String retPort = node.findSuccessor(Long.valueOf(start),node);
         Chord.SuccessorCallReply.Builder resp = Chord.SuccessorCallReply.newBuilder();
         Chord.NodeFull nodeFull = Chord.NodeFull.newBuilder().setIpAddress(retPort).build();
         resp.setSuccessor(nodeFull);
@@ -199,7 +200,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
     @Override
     public void run() {
         try {
-            runMethod(args, nodeIP, ipAddressOfKnownNode,connectedSignal,null);
+            runMethod(args, nodeIP, ipAddressOfKnownNode,connectedSignal,con);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

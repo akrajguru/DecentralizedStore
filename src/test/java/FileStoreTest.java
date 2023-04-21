@@ -1,4 +1,5 @@
 import junit.framework.Assert;
+import org.apache.zookeeper.common.Time;
 import org.junit.jupiter.api.Test;
 import store.Logger.LogToFile;
 import store.helper.CalcHelper;
@@ -134,9 +135,9 @@ public class FileStoreTest {
         node.addEntryToSuccessorMap("10.0.0.30:9020","10.0.0.30:9030");
         List<String> alKeys = new ArrayList<>(node.getFingertableMap().keySet());
         Collections.reverse(alKeys);
-        node.getFingertableMap().put(alKeys.get(0),new FingerTable(alKeys.get(0),node.getSuccessor()));
-        node.getFingertableMap().put(alKeys.get(1),new FingerTable(alKeys.get(1),node.getSuccessor()));
-        node.getFingertableMap().put(alKeys.get(2),new FingerTable(alKeys.get(2),node.getSuccessor()));
+//        node.getFingertableMap().put(alKeys.get(0),new FingerTable(alKeys.get(0),node.getSuccessor()));
+//        node.getFingertableMap().put(alKeys.get(1),new FingerTable(alKeys.get(1),node.getSuccessor()));
+//        node.getFingertableMap().put(alKeys.get(2),new FingerTable(alKeys.get(2),node.getSuccessor()));
         node.deleteUnavailableNodeInfo("10.0.0.30:9030");
 
 
@@ -279,16 +280,39 @@ public class FileStoreTest {
 
     @Test
     void testBigInt(){
-        String myHash = NodeHelper.encryptPassword("10.0.0.30:9300");
-        System.out.println(CalcHelper.getBigInt(myHash));
-        String startHex = CalcHelper.getBigInt(myHash).toString(16);
-        System.out.println(startHex);
-        System.out.println(CalcHelper.getBigInt(startHex));
-        System.out.println("10.0.0.30:9300".hashCode());
+        long t1 = System.currentTimeMillis();
+        long myHash = NodeHelper.fnv1aModifiedHash("3876a69b5a67d0b907c1767afd48a2fb2446ab3883e05acc7ee99ae6caa3799c");
+        long t2 =System.currentTimeMillis();
+        long t3=t2-t1;
+        System.out.println("time req"+t3);
+        System.out.println(myHash);
+         t1 = System.currentTimeMillis();
+        String myHash2 = NodeHelper.getNodeHashId("10.0.0.30:9800");
+         t2 =System.currentTimeMillis();
+         t3=t2-t1;
+        System.out.println("time req"+t3);
+
+
+//        System.out.println(CalcHelper.getBigInt(myHash));
+//        String startHex = CalcHelper.getBigInt(myHash).toString(16);
+//        System.out.println(startHex);
+//        System.out.println(CalcHelper.getBigInt(startHex));
+//        System.out.println("10.0.0.30:9300".hashCode());
+//        System.out.println(myHash);
+//        System.out.println(BigInteger.valueOf(0xFFFFFFFFL));
     }
 
-
+    @Test
+    void testFinger(){
+        System.out.println(NodeHelper.fnv1aModifiedHash("10.0.0.30:9304"));
+        for(int i =1;i<=32;i++) {
+            long a = NodeHelper.getFingerStart32(i, "172.16.0.30:9304");
+            System.out.println(a);
+        }
+    }
 }
 // x = 9388678843049699872693523751868732993745455895450095253087370288178975330688
 //succ_rel_id = 104746184419508495330189265421246045466027213160551391808614594263847840006779
 // x_relid =    70145733255680817016647183804354613911377163843883562658187451729054354231157
+
+

@@ -26,19 +26,19 @@ public class Stabilize extends Thread {
                 Node xNode = RPCFunctions.getPredecessorOfNode(node.getSuccessor(), node);
                 if (xNode != null) {
                    // System.out.println("X node is not null"+ xNode.getIpAddress());
-                    BigInteger x = CalcHelper.getBigInt(xNode.getHashId());
+                    long x = Long.valueOf(xNode.getHashId());
                    // System.out.println("x ="+ x);
-                    BigInteger succ_rel_id = CalcHelper.calculateRelID(CalcHelper.getBigInt(node.getSuccessor().getHashId()), CalcHelper.getBigInt(node.getHashId()));
+                    long succ_rel_id = CalcHelper.calculateRelID32(Long.valueOf(node.getSuccessor().getHashId()), Long.valueOf(node.getHashId()));
                    // System.out.println("succ_rel_id ="+ succ_rel_id);
-                    BigInteger x_rel_id = CalcHelper.calculateRelID(x, CalcHelper.getBigInt(node.getHashId()));
+                    long x_rel_id = CalcHelper.calculateRelID32(x, Long.valueOf(node.getHashId()));
                    // System.out.println("x_rel_id ="+ x_rel_id);
-                    if (x_rel_id.compareTo(BigInteger.ZERO) == 1 && x_rel_id.compareTo(succ_rel_id) < 0) {
+                    if (x_rel_id> 0 && x_rel_id<succ_rel_id) {
                         node.setSuccessor(xNode);
                         System.out.println("setting succ: "+ xNode.getIpAddress() );
                         node.addEntryToSuccessorMap(node.getIpAddress(), xNode.getIpAddress());
                         // delete entries from map so that new succ/pred can receieve files from stablize filestore
                         //null pointer check TODO
-                        if(node.getCheckIfDataSentToServerAlready().containsKey(node.getPredecessor().getIpAddress())){
+                        if(node.getPredecessor()!=null && node.getCheckIfDataSentToServerAlready().containsKey(node.getPredecessor().getIpAddress())){
                             node.getCheckIfDataSentToServerAlready().remove(node.getPredecessor().getIpAddress());
                         }
                         if(node.getCheckIfDataSentToServerAlready().containsKey(node.getSuccessor().getIpAddress())){

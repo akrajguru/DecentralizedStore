@@ -7,10 +7,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 import store.Client.Client;
-import store.helper.CalcHelper;
-import store.helper.HashSHA256StoreHelper;
-import store.helper.PersistAndRetrieveMetadata;
-import store.helper.RPCFunctions;
+import store.helper.*;
 import store.pojo.Content;
 import store.pojo.FileDetails;
 import store.pojo.Node;
@@ -133,7 +130,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
             PersistAndRetrieveMetadata.deleteFileForOwner(rootHash,node,false,request.getOwner());
 
         }catch(IOException e){
-            Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), request.getHash(),null);
+            Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), String.valueOf(NodeHelper.fnv1aModifiedHash(request.getHash())),null);
             if(!node1.getIpAddress().equals(node.getIpAddress())) {
             int r = retrieveRequest(store.getRootHash(), store.getFileName(), node1.getIpAddress());
                 resp = Chord.RetResponse.newBuilder().setResponse(r).build();
@@ -168,7 +165,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
         Chord.RetResponse resp;
         Chord.RetRequest retRequest;
         try {
-            String succ = node.findSuccessor(CalcHelper.getBigInt(content), node);
+            String succ = node.findSuccessor(NodeHelper.fnv1aModifiedHash(content), node);
             channel = ManagedChannelBuilder.forTarget(succ)
                     .usePlaintext()
                     .build();
@@ -263,7 +260,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
     }
 
     private int retrieveRequest(String contentId, String fileName, String addressOfArbNode) {
-        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, contentId,null);
+        Node node = RPCFunctions.findSuccessorCall(addressOfArbNode, String.valueOf(NodeHelper.fnv1aModifiedHash(contentId)),null);
         ManagedChannel channel = ManagedChannelBuilder.forTarget(node.getIpAddress())
                 .usePlaintext()
                 .build();

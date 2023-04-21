@@ -3,6 +3,7 @@ package store.start;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import store.helper.CalcHelper;
+import store.helper.NodeHelper;
 import store.helper.PersistAndRetrieveMetadata;
 import store.helper.RPCFunctions;
 import store.pojo.Node;
@@ -36,7 +37,7 @@ public class StabilizeFileStore extends Thread {
                     for (Storage storage : storageList) {
                         String iP;
                         if (storage.isContainsContent()) {
-                            iP = node.findSuccessor(CalcHelper.getBigInt(storage.getContentHash()), node);
+                            iP = node.findSuccessor(NodeHelper.fnv1aModifiedHash(storage.getContentHash()), node);
                             if (!node.getIpAddress().equals(iP)) {
                                 if (!checkIfDataSentToServerAlready.containsKey(iP) || !checkIfDataSentToServerAlready.get(iP).contains(storage.getContentHash())) {
                                     //TODO
@@ -61,7 +62,7 @@ public class StabilizeFileStore extends Thread {
                                 }
                             }
                         } else {
-                            iP = node.findSuccessor(CalcHelper.getBigInt(storage.getRootHash()), node);
+                            iP = node.findSuccessor(NodeHelper.fnv1aModifiedHash(storage.getRootHash()), node);
                             if (!node.getIpAddress().equals(iP)) {
                                 if (!checkIfDataSentToServerAlready.containsKey(iP) || !checkIfDataSentToServerAlready.get(iP).contains(storage.getRootHash())) {
                                     RPCFunctions.sendFileDetailsToNode(storage, iP,node);
@@ -135,14 +136,14 @@ public class StabilizeFileStore extends Thread {
 
                     node.setForceReplication(new ArrayList<>());
 
-                    if(node.getContract()!=null && !node.getStorageInfo().getServerStoreInformation().get("primary").isEmpty()){
-                        if(node.getContract().getInformation(node.getIpAddress()).component2().compareTo(BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size()))!=0) {
-                            node.getContract().storeServerInformation(node.getIpAddress(), BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size())
-                                    , node.getStorageInfo().getServerStoreInformation().get("primary"));
-                        }else{
-                            System.out.println("no update to store on the contract");
-                        }
-                    }
+//                    if(node.getContract()!=null && !node.getStorageInfo().getServerStoreInformation().get("primary").isEmpty()){
+//                        if(node.getContract().getInformation(node.getIpAddress()).component2().compareTo(BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size()))!=0) {
+//                            node.getContract().storeServerInformation(node.getIpAddress(), BigInteger.valueOf(node.getStorageInfo().getServerStoreInformation().get("primary").size())
+//                                    , node.getStorageInfo().getServerStoreInformation().get("primary"));
+//                        }else{
+//                            System.out.println("no update to store on the contract");
+//                        }
+//                    }
 
             } catch (InterruptedException e) {
                 chnl.shutdown();

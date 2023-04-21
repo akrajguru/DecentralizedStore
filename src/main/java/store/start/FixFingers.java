@@ -27,11 +27,11 @@ public class FixFingers extends Thread{
             //System.out.println("in fingerfixer");
             try {
                 Thread.sleep(100);
-                int i = rand.nextInt(256);
+                int i = rand.nextInt(32);
                 List keyList = new ArrayList(node.getFingertableMap().keySet());
                 Object key = keyList.get(i);
-                String start = node.getFingertableMap().get(key).getStart();
-                String node1 = node.findSuccessor(CalcHelper.getBigInt(start), node);
+                long start = node.getFingertableMap().get(key).getStart();
+                String node1 = node.findSuccessor(start, node);
                 node.getFingertableMap().get(key).setNode(new Node(node1));
                 String successor = RPCFunctions.getSuccessorOfNode(node1, node);
                 if (successor != null) {

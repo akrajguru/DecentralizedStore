@@ -8,6 +8,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Enumeration;
@@ -39,6 +40,19 @@ public class NodeHelper {
             startHex = String.format("%0" + (64 - startHex.length()) + "d%s", 0, startHex);
         }
         return startHex;
+    }
+
+    public static long getFingerStart32(int k, String ipAddress) {
+        long hashHex = fnv1aModifiedHash(ipAddress);
+       // BigInteger hashInt = new BigInteger(hashHex, 16);
+        double m = Math.pow(2,32);
+        double start = (hashHex +(Math.pow(2,k-1))) %m ;
+//        String startHex = start.toString(16);
+//        if (startHex.length() < 64) {
+//            // pad with zeros to ensure consistent length
+//            startHex = String.format("%0" + (64 - startHex.length()) + "d%s", 0, startHex);
+//        }
+        return (long)start;
     }
 
     public Node getFingerSuccessor(int k) {
@@ -117,6 +131,17 @@ public class NodeHelper {
         String result = formatter.toString();
         formatter.close();
         return result;
+    }
+
+    public static long fnv1aModifiedHash(String data1) {
+        byte[] data = data1.getBytes(StandardCharsets.UTF_8);
+        final int prime = 0x01000193;
+        long hash = 0x811c9dc5;
+        for (byte b : data) {
+            hash ^= b;
+            hash *= prime;
+        }
+        return hash & 0xFFFFFFFFL;
     }
 
 

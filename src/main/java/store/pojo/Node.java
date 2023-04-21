@@ -108,28 +108,32 @@ public class Node {
 
     public Node(String ipAddress) {
         this.ipAddress = ipAddress;
-        this.hashId = NodeHelper.getNodeHashId(ipAddress);
+        this.hashId = String.valueOf(NodeHelper.fnv1aModifiedHash(ipAddress));
 
     }
 
     public Node(String ipAddress, LinkedHashMap map){
         this.ipAddress = ipAddress;
         this.fingertableMap = map;
-        for (int i = 1; i <= 256; i++) {
-            String start = NodeHelper.getFingerStart(i,ipAddress);
-            fingertableMap.put(start, new FingerTable(start,new Node(ipAddress)));
+        for (int i = 1; i <= 32; i++) {
+            //String start = NodeHelper.getFingerStart(i,ipAddress);
+            long start = NodeHelper.getFingerStart32(i,ipAddress);
+            fingertableMap.put(String.valueOf(start), new FingerTable(start,new Node(ipAddress)));
         }
         this.appPath = System.getProperty("user.dir")+"/"+"testData-"+hashId;
     }
 
     public Node(String ipAddress, boolean fingerTable, SmartContractConnection con) throws Exception {
         this.ipAddress = ipAddress;
-        this.hashId = NodeHelper.getNodeHashId(ipAddress);
+        //this.hashId = NodeHelper.getNodeHashId(ipAddress);
+        this.hashId = String.valueOf(NodeHelper.fnv1aModifiedHash(ipAddress));
         this.fingertableMap = new LinkedHashMap<>();
         // initialize fingertable entries
-        for (int i = 1; i <= 256; i++) {
-            String start = NodeHelper.getFingerStart(i,ipAddress);
-            fingertableMap.put(start, new FingerTable(start,new Node(ipAddress)));
+        for (int i = 1; i <= 32; i++) {
+            //String start = NodeHelper.getFingerStart(i,ipAddress);
+            long start = NodeHelper.getFingerStart32(i,ipAddress);
+            fingertableMap.put(String.valueOf(start), new FingerTable(start,new Node(ipAddress)));
+
         }
         this.appPath = System.getProperty("user.dir")+"/"+"StorageMetadata-"+hashId;
         this.successorMap = new LinkedHashMap<>();
@@ -183,7 +187,7 @@ public class Node {
 
     }
 
-    public  String findSuccessor(BigInteger id, Node myNode){
+    public  String findSuccessor(long id, Node myNode){
         Node nD = myNode.findPredecessor(id,myNode);
         //get the node info from string
         if(nD.getIpAddress().equals(getIpAddress())){
@@ -192,24 +196,26 @@ public class Node {
         return RPCFunctions.getSuccessorOfNode(nD.getIpAddress(),this);
     }
 
-    public  Node findPredecessor(BigInteger id,Node myNode) {
+    public  Node findPredecessor(long id,Node myNode) {
         // my nodes hex string and bigInt value
         String myNodeHex = myNode.getHashId();
-        BigInteger myNodeBigInt = CalcHelper.getBigInt(myNodeHex);
+       // BigInteger myNodeBigInt = CalcHelper.getBigInt(myNodeHex);
+        long myNodeLong = Long.valueOf(myNodeHex);
         // my successor node's hex string and bigInt value
         String mySuccessorHex = myNode.getSuccessor().getHashId();
-        BigInteger mySuccessorBigInt = CalcHelper.getBigInt(mySuccessorHex);
+        //BigInteger mySuccessorBigInt = CalcHelper.getBigInt(mySuccessorHex);
+        long mySuccessorLong = Long.valueOf(mySuccessorHex);
         String nDSuccessor = null;
         String newNd = myNodeHex;
-        BigInteger succRelativeId = CalcHelper.calculateRelID(mySuccessorBigInt,myNodeBigInt);
-        BigInteger relativeID = CalcHelper.calculateRelID(id,myNodeBigInt);
+        long succRelativeId = CalcHelper.calculateRelID32(mySuccessorLong,myNodeLong);
+        long relativeID = CalcHelper.calculateRelID32(id,myNodeLong);
         String prevMem = null;
         //initialize newNode as my node as at the start its going ti go in if statement and then resset the newNode from closestPreceedingFinger call.
         Node newNode=myNode;
-        while(!(relativeID.compareTo(BigInteger.ZERO)==1 &&  relativeID.compareTo(succRelativeId) <=0)){
+        while(!(relativeID>0 &&  relativeID <=succRelativeId)){
 
             if(newNd.equals(myNodeHex)) {
-                newNode = closestPreceedingFinger(id,myNodeBigInt,myNode);
+                newNode = closestPreceedingFinger(id,myNodeLong,myNode);
                 newNd= newNode.getHashId();
             }else{
                 newNode = RPCFunctions.closestPrecedingFingerCall(myNode,newNode,id);
@@ -219,33 +225,37 @@ public class Node {
             if(prevMem!=null && prevMem==newNd) return newNode;
             if(newNd.equals(myNodeHex)) return newNode;
             if(prevMem==null) prevMem=newNd;
-            myNodeBigInt =CalcHelper.getBigInt(newNd);
-            relativeID = CalcHelper.calculateRelID(id,myNodeBigInt);
+            myNodeLong =Long.valueOf(newNd);
+            relativeID = CalcHelper.calculateRelID32(id,myNodeLong);
             // here we might need the whole node object for newNd as we need the ip address
             if(myNode.getIpAddress().equals(newNode.getIpAddress())){
                 nDSuccessor = myNode.getSuccessor().getIpAddress();
             }else {
                 nDSuccessor = RPCFunctions.getSuccessorOfNode(newNode.getIpAddress(),this);
             }
-            mySuccessorHex = NodeHelper.getNodeHashId(nDSuccessor);
+            mySuccessorHex = String.valueOf(NodeHelper.fnv1aModifiedHash(nDSuccessor));
             //  System.out.println("successor of"+ newNd+" is "+ nDSuccessor+"while finding id: "+ id);
-            mySuccessorBigInt=CalcHelper.getBigInt(mySuccessorHex);
-            succRelativeId = CalcHelper.calculateRelID(mySuccessorBigInt,myNodeBigInt);
+            mySuccessorLong=Long.valueOf(mySuccessorHex);
+            succRelativeId = CalcHelper.calculateRelID32(mySuccessorLong,myNodeLong);
         }
         return newNode;
     }
 
 
 
-    public  Node closestPreceedingFinger(BigInteger id,BigInteger myNodeId,Node myNode) {
-        BigInteger relativeId = CalcHelper.calculateRelID(id,myNodeId);
+    public  Node closestPreceedingFinger(long id,long myNodeId,Node myNode) {
+        long relativeId = CalcHelper.calculateRelID32(id,myNodeId);
         Set<String> keySet = myNode.getFingertableMap().keySet();
         List<String> setList = new ArrayList<>(keySet);
         setList.sort(Collections.reverseOrder());
-        if(myNode.getFingertableMap().size()==256) {
+        if(myNode.getFingertableMap().size()==32) {
             for (String key:setList) {
-                BigInteger ithRelativeId = CalcHelper.calculateRelID(CalcHelper.getBigInt(myNode.getFingertableMap().get(key).getNode().getHashId()), myNodeId);
-                if (ithRelativeId.compareTo(BigInteger.ZERO) == 1 && ithRelativeId.compareTo(relativeId) ==-1) {
+//                BigInteger ithRelativeId = CalcHelper.calculateRelID(CalcHelper.getBigInt(myNode.getFingertableMap().get(key).getNode().getHashId()), myNodeId);
+//                if (ithRelativeId.compareTo(BigInteger.ZERO) == 1 && ithRelativeId.compareTo(relativeId) ==-1) {
+//                    return new Node(myNode.getFingertableMap().get(key).getNode().getIpAddress());
+//                }
+                long ithRelativeId = CalcHelper.calculateRelID32(Long.valueOf(myNode.getFingertableMap().get(key).getNode().getHashId()),myNodeId);
+                if(ithRelativeId>0 && ithRelativeId<relativeId){
                     return new Node(myNode.getFingertableMap().get(key).getNode().getIpAddress());
                 }
             }

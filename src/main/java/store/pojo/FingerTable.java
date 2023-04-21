@@ -1,24 +1,24 @@
 package store.pojo;
 
 public class FingerTable {
-    String start;
+    long start;
 
     Node node;
 
-    public FingerTable(String start) {
+    public FingerTable(long start) {
         this.start = start;
     }
 
-    public FingerTable(String start,Node node) {
+    public FingerTable(long start,Node node) {
         this.start = start;
         this.node = node;
     }
 
-    public String getStart() {
+    public long getStart() {
         return start;
     }
 
-    public void setStart(String start) {
+    public void setStart(long start) {
         this.start = start;
     }
 
