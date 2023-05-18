@@ -1,4 +1,4 @@
-package generated.com.zuehlke.blockchain.model;
+package com.zuehlke.blockchain.model;
 
 import java.math.BigInteger;
 import java.util.Arrays;

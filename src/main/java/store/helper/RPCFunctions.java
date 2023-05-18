@@ -311,7 +311,7 @@ public class RPCFunctions {
         if(setPredecessor && sentResp.getError()==1){
             System.out.println("The pointers of our successor are incorrect");
         }else if(!setPredecessor && sentResp.getError()==1){
-            System.out.println("The pointers of our predecessir are incorrect");
+            System.out.println("The pointers of our predecessor are incorrect");
         }else if(sentResp.getFilesNotPresentList()!=null && !sentResp.getFilesNotPresentList().isEmpty()){
             return sentResp.getFilesNotPresentList();
         }
@@ -320,34 +320,43 @@ public class RPCFunctions {
 
     public static int sendFilesToReplicate(List<Storage> fileList, Node node,ManagedChannel chnl, boolean setPredecessor) {
         SendReceiveGrpc.SendReceiveBlockingStub sRBStub = SendReceiveGrpc.newBlockingStub(chnl);
-       
+
         Chord.sendFileData request = null;
-        List<Chord.fileContent> fileContentList = new ArrayList<>();
-        for(Storage storage: fileList) {
-            Chord.fileContent fileContent=null;
-            if (storage.isContainsContent()) {
-                fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
-                        .setBlockHash(storage.getContentHash()).setRootHash(storage.getRootHash())
-                        .setDataContent(ByteString.copyFrom(storage.getDataBytes())).setEndOfBlock(storage.getEndOfBlock())
-                        .setIsContent(true).setOwner(storage.getOwner()).build();
-            } else {
-                fileContent = Chord.fileContent.newBuilder().setFileName(storage.getFileName())
-                        .setRootHash(storage.getRootHash()).setFileSize(storage.getSize())
-                        .addAllDataFD(storage.getContentList()).setOwner(storage.getOwner()).build();
+        try {
+            int count = 0;
+            while (count < fileList.size()) {
+                List<Chord.fileContent> fileContentList = new ArrayList<>();
+                for (int i = count; i < fileList.size(); i++) {
+                    Chord.fileContent fileContent = null;
+                    if (fileList.get(i).isContainsContent()) {
+                        fileContent = Chord.fileContent.newBuilder().setFileName(fileList.get(i).getFileName())
+                                .setBlockHash(fileList.get(i).getContentHash()).setRootHash(fileList.get(i).getRootHash())
+                                .setDataContent(ByteString.copyFrom(fileList.get(i).getDataBytes())).setEndOfBlock(fileList.get(i).getEndOfBlock())
+                                .setIsContent(true).setOwner(fileList.get(i).getOwner()).build();
+                    } else {
+                        fileContent = Chord.fileContent.newBuilder().setFileName(fileList.get(i).getFileName())
+                                .setRootHash(fileList.get(i).getRootHash()).setFileSize(fileList.get(i).getSize())
+                                .addAllDataFD(fileList.get(i).getContentList()).setOwner(fileList.get(i).getOwner()).build();
+                    }
+                    fileContentList.add(fileContent);
+                    ++count;
+                    if (count % 40 == 0) break;
+                }
+                if (setPredecessor) {
+                    request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourPredecessor(node.getIpAddress()).build();
+                } else {
+                    request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourSuccessor(node.getIpAddress()).build();
+                }
+                Chord.replicaAck sentResp = sRBStub.replicateAbsentFiles(request);
             }
-            fileContentList.add(fileContent);
-        }
-        if(setPredecessor) {
-            request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourPredecessor(node.getIpAddress()).build();
-        }else{
-            request = Chord.sendFileData.newBuilder().addAllData(fileContentList).setYourSuccessor(node.getIpAddress()).build();
-        }
-        Chord.replicaAck sentResp = sRBStub.replicateAbsentFiles(request);
-        if(sentResp.getResponse()==1){
             System.out.println("successfully replicated remaining files");
             return 1;
+
+        }  catch(Exception e) {
+            e.printStackTrace();
+            return 0;
         }
-        return 0;
+
     }
 
     public static void retrieveRequest(String clientIP, String contentId, String fileName, String addressOfArbNode,Node myNode) {

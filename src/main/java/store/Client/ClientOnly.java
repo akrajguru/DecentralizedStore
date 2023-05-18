@@ -1,5 +1,6 @@
 package store.Client;
 
+import Blockchain.SmartContractConnection;
 import chord.Chord;
 import chord.SendReceiveGrpc;
 import io.grpc.Server;
@@ -7,6 +8,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 import store.helper.HashSHA256StoreHelper;
 import store.helper.RPCFunctions;
+import store.helper.SolidityHelper;
 import store.helper.TreeStructure;
 import store.pojo.Content;
 import store.pojo.FileDetails;
@@ -29,6 +31,9 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
     Map<String, FileDetails> fileDetails;
     Map<String,String> files;
     List<Content> cL;
+    SmartContractConnection smartContractConnection;
+    String ownerName;
+    String myIP;
 
 
     public ClientOnly() {
@@ -38,8 +43,19 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
     }
 
     public static void main(String[] args) {
+
+        if(args.length!=4){
+            System.out.println("need 4 arguments \n" +
+                    "1. port\n" +
+                    "2. contract address \n" +
+                    "3. credentials \n" +
+                    "4. network ip" +
+                    "");
+            return;
+        }
+
         Thread serverThread = new Thread(() ->{
-            Server server = ServerBuilder.forPort(8089).addService(new ClientOnly()).build();
+            Server server = ServerBuilder.forPort(Integer.parseInt(args[0])).addService(new ClientOnly()).build();
             try {
                 server.start();
             } catch (IOException e) {
@@ -55,6 +71,9 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         });
         serverThread.start();
         ClientOnly cO = new ClientOnly();
+        cO.myIP=args[0];
+        cO.smartContractConnection = new SmartContractConnection(args[1],args[2],args[3]);
+        cO.ownerName = cO.smartContractConnection.getCredentials().getAddress();
         cO.switchCase();
     }
 
@@ -72,24 +91,38 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
             String nodeAddr=null;
             switch (option) {
                 // Case
-
+//1682926120377
                 case 1:
                     System.out.println("Enter the file to be stored ( with absolute path) ");
                     String file = sc.next();
                     FileDetails fD = null;
-                    System.out.println("Enter an existing arbitrary node  ");
-                     nodeAddr = sc.next();
+//                    System.out.println("Enter an existing arbitrary node  ");
+//                     nodeAddr = sc.next();
                     try {
                         fD = TreeStructure.getFileDetails(file);
                         if(files.containsKey(fD.getFileName())){
                             String temp = fD.getFileName()+"-"+2;
                             fD.setFileName(temp);
                         }
-                        RPCFunctions.sendFileForStorageOnTheFS(nodeAddr,fD,null,"NOwns");
+//                        long timeBeforeSolidity = System.currentTimeMillis();
+                        nodeAddr =SolidityHelper.storeFileSolidity(fD.getContentList(),ownerName,smartContractConnection);
+                        //nodeAddr="10.0.0.30:9000";
+                        long timeAfterSolidity = System.currentTimeMillis();
+                        //long timeToContract = timeAfterSolidity-timeBeforeSolidity;
+                        System.out.println("time to store on contract: "+timeAfterSolidity);
+                        RPCFunctions.sendFileForStorageOnTheFS(nodeAddr,fD,null,ownerName);
+                        long timeAfterStorage = System.currentTimeMillis();
+                        long finalTime = timeAfterStorage-timeAfterSolidity;
+                        System.out.println("time to store after contract: "+finalTime);
+                        long finalT = timeAfterStorage-timeAfterSolidity;
+                        System.out.println("total time:"+ finalT);
                         files.put(fD.getFileName(),fD.getHashOfFile());
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    } catch (Exception e) {
+                        System.out.println("exception while storing details on smartcontract");
                         throw new RuntimeException(e);
                     }
                     break;
@@ -105,8 +138,11 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
                     System.out.println("Enter an existing arbitrary node  ");
                     nodeAddr = sc.next();
                     if(fileName.stream().count()>0) {
+                        long timeS = System.currentTimeMillis();
+                        System.out.println("retrieval started "+timeS);
                         if (fileNotPresentInMemory(contentID)) {
-                            RPCFunctions.retrieveRequest("10.0.0.30:8089", contentID, fileName.get(), nodeAddr,null);
+
+                            RPCFunctions.retrieveRequest("10.0.0.30:"+myIP, contentID, fileName.get(), nodeAddr,null);
                         } else {
                             try {
                                 reconstructFile(fileDetails.get(contentID).getContentList(), fileName.get());
@@ -125,23 +161,25 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
                     System.out.println("Enter an existing arbitrary node  ");
                     nodeAddr = sc.next();
                     if(files.containsKey(nameOfFile)){
-                        if(fileNotPresentInMemory(files.get(nameOfFile))) {
-                            RPCFunctions.retrieveRequest("10.0.0.30:8089", files.get(nameOfFile), nameOfFile, nodeAddr,null);
-                        }else{
-                            try {
-                                reconstructFile(fileDetails.get(files.get(nameOfFile)).getContentList(),nameOfFile);
-
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-                        }
+                        long timeS = System.currentTimeMillis();
+                        System.out.println("retrieval started "+timeS);
+                       // if(fileNotPresentInMemory(files.get(nameOfFile))) {
+                            RPCFunctions.retrieveRequest("10.0.0.30:"+myIP, files.get(nameOfFile), nameOfFile, nodeAddr,null);
+                        //}else{
+//                            try {
+//                                reconstructFile(fileDetails.get(files.get(nameOfFile)).getContentList(),nameOfFile);
+//
+//                            } catch (IOException e) {
+//                                throw new RuntimeException(e);
+//                            }
+                        //}
 
                     }else{
                         System.out.println("check the file name again");
                     }
                     break;
                 case 4:
-                    files.entrySet().forEach(x-> System.out.println(x.getValue()));
+                    files.entrySet().forEach(x-> System.out.println(x.getKey()));
                     break;
                 case 5:
                     System.out.println("Enter the shared content id");
@@ -159,15 +197,54 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
                     nodeAddr = sc.next();
                     if(files.containsKey(nameToBeDeleted)){
 
-                        RPCFunctions.deleteRequest("10.0.0.30:8089", files.get(nameToBeDeleted), nameToBeDeleted, nodeAddr,null,"NOwns",false);
+                        RPCFunctions.deleteRequest("10.0.0.30:8089", files.get(nameToBeDeleted), nameToBeDeleted, nodeAddr,null,ownerName,false);
 
                     }else{
                         System.out.println("check the file name again");
                     }
                     break;
 
+                case 7:
+                    System.out.println("Enter the file name");
+                    String fileN = sc.next();
+                    System.out.println("Enter an existing arbitrary node  ");
+                    nodeAddr = sc.next();
+                    if(files.containsKey(fileN)){
+                        if(fileNotPresentInMemory(files.get(fileN))) {
+                            RPCFunctions.retrieveRequest("10.0.0.30:8089", files.get(fileN), fileN, nodeAddr,null);
+                        }else{
+                            try {
+                                reconstructFile(fileDetails.get(files.get(fileN)).getContentList(),fileN);
+
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+
+                    }else{
+                        System.out.println("check the file name again");
+                    }
+                    payForTheFile(files.get(fileN));
+                    break;
+
             }
         }while(!quit);
+    }
+
+    private void payForTheFile(String rootHash) {
+        while(!fileDetails.containsKey(rootHash)){
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        try {
+            SolidityHelper.storeFileSolidity(fileDetails.get(rootHash).getContentList(),ownerName,smartContractConnection);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
@@ -201,6 +278,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         newList.stream().forEach(x->sb.append(x.getHash()));
         String rHashChecker = HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8));
         if(rHashChecker.equals(rootHash)){
+
             newList.stream().forEach(x-> {
                 try {
                     outputStream.write(x.getData());
@@ -218,6 +296,8 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
             } finally {
                 fos.close();
             }
+            long timeS = System.currentTimeMillis();
+            System.out.println("retrieval ended "+timeS);
             System.out.println("File can be found at: " +"/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/"+gilename);
             tryToOpenTheFile("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/"+gilename);
             cL=new ArrayList<>();

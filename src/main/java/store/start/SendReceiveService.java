@@ -382,8 +382,8 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
          List<String> newReps = predFiles.stream().filter(x-> Rep1Files.contains(x)).collect(Collectors.toList());
          List<String> retList =new ArrayList<>();
          if(!newReps.isEmpty()) {
-             for(String s: newReps) {
-                 if(!predFiles.contains(s)) {
+             for(String s: predFiles) {
+                 if(!newReps.contains(s)) {
                      retList.add(s);
                  }
              }
@@ -398,8 +398,8 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
             List<String> newReps = predFiles.stream().filter(x-> Rep2Files.contains(x)).collect(Collectors.toList());
             List<String> retList =new ArrayList<>();
             if(!newReps.isEmpty()) {
-                for(String s: newReps) {
-                    if(!predFiles.contains(s)) {
+                for(String s: predFiles) {
+                    if(!newReps.contains(s)) {
                         retList.add(s);
                     }
                 }

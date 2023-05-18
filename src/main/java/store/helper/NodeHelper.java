@@ -1,5 +1,6 @@
 package store.helper;
 
+import org.bouncycastle.jcajce.provider.digest.Keccak;
 import store.pojo.Node;
 
 import java.io.UnsupportedEncodingException;
@@ -27,6 +28,25 @@ public class NodeHelper {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String getkecckakHash(String ipAddress) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA3-256");
+            //MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] hashBytes = md.digest(ipAddress.getBytes());
+            String hashHex = bytesToHex(hashBytes);
+            return hashHex;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String Keccak(byte[] input){
+        Keccak.Digest256 digest256 = new Keccak.Digest256();
+        byte[] hashbytes = digest256.digest(input);
+        String sha3Hex = bytesToHex(hashbytes);
+        return sha3Hex;
     }
 
     public static String getFingerStart(int k, String ipAddress) {

@@ -63,6 +63,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
                     "arguments you provided "+ args.length);
         }
         SmartContractConnection con=null;
+        //this.args=args;
         try {
              con = new SmartContractConnection(contractAddress, credentials, networkIp);
         }catch(Exception e){
@@ -75,6 +76,9 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 //        this.ipAddressOfKnownNode=ipAddressOfKnownNode;
         if(con.checkBalanceServer()) {
             runMethod(args, nodeIP, ipAddressOfKnownNode, new CountDownLatch(1), con);
+//            this.ipAddressOfKnownNode=ipAddressOfKnownNode;
+//            this.nodeIP=nodeIP;
+//            this.connectedSignal=new CountDownLatch(1);
         }else{
             System.out.println("low on ether");
         }
@@ -83,12 +87,12 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
 
 
     private static void runMethod(String[] args, String nodeIP, String ipAddressOfKnownNode,CountDownLatch cd,SmartContractConnection con) throws Exception {
-        Node node = new Node(nodeIP, true,con);
+        Node node1 = new Node(nodeIP, true,con);
         Node arbNode = new Node(ipAddressOfKnownNode);
 
-        StartNode startNode = new StartNode(node, cd);
+        StartNode startNode = new StartNode(node1, cd);
         Thread serverThread = new Thread(() -> {
-            Server server = ServerBuilder.forPort(Integer.parseInt(args[0].substring(args[0].indexOf(":") + 1))).addService(startNode).addService(new SendReceiveService(node)).build();
+            Server server = ServerBuilder.forPort(Integer.parseInt(args[0])).addService(startNode).addService(new SendReceiveService(node1)).build();
             try {
                 server.start();
             } catch (IOException e) {
@@ -96,7 +100,7 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
                 System.out.println("Port already in Use:+" + args[0]);
                 return;
             }
-            System.out.println("Server started at" + node.getIpAddress());
+            System.out.println("Server started at" + node1.getIpAddress());
             System.out.println(args[0].substring(args[0].indexOf(":") + 1));
             try {
                 server.awaitTermination();
@@ -105,7 +109,8 @@ public class StartNode extends NodeGrpc.NodeImplBase implements Runnable  {
             }
         });
         serverThread.start();
-        node.join(arbNode);
+        node1.join(arbNode);
+        con.heartbeat(node1.getIpAddress());
         try{
             cd.await();
         }catch (Exception e){

@@ -78,4 +78,31 @@ public class TreeStructure {
         FileDetails fD = new FileDetails(fileName,byteArray.length, sb.toString(),  contentList);
         return fD;
     }
+
+    public static List<FileDetails> getFileDetailsList(String filePath) throws IOException, NoSuchAlgorithmException {
+        File file = new File(filePath);
+        double start = System.currentTimeMillis();
+        byte[] byteArray;
+        FileInputStream inputStream = new FileInputStream(file);
+        byteArray = inputStream.readAllBytes();
+        List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
+        List<FileDetails> fDList = new ArrayList<>();
+        int startCounter=0;
+        int i=0;
+        while( i <chunks.size()) {
+            if(i+1000 < chunks.size()){
+                i+=1000;
+            }else{
+                i=chunks.size();
+            }
+            StringBuilder sb = new StringBuilder();
+            List<Content> contentList = TreeStructure.createNodeList(chunks.subList(startCounter,i), sb);
+            String[] arr = filePath.split("/");
+            String fileName = arr[arr.length - 1];
+            FileDetails fD = new FileDetails(fileName, byteArray.length, sb.toString(), contentList);
+            fDList.add(fD);
+            startCounter+=1000;
+        }
+        return fDList;
+    }
 }

@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class Node {
@@ -32,14 +33,23 @@ public class Node {
     SmartContractConnection contract;
     List<String> forceReplication;
     List<String> garbageCollectedFiles;
+    ConcurrentHashMap<String,Integer> paidList;
+    Map<String,List<String>> garbageCollector;
 
-
-    public List<String> getGarbageCollectedFiles() {
-        return garbageCollectedFiles;
+    public Map<String, List<String>> getGarbageCollector() {
+        return garbageCollector;
     }
 
-    public void setGarbageCollectedFiles(List<String> garbageCollectedFiles) {
-        this.garbageCollectedFiles = garbageCollectedFiles;
+    public void setGarbageCollector(Map<String, List<String>> garbageCollector) {
+        this.garbageCollector = garbageCollector;
+    }
+
+    public Map<String, Integer> getPaidList() {
+        return paidList;
+    }
+
+    public void setPaidList(ConcurrentHashMap<String, Integer> paidList) {
+        this.paidList = paidList;
     }
 
     public List<String> getForceReplication() {
@@ -115,6 +125,7 @@ public class Node {
     public Node(String ipAddress, LinkedHashMap map){
         this.ipAddress = ipAddress;
         this.fingertableMap = map;
+        this.hashId = String.valueOf(NodeHelper.fnv1aModifiedHash(ipAddress));
         for (int i = 1; i <= 32; i++) {
             //String start = NodeHelper.getFingerStart(i,ipAddress);
             long start = NodeHelper.getFingerStart32(i,ipAddress);
@@ -138,7 +149,12 @@ public class Node {
         this.appPath = System.getProperty("user.dir")+"/"+"StorageMetadata-"+hashId;
         this.successorMap = new LinkedHashMap<>();
         this.contract=con;
-        contract.storeServerInformation(ipAddress,BigInteger.ZERO,new ArrayList<>());
+        HashMap<String,List<String>> garbageMap = new HashMap<>();
+        setGarbageCollector(garbageMap);
+        setPaidList(new ConcurrentHashMap<String,Integer>());
+        this.getGarbageCollector().put("FD", new ArrayList<>());
+        this.getGarbageCollector().put("CONTENT", new ArrayList<>());
+        //contract.storeServerInformation(ipAddress,BigInteger.ZERO,new ArrayList<>());
         File file = new File(this.appPath);
         if(!file.exists()){
             file.mkdir();

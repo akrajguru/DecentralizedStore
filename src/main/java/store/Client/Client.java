@@ -48,19 +48,19 @@ public class Client extends Thread {
                     System.out.println("Enter the file to be stored ( with absolute path) ");
                     String file = sc.next();
                     FileDetails fD = null;
-                    try {
-                        fD = TreeStructure.getFileDetails(file);
-                        if(files.containsKey(fD.getFileName())){
-                            String temp = fD.getFileName()+"-"+2;
-                            fD.setFileName(temp);
-                        }
-                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD,node,node.getIpAddress());
-                        files.put(fD.getFileName(),fD.getHashOfFile());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (NoSuchAlgorithmException e) {
-                        throw new RuntimeException(e);
-                    }
+//                    try {
+//                        fD = TreeStructure.getFileDetails(file);
+//                        if(files.containsKey(fD.getFileName())){
+//                            String temp = fD.getFileName()+"-"+2;
+//                            fD.setFileName(temp);
+//                        }
+//                        RPCFunctions.sendFileForStorageOnTheFS(node.getIpAddress(),fD,node,node.getIpAddress());
+//                        files.put(fD.getFileName(),fD.getHashOfFile());
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    } catch (NoSuchAlgorithmException e) {
+//                        throw new RuntimeException(e);
+//                    }
                     break;
                 case 2:
                     System.out.println("Enter the content id ");

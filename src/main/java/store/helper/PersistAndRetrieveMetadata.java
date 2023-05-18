@@ -59,6 +59,39 @@ public class PersistAndRetrieveMetadata {
         return storage;
     }
 
+    public static int deleteFilesGarbageCollection(List<String> fileName,Node node,boolean isContent){
+        StringBuilder filePath = new StringBuilder();
+        filePath.append(node.getAppPath());
+        filePath.append("/");
+        int num=0;
+        if(isContent){
+            filePath.append("/content");
+            filePath.append("/");
+        }else{
+            filePath.append("/fileDetails");
+            filePath.append("/");
+        }
+        if(fileName!=null && fileName.size()>0) {
+            for (String file : fileName) {
+                try {
+                    Path fileToDel = Path.of(filePath + file);
+                    if(Files.exists(fileToDel)) {
+                        Files.delete(fileToDel);
+                        num++;
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                if (node.getPaidList().containsKey(file)) {
+                    node.getPaidList().remove(file);
+                }
+            }
+        }
+        return num;
+    }
+
     public static void deleteFileForOwner(String hash, Node node, boolean isContent,String owner) throws IOException {
         StringBuilder fileName = new StringBuilder();
         fileName.append(node.getAppPath());
@@ -81,7 +114,18 @@ public class PersistAndRetrieveMetadata {
             //Path p = Files.move(filePath,Paths.get("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/StorageMetadata-79acb9d0c00c0244daf7b95993a27c587a682e286b309712e58e6839dfa8020b/"+hash+"deleted"));
             Files.delete(filePath);
             node.getStorageInfo().getServerStoreInformation().get("primary").remove(hash);
-
+            if(isContent){
+                if(node.getGarbageCollector().get("CONTENT").contains(hash)) {
+                    node.getGarbageCollector().get("CONTENT").remove(hash);
+                }
+                if(node.getPaidList().containsKey(hash)){
+                    node.getPaidList().remove(hash);
+                }
+            }else{
+                if(node.getGarbageCollector().get("FD").contains(hash)) {
+                    node.getGarbageCollector().get("FD").remove(hash);
+                }
+            }
             return ;
         }
         StringBuilder remainingOwners = new StringBuilder();
@@ -141,6 +185,11 @@ public class PersistAndRetrieveMetadata {
             metaData.append("\n");
             metaData.append(Base64.getEncoder().encodeToString(storage.getDataBytes()));
             metaData.append("\n");
+//            if(node.getGarbageCollector().get("CONTENT").contains(storage.getContentHash())) {
+//                node.getGarbageCollector().get("CONTENT").remove(storage.getContentHash());
+//            }
+//
+//            node.getPaidList().put(storage.getContentHash(),6);
 
         }else{
             metaData.append(storage.getSize());
@@ -149,12 +198,15 @@ public class PersistAndRetrieveMetadata {
                 metaData.append(content);
                 metaData.append("\n");
             }
-            //path = Files.createDirectories(Paths.get("abc"+"/fileDetails"));
+//            if(node.getGarbageCollector().get("FD").contains(storage.getRootHash())) {
+//                node.getGarbageCollector().get("FD").remove(storage.getRootHash());
+//            }
+           //////// //path = Files.createDirectories(Paths.get("abc"+"/fileDetails"));
         }
 
-        if(!node.getStorageInfo().getServerStoreInformation().get(typeOfFile).contains(fileName.toString())) {
-            node.getStorageInfo().getServerStoreInformation().get(typeOfFile).add(fileName.toString());
-        }
+//        if(!node.getStorageInfo().getServerStoreInformation().get(typeOfFile).contains(fileName.toString())) {
+//            node.getStorageInfo().getServerStoreInformation().get(typeOfFile).add(fileName.toString());
+//        }
 
         FileWriter writer = new FileWriter(file);
         writer.append(metaData);
@@ -162,9 +214,9 @@ public class PersistAndRetrieveMetadata {
         if(write) {
             if (typeOfFile.equals("primary")) {
                 if (node.getForceReplication() == null) {
-                    node.setForceReplication(new ArrayList<>());
+                   // node.setForceReplication(new ArrayList<>());
                 }
-                node.getForceReplication().add(fileName.toString());
+                //node.getForceReplication().add(fileName.toString());
             }
         }
 
