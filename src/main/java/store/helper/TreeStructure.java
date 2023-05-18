@@ -27,6 +27,14 @@ public class TreeStructure {
         return list;
     }
 
+    public static FileDetails encryptFileBits(FileDetails fD,String key){
+        for(Content content: fD.getContentList()){
+            byte[] prev = content.getData();
+            content.setData(HashSHA256StoreHelper.encrypt(prev,key));
+        }
+        return fD;
+    }
+
     public static Map<String,String> createMetadata(List<Content> contents) throws IOException {
         Map<String,String> map = new HashMap<>();
         StringBuilder sb = new StringBuilder();
@@ -64,6 +72,27 @@ public class TreeStructure {
         return chunks;
     }
 
+    public static List<Content> getFileContentsEncrypted(byte[] mainFile, String key,StringBuilder sb) throws NoSuchAlgorithmException {
+        int kb = 64 * 1024;
+        int endOfChunk=0;
+        List<Content> contents = new ArrayList<>();
+        for (int i = 0; i < mainFile.length; ) {
+            Content chunk = new Content();
+            int min = Math.min(kb, mainFile.length - i);
+            byte[] chunkContent = new byte[min];
+            endOfChunk+= min;
+            for (int j = 0; j < chunkContent.length; j++, i++) {
+                chunkContent[j] = mainFile[i];
+            }
+            chunk.setData(HashSHA256StoreHelper.encrypt(chunkContent,key));
+            chunk.setHash(HashSHA256StoreHelper.createHashFromFileContent(chunk.getData()));
+            sb.append(chunk.getHash());
+            chunk.setEndByte(endOfChunk);
+            contents.add(chunk);
+        }
+        return contents;
+    }
+
     public static FileDetails getFileDetails(String filePath) throws IOException, NoSuchAlgorithmException {
         File file = new File(filePath);
         double start = System.currentTimeMillis();
@@ -76,6 +105,20 @@ public class TreeStructure {
         String[] arr = filePath.split("/");
         String fileName = arr[arr.length-1];
         FileDetails fD = new FileDetails(fileName,byteArray.length, sb.toString(),  contentList);
+        return fD;
+    }
+
+    public static FileDetails getFileDetailsEncrypted(String filePath,String key) throws IOException, NoSuchAlgorithmException {
+        File file = new File(filePath);
+        byte[] byteArray;
+        FileInputStream inputStream = new FileInputStream(file);
+        byteArray = inputStream.readAllBytes();
+       // List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
+        StringBuilder sb= new StringBuilder();
+        List<Content> contentList= TreeStructure.getFileContentsEncrypted(byteArray,key,sb);
+        String[] arr = filePath.split("/");
+        String fileName = arr[arr.length-1];
+        FileDetails fD = new FileDetails(fileName,byteArray.length, HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8)),  contentList);
         return fD;
     }
 

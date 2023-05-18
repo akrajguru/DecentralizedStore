@@ -31,9 +31,10 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
     Map<String, FileDetails> fileDetails;
     Map<String,String> files;
     List<Content> cL;
-    SmartContractConnection smartContractConnection;
-    String ownerName;
-    String myIP;
+    static SmartContractConnection smartContractConnection;
+    static String ownerName;
+    static String myIP;
+    static String key;
 
 
     public ClientOnly() {
@@ -71,14 +72,19 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         });
         serverThread.start();
         ClientOnly cO = new ClientOnly();
-        cO.myIP=args[0];
-        cO.smartContractConnection = new SmartContractConnection(args[1],args[2],args[3]);
-        cO.ownerName = cO.smartContractConnection.getCredentials().getAddress();
+        myIP=args[0];
+        smartContractConnection = new SmartContractConnection(args[1],args[2],args[3]);
+        ownerName = smartContractConnection.getCredentials().getAddress();
+        System.out.println("Enter a secret key to encrypt data");
+        Scanner sc1 = new Scanner(System.in);
+        key = sc1.next();
+
         cO.switchCase();
     }
 
     private void switchCase() {
         boolean quit =false;
+
         do {
             Scanner sc = new Scanner(System.in);
             System.out.println("1. Store a file");
@@ -99,12 +105,15 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
 //                    System.out.println("Enter an existing arbitrary node  ");
 //                     nodeAddr = sc.next();
                     try {
-                        fD = TreeStructure.getFileDetails(file);
+                        //fD = TreeStructure.getFileDetails(file);
+                        fD = TreeStructure.getFileDetailsEncrypted(file,key);
                         if(files.containsKey(fD.getFileName())){
                             String temp = fD.getFileName()+"-"+2;
                             fD.setFileName(temp);
                         }
 //                        long timeBeforeSolidity = System.currentTimeMillis();
+
+                        //fD = TreeStructure.encryptFileBits(fD,key);
                         nodeAddr =SolidityHelper.storeFileSolidity(fD.getContentList(),ownerName,smartContractConnection);
                         //nodeAddr="10.0.0.30:9000";
                         long timeAfterSolidity = System.currentTimeMillis();
@@ -281,7 +290,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
 
             newList.stream().forEach(x-> {
                 try {
-                    outputStream.write(x.getData());
+                    outputStream.write(HashSHA256StoreHelper.decrypt(x.getData(),key));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -293,6 +302,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
             } catch(IOException ioe) {
                 // Handle exception here
                 ioe.printStackTrace();
+                cL=new ArrayList<>();
             } finally {
                 fos.close();
             }

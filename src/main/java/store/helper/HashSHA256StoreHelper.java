@@ -28,7 +28,7 @@ public class HashSHA256StoreHelper {
         return hexString.toString();
     }
 
-    public byte[] encrypt(byte[] strToEncrypt, String secret) {
+    public static byte[] encrypt(byte[] strToEncrypt, String secret) {
         try {
 
             Cipher cipher = Cipher.getInstance("AES");
@@ -40,7 +40,7 @@ public class HashSHA256StoreHelper {
         return null;
     }
 
-    public SecretKeySpec prepareSecreteKey(String myKey) {
+    public static SecretKeySpec prepareSecreteKey(String myKey) {
         MessageDigest sha = null;
         SecretKeySpec secretKey=null;
         try {
@@ -48,18 +48,18 @@ public class HashSHA256StoreHelper {
             sha = MessageDigest.getInstance("SHA-1");
             key = sha.digest(key);
             key = Arrays.copyOf(key, 16);
-            secretKey = new SecretKeySpec(key, "SHA-1");
+            secretKey = new SecretKeySpec(key, "AES");
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return secretKey;
     }
 
-    public byte[] decrypt(byte[] arrayToDecrypt, String secret) {
+    public static byte[] decrypt(byte[] arrayToDecrypt, String secret) {
         try {
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE,  prepareSecreteKey(secret));
-            return cipher.doFinal(Base64.getDecoder().decode(arrayToDecrypt));
+            return cipher.doFinal(arrayToDecrypt);
         } catch (Exception e) {
             System.out.println("Error while decrypting: " + e.toString());
         }

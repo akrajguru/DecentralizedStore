@@ -407,7 +407,7 @@ public class FileStoreTest {
     @Test
     void testFileEncoding() throws IOException, NoSuchAlgorithmException {
         Node node = new Node("10.0.0.30:9000");
-        node.setAppPath("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata3");
+        node.setAppPath("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata4");
         String fileName = "/Users/ajinkyarajguru/Downloads/CS298_Proposal.pdf";
         File file = new File(fileName);
 //        double start = System.currentTimeMillis();
@@ -423,7 +423,9 @@ public class FileStoreTest {
 //        Storage storage = new Storage(fileName1, byteArray.length, sb.toString(), fDList);
         FileDetails fD = TreeStructure.getFileDetails(fileName);
         for (Content content : fD.getContentList()) {
-            ByteString bs = ByteString.copyFrom(content.getData());
+            byte[] b = HashSHA256StoreHelper.encrypt(content.getData(), "passwordekdumsafe");
+            content.setData(b);
+            ByteString bs = ByteString.copyFrom(b);
             Storage store = new Storage(fileName, fD.getHashOfFile(), bs.toByteArray(), content.getHash(), content.getEndByte());
             PersistAndRetrieveMetadata.persistMetadataToFile(store, node, "primary", "pqr");
         }
@@ -447,7 +449,7 @@ public class FileStoreTest {
     @Test
     public void testFileReconstruct() throws IOException, NoSuchAlgorithmException {
         Node node = new Node("10.0.0.30:9000");
-        node.setAppPath("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata");
+        node.setAppPath("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata4");
         List<Content> content = new ArrayList<>();
         Storage store = PersistAndRetrieveMetadata.getDataFromHash("2f93a2eaaf2b266e1380dc87b33b67d2b4e187435aa5c3db331467423bf89aef", node, true);
         content.add(retCFromStore(store));
@@ -473,6 +475,7 @@ public class FileStoreTest {
     private void reconstrcut(List<Content> newList) throws IOException, NoSuchAlgorithmException {
         StringBuilder sb = new StringBuilder();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+
         Collections.sort(newList, (c1, c2) -> (int) (c1.getEndByte() - c2.getEndByte()));
         newList.stream().forEach(x -> sb.append(x.getHash()));
         String rHashChecker = HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8));
@@ -480,14 +483,14 @@ public class FileStoreTest {
 
             newList.stream().forEach(x -> {
                 try {
-                    outputStream.write(x.getData());
+                    outputStream.write(HashSHA256StoreHelper.decrypt(x.getData(),"passwordekdumsafe"));
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata/" + "recreated3.pdf"));
+                fos = new FileOutputStream(new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata/" + "recreatedDe.pdf"));
                 outputStream.writeTo(fos);
             } catch (IOException ioe) {
                 // Handle exception here
@@ -501,6 +504,40 @@ public class FileStoreTest {
 
     private Content retCFromStore(Storage storage){
         return new Content(storage.getContentHash(),storage.getEndOfBlock(),storage.getDataBytes());
+    }
+
+    @Test
+    public void solidityVerificationHashTest() throws Exception {
+
+        {
+            Node node = new Node("10.0.0.30:9000");
+            node.setAppPath("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/testerdata4");
+            String fileName = "/Users/ajinkyarajguru/Downloads/CS298_Proposal.pdf";
+            File file = new File(fileName);
+            FileDetails fD = TreeStructure.getFileDetails(fileName);
+            for (Content content : fD.getContentList()) {
+                byte[] b = HashSHA256StoreHelper.encrypt(content.getData(), "passwordekdumsafe");
+                System.out.println(NodeHelper.Keccak(b));
+                content.setData(b);
+            }
+
+            SolidityHelper.storeFileSolidity(fD.getContentList(),"own",null);
+
+        /*
+          File file = new File(filePath);
+        double start = System.currentTimeMillis();
+        byte[] byteArray;
+        FileInputStream inputStream = new FileInputStream(file);
+        byteArray = inputStream.readAllBytes();
+        List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
+        StringBuilder sb= new StringBuilder();
+        List<Content> contentList= TreeStructure.createNodeList(chunks,sb);
+        String[] arr = filePath.split("/");
+        String fileName = arr[arr.length-1];
+        FileDetails fD = new FileDetails(fileName,byteArray.length, sb.toString(),  contentList);
+         */
+            //PersistAndRetrieveMetadata.getDataFromHash()
+        }
     }
 
 

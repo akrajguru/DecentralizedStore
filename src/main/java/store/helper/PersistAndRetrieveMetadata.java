@@ -185,11 +185,11 @@ public class PersistAndRetrieveMetadata {
             metaData.append("\n");
             metaData.append(Base64.getEncoder().encodeToString(storage.getDataBytes()));
             metaData.append("\n");
-//            if(node.getGarbageCollector().get("CONTENT").contains(storage.getContentHash())) {
-//                node.getGarbageCollector().get("CONTENT").remove(storage.getContentHash());
-//            }
-//
-//            node.getPaidList().put(storage.getContentHash(),6);
+            if(node.getGarbageCollector().get("CONTENT").contains(storage.getContentHash())) {
+                node.getGarbageCollector().get("CONTENT").remove(storage.getContentHash());
+            }
+
+            node.getPaidList().put(storage.getContentHash(),6);
 
         }else{
             metaData.append(storage.getSize());
@@ -198,15 +198,15 @@ public class PersistAndRetrieveMetadata {
                 metaData.append(content);
                 metaData.append("\n");
             }
-//            if(node.getGarbageCollector().get("FD").contains(storage.getRootHash())) {
-//                node.getGarbageCollector().get("FD").remove(storage.getRootHash());
-//            }
+            if(node.getGarbageCollector().get("FD").contains(storage.getRootHash())) {
+                node.getGarbageCollector().get("FD").remove(storage.getRootHash());
+            }
            //////// //path = Files.createDirectories(Paths.get("abc"+"/fileDetails"));
         }
 
-//        if(!node.getStorageInfo().getServerStoreInformation().get(typeOfFile).contains(fileName.toString())) {
-//            node.getStorageInfo().getServerStoreInformation().get(typeOfFile).add(fileName.toString());
-//        }
+        if(!node.getStorageInfo().getServerStoreInformation().get(typeOfFile).contains(fileName.toString())) {
+            node.getStorageInfo().getServerStoreInformation().get(typeOfFile).add(fileName.toString());
+        }
 
         FileWriter writer = new FileWriter(file);
         writer.append(metaData);
@@ -214,9 +214,9 @@ public class PersistAndRetrieveMetadata {
         if(write) {
             if (typeOfFile.equals("primary")) {
                 if (node.getForceReplication() == null) {
-                   // node.setForceReplication(new ArrayList<>());
+                    node.setForceReplication(new ArrayList<>());
                 }
-                //node.getForceReplication().add(fileName.toString());
+                node.getForceReplication().add(fileName.toString());
             }
         }
 
