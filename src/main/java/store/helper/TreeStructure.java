@@ -115,11 +115,40 @@ public class TreeStructure {
         byteArray = inputStream.readAllBytes();
        // List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
         StringBuilder sb= new StringBuilder();
-        List<Content> contentList= TreeStructure.getFileContentsEncrypted(byteArray,key,sb);
+        List<Content> contentList = TreeStructure.getFileContentsEncrypted(byteArray,key,sb);
         String[] arr = filePath.split("/");
         String fileName = arr[arr.length-1];
         FileDetails fD = new FileDetails(fileName,byteArray.length, HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8)),  contentList);
         return fD;
+    }
+
+    public static List<FileDetails> getFileDetailsEncryptedList(String filePath,String key) throws IOException, NoSuchAlgorithmException {
+        File file = new File(filePath);
+        byte[] byteArray;
+        FileInputStream inputStream = new FileInputStream(file);
+        byteArray = inputStream.readAllBytes();
+        // List<Chunk> chunks = TreeStructure.getFileChunks(byteArray);
+        StringBuilder sb= new StringBuilder();
+        List<Content> contentList = TreeStructure.getFileContentsEncrypted(byteArray,key,sb);
+        List<FileDetails> fDList = new ArrayList<>();
+        int i =0;
+        int prev=0;
+        String[] arr = filePath.split("/");
+        String fileName = arr[arr.length-1];
+        while(i< contentList.size()){
+            if(i+4000< contentList.size()){
+                i+=4000;
+            }else{
+                i=contentList.size();
+            }
+            List<Content> sub = contentList.subList(prev, i);
+            sb = new StringBuilder();
+            StringBuilder finalSb = sb;
+            sub.stream().map(x-> finalSb.append(x.getHash()));
+            FileDetails fD = new FileDetails(fileName,byteArray.length, HashSHA256StoreHelper.createHashFromFileContent(sb.toString().getBytes(StandardCharsets.UTF_8)),  sub);
+            fDList.add(fD);
+        }
+        return fDList;
     }
 
     public static List<FileDetails> getFileDetailsList(String filePath) throws IOException, NoSuchAlgorithmException {

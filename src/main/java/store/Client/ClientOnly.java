@@ -6,35 +6,35 @@ import chord.SendReceiveGrpc;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
-import store.helper.HashSHA256StoreHelper;
-import store.helper.RPCFunctions;
-import store.helper.SolidityHelper;
-import store.helper.TreeStructure;
+import store.helper.*;
 import store.pojo.Content;
 import store.pojo.FileDetails;
-import store.pojo.Node;
-import store.start.SendReceiveService;
 
 import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.SocketException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.List;
+
 
 public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
 
 
     Map<String, FileDetails> fileDetails;
-    Map<String,String> files;
+    Map<String,List<String>> files;
     List<Content> cL;
     static SmartContractConnection smartContractConnection;
     static String ownerName;
-    static String myIP;
+    static String myPort;
     static String key;
+    static String myIp;
 
 
     public ClientOnly() {
@@ -43,7 +43,7 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         cL=new ArrayList<>();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         if(args.length!=4){
             System.out.println("need 4 arguments \n" +
@@ -72,7 +72,8 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         });
         serverThread.start();
         ClientOnly cO = new ClientOnly();
-        myIP=args[0];
+        myPort =args[0];
+        myIp = NodeHelper.getIPAddress();
         smartContractConnection = new SmartContractConnection(args[1],args[2],args[3]);
         ownerName = smartContractConnection.getCredentials().getAddress();
         System.out.println("Enter a secret key to encrypt data");
@@ -82,160 +83,179 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
         cO.switchCase();
     }
 
-    private void switchCase() {
+    private void switchCase() throws Exception {
         boolean quit =false;
 
         do {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("1. Store a file");
-            System.out.println("2. get a file using its content ID");
-            System.out.println("3. get file using exact file name");
-            System.out.println("4. Show my files stored");
-            System.out.println("5. Get a file using shared content ID");
-            System.out.println("6. Delete a file using its name");
-            int option = sc.nextInt();
-            String nodeAddr=null;
-            switch (option) {
-                // Case
+            try {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("1. Store a file");
+                System.out.println("2. get a file using its content ID");
+                System.out.println("3. get file using exact file name");
+                System.out.println("4. Show my files stored");
+                System.out.println("5. Get a file using shared content ID");
+                System.out.println("6. Delete a file using its name");
+                int option = sc.nextInt();
+                String nodeAddr = null;
+                switch (option) {
+                    // Case
 //1682926120377
-                case 1:
-                    System.out.println("Enter the file to be stored ( with absolute path) ");
-                    String file = sc.next();
-                    FileDetails fD = null;
+                    case 1:
+                        System.out.println("Enter the file to be stored ( with absolute path) ");
+                        String file = sc.next();
+                        FileDetails fD = null;
 //                    System.out.println("Enter an existing arbitrary node  ");
 //                     nodeAddr = sc.next();
-                    try {
-                        //fD = TreeStructure.getFileDetails(file);
-                        fD = TreeStructure.getFileDetailsEncrypted(file,key);
-                        if(files.containsKey(fD.getFileName())){
-                            String temp = fD.getFileName()+"-"+2;
-                            fD.setFileName(temp);
-                        }
+                        try {
+                            List<String> roothashes = new ArrayList<>();
+                            String fileName = null;
+                            if(Files.size(Path.of(file))<256000000) {
+                                //fD = TreeStructure.getFileDetails(file);
+                                fD = TreeStructure.getFileDetailsEncrypted(file, key);
+                                if (files.containsKey(fD.getFileName())) {
+                                    String temp = fD.getFileName() + "-" + 2;
+                                    fD.setFileName(temp);
+                                }
 //                        long timeBeforeSolidity = System.currentTimeMillis();
-
-                        //fD = TreeStructure.encryptFileBits(fD,key);
-                        nodeAddr =SolidityHelper.storeFileSolidity(fD.getContentList(),ownerName,smartContractConnection);
-                        //nodeAddr="10.0.0.30:9000";
-                        long timeAfterSolidity = System.currentTimeMillis();
-                        //long timeToContract = timeAfterSolidity-timeBeforeSolidity;
-                        System.out.println("time to store on contract: "+timeAfterSolidity);
-                        RPCFunctions.sendFileForStorageOnTheFS(nodeAddr,fD,null,ownerName);
-                        long timeAfterStorage = System.currentTimeMillis();
-                        long finalTime = timeAfterStorage-timeAfterSolidity;
-                        System.out.println("time to store after contract: "+finalTime);
-                        long finalT = timeAfterStorage-timeAfterSolidity;
-                        System.out.println("total time:"+ finalT);
-                        files.put(fD.getFileName(),fD.getHashOfFile());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    } catch (NoSuchAlgorithmException e) {
-                        throw new RuntimeException(e);
-                    } catch (Exception e) {
-                        System.out.println("exception while storing details on smartcontract");
-                        throw new RuntimeException(e);
-                    }
-                    break;
-                case 2:
-                    System.out.println("Enter the content id ");
-                    String contentID = sc.next();
-                    Optional<String> fileName = files
-                            .entrySet()
-                            .stream()
-                            .filter(entry -> Objects.equals(entry.getValue(), contentID))
-                            .map(Map.Entry::getKey)
-                            .findFirst();
-                    System.out.println("Enter an existing arbitrary node  ");
-                    nodeAddr = sc.next();
-                    if(fileName.stream().count()>0) {
-                        long timeS = System.currentTimeMillis();
-                        System.out.println("retrieval started "+timeS);
-                        if (fileNotPresentInMemory(contentID)) {
-
-                            RPCFunctions.retrieveRequest("10.0.0.30:"+myIP, contentID, fileName.get(), nodeAddr,null);
-                        } else {
-                            try {
-                                reconstructFile(fileDetails.get(contentID).getContentList(), fileName.get());
-
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
+                                //fD = TreeStructure.encryptFileBits(fD,key);
+                                nodeAddr = SolidityHelper.storeFileSolidity(fD.getContentList(), ownerName, smartContractConnection);
+                                //nodeAddr="10.0.0.30:9000";
+                                long timeAfterSolidity = System.currentTimeMillis();
+                                //long timeToContract = timeAfterSolidity-timeBeforeSolidity;
+                                System.out.println("time to store on contract: " + timeAfterSolidity);
+                                RPCFunctions.sendFileForStorageOnTheFS(nodeAddr, fD, null, ownerName);
+                                long timeAfterStorage = System.currentTimeMillis();
+                                long finalTime = timeAfterStorage - timeAfterSolidity;
+                                System.out.println("time to store after contract: " + finalTime);
+                                long finalT = timeAfterStorage - timeAfterSolidity;
+                                System.out.println("total time:" + finalT);
+                                roothashes.add(fD.getHashOfFile());
+                                fileName = fD.getFileName();
+                            }else{
+                                List<FileDetails> fDlist = TreeStructure.getFileDetailsEncryptedList(file,key);
+                                for(FileDetails fDe : fDlist){
+                                    nodeAddr = SolidityHelper.storeFileSolidity(fDe.getContentList(), ownerName, smartContractConnection);
+                                    //nodeAddr="10.0.0.30:9000";
+                                    RPCFunctions.sendFileForStorageOnTheFS(nodeAddr, fDe, null, ownerName);
+                                    roothashes.add(fDe.getHashOfFile());
+                                    fileName= fDe.getFileName();
+                                }
                             }
+                            files.put(fileName, roothashes);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        } catch (NoSuchAlgorithmException e) {
+                            throw new RuntimeException(e);
+                        } catch (Exception e) {
+                            System.out.println("exception while storing details on smartcontract");
+                            throw new RuntimeException(e);
                         }
-                    }else{
-                        System.out.println("check the content id again");
-                    }
-                    break;
-                case 3:
-                    System.out.println("Enter the file name");
-                    String nameOfFile = sc.next();
-                    System.out.println("Enter an existing arbitrary node  ");
-                    nodeAddr = sc.next();
-                    if(files.containsKey(nameOfFile)){
-                        long timeS = System.currentTimeMillis();
-                        System.out.println("retrieval started "+timeS);
-                       // if(fileNotPresentInMemory(files.get(nameOfFile))) {
-                            RPCFunctions.retrieveRequest("10.0.0.30:"+myIP, files.get(nameOfFile), nameOfFile, nodeAddr,null);
-                        //}else{
+                        break;
+                    case 2:
+                        System.out.println("Enter the content id ");
+                        String contentID = sc.next();
+                        Optional<String> fileName = files
+                                .entrySet()
+                                .stream()
+                                .filter(entry -> Objects.equals(entry.getValue(), contentID))
+                                .map(Map.Entry::getKey)
+                                .findFirst();
+                        //System.out.println("Enter an existing arbitrary node  ");
+                        nodeAddr = smartContractConnection.getIPAddress();
+                        if (fileName.stream().count() > 0) {
+                            long timeS = System.currentTimeMillis();
+                            System.out.println("retrieval started " + timeS);
+                            if (fileNotPresentInMemory(contentID)) {
+
+                                RPCFunctions.retrieveRequest(myIp + ":" + myPort, contentID, fileName.get(), nodeAddr, null);
+                            } else {
+                                try {
+                                    reconstructFile(fileDetails.get(contentID).getContentList(), fileName.get());
+
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        } else {
+                            System.out.println("check the content id again");
+                        }
+                        break;
+                    case 3:
+                        System.out.println("Enter the file name");
+                        String nameOfFile = sc.next();
+                        nodeAddr = smartContractConnection.getIPAddress();
+                        if (files.containsKey(nameOfFile)) {
+                            long timeS = System.currentTimeMillis();
+                            System.out.println("retrieval started " + timeS);
+                            // if(fileNotPresentInMemory(files.get(nameOfFile))) {
+                            for (String file1 : files.get(nameOfFile)){
+                                RPCFunctions.retrieveRequest(myIp + ":" + myPort, file1, nameOfFile, nodeAddr, null);
+                        }
+                            //}else{
 //                            try {
 //                                reconstructFile(fileDetails.get(files.get(nameOfFile)).getContentList(),nameOfFile);
 //
 //                            } catch (IOException e) {
 //                                throw new RuntimeException(e);
 //                            }
-                        //}
+                            //}
 
-                    }else{
-                        System.out.println("check the file name again");
-                    }
-                    break;
-                case 4:
-                    files.entrySet().forEach(x-> System.out.println(x.getKey()));
-                    break;
-                case 5:
-                    System.out.println("Enter the shared content id");
-                    String contentID2 = sc.next();
-                    System.out.println("Enter a new name for the file");
-                    String fileName2 = sc.next();
-                    System.out.println("Enter an existing arbitrary node  ");
-                    nodeAddr = sc.next();
-                    RPCFunctions.retrieveRequest("10.0.0.30:8089", contentID2,fileName2, nodeAddr,null);
-                    break;
-                case 6:
-                    System.out.println("Enter the file name to be deleted");
-                    String nameToBeDeleted = sc.next();
-                    System.out.println("Enter an existing arbitrary node  ");
-                    nodeAddr = sc.next();
-                    if(files.containsKey(nameToBeDeleted)){
-
-                        RPCFunctions.deleteRequest("10.0.0.30:8089", files.get(nameToBeDeleted), nameToBeDeleted, nodeAddr,null,ownerName,false);
-
-                    }else{
-                        System.out.println("check the file name again");
-                    }
-                    break;
-
-                case 7:
-                    System.out.println("Enter the file name");
-                    String fileN = sc.next();
-                    System.out.println("Enter an existing arbitrary node  ");
-                    nodeAddr = sc.next();
-                    if(files.containsKey(fileN)){
-                        if(fileNotPresentInMemory(files.get(fileN))) {
-                            RPCFunctions.retrieveRequest("10.0.0.30:8089", files.get(fileN), fileN, nodeAddr,null);
-                        }else{
-                            try {
-                                reconstructFile(fileDetails.get(files.get(fileN)).getContentList(),fileN);
-
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
+                        } else {
+                            System.out.println("check the file name again");
                         }
+                        break;
+                    case 4:
+                        files.entrySet().forEach(x -> System.out.println(x.getKey()));
+                        break;
+                    case 5:
+                        System.out.println("Enter the shared content id");
+                        String contentID2 = sc.next();
+                        System.out.println("Enter a new name for the file");
+                        String fileName2 = sc.next();
+                        nodeAddr = smartContractConnection.getIPAddress();
+                        RPCFunctions.retrieveRequest(myIp + ":" + myPort, contentID2, fileName2, nodeAddr, null);
+                        break;
+                    case 6:
+                        System.out.println("Enter the file name to be deleted");
+                        String nameToBeDeleted = sc.next();
+                        nodeAddr = smartContractConnection.getIPAddress();
+                        if (files.containsKey(nameToBeDeleted)) {
+                            for (String file1 : files.get(nameToBeDeleted)) {
+                                RPCFunctions.deleteRequest(myIp + ":" + myPort, file1, nameToBeDeleted, nodeAddr, null, ownerName, false);
+                            }
+                        } else {
+                            System.out.println("check the file name again");
+                        }
+                        break;
 
-                    }else{
-                        System.out.println("check the file name again");
-                    }
-                    payForTheFile(files.get(fileN));
-                    break;
+                    case 7:
+                        System.out.println("Enter the file name");
+                        String fileN = sc.next();
+                        nodeAddr = smartContractConnection.getIPAddress();
+                        if (files.containsKey(fileN)) {
+                            //if(fileNotPresentInMemory(files.get(fileN))) {
+                            for (String file1 : files.get(fileN)) {
+                                RPCFunctions.retrieveRequest(myIp + ":" + myPort, file1, fileN, nodeAddr, null);
+                            }
+//                        }else{
+//                            try {
+//                                reconstructFile(fileDetails.get(files.get(fileN)).getContentList(),fileN);
+//
+//                            } catch (IOException e) {
+//                                throw new RuntimeException(e);
+//                            }
+//                        }
 
+                        } else {
+                            System.out.println("check the file name again");
+                        }
+                        for(String f: files.get(fileN)) {
+                            payForTheFile(f);
+                        }
+                        break;
+                }
+            }catch(Exception e){
+                e.printStackTrace();
             }
         }while(!quit);
     }

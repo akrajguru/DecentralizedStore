@@ -62,7 +62,7 @@ public class StabilizeFileStore extends Thread {
                                 if( node.getStorageInfo().getServerStoreInformation().get("replica2").contains(storage.getContentHash())){
                                     node.getStorageInfo().getServerStoreInformation().get("replica2").remove(storage.getContentHash());
                                 }
-                                node.getGarbageCollector().get("CONTENT").add(storage.getContentHash());
+                                //node.getGarbageCollector().get("CONTENT").add(storage.getContentHash());
                             }
                         } else {
                             iP = node.findSuccessor(NodeHelper.fnv1aModifiedHash(storage.getRootHash()), node);
@@ -87,7 +87,7 @@ public class StabilizeFileStore extends Thread {
                                 if( node.getStorageInfo().getServerStoreInformation().get("replica2").contains(storage.getRootHash())){
                                     node.getStorageInfo().getServerStoreInformation().get("replica2").remove(storage.getRootHash());
                                 }
-                                node.getGarbageCollector().get("FD").add(storage.getContentHash());
+                                //node.getGarbageCollector().get("FD").add(storage.getContentHash());
                             }
                         }
                     }
@@ -100,10 +100,10 @@ public class StabilizeFileStore extends Thread {
                         receieve all the file names they dont have
                         after that send those files
                     */
-//                if(toBeReplicatedFiles==null) {
-//                    toBeReplicatedFiles= new ArrayList<>();
-//                }
-                if(toBeReplicatedFiles!=null && !toBeReplicatedFiles.isEmpty()) {
+                if(toBeReplicatedFiles==null) {
+                    toBeReplicatedFiles= new ArrayList<>();
+                }
+                //if(toBeReplicatedFiles!=null && !toBeReplicatedFiles.isEmpty()) {
                     chnl = ManagedChannelBuilder.forTarget(node.getSuccessor().getIpAddress())
                             .usePlaintext()
                             .build();
@@ -145,7 +145,7 @@ public class StabilizeFileStore extends Thread {
                     chnl.shutdown();
 
                     node.setForceReplication(new ArrayList<>());
-                }
+               // }
 
                     /*
 
@@ -154,7 +154,23 @@ public class StabilizeFileStore extends Thread {
                      */
 
                     if(timer%300000==0){
-                       int f =PersistAndRetrieveMetadata.deleteFilesGarbageCollection(node.getGarbageCollector().get("FD"),node,false);
+
+                        for(Storage storage: storageList){
+                            if(storage.isContainsContent()){
+                                if(!(node.getStorageInfo().getServerStoreInformation().get("primary").contains(storage.getContentHash())
+                                || node.getStorageInfo().getServerStoreInformation().get("replica1").contains(storage.getContentHash())
+                                || node.getStorageInfo().getServerStoreInformation().get("replica2").contains(storage.getContentHash()))){
+                                    node.getGarbageCollector().get("CONTENT").add(storage.getContentHash());
+                                }
+                            }else{
+                                if(!(node.getStorageInfo().getServerStoreInformation().get("primary").contains(storage.getRootHash())
+                                        || node.getStorageInfo().getServerStoreInformation().get("replica1").contains(storage.getRootHash())
+                                        || node.getStorageInfo().getServerStoreInformation().get("replica2").contains(storage.getRootHash()))){
+                                    node.getGarbageCollector().get("FD").add(storage.getContentHash());
+                                }
+                            }
+                        }
+                        int f =PersistAndRetrieveMetadata.deleteFilesGarbageCollection(node.getGarbageCollector().get("FD"),node,false);
                         int c =PersistAndRetrieveMetadata.deleteFilesGarbageCollection(node.getGarbageCollector().get("CONTENT"),node,true);
                         int t =f+c;
                         System.out.println("Garbage collected files:" +t);

@@ -117,6 +117,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
                                 resp = Chord.RetResponse.newBuilder().setResponse(0).build();
                             }
                         }
+                        if(request.getIsDeleteRequest()) PersistAndRetrieveMetadata.deleteFileForOwner(rootHash,node,false,request.getOwner());
                 }
             } else {
                 if(request.getIsDeleteRequest()){
@@ -127,7 +128,7 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
                 }
                 resp = Chord.RetResponse.newBuilder().setResponse(0).build();
             }
-            PersistAndRetrieveMetadata.deleteFileForOwner(rootHash,node,false,request.getOwner());
+
 
         }catch(IOException e){
             Node node1 = RPCFunctions.findSuccessorCall(node.getIpAddress(), String.valueOf(NodeHelper.fnv1aModifiedHash(request.getHash())),null);
@@ -381,34 +382,40 @@ public class SendReceiveService extends SendReceiveGrpc.SendReceiveImplBase {
          List<String> Rep1Files =    node.getStorageInfo().getServerStoreInformation().get("replica1");
          List<String> newReps = predFiles.stream().filter(x-> Rep1Files.contains(x)).collect(Collectors.toList());
          List<String> retList =new ArrayList<>();
-         if(!newReps.isEmpty()) {
+         if(newReps!=null && !newReps.isEmpty()) {
              for(String s: predFiles) {
                  if(!newReps.contains(s)) {
                      retList.add(s);
                  }
              }
              response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(retList).build();
+             node.getStorageInfo().getServerStoreInformation().put("replica1",newReps);
          }else{
              response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(predFiles).build();
+             node.getStorageInfo().getServerStoreInformation().put("replica1",new ArrayList<>());
          }
 
-            node.getStorageInfo().getServerStoreInformation().put("replica1",newReps);
+            //node.getStorageInfo().getServerStoreInformation().put("replica1",newReps);
+            System.out.println("rep1 names updated");
         }else if(request.getYourSuccessor()!=null && request.getYourSuccessor().equals(node.getSuccessor().getIpAddress())){
             List<String> Rep2Files =    node.getStorageInfo().getServerStoreInformation().get("replica2");
             List<String> newReps = predFiles.stream().filter(x-> Rep2Files.contains(x)).collect(Collectors.toList());
             List<String> retList =new ArrayList<>();
-            if(!newReps.isEmpty()) {
+            if(newReps!=null &&!newReps.isEmpty()) {
                 for(String s: predFiles) {
                     if(!newReps.contains(s)) {
                         retList.add(s);
                     }
                 }
                 response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(retList).build();
+                node.getStorageInfo().getServerStoreInformation().put("replica2",newReps);
             }else{
                 response= Chord.filesNotPresent.newBuilder().addAllFilesNotPresent(predFiles).build();
+                node.getStorageInfo().getServerStoreInformation().put("replica2",new ArrayList<>());
             }
 
-            node.getStorageInfo().getServerStoreInformation().put("replica2",newReps);
+
+            System.out.println("rep1 names updated");
         }else{
             response= Chord.filesNotPresent.newBuilder().setError(1).build();
         }
