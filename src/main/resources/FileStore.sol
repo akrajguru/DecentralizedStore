@@ -53,7 +53,7 @@ contract FileStoreContract {
         bytes32 verificationHash,
         string memory _ownerName
     ) public payable returns (string memory ip) {
-        require(msg.value == 600000000000 wei);
+        require(msg.value == 600000000000000 wei);
         require(bytes(ipAddress).length > 0);
         addBlock(fileHash, randomNumber, verificationHash, _ownerName);
         return ipAddress;
@@ -149,7 +149,7 @@ contract FileStoreContract {
 
         if (payCounter > 0) {
 
-            uint256 amount = (200000000000 * payCounter);
+            uint256 amount = (200000000000000 * payCounter);
             payable(msg.sender).transfer(amount);
         }
 

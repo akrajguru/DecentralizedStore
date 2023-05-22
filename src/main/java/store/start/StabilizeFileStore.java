@@ -152,7 +152,7 @@ public class StabilizeFileStore extends Thread {
                     Garbage collection
 
                      */
-
+                    node.getContract().heartbeat(node.getIpAddress());
                     if(timer%300000==0){
 
                         for(Storage storage: storageList){
@@ -183,6 +183,7 @@ public class StabilizeFileStore extends Thread {
                                 if (set.getValue() >= 0) {
                                     SolidityHelper.collectAmount(node, set.getKey());
                                     paidTrue.add(set.getKey());
+                                    node.getContract().checkBalanceServer();
                                 } else {
                                     node.getGarbageCollector().get("CONTENT").add(set.getKey());
                                     System.out.println("not paid for " + set.getKey() + " in whole hour" + " - tagging for garbage collection");

@@ -2,7 +2,7 @@ package Blockchain;
 
 
 //import com.zuehlke.blockchain.model.FileStoreContract;
-import generated.com.zuehlke.blockchain.model.FileStoreContract;
+import com.zuehlke.blockchain.model.FileStoreContract;
 import org.web3j.abi.datatypes.Bytes;
 import org.web3j.abi.datatypes.generated.Bytes32;
 import org.web3j.crypto.Credentials;
@@ -120,8 +120,8 @@ public class SmartContractConnection {
 
 
         SmartContractConnection cn = new SmartContractConnection(args[0],args[1]);
-        cn.deployContract(cn.web3j,cn.transactionManager);
-
+       // cn.deployContract(cn.web3j,cn.transactionManager);
+        cn.checkBalanceClient(Credentials.create("0xdff73a61f68ad4f44fe0a2ebc682669208da3000e5a5fa1e78947344b69922c1"));
         //cn.getWeb3j().
 
  //cn.deployContract(cn.web3j, cn.transactionManager);
@@ -223,7 +223,7 @@ public class SmartContractConnection {
             byte[] bytes = Numeric.hexStringToByteArray(verificationHash);
 
             //Bytes32 bt = new Bytes32("0x3d5c3927ab5924163a067fb04397589649bae9f09bea03154391d49c4e3d2690".getBytes());
-            TransactionReceipt f = fileStore.addFileBlock(filehash, randomNum, bytes, owner, BigInteger.valueOf(600000000000L)).send();
+            TransactionReceipt f = fileStore.addFileBlock(filehash, randomNum, bytes, owner, BigInteger.valueOf(600000000000000L)).send();
             System.out.println(f);
             return f.getCumulativeGasUsed();
 

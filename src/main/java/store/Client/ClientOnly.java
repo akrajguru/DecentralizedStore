@@ -317,7 +317,12 @@ public class ClientOnly  extends SendReceiveGrpc.SendReceiveImplBase {
             });
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/"+gilename));
+                if(Files.exists(Path.of("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/"+gilename))
+                        && Files.size(Path.of("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/"+gilename))< newList.get(newList.size()-1).getEndByte()) {
+                    fos = new FileOutputStream(new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/" + gilename), true);
+                }else{
+                    fos = new FileOutputStream(new File("/Users/ajinkyarajguru/Documents/Topics_in_DB/DecentralizedStore/src/test/testResources/" + gilename));
+                }
                 outputStream.writeTo(fos);
             } catch(IOException ioe) {
                 // Handle exception here
