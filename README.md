@@ -19,12 +19,14 @@ This system overcomes the issue of single point of failure and can adapt and rea
 
 Directions to run the application:
 
-Step 1: The first node can create its own network by starting the application by specifying the port number:
+Step 1: The first node can create its own network by starting the application by specifying the port number and information required to enable the crypto layer:
 
-java -cp DecentralizedStore-1.0-SNAPSHOT-jar-with-dependencies.jar store.start.StartNode "port"
+java -cp DecentralizedStore-1.0-SNAPSHOT-jar-with-dependencies.jar store.start.StartNode "port" "contract address" "crypto credentials" "blockchain network IP"
 
 Step 2: All the other joining nodes should know the ip address and the port number for any arbitrary node present in the ring. At the moment there should be one node which was started above. Using that ip address + port our own port we can join the existing ring using the below command:
 
-java -cp DecentralizedStore-1.0-SNAPSHOT-jar-with-dependencies.jar store.start.StartNode "port" "arbitrary host ip address:port"
+java -cp DecentralizedStore-1.0-SNAPSHOT-jar-with-dependencies.jar store.start.StartNode "port" "arbitrary host ip address:port" "contract address" "crypto credentials" "blockchain network IP"
 
 Step 3: Follow the switch case menu to store or retrieve files as required
+
+Project Report: http://www.cs.sjsu.edu/faculty/pollett/masters/Semesters/Fall22/ajinkya/CS298_report.pdf
