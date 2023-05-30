@@ -1,6 +1,6 @@
 Decentralized Storage system using CHORD as the base Distrbuted Hashing Table
 
-Developed a storage system application which can handle storing files as large as multiple GBs and as small as a few bytes on user machines.
+Developed a decentralized storage system which can handle storing files as large as multiple GBs and as small as a few bytes on user machines.
 
 Technologies and concepts utilized:
 1. Java
@@ -11,8 +11,11 @@ Technologies and concepts utilized:
 6. Implementation based on CHORD - A scalable peer to peer lookup service for Internet Applications: https://pdos.csail.mit.edu/papers/chord:sigcomm01/chord_sigcomm.pdf 
 7. SHA-256 hashing protocol
 8. JUnit
+9. Solidity smart contract
+10. Ethereum
+11. Web3j
 
-This application allows multiple users participating on a chord ring to act as a file system. This file system can store client data using consistent hashing
+This application allows multiple users participating on a chord ring to act as a distributed file system. This file system can store client data using consistent hashing
 and can be retrieved easily using a content id or the file name.
 
 This system overcomes the issue of single point of failure and can adapt and readjust itself after addition of new servers at anytime.
